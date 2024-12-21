@@ -1,1 +1,3 @@
-# vue-component-3x
+# dev-helper
+ npm i
+ npm run serve 
