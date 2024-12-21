@@ -3,7 +3,14 @@ const path = require("path");
 
 module.exports = defineConfig({
   transpileDependencies: ["ant-design-vue"],
-
+  devServer: {
+    client: {
+      overlay: {
+        warnings: false,  // Tắt cảnh báo
+        errors: false,     // Hiển thị chỉ lỗi
+      },
+    },
+  },
   configureWebpack: {
     resolve: {
       alias: {

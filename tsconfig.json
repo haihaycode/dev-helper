@@ -17,7 +17,8 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
+    "resolveJsonModule": true  // Thêm tùy chọn này để cho phép import JSON module
   },
   "include": [
     "src/**/*.ts",

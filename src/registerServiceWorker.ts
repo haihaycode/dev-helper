@@ -1,34 +1,32 @@
 /* eslint-disable no-console */
-
 import { register } from "register-service-worker";
-
 if (process.env.NODE_ENV === "production") {
   register(`${process.env.BASE_URL}service-worker.js`, {
     ready() {
       console.log(
-        "App is being served from cache by a service worker.\n" +
-          "For more details, visit https://goo.gl/AFskqB"
+        "Ứng dụng đang được phục vụ từ bộ nhớ cache bởi service worker.\n" +
+          "Để biết thêm chi tiết, hãy truy cập https://goo.gl/AFskqB"
       );
     },
     registered() {
-      console.log("Service worker has been registered.");
+      console.log("Service worker đã được đăng ký.");
     },
     cached() {
-      console.log("Content has been cached for offline use.");
+      console.log("Nội dung đã được lưu vào bộ nhớ cache để sử dụng offline.");
     },
     updatefound() {
-      console.log("New content is downloading.");
+      console.log("Nội dung mới đang được tải xuống.");
     },
     updated() {
-      console.log("New content is available; please refresh.");
+      console.log("Nội dung mới đã có sẵn; vui lòng làm mới lại trang.");
     },
     offline() {
       console.log(
-        "No internet connection found. App is running in offline mode."
+        "Không tìm thấy kết nối internet. Ứng dụng đang chạy ở chế độ offline."
       );
     },
     error(error) {
-      console.error("Error during service worker registration:", error);
+      console.error("Lỗi khi đăng ký service worker:", error);
     },
   });
 }

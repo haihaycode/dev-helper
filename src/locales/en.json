@@ -1,0 +1,15 @@
+{
+    "project":{
+        "name" :"DevHelper"
+    },
+    "message": {
+        "hello": "Hello World!"
+    },
+    "nav": {
+        "home": "Home",
+        "about": "About Us",
+        "tool": "Tool dev",
+        "contact": "Contact",
+        "translate" : "Language"
+    }
+}

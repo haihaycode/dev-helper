@@ -1,0 +1,14 @@
+{
+  "project":{
+    "name" :"DevHelper"
+  },
+  "message": {
+    "hello": "Xin chào Thế giới!"
+  },
+  "nav": {
+    "home": "Trang chủ",
+    "about": "Giới thiệu",
+    "contact": "Liên hệ",
+    "translate" : "Ngôn ngữ"
+  }
+}
