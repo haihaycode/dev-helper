@@ -1,18 +1,18 @@
 <template>
-    <a-layout>
-        <HeaderComponet />
-        <a-layout-content class="content">
-            <router-view />
-        </a-layout-content>
-    </a-layout>
+  <a-layout>
+    <HeaderComponet />
+    <a-layout-content class="content">
+      <router-view />
+    </a-layout-content>
+  </a-layout>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import HeaderComponet from "@/components/layout/HeaderComponet.vue";
 export default defineComponent({
-    name: "DefaultLayout",
-    components: { HeaderComponet },
+  name: "DefaultLayout",
+  components: { HeaderComponet },
 });
 </script>
 

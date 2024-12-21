@@ -6,22 +6,27 @@
     :disabled="disabled"
     :style="buttonStyle"
     :type="buttonType"
-    :icon="icon"
+    :icon="iconComponent"
     :size="size"
   >
-    {{ loadingText || $slots.default }}
+    <template v-if="!loading">{{ loadingText || $slots.default }}</template>
   </a-button>
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { defineComponent, h } from "vue";
 import { Button as AntButton } from "ant-design-vue";
+import { SearchOutlined, PlusOutlined } from "@ant-design/icons-vue"; // Example icons
 
 export default defineComponent({
   name: "AntButton",
   components: {
     // eslint-disable-next-line vue/no-unused-components
     AntButton,
+    // eslint-disable-next-line vue/no-unused-components
+    SearchOutlined,
+    // eslint-disable-next-line vue/no-unused-components
+    PlusOutlined, // Example icons
   },
   props: {
     customClass: {
@@ -38,7 +43,7 @@ export default defineComponent({
     },
     loadingText: {
       type: String,
-      default: "Loading...",
+      default: "... ",
     },
     disabled: {
       type: Boolean,
@@ -76,6 +81,21 @@ export default defineComponent({
         style.color = this.textColor;
       }
       return style;
+    },
+    iconComponent() {
+      if (typeof this.icon === "string") {
+        // If icon is a string, return the corresponding icon component
+        switch (this.icon) {
+          case "search":
+            return h(SearchOutlined);
+          case "plus":
+            return h(PlusOutlined);
+          // Add more cases for other icons as needed
+          default:
+            return null;
+        }
+      }
+      return this.icon; // If icon is an object, return it directly
     },
   },
 });
