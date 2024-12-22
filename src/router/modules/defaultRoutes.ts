@@ -1,6 +1,12 @@
 import { RouteRecordRaw } from "vue-router";
 import DefaultLayout from "@/views/layouts/DefaultLayout.vue";
-import Hello from "@/views/Hello.vue";
+import { dynamicImport } from "@/utils/importUtils";
+
+const components = dynamicImport([
+  "views/Hello",
+  "views/pages/folder-test/Login",
+  "views/pages/folder-test/test-component-f1",
+]);
 
 const defaultRoutes: Array<RouteRecordRaw> = [
   {
@@ -9,8 +15,18 @@ const defaultRoutes: Array<RouteRecordRaw> = [
     children: [
       {
         path: "hello",
-        name: "hello",
-        component: Hello,
+        name: "HelloPage",
+        component: components["views/Hello"],
+      },
+      {
+        path: "login",
+        name: "LoginPage",
+        component: components["views/pages/folder-test/Login"],
+      },
+      {
+        path: "test-component-f1",
+        name: "TestComponentF1Page",
+        component: components["views/pages/folder-test/test-component-f1"],
       },
     ],
   },

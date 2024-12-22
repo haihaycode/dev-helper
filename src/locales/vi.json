@@ -1,6 +1,6 @@
 {
-  "project":{
-    "name" :"DevHelper"
+  "project": {
+    "name": "DevHelper"
   },
   "message": {
     "hello": "Xin chào Thế giới!"
@@ -8,7 +8,19 @@
   "nav": {
     "home": "Trang chủ",
     "about": "Giới thiệu",
+    "tool": "Công cụ",
     "contact": "Liên hệ",
-    "translate" : "Ngôn ngữ"
+    "translate": "Ngôn ngữ"
+  },
+  "loading": {
+    "default": "Đang tải..."
+  },
+  "login": {
+    "title": "Đăng nhập",
+    "usernamePlaceholder": "Tên đăng nhập",
+    "passwordPlaceholder": "Mật khẩu",
+    "submitButton": "Đăng nhập",
+    "successMessage": "Đăng nhập thành công!",
+    "errorMessage": "Vui lòng nhập tên đăng nhập và mật khẩu!"
   }
 }

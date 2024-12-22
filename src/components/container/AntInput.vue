@@ -1,8 +1,13 @@
 <template>
-  <a-input v-bind="$attrs" :class="customClass" />
+  <a-input
+    v-bind="$attrs"
+    :class="customClass"
+    :value="modelValue"
+    @input="updateValue"
+  />
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from "vue";
 import { Input as AntInput } from "ant-design-vue";
 
@@ -17,10 +22,21 @@ export default defineComponent({
       type: String,
       default: "",
     },
+    modelValue: {
+      type: String,
+      default: "",
+    },
+  },
+  emits: ["update:modelValue"],
+  methods: {
+    updateValue(event: Event) {
+      const input = event.target as HTMLInputElement;
+      this.$emit("update:modelValue", input.value);
+    },
   },
 });
 </script>
 
 <style scoped>
-/* Style tùy chỉnh cho Input (nếu cần) */
+/* Add any additional styles here */
 </style>

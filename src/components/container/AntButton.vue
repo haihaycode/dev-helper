@@ -8,13 +8,15 @@
     :type="buttonType"
     :icon="iconComponent"
     :size="size"
+    :html-type="htmlType"
   >
-    <template v-if="!loading">{{ loadingText || $slots.default }}</template>
+    <template v-if="loading">{{ loadingText }}</template>
+    <template v-else><slot></slot></template>
   </a-button>
 </template>
 
-<script>
-import { defineComponent, h } from "vue";
+<script lang="ts">
+import { defineComponent, h, CSSProperties } from "vue";
 import { Button as AntButton } from "ant-design-vue";
 import { SearchOutlined, PlusOutlined } from "@ant-design/icons-vue"; // Example icons
 
@@ -43,7 +45,7 @@ export default defineComponent({
     },
     loadingText: {
       type: String,
-      default: "... ",
+      default: "Loading...",
     },
     disabled: {
       type: Boolean,
@@ -69,10 +71,14 @@ export default defineComponent({
       type: String,
       default: "", // For text color
     },
+    htmlType: {
+      type: String,
+      default: "button", // 'button', 'submit', 'reset'
+    },
   },
   computed: {
     buttonStyle() {
-      let style = {};
+      let style: CSSProperties = {};
       if (this.color) {
         style.backgroundColor = this.color;
         style.borderColor = this.color;
