@@ -18,7 +18,7 @@
 <script lang="ts">
 import { defineComponent, h, CSSProperties } from "vue";
 import { Button as AntButton } from "ant-design-vue";
-import { SearchOutlined, PlusOutlined } from "@ant-design/icons-vue"; // Example icons
+import { SearchOutlined, PlusOutlined } from "@ant-design/icons-vue"; 
 
 export default defineComponent({
   name: "AntButton",
@@ -28,7 +28,7 @@ export default defineComponent({
     // eslint-disable-next-line vue/no-unused-components
     SearchOutlined,
     // eslint-disable-next-line vue/no-unused-components
-    PlusOutlined, // Example icons
+    PlusOutlined, 
   },
   props: {
     customClass: {
@@ -77,7 +77,7 @@ export default defineComponent({
     },
   },
   computed: {
-    buttonStyle() {
+    buttonStyle(): CSSProperties {
       let style: CSSProperties = {};
       if (this.color) {
         style.backgroundColor = this.color;
@@ -88,7 +88,7 @@ export default defineComponent({
       }
       return style;
     },
-    iconComponent() {
+    iconComponent(): any {
       if (typeof this.icon === "string") {
         // If icon is a string, return the corresponding icon component
         switch (this.icon) {
