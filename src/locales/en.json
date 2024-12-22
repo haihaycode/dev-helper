@@ -11,5 +11,16 @@
         "tool": "Tool dev",
         "contact": "Contact",
         "translate" : "Language"
+    },
+    "loading": {
+        "default": "Loading..."
+    },
+    "login": {
+        "title": "Login",
+        "usernamePlaceholder": "Username",
+        "passwordPlaceholder": "Password",
+        "submitButton": "Login",
+        "successMessage": "Login successful!",
+        "errorMessage": "Please enter username and password!"
     }
 }
