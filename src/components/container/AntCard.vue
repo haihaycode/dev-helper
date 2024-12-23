@@ -1,5 +1,5 @@
 <template>
-  <a-card v-bind="$attrs" :class="customClass">
+  <a-card v-bind="$attrs" :class="['custom-card', customClass]">
     <slot></slot>
   </a-card>
 </template>
@@ -24,5 +24,8 @@ export default defineComponent({
 </script>
 
 <style scoped>
-/* Style tùy chỉnh cho Card (nếu cần) */
+.custom-card {
+  background-color: rgba(255, 255, 255, 0.856);
+  padding: 10px;
+}
 </style>

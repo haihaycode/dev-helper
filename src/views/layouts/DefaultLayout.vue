@@ -37,6 +37,5 @@ a-menu-item:hover
   transition background-color 0.3s ease
 
 .content
-  padding 20px
   background-color #f0f2f5
 </style>

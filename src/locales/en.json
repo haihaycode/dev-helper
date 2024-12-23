@@ -25,7 +25,7 @@
         "registerLink": "Don't have an account? Register here"
     },
     "register": {
-        "title": "Register",
+        "title": "Create Account",
         "usernamePlaceholder": "Username",
         "emailPlaceholder": "Email",
         "passwordPlaceholder": "Password",
