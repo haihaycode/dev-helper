@@ -1,44 +1,76 @@
 <template>
   <div class="login-page">
-    <AntCard class="login-card" :title="$t('login.title')">
-      <AntForm @submit.prevent="handleLogin" :model="formModel">
-        <AntFormGroup :required="true">
-          <AntInput
-            v-model="formModel.username"
-            :placeholder="$t('login.usernamePlaceholder')"
-            :error="errors.username"
-            prefix-icon="user"
-            size="large"
-          />
-        </AntFormGroup>
-        <AntFormGroup :required="true">
-          <AntInput
-            v-model="formModel.password"
-            type="password"
-            :placeholder="$t('login.passwordPlaceholder')"
-            :error="errors.password"
-            prefix-icon="lock"
-            size="large"
-          />
-        </AntFormGroup>
-        <AntFormGroup :required="true">
-          <AntButton
-            type="primary"
-            html-type="submit"
-            class="login-button"
-            size="large"
-            :loading="loading"
-            :loading-text="$t('loading.default')"
-          >
-            {{ $t("login.submitButton") }}
-          </AntButton>
-        </AntFormGroup>
-      </AntForm>
-
-      <RouterLink :to="{ name: 'RegisterPage' }">{{
-        $t("login.registerLink")
-      }}</RouterLink>
-    </AntCard>
+    <div class="background-image"></div>
+    <div class="login-container">
+      <AntTwoColumnCard
+        :gutter="24"
+        :leftSpanXs="24"
+        :leftSpanSm="24"
+        :leftSpanMd="12"
+        :leftSpanLg="12"
+        :leftSpanXl="12"
+        :rightSpanXs="24"
+        :rightSpanSm="24"
+        :rightSpanMd="12"
+        :rightSpanLg="12"
+        :rightSpanXl="12"
+      >
+        <template #left>
+          <div class="terms-conditions">
+            <h2>Điều kiện và Điều khoản</h2>
+            <p>
+              Chào mừng bạn đến với trang đăng nhập của chúng tôi. Vui lòng đọc
+              kỹ các điều kiện và điều khoản trước khi đăng nhập.
+            </p>
+            <ul>
+              <li>Điều kiện 1: Bạn phải trên 18 tuổi.</li>
+              <li>Điều kiện 2: Bạn phải đồng ý với các điều khoản sử dụng.</li>
+              <li>Điều kiện 3: Bạn phải cung cấp thông tin chính xác.</li>
+            </ul>
+          </div>
+        </template>
+        <template #right>
+          <AntCard class="login-card" :title="$t('login.title')">
+            <AntForm @submit.prevent="handleLogin" :model="formModel">
+              <AntFormGroup :required="true">
+                <AntInput
+                  v-model="formModel.username"
+                  :placeholder="$t('login.usernamePlaceholder')"
+                  :error="errors.username"
+                  prefix-icon="user"
+                  size="large"
+                />
+              </AntFormGroup>
+              <AntFormGroup :required="true">
+                <AntInput
+                  v-model="formModel.password"
+                  type="password"
+                  :placeholder="$t('login.passwordPlaceholder')"
+                  :error="errors.password"
+                  prefix-icon="lock"
+                  size="large"
+                />
+              </AntFormGroup>
+              <AntFormGroup :required="true">
+                <AntButton
+                  type="primary"
+                  html-type="submit"
+                  class="login-button"
+                  size="large"
+                  :loading="loading"
+                  :loading-text="$t('loading.default')"
+                >
+                  {{ $t("login.submitButton") }}
+                </AntButton>
+              </AntFormGroup>
+            </AntForm>
+            <RouterLink :to="{ name: 'RegisterPage' }">{{
+              $t("login.registerLink")
+            }}</RouterLink>
+          </AntCard>
+        </template>
+      </AntTwoColumnCard>
+    </div>
     <AntModalMessage
       :visible="messageVisible"
       :title="messageTitle"
@@ -64,6 +96,7 @@ const components = dynamicImport([
   "components/container/AntModalMessage",
   "components/container/AntFormGroup",
   "components/container/AntForm",
+  "components/container/AntTwoColumnCard",
   "components/container/RouterLink",
 ]);
 
@@ -82,6 +115,9 @@ export default defineComponent({
       components["components/container/AntFormGroup"]
     ),
     AntForm: defineAsyncComponent(components["components/container/AntForm"]),
+    AntTwoColumnCard: defineAsyncComponent(
+      components["components/container/AntTwoColumnCard"]
+    ),
     RouterLink: defineAsyncComponent(
       components["components/container/RouterLink"]
     ),
@@ -145,22 +181,51 @@ export default defineComponent({
 
 <style scoped lang="stylus">
 .login-page
+  position relative
   display flex
   justify-content center
   align-items center
   height 100vh
   background-color #f0f2f5
 
-.login-card
-  width 400px
-  max-width 90%
-  box-shadow 0 2px 8px rgba(0, 0, 0, 0.1)
+.background-image
+  position absolute
+  top 0
+  left 0
+  width 100%
+  height 100%
+  background-image url('https://cdn-media.sforum.vn/storage/app/media/ctv_seo10/background-noel-9.jpg')
+  background-size cover
+  background-position center
+  z-index 1
 
-.form-group
-  margin-bottom 16px
+.login-container
+  position relative
+  z-index 2
+  width 800px
+  max-width 90%
+
+
+.login-card
+  width 100%
+  border none
+  box-shadow none
 
 .login-button
   width 100%
 
+.terms-conditions
+  padding 20px
 
+
+
+.terms-conditions h2
+  margin-bottom 16px
+
+.terms-conditions p
+  margin-bottom 16px
+
+.terms-conditions ul
+  list-style-type disc
+  padding-left 20px
 </style>
