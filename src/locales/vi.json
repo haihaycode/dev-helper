@@ -34,5 +34,17 @@
     "errorMessage": "Vui lòng điền đầy đủ các trường!",
     "invalidEmail": "Vui lòng nhập địa chỉ email hợp lệ!",
     "loginLink": "Đã có tài khoản? Đăng nhập tại đây"
+  },
+  "error": {
+    "404": {
+      "title": "Không tìm thấy trang",
+      "message": "Xin lỗi, trang bạn truy cập không tồn tại.",
+      "button": "Trở về trang chủ"
+    },
+    "500": {
+      "title": "Lỗi máy chủ nội bộ",
+      "message": "Xin lỗi, đã xảy ra lỗi.",
+      "button": "Trở về trang chủ"
+    }
   }
 }
