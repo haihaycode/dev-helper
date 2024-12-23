@@ -1,25 +1,27 @@
 <template>
   <div class="login-page">
     <AntCard class="login-card" :title="$t('login.title')">
-      <form @submit.prevent="handleLogin">
-        <div class="form-group">
+      <AntForm @submit.prevent="handleLogin" :model="formModel">
+        <AntFormGroup :required="true">
           <AntInput
-            v-model="username"
+            v-model="formModel.username"
             :placeholder="$t('login.usernamePlaceholder')"
+            :error="errors.username"
             prefix-icon="user"
             size="large"
           />
-        </div>
-        <div class="form-group">
+        </AntFormGroup>
+        <AntFormGroup :required="true">
           <AntInput
-            v-model="password"
+            v-model="formModel.password"
             type="password"
             :placeholder="$t('login.passwordPlaceholder')"
+            :error="errors.password"
             prefix-icon="lock"
             size="large"
           />
-        </div>
-        <div class="form-group">
+        </AntFormGroup>
+        <AntFormGroup :required="true">
           <AntButton
             type="primary"
             html-type="submit"
@@ -30,8 +32,11 @@
           >
             {{ $t("login.submitButton") }}
           </AntButton>
-        </div>
-      </form>
+        </AntFormGroup>
+      </AntForm>
+      <div class="switch-link">
+        <router-link to="/register">{{ $t("login.registerLink") }}</router-link>
+      </div>
     </AntCard>
     <AntModalMessage
       :visible="messageVisible"
@@ -48,6 +53,7 @@
 <script lang="ts">
 import { defineComponent, ref, defineAsyncComponent } from "vue";
 import { useI18n } from "vue-i18n";
+import * as yup from "yup";
 import { dynamicImport } from "@/utils/importUtils";
 
 const components = dynamicImport([
@@ -55,6 +61,8 @@ const components = dynamicImport([
   "components/container/AntInput",
   "components/container/AntButton",
   "components/container/AntModalMessage",
+  "components/container/AntFormGroup",
+  "components/container/AntForm",
 ]);
 
 export default defineComponent({
@@ -68,19 +76,32 @@ export default defineComponent({
     AntModalMessage: defineAsyncComponent(
       components["components/container/AntModalMessage"]
     ),
+    AntFormGroup: defineAsyncComponent(
+      components["components/container/AntFormGroup"]
+    ),
+    AntForm: defineAsyncComponent(components["components/container/AntForm"]),
   },
   setup() {
     const { t } = useI18n();
-    const username = ref("");
-    const password = ref("");
+    const formModel = ref({
+      username: "",
+      password: "",
+    });
     const loading = ref(false);
     const messageVisible = ref(false);
     const messageTitle = ref("");
     const messageContent = ref("");
     const messageType = ref("info");
+    const errors = ref<Record<string, string>>({});
 
-    const handleLogin = () => {
-      if (username.value.trim() && password.value.trim()) {
+    const schema = yup.object().shape({
+      username: yup.string().required(t("login.errorMessage")),
+      password: yup.string().required(t("login.errorMessage")),
+    });
+
+    const handleLogin = async () => {
+      try {
+        await schema.validate(formModel.value, { abortEarly: false });
         loading.value = true;
         setTimeout(() => {
           loading.value = false;
@@ -89,23 +110,28 @@ export default defineComponent({
           messageType.value = "success";
           messageVisible.value = true;
         }, 1000);
-      } else {
-        messageTitle.value = t("login.title");
-        messageContent.value = t("login.errorMessage");
-        messageType.value = "error";
-        messageVisible.value = true;
+      } catch (err) {
+        if (err instanceof yup.ValidationError) {
+          const errorMessages: Record<string, string> = {};
+          err.inner.forEach((error) => {
+            if (error.path) {
+              errorMessages[error.path] = error.message;
+            }
+          });
+          errors.value = errorMessages;
+        }
       }
     };
 
     return {
-      username,
-      password,
+      formModel,
       loading,
       handleLogin,
       messageVisible,
       messageTitle,
       messageContent,
       messageType,
+      errors,
       t,
     };
   },
@@ -130,4 +156,12 @@ export default defineComponent({
 
 .login-button
   width 100%
+
+.switch-link
+  margin-top 16px
+  text-align center
+
+.switch-link a
+  color #1890ff
+  text-decoration none
 </style>

@@ -21,6 +21,18 @@
     "passwordPlaceholder": "Mật khẩu",
     "submitButton": "Đăng nhập",
     "successMessage": "Đăng nhập thành công!",
-    "errorMessage": "Vui lòng nhập tên đăng nhập và mật khẩu!"
+    "errorMessage": "Vui lòng nhập tên đăng nhập và mật khẩu!",
+    "registerLink": "Chưa có tài khoản? Đăng ký tại đây"
+  },
+  "register": {
+    "title": "Đăng ký",
+    "usernamePlaceholder": "Tên đăng nhập",
+    "emailPlaceholder": "Email",
+    "passwordPlaceholder": "Mật khẩu",
+    "submitButton": "Đăng ký",
+    "successMessage": "Đăng ký thành công!",
+    "errorMessage": "Vui lòng điền đầy đủ các trường!",
+    "invalidEmail": "Vui lòng nhập địa chỉ email hợp lệ!",
+    "loginLink": "Đã có tài khoản? Đăng nhập tại đây"
   }
 }
