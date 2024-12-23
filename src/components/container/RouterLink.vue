@@ -1,5 +1,9 @@
 <template>
-  <a :href="to" @click.prevent="navigate" :class="classes">
+  <a
+    :href="to"
+    @click.prevent="navigate"
+    :class="[classes, { active: isActive }]"
+  >
     <slot></slot>
   </a>
 </template>
@@ -44,5 +48,15 @@ export default {
 a {
   color: inherit;
   text-decoration: none;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+a:hover {
+  color: #1890ff;
+  text-decoration: underline;
+}
+
+a.active {
+  color: #1890ff;
 }
 </style>
