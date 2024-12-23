@@ -16,7 +16,7 @@
     >
       <template #left>
         <AntImage
-          src="https://img.freepik.com/premium-vector/solution-tech-logo_5379-2.jpg"
+          src="https://cdn.dribbble.com/users/114645/screenshots/3116766/500-cb.gif"
           alt="Error Image"
           width="100%"
           height="auto"
@@ -26,9 +26,9 @@
       <template #right>
         <AntCard class="error-card" :title="$t('error.500.title')">
           <p>{{ $t("error.500.message") }}</p>
-          <RouterLink :to="{ name: 'HomePage' }">
-            <AntButton type="primary">{{ $t("error.500.button") }}</AntButton>
-          </RouterLink>
+          <AntButton @click="goBack" type="primary">{{
+            $t("error.500.button")
+          }}</AntButton>
         </AntCard>
       </template>
     </AntTwoColumnCard>
@@ -43,7 +43,6 @@ import { dynamicImport } from "@/utils/importUtils";
 const components = dynamicImport([
   "components/container/AntCard",
   "components/container/AntButton",
-  "components/container/RouterLink",
   "components/container/AntImage",
   "components/container/AntTwoColumnCard",
 ]);
@@ -55,9 +54,7 @@ export default defineComponent({
     AntButton: defineAsyncComponent(
       components["components/container/AntButton"]
     ),
-    RouterLink: defineAsyncComponent(
-      components["components/container/RouterLink"]
-    ),
+
     AntImage: defineAsyncComponent(components["components/container/AntImage"]),
     AntTwoColumnCard: defineAsyncComponent(
       components["components/container/AntTwoColumnCard"]
@@ -65,7 +62,10 @@ export default defineComponent({
   },
   setup() {
     const { t } = useI18n();
-    return { t };
+    const goBack = () => {
+      window.history.back();
+    };
+    return { t, goBack };
   },
 });
 </script>
