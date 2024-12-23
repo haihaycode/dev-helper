@@ -47,6 +47,7 @@
             <AntFormGroup :required="true">
               <AntInput
                 v-model="formModel.password"
+                :label="$t('register.passwordLabel')"
                 type="password"
                 :placeholder="$t('register.passwordPlaceholder')"
                 :error="errors.password"

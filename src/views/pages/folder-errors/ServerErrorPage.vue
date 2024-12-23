@@ -1,4 +1,3 @@
-<!-- filepath: /d:/myproject/vue3x/DevHelper/src/views/pages/errors/ServerErrorPage.vue -->
 <template>
   <div class="error-page">
     <AntTwoColumnCard

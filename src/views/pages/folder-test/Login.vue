@@ -138,7 +138,6 @@ export default defineComponent({
       username: yup.string().required(t("login.errorMessage")),
       password: yup.string().required(t("login.errorMessage")),
     });
-
     const handleLogin = async () => {
       try {
         await schema.validate(formModel.value, { abortEarly: false });
