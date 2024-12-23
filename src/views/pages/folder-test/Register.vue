@@ -69,6 +69,30 @@
             </AntFormGroup>
           </AntForm>
 
+          <AntText>{{ $t("register.orRegisterWith") }}</AntText>
+          <AntRow
+            justify="center"
+            class="social-login-buttons"
+            gutter="{16}"
+            gap="{16}"
+          >
+            <AntCol span="{8}">
+              <AntButton type="default" :icon="'google'" block>
+                Google
+              </AntButton>
+            </AntCol>
+            <AntCol span="{8}">
+              <AntButton type="default" :icon="'facebook'" block>
+                Facebook
+              </AntButton>
+            </AntCol>
+            <AntCol span="{8}">
+              <AntButton type="default" :icon="'github'" block>
+                GitHub
+              </AntButton>
+            </AntCol>
+          </AntRow>
+
           <RouterLink :to="{ name: 'LoginPage' }">{{
             $t("register.loginLink")
           }}</RouterLink>
@@ -92,6 +116,12 @@ import { defineComponent, ref, defineAsyncComponent } from "vue";
 import { useI18n } from "vue-i18n";
 import * as yup from "yup";
 import { dynamicImport } from "@/utils/importUtils";
+import {
+  GoogleOutlined,
+  FacebookOutlined,
+  GithubOutlined,
+} from "@ant-design/icons-vue";
+import { h } from "vue";
 
 const components = dynamicImport([
   "components/container/AntCard",
@@ -103,6 +133,9 @@ const components = dynamicImport([
   "components/container/AntTwoColumnCard",
   "components/container/RouterLink",
   "components/container/AntImage",
+  "components/container/AntRow",
+  "components/container/AntCol",
+  "components/container/AntText",
 ]);
 
 export default defineComponent({
@@ -127,6 +160,15 @@ export default defineComponent({
       components["components/container/RouterLink"]
     ),
     AntImage: defineAsyncComponent(components["components/container/AntImage"]),
+    AntRow: defineAsyncComponent(components["components/container/AntRow"]),
+    AntCol: defineAsyncComponent(components["components/container/AntCol"]),
+    AntText: defineAsyncComponent(components["components/container/AntText"]),
+    // eslint-disable-next-line vue/no-unused-components
+    GoogleOutlined,
+    // eslint-disable-next-line vue/no-unused-components
+    FacebookOutlined,
+    // eslint-disable-next-line vue/no-unused-components
+    GithubOutlined,
   },
   setup() {
     const { t } = useI18n();
@@ -196,7 +238,7 @@ export default defineComponent({
   justify-content center
   align-items center
   height 100vh
-  max-width 800px
+  max-width 1200px
   margin 20px auto
   background-color #f0f2f5
 
@@ -211,4 +253,7 @@ export default defineComponent({
 
 .register-button
   width 100%
+
+.social-login-buttons
+  margin 10px auto
 </style>

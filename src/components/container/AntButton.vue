@@ -18,7 +18,13 @@
 <script lang="ts">
 import { defineComponent, h, CSSProperties } from "vue";
 import { Button as AntButton } from "ant-design-vue";
-import { SearchOutlined, PlusOutlined } from "@ant-design/icons-vue"; 
+import {
+  SearchOutlined,
+  PlusOutlined,
+  GoogleOutlined,
+  FacebookOutlined,
+  GithubOutlined,
+} from "@ant-design/icons-vue";
 
 export default defineComponent({
   name: "AntButton",
@@ -28,7 +34,13 @@ export default defineComponent({
     // eslint-disable-next-line vue/no-unused-components
     SearchOutlined,
     // eslint-disable-next-line vue/no-unused-components
-    PlusOutlined, 
+    PlusOutlined,
+    // eslint-disable-next-line vue/no-unused-components
+    GoogleOutlined,
+    // eslint-disable-next-line vue/no-unused-components
+    FacebookOutlined,
+    // eslint-disable-next-line vue/no-unused-components
+    GithubOutlined,
   },
   props: {
     customClass: {
@@ -96,6 +108,12 @@ export default defineComponent({
             return h(SearchOutlined);
           case "plus":
             return h(PlusOutlined);
+          case "google":
+            return h(GoogleOutlined);
+          case "facebook":
+            return h(FacebookOutlined);
+          case "github":
+            return h(GithubOutlined);
           // Add more cases for other icons as needed
           default:
             return null;

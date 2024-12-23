@@ -1,7 +1,17 @@
 <template>
-  <a-typography-text v-bind="$attrs" :class="customClass">{{
-    $slots.default
-  }}</a-typography-text>
+  <a-typography-text
+    v-bind="$attrs"
+    :class="customClass"
+    :type="type"
+    :disabled="disabled"
+    :mark="mark"
+    :code="code"
+    :keyboard="keyboard"
+    :underline="underline"
+    :strong="strong"
+  >
+    <slot></slot>
+  </a-typography-text>
 </template>
 
 <script>
@@ -17,6 +27,34 @@ export default defineComponent({
     customClass: {
       type: String,
       default: "",
+    },
+    type: {
+      type: String,
+      default: "", // 'secondary', 'success', 'warning', 'danger'
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
+    mark: {
+      type: Boolean,
+      default: false,
+    },
+    code: {
+      type: Boolean,
+      default: false,
+    },
+    keyboard: {
+      type: Boolean,
+      default: false,
+    },
+    underline: {
+      type: Boolean,
+      default: false,
+    },
+    strong: {
+      type: Boolean,
+      default: false,
     },
   },
 });

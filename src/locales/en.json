@@ -22,7 +22,8 @@
         "submitButton": "Login",
         "successMessage": "Login successful!",
         "errorMessage": "Please enter username and password!",
-        "registerLink": "Don't have an account? Register here"
+        "registerLink": "Don't have an account? Register here",
+        "orLoginWith": "----- or login with -----"
     },
     "register": {
         "title": "Create Account",
@@ -33,7 +34,8 @@
         "successMessage": "Registration successful!",
         "errorMessage": "Please fill out all fields!",
         "invalidEmail": "Please enter a valid email address!",
-        "loginLink": "Already have an account? Login here"
+        "loginLink": "Already have an account? Login here",
+        "orRegisterWith": "----- or create an account with -----"
     },
     "error": {
         "404": {
