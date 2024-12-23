@@ -15,11 +15,11 @@
     >
       <template #left>
         <AntImage
-          src="https://img.freepik.com/premium-vector/solution-tech-logo_5379-2.jpg"
-          alt="Terms and Conditions Image"
+          :src="require('@/assets/logo/logo-dev-helper-1.svg')"
+          :alt="'DevHelper'"
           width="100%"
           height="auto"
-          preview
+          :preview="false"
         />
       </template>
       <template #right>
