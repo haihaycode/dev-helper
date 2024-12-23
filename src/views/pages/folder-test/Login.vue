@@ -1,6 +1,6 @@
 <template>
   <div class="login-page">
-    <div class="background-image"></div>
+    <!-- <div class="background-image"></div> -->
     <div class="login-container">
       <AntTwoColumnCard
         :gutter="24"
@@ -16,20 +16,6 @@
         :rightSpanXl="12"
       >
         <template #left>
-          <div class="terms-conditions">
-            <h2>Điều kiện và Điều khoản</h2>
-            <p>
-              Chào mừng bạn đến với trang đăng nhập của chúng tôi. Vui lòng đọc
-              kỹ các điều kiện và điều khoản trước khi đăng nhập.
-            </p>
-            <ul>
-              <li>Điều kiện 1: Bạn phải trên 18 tuổi.</li>
-              <li>Điều kiện 2: Bạn phải đồng ý với các điều khoản sử dụng.</li>
-              <li>Điều kiện 3: Bạn phải cung cấp thông tin chính xác.</li>
-            </ul>
-          </div>
-        </template>
-        <template #right>
           <AntCard class="login-card" :title="$t('login.title')">
             <AntForm @submit.prevent="handleLogin" :model="formModel">
               <AntFormGroup :required="true">
@@ -69,6 +55,17 @@
             }}</RouterLink>
           </AntCard>
         </template>
+        <template #right>
+          <div class="terms-conditions">
+            <AntImage
+              src="https://img.freepik.com/premium-vector/solution-tech-logo_5379-2.jpg"
+              alt="Terms and Conditions Image"
+              width="100%"
+              height="auto"
+              preview
+            />
+          </div>
+        </template>
       </AntTwoColumnCard>
     </div>
     <AntModalMessage
@@ -98,6 +95,7 @@ const components = dynamicImport([
   "components/container/AntForm",
   "components/container/AntTwoColumnCard",
   "components/container/RouterLink",
+  "components/container/AntImage",
 ]);
 
 export default defineComponent({
@@ -121,6 +119,7 @@ export default defineComponent({
     RouterLink: defineAsyncComponent(
       components["components/container/RouterLink"]
     ),
+    AntImage: defineAsyncComponent(components["components/container/AntImage"]),
   },
   setup() {
     const { t } = useI18n();
@@ -216,16 +215,4 @@ export default defineComponent({
 
 .terms-conditions
   padding 20px
-
-
-
-.terms-conditions h2
-  margin-bottom 16px
-
-.terms-conditions p
-  margin-bottom 16px
-
-.terms-conditions ul
-  list-style-type disc
-  padding-left 20px
 </style>

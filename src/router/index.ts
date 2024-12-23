@@ -1,9 +1,10 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import defaultRoutes from "./modules/defaultRoutes";
-// import adminRoutes from "./adminRoutes";
+import errorRoutes from "./modules/errorRoutes";
 
 const routes: Array<RouteRecordRaw> = [
   ...defaultRoutes,
+  ...errorRoutes,
   // ...adminRoutes,
 ];
 

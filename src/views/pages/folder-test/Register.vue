@@ -14,10 +14,12 @@
       :rightSpanXl="12"
     >
       <template #left>
-        <img
+        <AntImage
           src="https://img.freepik.com/premium-vector/solution-tech-logo_5379-2.jpg"
-          alt="Logo"
-          class="logo"
+          alt="Terms and Conditions Image"
+          width="100%"
+          height="auto"
+          preview
         />
       </template>
       <template #right>
@@ -99,6 +101,7 @@ const components = dynamicImport([
   "components/container/AntForm",
   "components/container/AntTwoColumnCard",
   "components/container/RouterLink",
+  "components/container/AntImage",
 ]);
 
 export default defineComponent({
@@ -122,6 +125,7 @@ export default defineComponent({
     RouterLink: defineAsyncComponent(
       components["components/container/RouterLink"]
     ),
+    AntImage: defineAsyncComponent(components["components/container/AntImage"]),
   },
   setup() {
     const { t } = useI18n();
@@ -192,7 +196,7 @@ export default defineComponent({
   align-items center
   height 100vh
   max-width 800px
-  margin 0 auto
+  margin 20px auto
   background-color #f0f2f5
 
 .logo

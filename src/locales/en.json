@@ -34,5 +34,17 @@
         "errorMessage": "Please fill out all fields!",
         "invalidEmail": "Please enter a valid email address!",
         "loginLink": "Already have an account? Login here"
+    },
+    "error": {
+        "404": {
+            "title": "Page Not Found",
+            "message": "Sorry, the page you visited does not exist.",
+            "button": "Go back"
+        },
+        "500": {
+            "title": "Internal Server Error",
+            "message": "Sorry, something went wrong.",
+            "button": "Go back"
+        }
     }
 }
