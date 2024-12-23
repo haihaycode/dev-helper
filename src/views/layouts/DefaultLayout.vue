@@ -4,15 +4,18 @@
     <a-layout-content class="content">
       <router-view />
     </a-layout-content>
+    <FooterComponent />
   </a-layout>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import HeaderComponet from "@/components/layout/HeaderComponet.vue";
+import FooterComponent from "@/components/layout/FooterComponent.vue";
+
 export default defineComponent({
   name: "DefaultLayout",
-  components: { HeaderComponet },
+  components: { HeaderComponet, FooterComponent },
 });
 </script>
 
