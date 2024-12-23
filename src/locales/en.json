@@ -1,6 +1,6 @@
 {
-    "project":{
-        "name" :"DevHelper"
+    "project": {
+        "name": "DevHelper"
     },
     "message": {
         "hello": "Hello World!"
@@ -10,7 +10,7 @@
         "about": "About Us",
         "tool": "Tool dev",
         "contact": "Contact",
-        "translate" : "Language"
+        "translate": "Language"
     },
     "loading": {
         "default": "Loading..."
@@ -21,6 +21,18 @@
         "passwordPlaceholder": "Password",
         "submitButton": "Login",
         "successMessage": "Login successful!",
-        "errorMessage": "Please enter username and password!"
+        "errorMessage": "Please enter username and password!",
+        "registerLink": "Don't have an account? Register here"
+    },
+    "register": {
+        "title": "Register",
+        "usernamePlaceholder": "Username",
+        "emailPlaceholder": "Email",
+        "passwordPlaceholder": "Password",
+        "submitButton": "Register",
+        "successMessage": "Registration successful!",
+        "errorMessage": "Please fill out all fields!",
+        "invalidEmail": "Please enter a valid email address!",
+        "loginLink": "Already have an account? Login here"
     }
 }
