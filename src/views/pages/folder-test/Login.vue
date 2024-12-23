@@ -50,6 +50,29 @@
                 </AntButton>
               </AntFormGroup>
             </AntForm>
+            <AntText>{{ $t("login.orLoginWith") }}</AntText>
+            <AntRow
+              justify="center"
+              class="social-login-buttons"
+              gutter="{16}"
+              gap="{16}"
+            >
+              <AntCol span="{8}">
+                <AntButton type="default" :icon="'google'" block>
+                  Google
+                </AntButton>
+              </AntCol>
+              <AntCol span="{8}">
+                <AntButton type="default" :icon="'facebook'" block>
+                  Facebook
+                </AntButton>
+              </AntCol>
+              <AntCol span="{8}">
+                <AntButton type="default" :icon="'github'" block>
+                  GitHub
+                </AntButton>
+              </AntCol>
+            </AntRow>
             <RouterLink :to="{ name: 'RegisterPage' }">{{
               $t("login.registerLink")
             }}</RouterLink>
@@ -96,6 +119,9 @@ const components = dynamicImport([
   "components/container/AntTwoColumnCard",
   "components/container/RouterLink",
   "components/container/AntImage",
+  "components/container/AntRow",
+  "components/container/AntCol",
+  "components/container/AntText",
 ]);
 
 export default defineComponent({
@@ -120,6 +146,9 @@ export default defineComponent({
       components["components/container/RouterLink"]
     ),
     AntImage: defineAsyncComponent(components["components/container/AntImage"]),
+    AntRow: defineAsyncComponent(components["components/container/AntRow"]),
+    AntCol: defineAsyncComponent(components["components/container/AntCol"]),
+    AntText: defineAsyncComponent(components["components/container/AntText"]),
   },
   setup() {
     const { t } = useI18n();
@@ -198,10 +227,10 @@ export default defineComponent({
   z-index 1
 
 .login-container
+
   position relative
   z-index 2
-  width 800px
-  max-width 90%
+  max-width 1200px
 
 
 .login-card
@@ -214,4 +243,7 @@ export default defineComponent({
 
 .terms-conditions
   padding 20px
+
+.social-login-buttons
+  margin 10px auto
 </style>

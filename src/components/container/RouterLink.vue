@@ -3,6 +3,7 @@
     :href="to"
     @click.prevent="navigate"
     :class="[classes, { active: isActive }]"
+    class="cursor-pointer ant-link"
   >
     <slot></slot>
   </a>
@@ -18,7 +19,7 @@ export default {
     },
     classes: {
       type: String,
-      default: "",
+      default: "underline",
     },
     activeClass: {
       type: String,
