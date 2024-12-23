@@ -34,9 +34,10 @@
           </AntButton>
         </AntFormGroup>
       </AntForm>
-      <div class="switch-link">
-        <router-link to="/register">{{ $t("login.registerLink") }}</router-link>
-      </div>
+
+      <RouterLink :to="{ name: 'RegisterPage' }">{{
+        $t("login.registerLink")
+      }}</RouterLink>
     </AntCard>
     <AntModalMessage
       :visible="messageVisible"
@@ -63,6 +64,7 @@ const components = dynamicImport([
   "components/container/AntModalMessage",
   "components/container/AntFormGroup",
   "components/container/AntForm",
+  "components/container/RouterLink",
 ]);
 
 export default defineComponent({
@@ -80,6 +82,9 @@ export default defineComponent({
       components["components/container/AntFormGroup"]
     ),
     AntForm: defineAsyncComponent(components["components/container/AntForm"]),
+    RouterLink: defineAsyncComponent(
+      components["components/container/RouterLink"]
+    ),
   },
   setup() {
     const { t } = useI18n();
@@ -157,11 +162,5 @@ export default defineComponent({
 .login-button
   width 100%
 
-.switch-link
-  margin-top 16px
-  text-align center
 
-.switch-link a
-  color #1890ff
-  text-decoration none
 </style>

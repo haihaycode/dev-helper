@@ -1,15 +1,26 @@
-<!-- filepath: /D:/myproject/vue3x/DevHelper/src/views/pages/folder-test/Register.vue -->
 <template>
   <div class="register-page">
-    <AntRow justify="center" align="middle" class="register-container">
-      <AntCol xs="{24}" md="{12}" class="register-left">
+    <AntTwoColumnCard
+      :gutter="24"
+      :leftSpanXs="24"
+      :leftSpanSm="24"
+      :leftSpanMd="12"
+      :leftSpanLg="12"
+      :leftSpanXl="12"
+      :rightSpanXs="24"
+      :rightSpanSm="24"
+      :rightSpanMd="12"
+      :rightSpanLg="12"
+      :rightSpanXl="12"
+    >
+      <template #left>
         <img
           src="https://img.freepik.com/premium-vector/solution-tech-logo_5379-2.jpg"
           alt="Logo"
           class="logo"
         />
-      </AntCol>
-      <AntCol xs="{24}" md="{12}" class="register-right">
+      </template>
+      <template #right>
         <AntCard class="register-card no-border" :title="$t('register.title')">
           <AntForm @submit.prevent="handleRegister" :model="formModel">
             <AntFormGroup :required="true">
@@ -54,14 +65,13 @@
               </AntButton>
             </AntFormGroup>
           </AntForm>
-          <div class="switch-link">
-            <router-link to="/login">{{
-              $t("register.loginLink")
-            }}</router-link>
-          </div>
+
+          <RouterLink :to="{ name: 'LoginPage' }">{{
+            $t("register.loginLink")
+          }}</RouterLink>
         </AntCard>
-      </AntCol>
-    </AntRow>
+      </template>
+    </AntTwoColumnCard>
     <AntModalMessage
       :visible="messageVisible"
       :title="messageTitle"
@@ -87,8 +97,8 @@ const components = dynamicImport([
   "components/container/AntModalMessage",
   "components/container/AntFormGroup",
   "components/container/AntForm",
-  "components/container/AntRow",
-  "components/container/AntCol",
+  "components/container/AntTwoColumnCard",
+  "components/container/RouterLink",
 ]);
 
 export default defineComponent({
@@ -106,8 +116,12 @@ export default defineComponent({
       components["components/container/AntFormGroup"]
     ),
     AntForm: defineAsyncComponent(components["components/container/AntForm"]),
-    AntRow: defineAsyncComponent(components["components/container/AntRow"]),
-    AntCol: defineAsyncComponent(components["components/container/AntCol"]),
+    AntTwoColumnCard: defineAsyncComponent(
+      components["components/container/AntTwoColumnCard"]
+    ),
+    RouterLink: defineAsyncComponent(
+      components["components/container/RouterLink"]
+    ),
   },
   setup() {
     const { t } = useI18n();
@@ -177,30 +191,13 @@ export default defineComponent({
   justify-content center
   align-items center
   height 100vh
-
-
-.register-container
-  width 100%
-  max-width 900px
-  box-shadow 0 2px 8px rgba(0, 0, 0, 0.1)
-  border-radius 8px
-  overflow hidden
-  background-color #fff
-
-.register-left
-  display flex
-  justify-content center
-  align-items center
-
-  padding 20px
+  max-width 800px
+  margin 0 auto
+  background-color #f0f2f5
 
 .logo
-  width 200px
+  width 100%
   height auto
-
-.register-right
-  padding 40px
-
 
 .register-card
   width 100%
@@ -209,12 +206,4 @@ export default defineComponent({
 
 .register-button
   width 100%
-
-.switch-link
-  margin-top 16px
-  text-align center
-
-.switch-link a
-  color #1890ff
-  text-decoration none
 </style>
