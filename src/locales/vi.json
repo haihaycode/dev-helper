@@ -37,6 +37,16 @@
     "loginLink": "Đã có tài khoản? Đăng nhập tại đây",
     "orLoginWith": "----- hoặc đăng ký với -----"
   },
+  "firebase": {
+    "auth": {
+      "userNotFound": "Người dùng không tìm thấy.",
+      "wrongPassword": "Mật khẩu không chính xác.",
+      "emailAlreadyInUse": "Email đã được sử dụng.",
+      "weakPassword": "Mật khẩu quá yếu.",
+      "operationNotAllowed": "Thao tác không được phép.",
+      "defaultError": "Đã xảy ra lỗi không xác định."
+    }
+  },
   "error": {
     "404": {
       "title": "Không tìm thấy trang",

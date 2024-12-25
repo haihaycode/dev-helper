@@ -62,11 +62,11 @@
                   Google
                 </AntButton>
               </AntCol>
-              <AntCol span="{8}">
+              <!-- <AntCol span="{8}">
                 <AntButton type="default" :icon="'facebook'" block>
                   Facebook
                 </AntButton>
-              </AntCol>
+              </AntCol> -->
               <AntCol span="{8}">
                 <AntButton type="default" :icon="'github'" block>
                   GitHub

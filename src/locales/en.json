@@ -20,7 +20,7 @@
         "usernamePlaceholder": "Username",
         "passwordPlaceholder": "Password",
         "submitButton": "Login",
-        "successMessage": "Login successful!",
+        "successMessage": "Login successful !",
         "errorMessage": "Please enter username and password!",
         "registerLink": "Don't have an account? Register here",
         "orLoginWith": "----- or login with -----"
@@ -31,11 +31,21 @@
         "emailPlaceholder": "Email",
         "passwordPlaceholder": "Password",
         "submitButton": "Register",
-        "successMessage": "Registration successful!",
-        "errorMessage": "Please fill out all fields!",
+        "successMessage": "Registration successful !",
+        "errorMessage": "Please fill out all fields !",
         "invalidEmail": "Please enter a valid email address!",
         "loginLink": "Already have an account? Login here",
         "orRegisterWith": "----- or create an account with -----"
+    },
+    "firebase": {
+          "auth": {
+            "userNotFound": "User  not found.",
+            "wrongPassword": "Incorrect password.",
+            "emailAlreadyInUse": "Email is already in use.",
+            "weakPassword": "Password is too weak.",
+            "operationNotAllowed": "Operation not allowed.",
+            "defaultError": "An unknown error occurred."
+          }
     },
     "error": {
         "404": {
