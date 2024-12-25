@@ -24,7 +24,7 @@
       </template>
       <template #right>
         <AntCard class="register-card no-border" :title="$t('register.title')">
-          <AntForm @submit.prevent="handleRegister" :model="formModel">
+          <AntForm :model="formModel">
             <AntFormGroup :required="true">
               <AntInput
                 v-model="formModel.username"
@@ -57,6 +57,7 @@
             </AntFormGroup>
             <AntFormGroup :required="true">
               <AntButton
+                @click="handleRegister"
                 type="primary"
                 html-type="submit"
                 class="register-button"
@@ -77,17 +78,27 @@
             gap="{16}"
           >
             <AntCol span="{8}">
-              <AntButton type="default" :icon="'google'" block>
+              <AntButton
+                type="default"
+                @click="handleGoogleRegister"
+                :icon="'google'"
+                block
+              >
                 Google
               </AntButton>
             </AntCol>
-            <AntCol span="{8}">
+            <!-- <AntCol span="{8}">
               <AntButton type="default" :icon="'facebook'" block>
                 Facebook
               </AntButton>
-            </AntCol>
+            </AntCol> -->
             <AntCol span="{8}">
-              <AntButton type="default" :icon="'github'" block>
+              <AntButton
+                type="default"
+                @click="handleGithubRegister()"
+                :icon="'github'"
+                block
+              >
                 GitHub
               </AntButton>
             </AntCol>
@@ -121,7 +132,9 @@ import {
   FacebookOutlined,
   GithubOutlined,
 } from "@ant-design/icons-vue";
-import { h } from "vue";
+import { auth, githubProvider, googleProvider } from "@/firebaseConfig";
+import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { getFirebaseMessage } from "@/services/firebase/firebaseMessages";
 
 const components = dynamicImport([
   "components/container/AntCard",
@@ -192,19 +205,24 @@ export default defineComponent({
         .required(t("register.errorMessage")),
       password: yup.string().required(t("register.errorMessage")),
     });
-
     const handleRegister = async () => {
       try {
         await schema.validate(formModel.value, { abortEarly: false });
         loading.value = true;
-        setTimeout(() => {
-          loading.value = false;
-          messageTitle.value = t("register.title");
-          messageContent.value = t("register.successMessage");
-          messageType.value = "success";
-          messageVisible.value = true;
-        }, 1000);
+        console.log("registering user");
+
+        await createUserWithEmailAndPassword(
+          auth,
+          formModel.value.email,
+          formModel.value.password
+        );
+        loading.value = false;
+        messageTitle.value = t("register.title");
+        messageContent.value = t("register.successMessage");
+        messageType.value = "success";
+        messageVisible.value = true;
       } catch (err) {
+        loading.value = false;
         if (err instanceof yup.ValidationError) {
           const errorMessages: Record<string, string> = {};
           err.inner.forEach((error) => {
@@ -213,7 +231,49 @@ export default defineComponent({
             }
           });
           errors.value = errorMessages;
+        } else if (err instanceof Error) {
+          messageTitle.value = t("register.title");
+          const errorMessage = getFirebaseMessage(err.code, t);
+          messageContent.value = errorMessage;
+          messageType.value = "error";
+          messageVisible.value = true;
         }
+      }
+    };
+
+    const handleGithubRegister = async () => {
+      loading.value = true;
+      try {
+        await signInWithPopup(auth, githubProvider);
+        messageTitle.value = t("register.successTitle");
+        messageContent.value = t("register.successMessage");
+        messageType.value = "success";
+      } catch (error) {
+        const errorMessage = getFirebaseMessage(error.code, t);
+        messageTitle.value = t("register.errorTitle");
+        messageContent.value = errorMessage;
+        messageType.value = "error";
+      } finally {
+        loading.value = false;
+        messageVisible.value = true;
+      }
+    };
+    const handleGoogleRegister = async () => {
+      loading.value = true;
+      try {
+        const result = await signInWithPopup(auth, googleProvider);
+        // Xử lý đăng ký thành công
+        messageTitle.value = t("register.successTitle");
+        messageContent.value = t("register.successMessage");
+        messageType.value = "success";
+      } catch (error) {
+        const errorMessage = getFirebaseMessage(error.code);
+        messageTitle.value = t("register.errorTitle");
+        messageContent.value = errorMessage;
+        messageType.value = "error";
+      } finally {
+        loading.value = false;
+        messageVisible.value = true;
       }
     };
 
@@ -221,6 +281,8 @@ export default defineComponent({
       formModel,
       loading,
       handleRegister,
+      handleGithubRegister,
+      handleGoogleRegister,
       messageVisible,
       messageTitle,
       messageContent,

@@ -14,7 +14,6 @@
     <template v-else><slot></slot></template>
   </a-button>
 </template>
-
 <script lang="ts">
 import { defineComponent, h, CSSProperties } from "vue";
 import { Button as AntButton } from "ant-design-vue";
@@ -69,7 +68,7 @@ export default defineComponent({
     },
     icon: {
       type: [String, Object],
-      default: null, // You can pass an icon component or string like "search"
+      default: null,
     },
     size: {
       type: String,
@@ -100,9 +99,9 @@ export default defineComponent({
       }
       return style;
     },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     iconComponent(): any {
       if (typeof this.icon === "string") {
-        // If icon is a string, return the corresponding icon component
         switch (this.icon) {
           case "search":
             return h(SearchOutlined);
@@ -114,17 +113,12 @@ export default defineComponent({
             return h(FacebookOutlined);
           case "github":
             return h(GithubOutlined);
-          // Add more cases for other icons as needed
           default:
             return null;
         }
       }
-      return this.icon; // If icon is an object, return it directly
+      return this.icon;
     },
   },
 });
 </script>
-
-<style scoped>
-/* Có thể thêm các style tùy chỉnh cho Button ở đây */
-</style>
