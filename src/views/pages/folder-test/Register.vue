@@ -135,6 +135,7 @@ import {
 import { auth, githubProvider, googleProvider } from "@/firebaseConfig";
 import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { getFirebaseMessage } from "@/services/firebase/firebaseMessages";
+import { FirebaseError } from "firebase/app";
 
 const components = dynamicImport([
   "components/container/AntCard",
@@ -231,7 +232,7 @@ export default defineComponent({
             }
           });
           errors.value = errorMessages;
-        } else if (err instanceof Error) {
+        } else if (err instanceof FirebaseError) {
           messageTitle.value = t("register.title");
           const errorMessage = getFirebaseMessage(err.code, t);
           messageContent.value = errorMessage;
@@ -248,7 +249,7 @@ export default defineComponent({
         messageTitle.value = t("register.successTitle");
         messageContent.value = t("register.successMessage");
         messageType.value = "success";
-      } catch (error) {
+      } catch (error : any) {
         const errorMessage = getFirebaseMessage(error.code, t);
         messageTitle.value = t("register.errorTitle");
         messageContent.value = errorMessage;
@@ -261,13 +262,12 @@ export default defineComponent({
     const handleGoogleRegister = async () => {
       loading.value = true;
       try {
-        const result = await signInWithPopup(auth, googleProvider);
-        // Xử lý đăng ký thành công
+        await signInWithPopup(auth, googleProvider);
         messageTitle.value = t("register.successTitle");
         messageContent.value = t("register.successMessage");
         messageType.value = "success";
-      } catch (error) {
-        const errorMessage = getFirebaseMessage(error.code);
+      } catch (error : any) {
+        const errorMessage = getFirebaseMessage(error.code,t);
         messageTitle.value = t("register.errorTitle");
         messageContent.value = errorMessage;
         messageType.value = "error";
