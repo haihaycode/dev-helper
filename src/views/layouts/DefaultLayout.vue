@@ -40,5 +40,8 @@ a-menu-item:hover
   transition background-color 0.3s ease
 
 .content
-  background-color #f0f2f5
+  background-image url('@/assets/bg/.bg-1.png')
+  background-size cover
+  background-position center
+  background-repeat no-repeat
 </style>
