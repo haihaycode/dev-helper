@@ -48,6 +48,13 @@
     }
   },
   "error": {
+    "api": {
+    "networkError": "Không thể kết nối mạng. Vui lòng kiểm tra kết nối internet của bạn.",
+    "timeoutError": "Yêu cầu đã quá thời gian chờ. Vui lòng thử lại.",
+    "sessionExpired": "Phiên làm việc đã hết hạn, vui lòng đăng nhập lại.",
+    "dataNotFound": "Không tìm thấy dữ liệu.",
+    "unknownError": "Đã xảy ra lỗi không xác định."
+},
     "404": {
       "title": "Không tìm thấy trang",
       "message": "Xin lỗi, trang bạn truy cập không tồn tại.",

@@ -50,6 +50,13 @@
           }
     },
     "error": {
+        "api": {
+    "networkError": "Unable to connect to the network. Please check your internet connection.",
+    "timeoutError": "The request has timed out. Please try again.",
+    "sessionExpired": "Session has expired, please log in again.",
+    "dataNotFound": "Data not found.",
+    "unknownError": "An unknown error occurred."
+},
         "404": {
             "title": "Page Not Found",
             "message": "Sorry, the page you visited does not exist.",
