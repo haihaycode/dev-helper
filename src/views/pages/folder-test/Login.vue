@@ -16,6 +16,17 @@
         :rightSpanXl="12"
       >
         <template #left>
+          <div class="terms-conditions">
+            <AntImage
+              :src="require('@/assets/logo/logo-dev-helper-1.svg')"
+              :alt="'DevHelper'"
+              width="100%"
+              height="auto"
+              :preview="false"
+            />
+          </div>
+        </template>
+        <template #right>
           <AntCard class="login-card" :title="$t('login.title')">
             <AntForm @submit.prevent="handleLogin" :model="formModel">
               <AntFormGroup :required="true">
@@ -50,7 +61,6 @@
                 </AntButton>
               </AntFormGroup>
             </AntForm>
-            <AntText>{{ $t("login.orLoginWith") }}</AntText>
             <AntRow
               justify="center"
               class="social-login-buttons"
@@ -58,15 +68,10 @@
               gap="{16}"
             >
               <AntCol span="{8}">
-                <AntButton type="default" :icon="'google'" block>
+                <AntButton type="primary" :icon="'google'" block>
                   Google
                 </AntButton>
               </AntCol>
-              <!-- <AntCol span="{8}">
-                <AntButton type="default" :icon="'facebook'" block>
-                  Facebook
-                </AntButton>
-              </AntCol> -->
               <AntCol span="{8}">
                 <AntButton type="default" :icon="'github'" block>
                   GitHub
@@ -77,17 +82,6 @@
               $t("login.registerLink")
             }}</RouterLink>
           </AntCard>
-        </template>
-        <template #right>
-          <div class="terms-conditions">
-            <AntImage
-              :src="require('@/assets/logo/logo-dev-helper-1.svg')"
-              :alt="'DevHelper'"
-              width="100%"
-              height="auto"
-              :preview="false"
-            />
-          </div>
         </template>
       </AntTwoColumnCard>
     </div>
@@ -148,7 +142,7 @@ export default defineComponent({
     AntImage: defineAsyncComponent(components["components/container/AntImage"]),
     AntRow: defineAsyncComponent(components["components/container/AntRow"]),
     AntCol: defineAsyncComponent(components["components/container/AntCol"]),
-    AntText: defineAsyncComponent(components["components/container/AntText"]),
+    // AntText: defineAsyncComponent(components["components/container/AntText"]),
   },
   setup() {
     const { t } = useI18n();
@@ -173,7 +167,7 @@ export default defineComponent({
         loading.value = true;
         setTimeout(() => {
           loading.value = false;
-          messageTitle.value = t("login.title");
+          messageTitle.value = t("login.successTitle");
           messageContent.value = t("login.successMessage");
           messageType.value = "success";
           messageVisible.value = true;

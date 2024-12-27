@@ -69,8 +69,7 @@
               </AntButton>
             </AntFormGroup>
           </AntForm>
-
-          <AntText>{{ $t("register.orRegisterWith") }}</AntText>
+          <!-- <AntText>{{ $t("register.orRegisterWith") }}</AntText> -->
           <AntRow
             justify="center"
             class="social-login-buttons"
@@ -79,7 +78,7 @@
           >
             <AntCol span="{8}">
               <AntButton
-                type="default"
+                type="ghost"
                 @click="handleGoogleRegister"
                 :icon="'google'"
                 block
@@ -87,14 +86,9 @@
                 Google
               </AntButton>
             </AntCol>
-            <!-- <AntCol span="{8}">
-              <AntButton type="default" :icon="'facebook'" block>
-                Facebook
-              </AntButton>
-            </AntCol> -->
             <AntCol span="{8}">
               <AntButton
-                type="default"
+                type="primary"
                 @click="handleGithubRegister()"
                 :icon="'github'"
                 block
@@ -133,7 +127,11 @@ import {
   GithubOutlined,
 } from "@ant-design/icons-vue";
 import { auth, githubProvider, googleProvider } from "@/firebaseConfig";
-import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithPopup,
+  signInWithRedirect,
+} from "firebase/auth";
 import { getFirebaseMessage } from "@/services/firebase/firebaseMessages";
 import { FirebaseError } from "firebase/app";
 
@@ -176,7 +174,7 @@ export default defineComponent({
     AntImage: defineAsyncComponent(components["components/container/AntImage"]),
     AntRow: defineAsyncComponent(components["components/container/AntRow"]),
     AntCol: defineAsyncComponent(components["components/container/AntCol"]),
-    AntText: defineAsyncComponent(components["components/container/AntText"]),
+    // AntText: defineAsyncComponent(components["components/container/AntText"]),
     // eslint-disable-next-line vue/no-unused-components
     GoogleOutlined,
     // eslint-disable-next-line vue/no-unused-components
@@ -242,14 +240,19 @@ export default defineComponent({
       }
     };
 
-    const handleGithubRegister = async () => {
+    const handleGoogleRegister = async () => {
       loading.value = true;
       try {
-        await signInWithPopup(auth, githubProvider);
+        if (window.innerWidth <= 768) {
+          // 768px or smaller for mobile
+          await signInWithRedirect(auth, googleProvider);
+        } else {
+          await signInWithPopup(auth, googleProvider);
+        }
         messageTitle.value = t("register.successTitle");
         messageContent.value = t("register.successMessage");
         messageType.value = "success";
-      } catch (error : any) {
+      } catch (error: any) {
         const errorMessage = getFirebaseMessage(error.code, t);
         messageTitle.value = t("register.errorTitle");
         messageContent.value = errorMessage;
@@ -259,15 +262,21 @@ export default defineComponent({
         messageVisible.value = true;
       }
     };
-    const handleGoogleRegister = async () => {
+
+    const handleGithubRegister = async () => {
       loading.value = true;
       try {
-        await signInWithPopup(auth, googleProvider);
+        if (window.innerWidth <= 768) {
+          // 768px or smaller for mobile
+          await signInWithRedirect(auth, githubProvider);
+        } else {
+          await signInWithPopup(auth, githubProvider);
+        }
         messageTitle.value = t("register.successTitle");
         messageContent.value = t("register.successMessage");
         messageType.value = "success";
-      } catch (error : any) {
-        const errorMessage = getFirebaseMessage(error.code,t);
+      } catch (error: any) {
+        const errorMessage = getFirebaseMessage(error.code, t);
         messageTitle.value = t("register.errorTitle");
         messageContent.value = errorMessage;
         messageType.value = "error";

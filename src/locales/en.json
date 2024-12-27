@@ -16,20 +16,22 @@
         "default": "Loading..."
     },
     "login": {
-        "title": "Login",
+        "title": "Welcome Back DevHelper ! Please Log In",
         "usernamePlaceholder": "Username",
         "passwordPlaceholder": "Password",
         "submitButton": "Login",
+        "successTitle": "Login successful welcome to DevHelper !",
         "successMessage": "Login successful !",
         "errorMessage": "Please enter username and password!",
         "registerLink": "Don't have an account? Register here",
         "orLoginWith": "----- or login with -----"
     },
     "register": {
-        "title": "Create Account",
+        "title": "Join Us: Create Your Account",
         "usernamePlaceholder": "Username",
         "emailPlaceholder": "Email",
         "passwordPlaceholder": "Password",
+        "successTitle" : "Registration successful welcome to DevHelper !",
         "submitButton": "Register",
         "successMessage": "Registration successful !",
         "errorMessage": "Please fill out all fields !",
