@@ -21,7 +21,7 @@ const defaultRoutes: Array<RouteRecordRaw> = [
         component: components["views/Hello"],
       },
       {
-        path: "login",
+        path: "c/login",
         name: "LoginPage",
         component: components["views/pages/folder-test/Login"],
         beforeEnter: (to, from, next) => {
@@ -35,7 +35,7 @@ const defaultRoutes: Array<RouteRecordRaw> = [
         },
       },
       {
-        path: "register",
+        path: "c/register",
         name: "RegisterPage",
         component: components["views/pages/folder-test/Register"],
         beforeEnter: (to, from, next) => {

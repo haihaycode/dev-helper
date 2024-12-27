@@ -12,10 +12,11 @@
     "forceConsistentCasingInFileNames": true,
     "useDefineForClassFields": true,
     "sourceMap": true,
-    "baseUrl": ".",
+  
     "types": ["webpack-env"],
+    "baseUrl": "./src", // Points to the src folder
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["*"] // Maps '@' to the src folder
     },
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
     "resolveJsonModule": true
@@ -26,7 +27,8 @@
     "src/**/*.vue",
     "src/**/*.d.ts",
     "tests/**/*.ts",
-    "tests/**/*.tsx"
+    "tests/**/*.tsx",
+     "src/types/**/*.d.ts"
   ],
   "exclude": ["node_modules"]
 }
