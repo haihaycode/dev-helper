@@ -1,8 +1,8 @@
 <template>
   <AntModal
     :visible="visible"
-    :title="title"
     :footer="null"
+    :title="titleModal"
     :closable="closable"
     @cancel="closeModal"
   >
@@ -34,6 +34,10 @@ export default defineComponent({
     AntAlert,
   },
   props: {
+    titleModal: {
+      type: String,
+      default: "Notification",
+    },
     visible: {
       type: Boolean,
       default: false,
