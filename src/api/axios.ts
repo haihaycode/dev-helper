@@ -9,7 +9,7 @@ import { MAX_TIME_OUT, HOST, SUCCESS_CODE } from "@/api/config";
 import store from "@/store";
 import { message } from "ant-design-vue";
 import router from "@/router";
-import i18n from "@/i18n";
+import i18n from "@/services/i18n";
 
 const Axios: AxiosInstance = axios.create({
   baseURL: HOST,
