@@ -134,6 +134,7 @@ import {
 } from "firebase/auth";
 import { getFirebaseMessage } from "@/services/firebase/firebaseMessages";
 import { FirebaseError } from "firebase/app";
+import { useRouter } from "vue-router";
 
 const components = dynamicImport([
   "components/container/AntCard",
@@ -184,6 +185,7 @@ export default defineComponent({
   },
   setup() {
     const { t } = useI18n();
+    const router = useRouter();
     const formModel = ref({
       username: "",
       email: "",
@@ -220,6 +222,7 @@ export default defineComponent({
         messageContent.value = t("register.successMessage");
         messageType.value = "success";
         messageVisible.value = true;
+        router.push({ name: "LoginPage" });
       } catch (err) {
         loading.value = false;
         if (err instanceof yup.ValidationError) {
@@ -244,7 +247,6 @@ export default defineComponent({
       loading.value = true;
       try {
         if (window.innerWidth <= 768) {
-          // 768px or smaller for mobile
           await signInWithRedirect(auth, googleProvider);
         } else {
           await signInWithPopup(auth, googleProvider);
@@ -252,6 +254,7 @@ export default defineComponent({
         messageTitle.value = t("register.successTitle");
         messageContent.value = t("register.successMessage");
         messageType.value = "success";
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {
         const errorMessage = getFirebaseMessage(error.code, t);
         messageTitle.value = t("register.errorTitle");
@@ -260,6 +263,7 @@ export default defineComponent({
       } finally {
         loading.value = false;
         messageVisible.value = true;
+        router.push({ name: "LoginPage" });
       }
     };
 
@@ -275,6 +279,7 @@ export default defineComponent({
         messageTitle.value = t("register.successTitle");
         messageContent.value = t("register.successMessage");
         messageType.value = "success";
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {
         const errorMessage = getFirebaseMessage(error.code, t);
         messageTitle.value = t("register.errorTitle");
@@ -283,6 +288,7 @@ export default defineComponent({
       } finally {
         loading.value = false;
         messageVisible.value = true;
+        router.push({ name: "LoginPage" });
       }
     };
 
@@ -311,7 +317,6 @@ export default defineComponent({
   height 100vh
   max-width 1200px
   margin 20px auto
-  background-color #f0f2f5
 
 .logo
   width 100%

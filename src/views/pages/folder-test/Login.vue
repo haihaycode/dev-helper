@@ -1,6 +1,5 @@
 <template>
   <div class="login-page">
-    <!-- <div class="background-image"></div> -->
     <div class="login-container">
       <AntTwoColumnCard
         :gutter="24"
@@ -202,23 +201,14 @@ export default defineComponent({
 
 <style scoped lang="stylus">
 .login-page
-  position relative
   display flex
   justify-content center
   align-items center
   height 100vh
-  background-color #f0f2f5
+  max-width 1200px
+  margin 20px auto
 
-.background-image
-  position absolute
-  top 0
-  left 0
-  width 100%
-  height 100%
-  background-image url('https://cdn-media.sforum.vn/storage/app/media/ctv_seo10/background-noel-9.jpg')
-  background-size cover
-  background-position center
-  z-index 1
+
 
 .login-container
 
