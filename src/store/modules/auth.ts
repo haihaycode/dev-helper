@@ -4,7 +4,13 @@ import { jwtDecode } from "jwt-decode";
 import router from "@/router";
 import { User, AuthState } from "@/models/user";
 
-const state: AuthState = {
+export interface State extends AuthState {
+  token: string | null;
+  refreshToken: string | null;
+  user: User | null;
+}
+
+const state: State = {
   token: Cookies.get("tokenU") || null,
   refreshToken: Cookies.get("refreshTokenU") || null,
   user: Cookies.get("userU")

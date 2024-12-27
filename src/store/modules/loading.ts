@@ -4,7 +4,15 @@
 import { MutationTree, ActionTree, GetterTree } from "vuex";
 import { Loading } from "@/models/loading";
 
-const state: Loading = {
+export interface State extends Loading {
+  isLoadingGet: boolean;
+  isLoadingPost: boolean;
+  isLoadingPut: boolean;
+  isLoadingDelete: boolean;
+  isLoadingPatch: boolean;
+}
+
+const state: State = {
   isLoadingGet: false,
   isLoadingPost: false,
   isLoadingPut: false,
