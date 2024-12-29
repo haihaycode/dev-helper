@@ -1,5 +1,8 @@
+
 # Dev Helper
 Dev Helper is a comprehensive project designed to equip developers with essential tools to enhance their productivity and streamline their workflow.
+
+![dev-helper Logo](src\assets\logo\logo-dev-helper-1.svg)
 
 ## Features
 
