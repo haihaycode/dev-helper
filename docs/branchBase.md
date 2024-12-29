@@ -14,6 +14,7 @@
    Dùng để chuẩn bị cho một bản phát hành mới. Đây là nhánh mà từ đây mã nguồn sẽ được đồng bộ và kiểm thử trước khi phát hành. 
    Ví dụ: `release/1.0.0`.
 
+
 5. **chore/**  
    Dùng cho các thay đổi không liên quan trực tiếp đến mã nguồn trong sản phẩm, như cập nhật các tập tin cấu hình, tài liệu, vv. 
    Ví dụ: `chore/update-dependencies`.
@@ -38,4 +39,3 @@
     Dùng cho những thử nghiệm hoặc nghiên cứu các ý tưởng mới mà không chắc chắn việc tích hợp vào mã chính. 
     Ví dụ: `experiment/new-algorithm`.
 
-Mỗi dự án có thể có các quy ước khác nhau dựa trên nhu cầu và tổ chức của nhóm, nhưng việc tuân thủ một quy định rõ ràng giúp tăng cường sự tổ chức và hiệu quả làm việc nhóm.
