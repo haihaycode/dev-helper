@@ -23,7 +23,7 @@ import {
   CheckCircleOutlined,
   ExclamationCircleOutlined,
   CloseCircleOutlined,
-} from "@ant-design/icons-vue"; // Example icons
+} from "@ant-design/icons-vue"; // Example icons 
 
 export default defineComponent({
   name: "AntAlert",
