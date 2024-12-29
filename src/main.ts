@@ -7,7 +7,7 @@ import "ant-design-vue/dist/antd.css";
 import i18n from "@/services/i18n";
 import { VueFire, VueFireAuth } from "vuefire";
 
-import { auth } from "@/firebaseConfig"; 
+import { auth } from "@/firebaseConfig";
 
 const app = createApp(App);
 app

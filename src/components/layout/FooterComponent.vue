@@ -2,7 +2,7 @@
   <a-layout-footer class="footer">
     <div class="footer-content">
       <div class="footer-left">
-        <p>© 2023 DevHelper. All rights reserved.</p>
+        <p>© 2024 DevHelper. All rights reserved.</p>
       </div>
       <div class="footer-right">
         <qrcode-vue

@@ -30,7 +30,7 @@ export default defineComponent({
     },
     type: {
       type: String,
-      default: "", // 'secondary', 'success', 'warning', 'danger'
+      default: "secondary", // 'secondary', 'success', 'warning', 'danger'
     },
     disabled: {
       type: Boolean,

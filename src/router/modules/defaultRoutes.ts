@@ -5,9 +5,10 @@ import { generateUuidV4 } from "@/utils/uniqueIdUtils";
 
 const components = dynamicImport([
   "views/Hello",
-  "views/pages/folder-test/Login",
-  "views/pages/folder-test/Register",
-  "views/pages/folder-test/test-component-f1",
+  "views/pages/auth-pages/unauthenticated-pages/Login",
+  "views/pages/auth-pages/unauthenticated-pages/Register",
+  "views/pages/home-pages/v1/home-page",
+  "views/pages/folder-test/base-pages",
 ]);
 
 const defaultRoutes: Array<RouteRecordRaw> = [
@@ -16,14 +17,14 @@ const defaultRoutes: Array<RouteRecordRaw> = [
     component: DefaultLayout,
     children: [
       {
-        path: "hello",
-        name: "HelloPage",
-        component: components["views/Hello"],
+        path: "",
+        name: "homePage",
+        component: components["views/pages/home-pages/v1/home-page"],
       },
       {
         path: "c/login",
         name: "LoginPage",
-        component: components["views/pages/folder-test/Login"],
+        component: components["views/pages/auth-pages/unauthenticated-pages/Login"],
         beforeEnter: (to, from, next) => {
           if (!to.query.refLoginId) {
             const refLoginId = generateUuidV4();
@@ -37,7 +38,7 @@ const defaultRoutes: Array<RouteRecordRaw> = [
       {
         path: "c/register",
         name: "RegisterPage",
-        component: components["views/pages/folder-test/Register"],
+        component: components["views/pages/auth-pages/unauthenticated-pages/Register"],
         beforeEnter: (to, from, next) => {
           if (!to.query.refId) {
             const refId = generateUuidV4();
@@ -47,11 +48,6 @@ const defaultRoutes: Array<RouteRecordRaw> = [
             next();
           }
         },
-      },
-      {
-        path: "test-component-f1",
-        name: "TestComponentF1Page",
-        component: components["views/pages/folder-test/test-component-f1"],
       },
     ],
   },
