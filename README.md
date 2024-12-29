@@ -1,8 +1,9 @@
+<p align="center">
+  <img src="src/assets/logo/logo-dev-helper-1.svg" alt="dev-helper Logo" />
+</p>
 
 # Dev Helper
 Dev Helper is a comprehensive project designed to equip developers with essential tools to enhance their productivity and streamline their workflow.
-
-![dev-helper Logo](src\assets\logo\logo-dev-helper-1.svg)
 
 ## Features
 
@@ -30,11 +31,11 @@ npm run serve
 
 Experience the project in action by visiting the live demo:
 
-[Live Demo](https://dev-helper-navy.vercel.app/)
+[Live : ](https://dev-helper-navy.vercel.app/)
 
 ## Contributing
 
-We welcome contributions! Please read our [contributing guidelines](CONTRIBUTING.md) before getting started.
+We welcome contributions! Please read our [contributing / guidelines](CONTRIBUTING.md) before getting started.
 
 ## License
 
