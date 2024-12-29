@@ -1,0 +1,4 @@
+chứa các page chưa xác thực liên quan đến auth như 
+- login 
+- register 
+- forgot pass

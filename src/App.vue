@@ -6,10 +6,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, defineAsyncComponent } from "vue";
+import { defineComponent, ref, defineAsyncComponent, computed } from "vue";
 import { useRouter } from "vue-router";
 import { dynamicImport } from "@/utils/importUtils";
-
+import { useStore } from "vuex";
 const components = dynamicImport(["components/container/AntLoading"]);
 
 export default defineComponent({
@@ -20,8 +20,11 @@ export default defineComponent({
     ),
   },
   setup() {
-    const loading = ref(false);
+    const store = useStore();
     const router = useRouter();
+    const loading = ref(false);
+    const isLoadingGet = computed(() => store.getters["loading/isLoadingGet"]);
+    console.log(isLoadingGet.value);
 
     router.beforeEach((to, from, next) => {
       loading.value = true;
@@ -31,6 +34,23 @@ export default defineComponent({
     router.afterEach(() => {
       loading.value = false;
     });
+
+    // router.beforeEach((to, from, next) => {
+    //   store.commit("loading/SET_LOADING_GET", true); // Cập nhật trạng thái loading khi chuyển hướng
+    //   const isLoadingGet = computed(
+    //     () => store.getters["loading/isLoadingGet"]
+    //   );
+    //   console.log(isLoadingGet.value);
+    //   next();
+    // });
+
+    // router.afterEach(() => {
+    //   store.commit("loading/SET_LOADING_GET", false); // Kết thúc loading khi chuyển hướng xong
+    //   const isLoadingGet = computed(
+    //     () => store.getters["loading/isLoadingGet"]
+    //   );
+    //   console.log(isLoadingGet.value);
+    // });
 
     return {
       loading,
