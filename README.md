@@ -31,7 +31,7 @@ npm run serve
 
 Experience the project in action by visiting the live demo:
 
-[Live : ](https://dev-helper-navy.vercel.app/)
+[Live DevHelper: ](https://dev-helper-navy.vercel.app/)
 
 ## Contributing
 
