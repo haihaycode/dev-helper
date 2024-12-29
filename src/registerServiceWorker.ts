@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-console */
 import { Hooks, register } from "register-service-worker";
 
@@ -66,3 +67,6 @@ const registerServiceWorker = async () => {
 
 // Đăng ký service worker khi trang tải
 registerServiceWorker();
+
+
+// haihaycode
