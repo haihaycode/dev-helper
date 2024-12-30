@@ -77,7 +77,11 @@ import {
   onBeforeUnmount,
 } from "vue";
 import { useI18n } from "vue-i18n";
-import { MenuOutlined, CloseOutlined,AlignLeftOutlined } from "@ant-design/icons-vue";
+import {
+  MenuOutlined,
+  CloseOutlined,
+  AlignLeftOutlined,
+} from "@ant-design/icons-vue";
 import toolsData from "@/data/tools/tools.json"; // Import your JSON file
 
 interface Tool {
@@ -92,7 +96,7 @@ export default defineComponent({
   components: {
     MenuOutlined,
     CloseOutlined,
-    AlignLeftOutlined
+    AlignLeftOutlined,
   },
   setup() {
     const { t } = useI18n();
