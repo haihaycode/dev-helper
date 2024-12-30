@@ -70,10 +70,10 @@
     },
     "tools":{
         "name":{
-            "Crypto":"Tool Crypto by scretkey"
+            "Crypto":"Secret Key Encryption Tools"
         },
         "description":{
-             "Crypto":"Tool Crypto by scretkey"
+             "Crypto":"Secret Key Encryption Tools refer to software or hardware tools that utilize encryption algorithms to secure data by using a secret key. These tools are designed to protect sensitive information by transforming it into an unreadable format, which can only be reverted back to its original form using the correct secret key. The key used in this encryption process is kept confidential and is essential for both the encryption and decryption operations, ensuring that only authorized users with the secret key can access the original data."
         }
     }
 }
