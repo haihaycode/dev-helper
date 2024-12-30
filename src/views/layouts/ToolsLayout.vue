@@ -7,20 +7,29 @@
       class="sider"
       style="background-color: #fafafa"
     >
-      <a-menu theme="light" mode="inline" :default-selected-keys="['1']">
+      <a-menu
+        theme="light"
+        mode="inline"
+        :default-selected-keys="['1']"
+        :selected-keys="[selectedKey]"
+      >
         <a-row :gutter="16">
           <a-col :xs="0" :sm="0" :md="24" :lg="24">
-            <a-input-search
+            <a-input
               v-model="searchQuery"
               placeholder="Search..."
-              enter-button
               size="large"
               style="
                 margin-bottom: 10px;
                 border-radius: 0px;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+                border-bottom: 2px solid #1890ff;
+                box-shadow: none;
               "
-            />
+            >
+              <template #suffix>
+                <SearchOutlined />
+              </template>
+            </a-input>
           </a-col>
         </a-row>
         <a-row justify="end">
@@ -37,7 +46,11 @@
             />
           </a-col>
         </a-row>
-        <a-menu-item v-for="item in filteredMenuItems" :key="item.key">
+        <a-menu-item
+          @click="setToolType(item.id)"
+          v-for="item in filteredMenuItems"
+          :key="item.key"
+        >
           <a-avatar
             size="small"
             :src="require('@/assets/tools/img/' + item.id + '.png')"
@@ -89,12 +102,13 @@ import {
   MenuOutlined,
   CloseOutlined,
   AlignLeftOutlined,
+  SearchOutlined,
 } from "@ant-design/icons-vue";
-import toolsData from "@/data/tools/tools.json"; // Import your JSON file
-
+import toolsData from "@/data/tools/type.json"; // Import your JSON file
+import { useStore } from "vuex";
 interface Tool {
   name: string;
-  idtools: string;
+  idtoolsType: string;
   image: string;
   description: string;
 }
@@ -105,9 +119,11 @@ export default defineComponent({
     MenuOutlined,
     CloseOutlined,
     AlignLeftOutlined,
+    SearchOutlined,
   },
   setup() {
     const { t } = useI18n();
+    const store = useStore();
     const isSidebarCollapsed = ref(false);
     const searchQuery = ref("");
     const sidebarWidth = ref("400px");
@@ -148,12 +164,16 @@ export default defineComponent({
           t(tool.name).toLowerCase().includes(searchQuery.value.toLowerCase())
         )
         .map((tool: Tool) => ({
-          key: tool.idtools,
+          key: tool.idtoolsType,
           name: tool.name,
           image: tool.image,
-          id: tool.idtools,
+          id: tool.idtoolsType,
         }));
     });
+    const selectedKey = computed(() => store.state.tool.toolType);
+    const setToolType = (idtoolsType: string) => {
+      store.dispatch("tool/setToolType", idtoolsType); // Dispatch action
+    };
 
     return {
       t,
@@ -162,6 +182,8 @@ export default defineComponent({
       searchQuery,
       filteredMenuItems,
       sidebarWidth,
+      setToolType,
+      selectedKey,
     };
   },
 });
@@ -183,9 +205,6 @@ a-menu-item:hover {
   padding 2px
   overflow: auto;
 }
-
-
-
 .sider {
   position: sticky;
   left: 0;

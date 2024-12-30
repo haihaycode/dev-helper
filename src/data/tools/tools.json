@@ -2,9 +2,11 @@
     {
       "name": "tools.name.Crypto",
       "idtools": "1",
+      "idtoolsType": "1",
       "image": "@/assets/tools/img/1.png",
       "bg":"@/assets/tools/bg/1.png",
       "description": "tools.description.Crypto"
     }
   ]
+  
   
