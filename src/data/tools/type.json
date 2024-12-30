@@ -1,0 +1,17 @@
+[
+    {
+      "name": "tools.type.name.Crypto",
+      "idtoolsType": "1",
+      "image": "@/assets/tools/img/1.png",
+      "bg":"@/assets/tools/bg/1.png",
+      "description": "tools.type.description.Crypto"
+    },
+    {
+        "name": "tools.type.name.Crypto",
+        "idtoolsType": "2",
+        "image": "@/assets/tools/img/2.png",
+        "bg":"@/assets/tools/bg/2.png",
+        "description": "tools.type.description.Crypto"
+      }
+  ]
+  
