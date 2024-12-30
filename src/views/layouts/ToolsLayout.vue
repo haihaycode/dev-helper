@@ -3,23 +3,40 @@
     <a-layout-sider
       :collapsed="isSidebarCollapsed"
       :collapsed-width="0"
-      width="200px"
+      :width="sidebarWidth"
       class="sider"
       style="background-color: #f3f6f4"
     >
       <a-menu theme="light" mode="inline" :default-selected-keys="['1']">
-        <a-input-search
-          v-model="searchQuery"
-          placeholder="Search..."
-          enter-button
-          size="large"
-          style="
-            margin: 0px 0px;
-            margin-bottom: 10px;
-            border-radius: 0px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-          "
-        />
+        <a-row :gutter="16">
+          <a-col :xs="0" :sm="0" :md="24" :lg="24">
+            <a-input-search
+              v-model="searchQuery"
+              placeholder="Search..."
+              enter-button
+              size="large"
+              style="
+                margin-bottom: 10px;
+                border-radius: 0px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+              "
+            />
+          </a-col>
+        </a-row>
+        <a-row justify="end">
+          <a-col flex="none" span="4" :xs="24" :sm="24" :md="0" :lg="0">
+            <MenuOutlined
+              @click="toggleSidebar"
+              v-if="isSidebarCollapsed"
+              style="font-size: 24px; padding: 10px"
+            />
+            <CloseOutlined
+              @click="toggleSidebar"
+              v-if="!isSidebarCollapsed"
+              style="font-size: 24px; padding: 10px"
+            />
+          </a-col>
+        </a-row>
         <a-menu-item v-for="item in filteredMenuItems" :key="item.key">
           <a-avatar
             size="small"
@@ -33,11 +50,16 @@
       <a-layout-content class="content">
         <a-row justify="start">
           <a-col :span="4" flex="none">
-            <a-button type="ghost" @click="toggleSidebar">
-              Tools
-              <MenuOutlined v-if="isSidebarCollapsed" />
-              <CloseOutlined v-if="!isSidebarCollapsed" />
-            </a-button>
+            <AlignLeftOutlined
+              @click="toggleSidebar"
+              v-if="isSidebarCollapsed"
+              style="font-size: 24px"
+            />
+            <CloseOutlined
+              @click="toggleSidebar"
+              v-if="!isSidebarCollapsed"
+              style="font-size: 24px"
+            />
           </a-col>
         </a-row>
         <router-view />
@@ -55,7 +77,11 @@ import {
   onBeforeUnmount,
 } from "vue";
 import { useI18n } from "vue-i18n";
-import { MenuOutlined, CloseOutlined } from "@ant-design/icons-vue";
+import {
+  MenuOutlined,
+  CloseOutlined,
+  AlignLeftOutlined,
+} from "@ant-design/icons-vue";
 import toolsData from "@/data/tools/tools.json"; // Import your JSON file
 
 interface Tool {
@@ -70,15 +96,18 @@ export default defineComponent({
   components: {
     MenuOutlined,
     CloseOutlined,
+    AlignLeftOutlined,
   },
   setup() {
     const { t } = useI18n();
     const isSidebarCollapsed = ref(false);
     const searchQuery = ref("");
+    const sidebarWidth = ref("400px");
 
     const toggleSidebar = () => {
       isSidebarCollapsed.value = !isSidebarCollapsed.value;
     };
+
     const updateSidebarState = () => {
       if (window.innerWidth <= 768) {
         isSidebarCollapsed.value = true;
@@ -86,12 +115,22 @@ export default defineComponent({
         isSidebarCollapsed.value = false;
       }
     };
+    const updateSidebarWidth = () => {
+      if (window.innerWidth <= 768) {
+        sidebarWidth.value = "100%";
+      } else {
+        sidebarWidth.value = "300px";
+      }
+    };
 
     onMounted(() => {
+      updateSidebarWidth();
+      window.addEventListener("resize", updateSidebarWidth);
       updateSidebarState();
       window.addEventListener("resize", updateSidebarState);
     });
     onBeforeUnmount(() => {
+      window.removeEventListener("resize", updateSidebarWidth);
       window.removeEventListener("resize", updateSidebarState);
     });
 
@@ -114,6 +153,7 @@ export default defineComponent({
       toggleSidebar,
       searchQuery,
       filteredMenuItems,
+      sidebarWidth,
     };
   },
 });
@@ -135,6 +175,8 @@ a-menu-item:hover {
   padding 2px
   overflow: auto;
 }
+
+
 
 .sider {
   position: sticky;
