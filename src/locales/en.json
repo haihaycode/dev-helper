@@ -67,5 +67,13 @@
             "message": "Sorry, something went wrong.",
             "button": "Go back"
         }
+    },
+    "tools":{
+        "name":{
+            "Crypto":"Tool Crypto by scretkey"
+        },
+        "description":{
+             "Crypto":"Tool Crypto by scretkey"
+        }
     }
 }
