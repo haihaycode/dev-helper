@@ -5,7 +5,7 @@
       :collapsed-width="0"
       :width="sidebarWidth"
       class="sider"
-      style="background-color: #f3f6f4"
+      style="background-color: #fafafa"
     >
       <a-menu theme="light" mode="inline" :default-selected-keys="['1']">
         <a-row :gutter="16">
@@ -18,13 +18,13 @@
               style="
                 margin-bottom: 10px;
                 border-radius: 0px;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
               "
             />
           </a-col>
         </a-row>
         <a-row justify="end">
-          <a-col flex="none" span="4" :xs="24" :sm="24" :md="0" :lg="0">
+          <a-col flex="none" span="4" :xs="24" :sm="24" :md="24" :lg="0">
             <MenuOutlined
               @click="toggleSidebar"
               v-if="isSidebarCollapsed"
@@ -49,7 +49,15 @@
     <a-layout style="background: white">
       <a-layout-content class="content">
         <a-row justify="start">
-          <a-col :span="4" flex="none">
+          <a-col
+            style="padding: 2px 20px"
+            :span="4"
+            flex="none"
+            :xs="24"
+            :sm="24"
+            :md="24"
+            :lg="0"
+          >
             <AlignLeftOutlined
               @click="toggleSidebar"
               v-if="isSidebarCollapsed"
