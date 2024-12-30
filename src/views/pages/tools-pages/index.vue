@@ -24,7 +24,7 @@
           </template>
           <a-card-meta
             :title="$t(tool.name)"
-            :description="$t(tool.description)"
+            :description="truncateString($t(tool.description), 50)"
           >
             <template #avatar>
               <a-avatar
@@ -47,6 +47,7 @@ import {
   EditOutlined,
   EllipsisOutlined,
 } from "@ant-design/icons-vue";
+import { truncateString } from "@/utils/StringUtils";
 
 interface Tool {
   name: string;
@@ -67,6 +68,7 @@ export default defineComponent({
     const tools = ref<Tool[]>(toolsData);
 
     return {
+      truncateString,
       t,
       tools,
     };
