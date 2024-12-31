@@ -22,20 +22,69 @@
             />
           </template>
           <template #actions>
-            <setting-outlined key="setting" />
-            <edit-outlined key="edit" />
-            <ellipsis-outlined key="ellipsis" />
+            <a-row gutter="16">
+              <a-col
+                :span="12"
+                style="
+                  display: flex;
+                  align-items: center;
+                  justify-content: right;
+                "
+              >
+                View</a-col
+              >
+              <a-col
+                :span="12"
+                style="
+                  display: flex;
+                  justify-content: left !important;
+                  align-items: center;
+                "
+              >
+                <EyeOutlined
+              /></a-col>
+            </a-row>
+            <!-- / -->
+            <a-row gutter="16">
+              <a-col
+                :span="12"
+                style="
+                  display: flex;
+                  align-items: center;
+                  justify-content: right;
+                "
+              >
+                Details</a-col
+              >
+              <a-col
+                :span="12"
+                style="
+                  display: flex;
+                  justify-content: left !important;
+                  align-items: center;
+                "
+              >
+                <ellipsis-outlined key="ellipsis" />
+              </a-col>
+            </a-row>
           </template>
-          <a-card-meta
-            :title="$t(tool.name)"
-            :description="truncateString($t(tool.description), 50)"
-          >
+          <a-card-meta>
             <template #avatar>
               <a-avatar
                 :src="
                   require('@/assets/tools/img/' + tool.idtoolsType + '.png')
                 "
               />
+            </template>
+            <template #title>
+              <a-typography-title style="text-align: left" :level="5">{{
+                $t(tool.name)
+              }}</a-typography-title>
+            </template>
+            <template #description>
+              <a-typography-paragraph style="text-align: left">
+                {{ truncateString($t(tool.description), 50) }}
+              </a-typography-paragraph>
             </template>
           </a-card-meta>
         </a-card>
@@ -45,16 +94,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed } from "vue";
+import { defineComponent, ref, computed, watch } from "vue";
 import { useI18n } from "vue-i18n";
 import toolsData from "@/data/tools/tools.json"; // Import your JSON file
-import {
-  SettingOutlined,
-  EditOutlined,
-  EllipsisOutlined,
-} from "@ant-design/icons-vue";
+import { EyeOutlined, EllipsisOutlined } from "@ant-design/icons-vue";
 import { truncateString } from "@/utils/StringUtils";
 import { useStore } from "vuex";
+import { notification } from "ant-design-vue";
 
 interface Tool {
   name: string;
@@ -66,8 +112,7 @@ interface Tool {
 export default defineComponent({
   name: "indexToolsPage",
   components: {
-    SettingOutlined,
-    EditOutlined,
+    EyeOutlined,
     EllipsisOutlined,
   },
   setup() {
@@ -78,6 +123,16 @@ export default defineComponent({
     console.log(toolType.value); // string '1'
     const filteredTools = computed(() => {
       return tools.value.filter((tool) => tool.idtoolsType === toolType.value);
+    });
+
+    watch(filteredTools, (toolsNewVal) => {
+      if (toolsNewVal.length === 0) {
+        notification.info({
+          message: `No tools found`,
+          description: "Unfortunately, no tools match your criteria.",
+          placement: "bottomRight",
+        });
+      }
     });
 
     return {

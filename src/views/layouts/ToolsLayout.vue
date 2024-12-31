@@ -47,7 +47,12 @@
           </a-col>
         </a-row>
         <a-menu-item
-          @click="setToolType(item.id)"
+          @click="
+            () => {
+              setToolType(item.id);
+              toggleSidebar();
+            }
+          "
           v-for="item in filteredMenuItems"
           :key="item.key"
         >
@@ -63,7 +68,7 @@
       <a-layout-content class="content">
         <a-row justify="start">
           <a-col
-            style="padding: 2px 20px"
+            style="padding: 2px 20px; align-items: center"
             :span="4"
             flex="none"
             :xs="24"
@@ -71,11 +76,12 @@
             :md="24"
             :lg="0"
           >
-            <AlignLeftOutlined
-              @click="toggleSidebar"
-              v-if="isSidebarCollapsed"
-              style="font-size: 24px"
-            />
+            <div @click="toggleSidebar" v-if="isSidebarCollapsed">
+              <ArrowLeftOutlined style="font-size: 24px" />
+              <a-typography-text strong style="font-size: 24px"
+                >&nbsp; Types of tools</a-typography-text
+              >
+            </div>
             <CloseOutlined
               @click="toggleSidebar"
               v-if="!isSidebarCollapsed"
@@ -101,11 +107,12 @@ import { useI18n } from "vue-i18n";
 import {
   MenuOutlined,
   CloseOutlined,
-  AlignLeftOutlined,
   SearchOutlined,
+  ArrowLeftOutlined,
 } from "@ant-design/icons-vue";
 import toolsData from "@/data/tools/type.json"; // Import your JSON file
 import { useStore } from "vuex";
+
 interface Tool {
   name: string;
   idtoolsType: string;
@@ -116,9 +123,9 @@ interface Tool {
 export default defineComponent({
   name: "DefaultLayout",
   components: {
+    ArrowLeftOutlined,
     MenuOutlined,
     CloseOutlined,
-    AlignLeftOutlined,
     SearchOutlined,
   },
   setup() {
@@ -129,7 +136,9 @@ export default defineComponent({
     const sidebarWidth = ref("400px");
 
     const toggleSidebar = () => {
-      isSidebarCollapsed.value = !isSidebarCollapsed.value;
+      if (window.innerWidth <= 768) {
+        isSidebarCollapsed.value = !isSidebarCollapsed.value;
+      }
     };
 
     const updateSidebarState = () => {
