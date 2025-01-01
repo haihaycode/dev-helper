@@ -2,16 +2,9 @@
   <div class="main min-h-[100vh] sm:p-2 md:p-4 lg:p-6 xl:p-8">
     <Breadcrumb :items="breadcrumbItems" />
     <a-transition name="fade" mode="out-in">
-      <div class="title mt-2 px-2" v-if="tool">
-        <a-typography-title
-          :level="3"
-          class="text-center flex flex-col items-center md:flex-row md:text-left"
-        >
+      <div class="title mt-2 sm:mt-2 px-2" v-if="tool">
+        <a-typography-title :level="3" class="text-center">
           {{ $t(tool.name) }} &nbsp;
-          <a-badge
-            :color="toolType?.color || ''"
-            :text="$t(toolType?.name || '')"
-          />
         </a-typography-title>
 
         <a-typography-paragraph
@@ -39,8 +32,10 @@
           <a-form-item>
             <a-input
               suffix="Secret Key"
+              class="text-left"
               v-model:value="secretKey"
               aria-required="true"
+              required
             >
               <template #prefix>
                 <KeyOutlined />
