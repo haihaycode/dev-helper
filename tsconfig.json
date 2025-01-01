@@ -13,10 +13,10 @@
     "useDefineForClassFields": true,
     "sourceMap": true,
   
-    "types": ["webpack-env"],
-    "baseUrl": "./src", // Points to the src folder
+    "types": ["webpack-env","node"],
+    "baseUrl": "./src", 
     "paths": {
-      "@/*": ["*"] // Maps '@' to the src folder
+      "@/*": ["*"] 
     },
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
     "resolveJsonModule": true
