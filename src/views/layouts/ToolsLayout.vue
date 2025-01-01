@@ -118,6 +118,7 @@ import {
 } from "@ant-design/icons-vue";
 import toolsData from "@/data/tools/type.json"; // Import your JSON file
 import { useStore } from "vuex";
+import router from "@/router";
 
 interface Tool {
   name: string;
@@ -187,7 +188,8 @@ export default defineComponent({
     });
     const selectedKey = computed(() => store.state.tool.toolType);
     const setToolType = (idtoolsType: string) => {
-      store.dispatch("tool/setToolType", idtoolsType); // Dispatch action
+      store.dispatch("tool/setToolType", idtoolsType);
+      router.push({ name: "toolsIndex" });
     };
 
     return {
