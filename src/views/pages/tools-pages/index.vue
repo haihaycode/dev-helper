@@ -20,6 +20,13 @@
               height="150px"
               :src="require('@/assets/tools/bg/' + tool.idtoolsType + '.png')"
             />
+            <a-typography-paragraph
+              :style="{ backgroundColor: tool.color }"
+              class="flex justify-start border-none text-white items-center mb-0"
+            >
+              &nbsp;
+              {{ $t(getToolTypeById(tool.idtoolsType)?.name || "no type") }}
+            </a-typography-paragraph>
           </template>
           <template #actions>
             <a-row :gutter="[16, 16]">
@@ -81,9 +88,9 @@
               />
             </template>
             <template #title>
-              <a-typography-title style="text-align: left" :level="5">{{
-                $t(tool.name)
-              }}</a-typography-title>
+              <a-typography-title style="text-align: left" :level="5"
+                >{{ $t(tool.name) }}
+              </a-typography-title>
             </template>
             <template #description>
               <a-typography-paragraph style="text-align: left">
@@ -105,12 +112,13 @@ import { EyeOutlined, EllipsisOutlined } from "@ant-design/icons-vue";
 import { truncateString } from "@/utils/StringUtils";
 import { useStore } from "vuex";
 import { notification } from "ant-design-vue";
-
+import { getToolTypeById } from "@/services/tools/toolsService";
 interface Tool {
   name: string;
   image: string;
   description: string;
   idtoolsType: string;
+  color: string;
 }
 
 export default defineComponent({
@@ -141,6 +149,7 @@ export default defineComponent({
     return {
       truncateString,
       t,
+      getToolTypeById,
       tools,
       filteredTools,
     };
