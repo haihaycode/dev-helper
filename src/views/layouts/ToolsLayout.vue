@@ -12,6 +12,7 @@
         mode="inline"
         :default-selected-keys="['1']"
         :selected-keys="[selectedKey]"
+        class="min-h-screen"
       >
         <a-row :gutter="[16, 16]">
           <a-col :xs="0" :sm="0" :md="24" :lg="24">
@@ -64,7 +65,7 @@
         </a-menu-item>
       </a-menu>
     </a-layout-sider>
-    <a-layout style="background: white">
+    <a-layout style="background: white" v-if="isSidebarCollapsed">
       <a-layout-content class="content">
         <a-row justify="start">
           <a-col
