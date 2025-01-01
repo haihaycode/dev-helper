@@ -65,7 +65,7 @@
         </a-menu-item>
       </a-menu>
     </a-layout-sider>
-    <a-layout style="background: white" v-if="isSidebarCollapsed">
+    <a-layout style="background: white">
       <a-layout-content class="content">
         <a-row justify="start">
           <a-col
@@ -142,6 +142,7 @@ export default defineComponent({
     const isSidebarCollapsed = ref(false);
     const searchQuery = ref("");
     const sidebarWidth = ref("400px");
+    const isMobile = ref(false);
 
     const toggleSidebar = () => {
       if (window.innerWidth <= 768) {
@@ -152,8 +153,10 @@ export default defineComponent({
     const updateSidebarState = () => {
       if (window.innerWidth <= 768) {
         isSidebarCollapsed.value = true;
+        isMobile.value = true;
       } else {
         isSidebarCollapsed.value = false;
+        isMobile.value = false;
       }
     };
     const updateSidebarWidth = () => {
@@ -195,6 +198,7 @@ export default defineComponent({
 
     return {
       t,
+      isMobile,
       isSidebarCollapsed,
       toggleSidebar,
       searchQuery,
@@ -220,7 +224,6 @@ a-menu-item:hover {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding 2px
   overflow: auto;
 }
 .sider {
