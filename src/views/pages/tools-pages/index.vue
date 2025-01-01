@@ -16,10 +16,26 @@
       >
         <a-card hoverable style="width: auto">
           <template #cover>
-            <img
-              height="150px"
-              :src="require('@/assets/tools/bg/' + tool.idtoolsType + '.png')"
-            />
+            <div
+              class="relative group"
+              @click="
+                () =>
+                  $router.push({
+                    name: `${tool.nameSlug}`,
+                    params: { id: tool.name },
+                  })
+              "
+            >
+              <img
+                :src="require('@/assets/tools/bg/' + tool.idtoolsType + '.png')"
+                class="transition-opacity duration-300 group-hover:opacity-50 w-full h-[150px]"
+              />
+              <div
+                class="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+              >
+                View &nbsp;<EyeOutlined />
+              </div>
+            </div>
             <a-typography-paragraph
               :style="{ backgroundColor: tool.color }"
               class="flex justify-start border-none text-white items-center mb-0"
@@ -79,7 +95,15 @@
               </a-row>
             </a-popover>
           </template>
-          <a-card-meta>
+          <a-card-meta
+            @click="
+              () =>
+                $router.push({
+                  name: `${tool.nameSlug}`,
+                  params: { id: tool.name },
+                })
+            "
+          >
             <template #avatar>
               <a-avatar
                 :src="
@@ -88,8 +112,12 @@
               />
             </template>
             <template #title>
-              <a-typography-title style="text-align: left" :level="5"
-                >{{ $t(tool.name) }}
+              <a-typography-title
+                style="text-align: left"
+                :level="5"
+                class="hover:text-blue-500 hover:underline"
+              >
+                {{ $t(tool.name) }}
               </a-typography-title>
             </template>
             <template #description>
@@ -119,6 +147,8 @@ interface Tool {
   description: string;
   idtoolsType: string;
   color: string;
+  slug: string;
+  nameSlug: string;
 }
 
 export default defineComponent({
