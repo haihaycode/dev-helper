@@ -6,7 +6,9 @@
       "image": "@/assets/tools/img/1.png",
       "bg":"@/assets/tools/bg/1.png",
       "description": "tools.description.Crypto",
-      "color" :"#108ee9"
+      "color" :"#108ee9",
+      "slug": "secret-key-encryption-tools",
+      "nameSlug": "crypto1"
     }
   ]
   

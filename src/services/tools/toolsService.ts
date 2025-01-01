@@ -9,6 +9,8 @@ interface Tool {
   bg: string;
   description: string;
   color: string;
+  slug: string;
+  nameSlug: string;
 }
 
 interface ToolType {
@@ -19,10 +21,16 @@ interface ToolType {
   description: string;
 }
 
+export const getTools = (): Tool[] => {
+  return toolsData;
+};
+
 export const getToolsByTypeId = (idtoolsType: string): Tool[] => {
   return toolsData.filter((tool: Tool) => tool.idtoolsType === idtoolsType);
 };
-
+export const getToolById = (idtools: string): Tool | undefined => {
+  return toolsData.find((tool: Tool) => tool.idtools === idtools);
+};
 export const getToolTypeById = (idtoolsType: string): ToolType | undefined => {
   return toolsTypeData.find(
     (type: ToolType) => type.idtoolsType === idtoolsType
