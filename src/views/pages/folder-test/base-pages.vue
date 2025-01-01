@@ -3,25 +3,24 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, defineAsyncComponent } from "vue";
+import { defineComponent } from "vue";
 import { useI18n } from "vue-i18n";
-import * as yup from "yup";
-import { dynamicImport } from "@/utils/importUtils";
+// import { dynamicImport } from "@/utils/importUtils";
 
-const components = dynamicImport([
-  "components/container/AntCard",
-  "components/container/AntInput",
-  "components/container/AntButton",
-  "components/container/AntModalMessage",
-  "components/container/AntFormGroup",
-  "components/container/AntForm",
-  "components/container/AntTwoColumnCard",
-  "components/container/RouterLink",
-  "components/container/AntImage",
-  "components/container/AntRow",
-  "components/container/AntCol",
-  "components/container/AntText",
-]);
+// const components = dynamicImport([
+//   "components/container/AntCard",
+//   "components/container/AntInput",
+//   "components/container/AntButton",
+//   "components/container/AntModalMessage",
+//   "components/container/AntFormGroup",
+//   "components/container/AntForm",
+//   "components/container/AntTwoColumnCard",
+//   "components/container/RouterLink",
+//   "components/container/AntImage",
+//   "components/container/AntRow",
+//   "components/container/AntCol",
+//   "components/container/AntText",
+// ]);
 
 export default defineComponent({
   name: "UserLogin",
