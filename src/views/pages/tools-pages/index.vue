@@ -45,7 +45,16 @@
             </a-typography-paragraph>
           </template>
           <template #actions>
-            <a-row :gutter="[16, 16]">
+            <a-row
+              :gutter="[16, 16]"
+              @click="
+                () =>
+                  $router.push({
+                    name: `${tool.nameSlug}`,
+                    params: { id: tool.name },
+                  })
+              "
+            >
               <a-col
                 :span="12"
                 style="
