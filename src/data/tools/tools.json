@@ -5,7 +5,8 @@
       "idtoolsType": "1",
       "image": "@/assets/tools/img/1.png",
       "bg":"@/assets/tools/bg/1.png",
-      "description": "tools.description.Crypto"
+      "description": "tools.description.Crypto",
+      "color" :"#108ee9"
     }
   ]
   
