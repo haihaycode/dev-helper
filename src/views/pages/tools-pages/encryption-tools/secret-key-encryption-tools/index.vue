@@ -27,37 +27,64 @@
           {{ truncateString($t(tool.description), 200) }}
         </a-typography-paragraph>
       </div>
-      <div class="content mt-2 px-2" v-if="tool">
+      <div class="content mt-4 px-2 sm:mt-2" v-if="tool">
         <a-form layout="vertical">
-          <a-form-item label="Chọn loại mã hóa:">
+          <a-form-item>
             <a-radio-group v-model:value="encryptionType">
-              <a-radio value="reverse">Đảo lộn text</a-radio>
-              <a-radio value="icon">Mã hóa kiểu icon</a-radio>
-              <a-radio value="bcrypt">Mã hóa kiểu bcrypt</a-radio>
+              <a-radio value="reverse">Reverse Text</a-radio>
+              <a-radio value="icon">Icon Encryption</a-radio>
+              <a-radio value="bcrypt">Bcrypt Encryption</a-radio>
             </a-radio-group>
           </a-form-item>
-          <a-form-item label="Nhập secret key:">
-            <a-input prefix="🔑" suffix="secretKey" v-model:value="secretKey" />
+          <a-form-item>
+            <a-input
+              suffix="Secret Key"
+              v-model:value="secretKey"
+              aria-required="true"
+            >
+              <template #prefix>
+                <KeyOutlined />
+              </template>
+            </a-input>
           </a-form-item>
-          <a-form-item label="Nhập text cần mã hóa:">
+          <a-form-item>
+            <template #label>
+              <a-typography-paragraph
+                >Enter the text to be encrypted</a-typography-paragraph
+              >
+              &nbsp;
+              <EnterOutlined />
+            </template>
             <a-textarea
+              class="text-left bg-white bg-opacity-30 min-h-56 p-2 sm:p-4"
               v-model:value="inputText"
+              :auto-size="{ minRows: 10, maxRows: 100 }"
               allow-clear
-              :maxlength="100"
             />
           </a-form-item>
           <a-form-item>
-            <a-button type="primary" @click="encrypt">Mã hóa</a-button>
+            <a-button
+              type="primary"
+              :disabled="!inputText || !secretKey"
+              @click="encrypt"
+            >
+              Encrypt
+            </a-button>
           </a-form-item>
-          <a-form-item label="Kết quả mã hóa:">
-            <a-typography-paragraph copyable :content="outputText">
+          <a-form-item>
+            <a-typography-paragraph
+              v-if="outputText"
+              class="text-left bg-white bg-opacity-30 min-h-56 p-2 sm:p-4"
+              copyable
+            >
+              {{ outputText }}
               <template #copyableIcon="{ copied }">
-                <SmileOutlined v-if="!copied" key="copy-icon" />
-                <SmileFilled v-else key="copied-icon" />
+                <CopyOutlined v-if="!copied" key="copy-icon" />
+                <CodeFilled v-else key="copied-icon" />
               </template>
               <template #copyableTooltip="{ copied }">
-                <span v-if="!copied" key="copy-tooltip">click here</span>
-                <span v-else key="copied-tooltip">you clicked!!</span>
+                <span v-if="!copied" key="copy-tooltip">Copy code</span>
+                <span v-else key="copied-tooltip">Code copied</span>
               </template>
             </a-typography-paragraph>
           </a-form-item>
@@ -74,11 +101,20 @@ import { getToolTypeById, getToolById } from "@/services/tools/toolsService";
 import { useI18n } from "vue-i18n";
 import { truncateString } from "@/utils/StringUtils";
 import { encryptText } from "./encryptionUtils";
-
+import {
+  KeyOutlined,
+  EnterOutlined,
+  CopyOutlined,
+  CodeFilled,
+} from "@ant-design/icons-vue";
 export default defineComponent({
   name: "SecretKeyEncryptionToolsPage",
   components: {
     Breadcrumb,
+    KeyOutlined,
+    EnterOutlined,
+    CodeFilled,
+    CopyOutlined,
   },
   setup() {
     const { t } = useI18n();
@@ -130,5 +166,8 @@ export default defineComponent({
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+}
+.ant-typography {
+  margin-bottom: 0px;
 }
 </style>
