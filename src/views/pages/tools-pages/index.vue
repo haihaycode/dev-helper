@@ -1,5 +1,5 @@
 <template>
-  <div class="base-page">
+  <div class="min-h-[100vh] sm:p-2 md:p-4 lg:p-6 xl:p-8">
     <a-row gutter="[16,16]" justify="start">
       <a-col v-if="filteredTools.length === 0" :span="24">
         <a-empty description="No data" />
@@ -22,7 +22,7 @@
             />
           </template>
           <template #actions>
-            <a-row gutter="16">
+            <a-row :gutter="[16, 16]">
               <a-col
                 :span="12"
                 style="
@@ -45,28 +45,32 @@
               /></a-col>
             </a-row>
             <!-- / -->
-            <a-row gutter="16">
-              <a-col
-                :span="12"
-                style="
-                  display: flex;
-                  align-items: center;
-                  justify-content: right;
-                "
-              >
-                Details</a-col
-              >
-              <a-col
-                :span="12"
-                style="
-                  display: flex;
-                  justify-content: left !important;
-                  align-items: center;
-                "
-              >
-                <ellipsis-outlined key="ellipsis" />
-              </a-col>
-            </a-row>
+            <a-popover placement="bottom" trigger="click">
+              <template #title>{{ $t(tool.name) }}</template>
+              <template #content>{{ $t(tool.description) }}</template>
+              <a-row :gutter="[16, 16]">
+                <a-col
+                  :span="12"
+                  style="
+                    display: flex;
+                    align-items: center;
+                    justify-content: right;
+                  "
+                >
+                  Details
+                </a-col>
+                <a-col
+                  :span="12"
+                  style="
+                    display: flex;
+                    justify-content: left !important;
+                    align-items: center;
+                  "
+                >
+                  <ellipsis-outlined key="ellipsis" />
+                </a-col>
+              </a-row>
+            </a-popover>
           </template>
           <a-card-meta>
             <template #avatar>
@@ -83,7 +87,7 @@
             </template>
             <template #description>
               <a-typography-paragraph style="text-align: left">
-                {{ truncateString($t(tool.description), 50) }}
+                {{ truncateString($t(tool.description), 70) }}
               </a-typography-paragraph>
             </template>
           </a-card-meta>
@@ -120,7 +124,6 @@ export default defineComponent({
     const { t } = useI18n();
     const tools = ref<Tool[]>(toolsData);
     const toolType = computed(() => store.getters["tool/toolType"]);
-    console.log(toolType.value); // string '1'
     const filteredTools = computed(() => {
       return tools.value.filter((tool) => tool.idtoolsType === toolType.value);
     });
@@ -146,9 +149,6 @@ export default defineComponent({
 </script>
 
 <style scoped lang="stylus">
-.base-page
-  min-height 100vh
-  padding: 20px
 
 a-row
   margin-top: 10px

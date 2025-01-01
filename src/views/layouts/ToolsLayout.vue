@@ -13,7 +13,7 @@
         :default-selected-keys="['1']"
         :selected-keys="[selectedKey]"
       >
-        <a-row :gutter="16">
+        <a-row :gutter="[16, 16]">
           <a-col :xs="0" :sm="0" :md="24" :lg="24">
             <a-input
               v-model="searchQuery"
@@ -68,7 +68,7 @@
       <a-layout-content class="content">
         <a-row justify="start">
           <a-col
-            style="padding: 2px 20px; align-items: center"
+            class="px-2 py-2 items-center"
             :span="4"
             flex="none"
             :xs="24"
@@ -76,9 +76,13 @@
             :md="24"
             :lg="0"
           >
-            <div @click="toggleSidebar" v-if="isSidebarCollapsed">
-              <ArrowLeftOutlined style="font-size: 24px" />
-              <a-typography-text strong style="font-size: 24px"
+            <div
+              @click="toggleSidebar"
+              class="flex items-center"
+              v-if="isSidebarCollapsed"
+            >
+              <ArrowLeftOutlined />
+              <a-typography-text strong
                 >&nbsp; Types of tools</a-typography-text
               >
             </div>
@@ -89,7 +93,9 @@
             />
           </a-col>
         </a-row>
+        <!-- main -->
         <router-view />
+        <!-- end main  -->
       </a-layout-content>
     </a-layout>
   </a-layout>
