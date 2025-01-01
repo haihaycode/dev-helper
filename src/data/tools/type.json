@@ -4,14 +4,16 @@
       "idtoolsType": "1",
       "image": "@/assets/tools/img/1.png",
       "bg":"@/assets/tools/bg/1.png",
-      "description": "tools.type.description.Crypto"
+      "description": "tools.type.description.Crypto",
+      "color" :"#108ee9"
     },
     {
         "name": "tools.type.name.Crypto",
         "idtoolsType": "2",
         "image": "@/assets/tools/img/2.png",
         "bg":"@/assets/tools/bg/2.png",
-        "description": "tools.type.description.Crypto"
+        "description": "tools.type.description.Crypto",
+        "color" :"#FFD700"
       }
   ]
   
