@@ -9,6 +9,16 @@ module.exports = defineConfig({
       overlay: {
         warnings: false,
         errors: false,
+        runtimeErrors: (error) => {
+          if (
+            error?.message ===
+            "ResizeObserver loop completed with undelivered notifications."
+          ) {
+            console.error(error);
+            return false;
+          }
+          return true;
+        },
       },
     },
   },
