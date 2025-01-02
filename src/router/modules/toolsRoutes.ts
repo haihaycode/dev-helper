@@ -24,6 +24,8 @@ const toolsRoutes: Array<RouteRecordRaw> = [
             component: () =>
               import(
                 `@/views/pages/tools-pages/encryption-tools/${tool.slug}/index.vue`
+              ).catch(
+                () => import("@/views/pages/folder-errors/NotFoundPage.vue")
               ),
           })),
         ],
