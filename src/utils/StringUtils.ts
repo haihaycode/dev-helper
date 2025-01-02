@@ -113,10 +113,10 @@ export const endsWithSubstring = (str: string, search: string): boolean => {
   return str.endsWith(search);
 };
 
-const text = "this is a long string with spaces";
+// const text = "this is a long string with spaces";
 
-console.log(truncateString(text, 10)); // "this is a..."
-console.log(toTitleCase(text)); // "This Is A Long String With Spaces"
-console.log(toSnakeCase(text)); // "this_is_a_long_string_with_spaces"
-console.log(capitalizeFirstLetter(text)); // "This is a long string with spaces"
-console.log(removeSpaces(text));
+// // console.log(truncateString(text, 10)); // "this is a..."
+// // console.log(toTitleCase(text)); // "This Is A Long String With Spaces"
+// // console.log(toSnakeCase(text)); // "this_is_a_long_string_with_spaces"
+// // console.log(capitalizeFirstLetter(text)); // "This is a long string with spaces"
+// // console.log(removeSpaces(text));
