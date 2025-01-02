@@ -81,11 +81,15 @@
             "TikTok":"TikTok Tools are applications and utilities designed to help users create, manage, and analyze content on TikTok. These tools can assist with video editing, follower analytics, trend tracking, and more."
             }
         },
-        "name":{
-            "Crypto":"Secret Key Encryption Tools"
+        "name": {
+            "Crypto": "Secret Key Encryption Tools",
+            "GetUserInfo": "Get User Info Tools",
+            "DownloadWithoutWatermark": "Download Without Watermark Tools"
         },
-        "description":{
-             "Crypto":"Secret Key Encryption Tools refer to software or hardware tools that utilize encryption algorithms to secure data by using a secret key. These tools are designed to protect sensitive information by transforming it into an unreadable format, which can only be reverted back to its original form using the correct secret key. The key used in this encryption process is kept confidential and is essential for both the encryption and decryption operations, ensuring that only authorized users with the secret key can access the original data."
+        "description": {
+            "Crypto": "Secret Key Encryption Tools refer to software or hardware tools that utilize encryption algorithms to secure data by using a secret key. These tools are designed to protect sensitive information by transforming it into an unreadable format, which can only be reverted back to its original form using the correct secret key. The key used in this encryption process is kept confidential and is essential for both the encryption and decryption operations, ensuring that only authorized users with the secret key can access the original data.",
+            "GetUserInfo": "Get User Info Tools are designed to retrieve user information from various platforms. These tools can help in gathering data such as user profiles, activity logs, and other relevant information.",
+            "DownloadWithoutWatermark": "Download Without Watermark Tools allow users to download content from various platforms without any watermarks. These tools are useful for obtaining clean and unbranded media files."
         }
     }
 }

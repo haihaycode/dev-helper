@@ -1,15 +1,35 @@
 [
-    {
-      "name": "tools.name.Crypto",
-      "idtools": "1",
-      "idtoolsType": "1",
-      "image": "@/assets/tools/img/1.png",
-      "bg":"@/assets/tools/bg/1.png",
-      "description": "tools.description.Crypto",
-      "color" :"#108ee9",
-      "slug": "secret-key-encryption-tools",
-      "nameSlug": "crypto1"
-    }
-  ]
-  
-  
+  {
+    "name": "tools.name.Crypto",
+    "idtools": "1",
+    "idtoolsType": "1",
+    "image": "@/assets/tools/img/1.png",
+    "bg":"@/assets/tools/bg/1.png",
+    "description": "tools.description.Crypto",
+    "color" :"#108ee9",
+    "slug": "secret-key-encryption-tools",
+    "nameSlug": "crypto1"
+  },
+  {
+    "name": "tools.name.GetUserInfo",
+    "idtools": "2",
+    "idtoolsType": "3",
+    "image": "@/assets/tools/img/2.png",
+    "bg":"@/assets/tools/bg/2.png",
+    "description": "tools.description.GetUserInfo",
+    "color" :"#69C9D0",
+    "slug": "get-user-info-tools",
+    "nameSlug": "tiktok-getuserinfo"
+  },
+  {
+    "name": "tools.name.DownloadWithoutWatermark",
+    "idtools": "3",
+    "idtoolsType": "3",
+    "image": "@/assets/tools/img/3.png",
+    "bg":"@/assets/tools/bg/3.png",
+    "description": "tools.description.DownloadWithoutWatermark",
+    "color" :"#69C9D0",
+    "slug": "download-without-watermark-tools",
+    "nameSlug": "tiktok-downloadwithoutwatermark"
+  }
+]

@@ -1,6 +1,6 @@
 <template>
   <div class="min-h-[100vh] sm:p-2 md:p-4 lg:p-6 xl:p-8">
-    <a-row gutter="[16,16]" justify="start">
+    <a-row gutter="[16,16]" justify="start" class="gap-4">
       <a-col v-if="filteredTools.length === 0" :span="24">
         <a-empty description="No data" />
       </a-col>
@@ -12,7 +12,7 @@
         :lg="8"
         :xl="6"
         v-for="tool in filteredTools"
-        :key="tool.idtoolsType"
+        :key="tool.idtools"
       >
         <a-card hoverable style="width: auto">
           <template #cover>
@@ -27,11 +27,11 @@
               "
             >
               <img
-                :src="require('@/assets/tools/bg/' + tool.idtoolsType + '.png')"
+                :src="require('@/assets/tools/bg/' + tool.idtools + '.png')"
                 class="transition-opacity duration-300 group-hover:opacity-50 w-full h-[150px]"
               />
               <div
-                class="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                class="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:bg-opacity-100"
               >
                 View &nbsp;<EyeOutlined />
               </div>
@@ -154,6 +154,7 @@ interface Tool {
   name: string;
   image: string;
   description: string;
+  idtools: string;
   idtoolsType: string;
   color: string;
   slug: string;
