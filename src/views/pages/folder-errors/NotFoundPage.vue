@@ -1,64 +1,21 @@
 <template>
-  <div class="error-page">
-    <AntTwoColumnCard
-      :gutter="24"
-      :leftSpanXs="24"
-      :leftSpanSm="24"
-      :leftSpanMd="12"
-      :leftSpanLg="12"
-      :leftSpanXl="12"
-      :rightSpanXs="24"
-      :rightSpanSm="24"
-      :rightSpanMd="12"
-      :rightSpanLg="12"
-      :rightSpanXl="12"
-    >
-      <template #left>
-        <AntImage
-          src="https://i.pinimg.com/originals/0e/c0/db/0ec0dbf1e9a008acb9955d3246970e15.gif"
-          alt="Error Image"
-          width="100%"
-          height="auto"
-          preview
-        />
+  <div class="bg-opacity-0">
+    <a-result status="404" title="404" :sub-title="t('error.404.message')">
+      <template #extra>
+        <a-button type="primary" @click="goBack">{{
+          t("error.404.button")
+        }}</a-button>
       </template>
-      <template #right>
-        <AntCard class="error-card" :title="$t('error.404.title')">
-          <p>{{ $t("error.404.message") }}</p>
-          <AntButton @click="goBack" type="primary">{{
-            $t("error.404.button")
-          }}</AntButton>
-        </AntCard>
-      </template>
-    </AntTwoColumnCard>
+    </a-result>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, defineAsyncComponent } from "vue";
+import { defineComponent } from "vue";
 import { useI18n } from "vue-i18n";
-import { dynamicImport } from "@/utils/importUtils";
-
-const components = dynamicImport([
-  "components/container/AntCard",
-  "components/container/AntButton",
-  "components/container/AntImage",
-  "components/container/AntTwoColumnCard",
-]);
 
 export default defineComponent({
   name: "NotFoundPage",
-  components: {
-    AntCard: defineAsyncComponent(components["components/container/AntCard"]),
-    AntButton: defineAsyncComponent(
-      components["components/container/AntButton"]
-    ),
-
-    AntImage: defineAsyncComponent(components["components/container/AntImage"]),
-    AntTwoColumnCard: defineAsyncComponent(
-      components["components/container/AntTwoColumnCard"]
-    ),
-  },
   setup() {
     const { t } = useI18n();
     const goBack = () => {
@@ -69,17 +26,4 @@ export default defineComponent({
 });
 </script>
 
-<style scoped lang="stylus">
-.error-page
-  display flex
-  justify-content center
-  align-items center
-  height 100vh
-  max-width 1200px
-  margin 0px auto
-.error-card
-  width 100%
-  border none
-  box-shadow none
-  text-align center
-</style>
+<style scoped lang="stylus"></style>
