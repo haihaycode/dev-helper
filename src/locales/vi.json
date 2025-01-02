@@ -1,69 +1,95 @@
 {
   "project": {
-    "name": "DevHelper"
+      "name": "DevHelper"
   },
   "message": {
-    "hello": "Xin chào Thế giới!"
+      "hello": "Xin chào Thế giới!"
   },
   "nav": {
-    "home": "Trang chủ",
-    "about": "Giới thiệu",
-    "tool": "Công cụ",
-    "contact": "Liên hệ",
-    "translate": "Ngôn ngữ"
+      "home": "Trang chủ",
+      "about": "Về chúng tôi",
+      "tool": "Công cụ dev",
+      "contact": "Liên hệ",
+      "translate": "Ngôn ngữ"
   },
   "loading": {
-    "default": "Đang tải..."
+      "default": "Đang tải..."
   },
   "login": {
-    "title": "Đăng nhập",
-    "usernamePlaceholder": "Tên đăng nhập",
-    "passwordPlaceholder": "Mật khẩu",
-    "submitButton": "Đăng nhập",
-    "successMessage": "Đăng nhập thành công!",
-    "errorMessage": "Vui lòng nhập tên đăng nhập và mật khẩu!",
-    "registerLink": "Chưa có tài khoản? Đăng ký tại đây",
-    "orLoginWith": "----- hoặc đăng nhập với -----"
+      "title": "Chào mừng trở lại DevHelper! Vui lòng đăng nhập",
+      "usernamePlaceholder": "Tên đăng nhập",
+      "passwordPlaceholder": "Mật khẩu",
+      "submitButton": "Đăng nhập",
+      "successTitle": "Đăng nhập thành công, chào mừng đến với DevHelper!",
+      "successMessage": "Đăng nhập thành công!",
+      "errorMessage": "Vui lòng nhập tên đăng nhập và mật khẩu!",
+      "registerLink": "Chưa có tài khoản? Đăng ký tại đây",
+      "orLoginWith": "----- hoặc đăng nhập với -----"
   },
   "register": {
-    "title": "Đăng ký",
-    "usernamePlaceholder": "Tên đăng nhập",
-    "emailPlaceholder": "Email",
-    "passwordPlaceholder": "Mật khẩu",
-    "submitButton": "Đăng ký",
-    "successMessage": "Đăng ký thành công!",
-    "errorMessage": "Vui lòng điền đầy đủ các trường!",
-    "invalidEmail": "Vui lòng nhập địa chỉ email hợp lệ!",
-    "loginLink": "Đã có tài khoản? Đăng nhập tại đây",
-    "orLoginWith": "----- hoặc đăng ký với -----"
+      "title": "Tham gia với chúng tôi: Tạo tài khoản của bạn",
+      "usernamePlaceholder": "Tên đăng nhập",
+      "emailPlaceholder": "Email",
+      "passwordPlaceholder": "Mật khẩu",
+      "successTitle": "Đăng ký thành công, chào mừng đến với DevHelper!",
+      "submitButton": "Đăng ký",
+      "successMessage": "Đăng ký thành công!",
+      "errorMessage": "Vui lòng điền đầy đủ thông tin!",
+      "invalidEmail": "Vui lòng nhập địa chỉ email hợp lệ!",
+      "loginLink": "Đã có tài khoản? Đăng nhập tại đây",
+      "orRegisterWith": "----- hoặc tạo tài khoản với -----"
   },
   "firebase": {
-    "auth": {
-      "userNotFound": "Người dùng không tìm thấy.",
-      "wrongPassword": "Mật khẩu không chính xác.",
-      "emailAlreadyInUse": "Email đã được sử dụng.",
-      "weakPassword": "Mật khẩu quá yếu.",
-      "operationNotAllowed": "Thao tác không được phép.",
-      "defaultError": "Đã xảy ra lỗi không xác định."
-    }
+        "auth": {
+          "userNotFound": "Không tìm thấy người dùng.",
+          "wrongPassword": "Mật khẩu không đúng.",
+          "emailAlreadyInUse": "Email đã được sử dụng.",
+          "weakPassword": "Mật khẩu quá yếu.",
+          "operationNotAllowed": "Hoạt động không được phép.",
+          "defaultError": "Đã xảy ra lỗi không xác định."
+        }
   },
   "error": {
-    "api": {
-      "networkError": "Không thể kết nối mạng. Vui lòng kiểm tra kết nối internet của bạn.",
-      "timeoutError": "Yêu cầu đã quá thời gian chờ. Vui lòng thử lại.",
-      "sessionExpired": "Phiên làm việc đã hết hạn, vui lòng đăng nhập lại.",
-      "dataNotFound": "Không tìm thấy dữ liệu.",
-      "unknownError": "Đã xảy ra lỗi không xác định."
-    },
-    "404": {
-      "title": "Không tìm thấy trang",
-      "message": "Xin lỗi, trang bạn truy cập không tồn tại.",
-      "button": "Trở về trang chủ"
-    },
-    "500": {
-      "title": "Lỗi máy chủ nội bộ",
-      "message": "Xin lỗi, đã xảy ra lỗi.",
-      "button": "Trở về trang chủ"
-    }
+      "api": {
+          "networkError": "Không thể kết nối mạng. Vui lòng kiểm tra kết nối internet của bạn.",
+          "timeoutError": "Yêu cầu đã hết thời gian. Vui lòng thử lại.",
+          "sessionExpired": "Phiên đã hết hạn, vui lòng đăng nhập lại.",
+          "dataNotFound": "Không tìm thấy dữ liệu.",
+          "unknownError": "Đã xảy ra lỗi không xác định."
+          },
+      "404": {
+          "title": "Không tìm thấy trang",
+          "message": "Xin lỗi, trang bạn truy cập không tồn tại.",
+          "button": "Quay lại"
+      },
+      "500": {
+          "title": "Lỗi máy chủ nội bộ",
+          "message": "Xin lỗi, đã xảy ra sự cố.",
+          "button": "Quay lại"
+      }
+  },
+  "tools": {
+      "type": {
+          "name": {
+          "Crypto": "Công cụ mã hóa",
+          "Facebook": "Công cụ Facebook",
+          "TikTok": "Công cụ TikTok"
+          },
+          "description": {
+          "Crypto": "Công cụ mã hóa khóa bí mật là các phần mềm hoặc phần cứng sử dụng các thuật toán mã hóa để bảo vệ dữ liệu bằng cách sử dụng một khóa bí mật. Các công cụ này được thiết kế để bảo vệ thông tin nhạy cảm bằng cách biến đổi nó thành định dạng không thể đọc được, chỉ có thể được khôi phục lại dạng ban đầu bằng cách sử dụng khóa bí mật đúng. Khóa được sử dụng trong quá trình mã hóa này được giữ bí mật và cần thiết cho cả hai hoạt động mã hóa và giải mã, đảm bảo rằng chỉ những người dùng được ủy quyền với khóa bí mật mới có thể truy cập dữ liệu gốc.",
+          "Facebook": "Công cụ Facebook là các tiện ích và ứng dụng khác nhau được thiết kế để nâng cao trải nghiệm người dùng trên Facebook. Các công cụ này có thể bao gồm các tính năng quản lý bài đăng, phân tích tương tác, tự động hóa tác vụ và cải thiện bảo mật.",
+          "TikTok": "Công cụ TikTok là các ứng dụng và tiện ích được thiết kế để giúp người dùng tạo, quản lý và phân tích nội dung trên TikTok. Các công cụ này có thể hỗ trợ chỉnh sửa video, phân tích người theo dõi, theo dõi xu hướng và nhiều hơn nữa."
+          }
+      },
+      "name": {
+          "Crypto": "Công cụ mã hóa khóa bí mật",
+          "GetUserInfo": "Công cụ lấy thông tin người dùng",
+          "DownloadWithoutWatermark": "Công cụ tải xuống không có watermark"
+      },
+      "description": {
+          "Crypto": "Công cụ mã hóa khóa bí mật là các phần mềm hoặc phần cứng sử dụng các thuật toán mã hóa để bảo vệ dữ liệu bằng cách sử dụng một khóa bí mật. Các công cụ này được thiết kế để bảo vệ thông tin nhạy cảm bằng cách biến đổi nó thành định dạng không thể đọc được, chỉ có thể được khôi phục lại dạng ban đầu bằng cách sử dụng khóa bí mật đúng. Khóa được sử dụng trong quá trình mã hóa này được giữ bí mật và cần thiết cho cả hai hoạt động mã hóa và giải mã, đảm bảo rằng chỉ những người dùng được ủy quyền với khóa bí mật mới có thể truy cập dữ liệu gốc.",
+          "GetUserInfo": "Công cụ lấy thông tin người dùng được thiết kế để thu thập thông tin người dùng từ các nền tảng khác nhau. Các công cụ này có thể giúp thu thập dữ liệu như hồ sơ người dùng, nhật ký hoạt động và các thông tin liên quan khác.",
+          "DownloadWithoutWatermark": "Công cụ tải xuống không có watermark cho phép người dùng tải nội dung từ các nền tảng khác nhau mà không có bất kỳ watermark nào. Các công cụ này hữu ích để có được các tệp phương tiện sạch và không có thương hiệu."
+      }
   }
 }
