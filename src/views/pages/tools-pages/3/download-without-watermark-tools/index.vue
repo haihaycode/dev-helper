@@ -21,11 +21,11 @@
         </a-typography-paragraph>
       </div>
       <div class="content mt-4 px-2 sm:mt-2" v-if="tool">
-        <a-form @submit.prevent="fetchUserInfo" class="flex space-x-2">
+        <a-form @submit.prevent="fetchVideoInfo" class="flex space-x-2">
           <a-form-item class="flex-grow">
             <a-input
-              v-model:value="username"
-              placeholder="Enter TikTok username"
+              v-model:value="videoUrl"
+              placeholder="Enter TikTok video URL"
               class="w-full"
             />
           </a-form-item>
@@ -42,72 +42,47 @@
         </a-form>
         <a-spin :spinning="isLoadingGet">
           <div
-            v-if="userInfo"
+            v-if="videoInfo"
             class="flex flex-col sm:flex-row mt-4 items-center"
           >
             <div class="flex-shrink-0 sm:w-1/3">
-              <a-avatar
-                :src="userInfo.avatar"
-                size="large"
-                class="w-48 h-48 object-cover rounded-full"
-                @error="onImageError"
-              />
+              <video
+                :src="videoInfo.downloadUrl"
+                controls
+                class="w-full h-auto aspect-video"
+              ></video>
             </div>
             <div class="flex-grow sm:w-2/3 sm:ml-4">
               <a-typography class="text-left">
-                <a-typography-title level="{4}">{{
-                  userInfo.username
-                }}</a-typography-title>
+                <a-typography-title level="{4}">Video Info:</a-typography-title>
                 <a-typography-paragraph>
-                  <strong>Username:</strong>
-                  {{ userInfo.username || "No data" }}
+                  <strong>Description:</strong>
+                  {{ videoInfo.description || "No data" }}
                 </a-typography-paragraph>
                 <a-typography-paragraph>
-                  <strong>Nickname:</strong>
-                  {{ userInfo.nickname || "No data" }}
-                </a-typography-paragraph>
-                <a-typography-paragraph>
-                  <strong>Verified:</strong>
-                  {{ userInfo.verified ? "Yes" : "No" }}
-                </a-typography-paragraph>
-                <a-typography-paragraph>
-                  <strong>Language:</strong>
-                  {{ userInfo.language || "No data" }}
-                </a-typography-paragraph>
-                <a-typography-paragraph>
-                  <strong>Region:</strong> {{ userInfo.region || "No data" }}
-                </a-typography-paragraph>
-                <a-typography-paragraph>
-                  <strong>Bio:</strong> {{ userInfo.bio || "No data" }}
-                </a-typography-paragraph>
-                <a-typography-paragraph>
-                  <strong>Following:</strong>
-                  {{ userInfo.stats.following || "No data" }}
-                </a-typography-paragraph>
-                <a-typography-paragraph>
-                  <strong>Followers:</strong>
-                  {{ userInfo.stats.followers || "No data" }}
+                  <strong>Author:</strong>
+                  {{ videoInfo.author.username || "No data" }}
                 </a-typography-paragraph>
                 <a-typography-paragraph>
                   <strong>Likes:</strong>
-                  {{ userInfo.stats.likes || "No data" }}
+                  {{ videoInfo.stats.likes || "No data" }}
                 </a-typography-paragraph>
                 <a-typography-paragraph>
-                  <strong>Videos:</strong>
-                  {{ userInfo.stats.videos || "No data" }}
+                  <strong>Comments:</strong>
+                  {{ videoInfo.stats.comments || "No data" }}
                 </a-typography-paragraph>
                 <a-typography-paragraph>
-                  <strong>Friends:</strong>
-                  {{ userInfo.stats.friends || "No data" }}
+                  <strong>Views:</strong>
+                  {{ videoInfo.stats.views || "No data" }}
                 </a-typography-paragraph>
                 <a-typography-paragraph>
                   <a-button
-                    type="link"
-                    :href="'https://www.tiktok.com/@' + userInfo.username"
-                    target="_blank"
+                    class="text-white"
+                    type="primary"
+                    :href="videoInfo.downloadUrl"
+                    download
                   >
-                    <LinkOutlined />
-                    Go to TikTok Profile
+                    Download Video
                   </a-button>
                 </a-typography-paragraph>
               </a-typography>
@@ -125,44 +100,38 @@ import Breadcrumb from "@/components/container/Breadcrumb.vue";
 import { getToolTypeById, getToolById } from "@/services/tools/toolsService";
 import { useI18n } from "vue-i18n";
 import { truncateString } from "@/utils/StringUtils";
-import { getTikTokUserProfile } from "@/api/rapidapi/tiktokApi";
-import { TikTokUserProfile } from "@/models/tiktok";
+import { getTikTokVideo } from "@/api/rapidapi/tiktokApi";
+import { tiktokVideoDownloader } from "@/models/tiktok";
 import { message } from "ant-design-vue";
 import { useStore } from "vuex";
-import { LinkOutlined } from "@ant-design/icons-vue";
+
 export default defineComponent({
-  name: "SecretKeyEncryptionToolsPage",
+  name: "DownloadWithoutWatermarkToolsPage",
   components: {
     Breadcrumb,
-    LinkOutlined,
   },
   setup() {
     const { t } = useI18n();
-    const username = ref("");
-    const userInfo = ref<TikTokUserProfile | null>(null);
+    const videoUrl = ref("");
+    const videoInfo = ref<tiktokVideoDownloader | null>(null);
     const store = useStore();
     const isLoadingGet = computed(() => store.getters["loading/isLoadingGet"]);
 
-    const fetchUserInfo = async () => {
-      if (!username.value.trim()) {
-        message.error("Please enter a TikTok username");
-        console.log(username.value);
+    const fetchVideoInfo = async () => {
+      if (!videoUrl.value.trim()) {
+        message.error("Please enter a TikTok video URL");
+        console.log(videoUrl.value);
         return;
       }
       try {
-        const result = await getTikTokUserProfile(username.value.trim());
-        userInfo.value = result;
+        const result = await getTikTokVideo(videoUrl.value.trim());
+        videoInfo.value = result;
       } catch (error) {
-        console.error("Error fetching user info:", error);
+        console.error("Error fetching video info:", error);
       }
     };
 
-    const onImageError = (event: Event) => {
-      (event.target as HTMLImageElement).src =
-        "https://static.vecteezy.com/system/resources/previews/004/141/669/non_2x/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg";
-    };
-
-    const toolId = "2";
+    const toolId = "3";
     const tool = getToolById(toolId);
     const toolTypeId = tool?.idtoolsType || "";
     const toolType = getToolTypeById(toolTypeId);
@@ -179,11 +148,10 @@ export default defineComponent({
       toolType,
       breadcrumbItems,
       truncateString,
-      username,
-      userInfo,
-      fetchUserInfo,
+      videoUrl,
+      videoInfo,
+      fetchVideoInfo,
       isLoadingGet,
-      onImageError,
     };
   },
 });
