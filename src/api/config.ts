@@ -9,3 +9,5 @@ export const HOST: string = DEV
 export const Domain: string = DEV
   ? "localhost:8083"
   : "http://68.183.238.32:8083";
+
+export const rapidHost = "rapidapi.com";

@@ -25,7 +25,6 @@ export default defineComponent({
     const loading = ref(false);
     const isLoadingGet = computed(() => store.getters["loading/isLoadingGet"]);
     console.log(isLoadingGet.value);
-
     router.beforeEach((to, from, next) => {
       loading.value = true;
       next();
