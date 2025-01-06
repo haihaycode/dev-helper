@@ -19,7 +19,7 @@ interface ToolType {
   image: string;
   bg: string;
   description: string;
-  color : string;
+  color: string;
 }
 
 export const getTools = (): Tool[] => {
