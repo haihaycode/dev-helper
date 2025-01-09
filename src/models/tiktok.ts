@@ -6,7 +6,7 @@
 
 // {"id":"127905465618821121","username":"khaby.lame","nickname":"Khabane lame","avatar":"https://p16-sign-useast2a.tiktokcdn.com/tos-useast2a-avt-0068-euttp/e755d298d36b3175a2ca87d603b5dc2d~c5_1080x1080.jpeg?lk3s=a5d48078&nonce=30570&refresh_token=f77ef32b8fa495b73b3e9db3301bfa41&x-expires=1735981200&x-signature=rsP8QQnF7r5jl90H2V4xatPD4Qs%3D&shp=a5d48078&shcp=81f88b70","verified":true,"language":"en","nicknameLastModified":"1970-01-01T00:00:00.000Z","region":"IT","bio":"If you want to laugh you are in the right place😎","stats":{"following":80,"followers":162400000,"likes":2500000000,"videos":1251,"friends":72}}
 
-interface tiktokVideoDownloader {
+export interface tiktokVideoDownloader {
   id: string;
   author: {
     username: string;
@@ -30,7 +30,7 @@ interface tiktokVideoDownloader {
   downloadUrl: string;
 }
 
-interface TikTokUserProfile {
+export interface TikTokUserProfile {
   id: string;
   username: string;
   nickname: string;
