@@ -51,7 +51,7 @@
                 <AntButton
                   type="primary"
                   html-type="submit"
-                  class="login-button"
+                  class="w-full rounded-md"
                   size="large"
                   :loading="loading"
                   :loading-text="$t('loading.default')"

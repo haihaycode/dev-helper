@@ -1,18 +1,28 @@
+<!-- eslint-disable vue/no-unused-components -->
+<!-- eslint-disable vue/no-unused-components -->
+<!-- filepath: /d:/.my.project/vue3x/DevHelper/src/components/container/AntInput.vue -->
 <template>
-  <div :class="['input-wrapper', customClass]">
+  <div :class="['relative', customClass]">
     <a-input
       v-bind="$attrs"
       :value="modelValue"
       @input="updateValue"
-      :class="{ 'has-error': error }"
+      :class="[
+        'w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500',
+        { 'border-red-500': error },
+      ]"
     />
     <a-tooltip v-if="error" :title="error" placement="bottom">
-      <div class="error-icon">
+      <div
+        class="absolute right-2 top-1/2 transform -translate-y-1/2 text-red-500 text-lg"
+      >
         <ExclamationCircleFilled />
       </div>
     </a-tooltip>
   </div>
-  <AntTextSpan v-if="error" class="error-message">{{ error }}</AntTextSpan>
+  <AntTextSpan v-if="error" class="text-red-500 text-sm mt-1">{{
+    error
+  }}</AntTextSpan>
 </template>
 
 <script lang="ts">
@@ -28,7 +38,6 @@ export default defineComponent({
     AntInput,
     // eslint-disable-next-line vue/no-unused-components
     AntTooltip,
-    // eslint-disable-next-line vue/no-unused-components
     ExclamationCircleFilled,
     AntTextSpan,
   },
@@ -57,26 +66,5 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.input-wrapper {
-  position: relative;
-}
-
-.has-error {
-  border-color: #ff4d4f;
-}
-
-.error-icon {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #ff4d4f;
-  font-size: 16px;
-}
-
-.error-message {
-  color: #ff4d4f;
-  font-size: 12px;
-  margin-top: 4px;
-}
+/* No custom CSS needed as we are using Tailwind CSS classes */
 </style>

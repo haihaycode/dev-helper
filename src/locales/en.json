@@ -2,6 +2,27 @@
     "project": {
         "name": "DevHelper"
     },
+    "translation": {
+        "title": "Select language",
+        "selectLanguage": "Select language",
+        "description": "This is a translation example.",
+        "vi" : "Vietnamese",
+        "en" : "English"
+    },
+    "meta": {
+    "home": {
+      "title": "Home - DevHelper",
+      "description": "The home page of DevHelper."
+    },
+    "login": {
+      "title": "Login - DevHelper",
+      "description": "Login to DevHelper."
+    },
+    "register": {
+      "title": "Register - DevHelper",
+      "description": "Register for DevHelper."
+    }
+  },
     "message": {
         "hello": "Hello World!"
     },
