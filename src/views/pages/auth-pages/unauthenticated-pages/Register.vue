@@ -60,7 +60,7 @@
                 @click="handleRegister"
                 type="primary"
                 html-type="submit"
-                class="register-button"
+                class="register-button rounded-md"
                 size="large"
                 :loading="loading"
                 :loading-text="$t('loading.default')"
@@ -69,7 +69,6 @@
               </AntButton>
             </AntFormGroup>
           </AntForm>
-          <!-- <AntText>{{ $t("register.orRegisterWith") }}</AntText> -->
           <AntRow
             justify="center"
             class="social-login-buttons"

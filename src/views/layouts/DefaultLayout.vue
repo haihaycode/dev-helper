@@ -4,6 +4,7 @@
     <a-layout-content class="content">
       <router-view />
     </a-layout-content>
+    <LanguageSelectorComponent />
     <FooterComponent />
   </a-layout>
 </template>
@@ -12,10 +13,10 @@
 import { defineComponent } from "vue";
 import HeaderComponet from "@/components/layout/HeaderComponet.vue";
 import FooterComponent from "@/components/layout/FooterComponent.vue";
-
+import LanguageSelectorComponent from "@/components/setting-locale-pages/LanguageSelectorComponent.vue";
 export default defineComponent({
   name: "DefaultLayout",
-  components: { HeaderComponet, FooterComponent },
+  components: { HeaderComponet, FooterComponent, LanguageSelectorComponent },
 });
 </script>
 

@@ -48,7 +48,8 @@ export default defineComponent({
     },
     buttonClass: {
       type: String,
-      default: "",
+      default:
+        "bg-yellow-500 text-white hover:bg-yellow-600 focus:outline-none outline-none ring-0 border-none",
     },
     loading: {
       type: Boolean,

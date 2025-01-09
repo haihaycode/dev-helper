@@ -1,61 +1,88 @@
-<!-- eslint-disable-next-line -->
+<!-- eslint-disable vue/no-deprecated-v-on-native-modifier -->
 <template>
-  <a-layout-header class="header">
-    <div class="header-container">
+  <header class="bg-gray-800 text-white shadow-md">
+    <div class="container mx-auto flex justify-between items-center p-4">
       <!-- Logo -->
-      <div class="logo" v-t="'project.name'"></div>
+      <router-link
+        to="/"
+        class="logo text-xl font-bold hover:text-gray-400"
+        v-t="'project.name'"
+      ></router-link>
       <!-- Desktop Menu -->
-      <a-menu
-        mode="horizontal"
-        theme="dark"
-        class="desktop-menu"
-        :default-selected-keys="['home']"
-      >
-        <a-menu-item key="home">
-          <router-link to="/" v-t="'nav.home'"></router-link>
-        </a-menu-item>
-        <a-menu-item key="about">
-          <router-link to="/about" v-t="'nav.about'"></router-link>
-        </a-menu-item>
-        <a-menu-item key="tool">
-          <router-link to="/tool" v-t="'nav.tool'"></router-link>
-        </a-menu-item>
-        <a-menu-item key="contact">
-          <router-link to="/contact" v-t="'nav.contact'"></router-link>
-        </a-menu-item>
-      </a-menu>
+      <nav class="hidden md:flex space-x-4">
+        <router-link
+          to="/"
+          class="hover:text-gray-400"
+          active-class="text-yellow-500"
+          exact-active-class="border-b-2 border-yellow-500"
+          v-t="'nav.home'"
+        ></router-link>
+        <router-link
+          to="/about"
+          class="hover:text-gray-400"
+          active-class="text-yellow-500"
+          exact-active-class="border-b-2 border-yellow-500"
+          v-t="'nav.about'"
+        ></router-link>
+        <router-link
+          to="/t/tools"
+          class="hover:text-gray-400"
+          active-class="text-yellow-500"
+          exact-active-class="border-b-2 border-yellow-500"
+          v-t="'nav.tool'"
+        ></router-link>
+        <router-link
+          to="/contact"
+          class="hover:text-gray-400"
+          active-class="text-yellow-500"
+          exact-active-class="border-b-2 border-yellow-500"
+          v-t="'nav.contact'"
+        ></router-link>
+      </nav>
       <!-- Mobile Menu Toggle Button -->
-      <a-button
-        class="mobile-menu-button"
-        type="text"
-        @click="showDrawer = true"
-      >
-        <MenuOutlined />
+      <a-button class="md:hidden" type="text" @click="showDrawer = true">
+        <MenuOutlined class="text-white" />
       </a-button>
-      <!-- Mobile Drawer Menu -->
-      <a-drawer
-        placement="right"
-        closable
-        :visible="showDrawer"
-        @close="showDrawer = false"
-      >
-        <a-menu mode="vertical" theme="light" :default-selected-keys="['home']">
-          <a-menu-item key="home">
-            <router-link to="/" v-t="'nav.home'"></router-link>
-          </a-menu-item>
-          <a-menu-item key="about">
-            <router-link to="/about" v-t="'nav.about'"></router-link>
-          </a-menu-item>
-          <a-menu-item key="tool">
-            <router-link to="/tool" v-t="'nav.tool'"></router-link>
-          </a-menu-item>
-          <a-menu-item key="contact">
-            <router-link to="/contact" v-t="'nav.contact'"></router-link>
-          </a-menu-item>
-        </a-menu>
-      </a-drawer>
     </div>
-  </a-layout-header>
+    <!-- Mobile Menu Drawer -->
+    <a-drawer
+      placement="right"
+      closable
+      :visible="showDrawer"
+      @close="showDrawer = false"
+    >
+      <nav class="flex flex-col space-y-4">
+        <router-link
+          to="/"
+          @click.native="showDrawer = false"
+          active-class="border-l-4 pl-2 border-yellow-500"
+          exact-active-class="border-l-4 pl-2 border-yellow-500"
+          v-t="'nav.home'"
+        ></router-link>
+        <router-link
+          to="/about"
+          @click.native="showDrawer = false"
+          active-class="border-l-4 pl-2 border-yellow-500"
+          exact-active-class="border-l-4 pl-2 border-yellow-500"
+          v-t="'nav.about'"
+        ></router-link>
+        <router-link
+          to="/t/tools"
+          @click.native="showDrawer = false"
+          active-class="border-l-4 pl-2 border-yellow-500"
+          exact-active-class="border-l-4 pl-2 border-yellow-500"
+          v-t="'nav.tool'"
+        ></router-link>
+        <router-link
+          to="/contact"
+          @click.native="showDrawer = false"
+          active-class="border-l-4 pl-2 border-yellow-500"
+          exact-active-class="border-l-4 pl-2 border-yellow-500"
+          v-t="'nav.contact'"
+        ></router-link>
+      </nav>
+    </a-drawer>
+  </header>
 </template>
 
 <script lang="ts">
@@ -63,45 +90,24 @@ import { defineComponent, ref } from "vue";
 import { MenuOutlined } from "@ant-design/icons-vue";
 
 export default defineComponent({
+  name: "HeaderComponent",
   components: {
     MenuOutlined,
   },
   setup() {
     const showDrawer = ref(false);
 
-    return { showDrawer };
+    return {
+      showDrawer,
+    };
   },
 });
 </script>
 
-<style scoped lang="stylus">
+<style scoped>
+.logo {
+  font-size: 1.5rem; /* equivalent to text-2xl */
+  font-weight: bold; /* equivalent to font-bold */
+}
 
-.header-container
-    display flex
-    align-items center
-    justify-content space-between
-    max-width 1200px
-    margin 0 auto
-    width 100%
-    padding 0 20px
-
-.logo
-    color #fff
-    font-size 24px
-    font-weight bold
-
-.desktop-menu
-    display flex
-
-.mobile-menu-button
-    display none
-    color white
-    font-size 24px
-
-/* Responsive Styles */
-@media (max-width: 768px)
-    .desktop-menu
-        display none
-    .mobile-menu-button
-        display block
 </style>
