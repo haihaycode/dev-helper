@@ -21,9 +21,9 @@ const pool = mysql.createPool({
 const connectDB = async () => {
   try {
     await pool.getConnection();
-    console.log("Đã kết nối thành công với MySQL");
+    console.log("Connected to MySQL");
   } catch (error) {
-    console.error("Lỗi kết nối MySQL:", error);
+    console.error("Connect to MySQL failed :", error);
     process.exit(1);
   }
 };

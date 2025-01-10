@@ -1,10 +1,13 @@
 const jwt = require("jsonwebtoken");
+const ApiResponse = require("../utils/ApiResponse");
 
 const verifyToken = (req, res, next) => {
   const token = req.headers.authorization?.split(" ")[1];
 
   if (!token) {
-    return res.status(401).json({ message: "Không tìm thấy token xác thực!" });
+    return res
+      .status(401)
+      .json(ApiResponse.error(req.__("errors.auth.tokenNotFound")));
   }
 
   try {
@@ -12,13 +15,17 @@ const verifyToken = (req, res, next) => {
     req.user = decoded;
     next();
   } catch (error) {
-    return res.status(401).json({ message: "Token không hợp lệ!" });
+    return res
+      .status(401)
+      .json(ApiResponse.error(req.__("errors.auth.invalidToken")));
   }
 };
 
 const isAdmin = (req, res, next) => {
   if (req.user.role !== "admin") {
-    return res.status(403).json({ message: "Không có quyền truy cập!" });
+    return res
+      .status(403)
+      .json(ApiResponse.error(req.__("errors.auth.unauthorized")));
   }
   next();
 };

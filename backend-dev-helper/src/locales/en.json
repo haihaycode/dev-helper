@@ -1,0 +1,23 @@
+{
+  "errors": {
+    "auth": {
+      "invalidCredentials": "Invalid username or password!",
+      "userExists": "Username already exists!",
+      "missingFields": "Please fill in all required fields!",
+      "unauthorized": "Unauthorized access!",
+      "tokenNotFound": "Authentication token not found!",
+      "invalidToken": "Invalid token!"
+    },
+    "system": {
+      "default": "System error",
+      "notFound": "Resource not found"
+    }
+  },
+  "success": {
+    "auth": {
+      "registered": "Registration successful!",
+      "loggedIn": "Login successful!",
+      "getUserList": "User list retrieved successfully!"
+    }
+  }
+} 

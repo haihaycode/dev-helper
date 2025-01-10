@@ -8,14 +8,12 @@ const User = {
     );
     return results;
   },
-
   findByUsername: async (username) => {
     const [rows] = await pool.query("SELECT * FROM users WHERE username = ?", [
       username,
     ]);
     return rows[0];
   },
-
   getAllUsers: async () => {
     const [rows] = await pool.query("SELECT username, role FROM users");
     return rows;

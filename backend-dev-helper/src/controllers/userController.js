@@ -7,13 +7,18 @@ class UserController {
     try {
       const { username, password, role } = req.body;
       if (!username || !password) {
-        throw new ApiError(400, "Vui lòng điền đầy đủ thông tin!");
+        throw new ApiError(400, req.__("errors.auth.missingFields"));
       }
       const userEntity = await userService.register(username, password, role);
 
       res
         .status(201)
-        .json(ApiResponse.success(userEntity.toJSON(), "Đăng ký thành công!"));
+        .json(
+          ApiResponse.success(
+            userEntity.toJSON(),
+            req.__("success.auth.registered")
+          )
+        );
     } catch (error) {
       next(error);
     }
@@ -24,7 +29,7 @@ class UserController {
       const { username, password } = req.body;
 
       if (!username || !password) {
-        throw new ApiError(400, "Vui lòng điền đầy đủ thông tin!");
+        throw new ApiError(400, req.__("errors.auth.missingFields"));
       }
 
       const { userEntity, token } = await userService.login(username, password);
@@ -32,7 +37,7 @@ class UserController {
       res.json(
         ApiResponse.success(
           userEntity.toAuthJSON(token),
-          "Đăng nhập thành công!"
+          req.__("success.auth.loggedIn")
         )
       );
     } catch (error) {
@@ -46,7 +51,7 @@ class UserController {
       res.json(
         ApiResponse.success(
           userEntities.map((entity) => entity.toJSON()),
-          "Lấy danh sách người dùng thành công!"
+          req.__("success.auth.getUserList")
         )
       );
     } catch (error) {
