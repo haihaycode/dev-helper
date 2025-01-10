@@ -1,129 +1,157 @@
 <template>
-  <div class="register-page">
-    <AntTwoColumnCard
-      :gutter="24"
-      :leftSpanXs="24"
-      :leftSpanSm="24"
-      :leftSpanMd="12"
-      :leftSpanLg="12"
-      :leftSpanXl="12"
-      :rightSpanXs="24"
-      :rightSpanSm="24"
-      :rightSpanMd="12"
-      :rightSpanLg="12"
-      :rightSpanXl="12"
-    >
-      <template #left>
-        <AntImage
-          :src="require('@/assets/logo/logo-dev-helper-1.svg')"
-          :alt="'DevHelper'"
-          width="100%"
-          height="auto"
-          :preview="false"
-        />
-      </template>
-      <template #right>
-        <AntCard class="register-card no-border" :title="$t('register.title')">
-          <AntForm :model="formModel">
-            <AntFormGroup :required="true">
-              <AntInput
-                v-model="formModel.username"
-                :placeholder="$t('register.usernamePlaceholder')"
-                :error="errors.username"
-                prefix-icon="user"
-                size="large"
-              />
-            </AntFormGroup>
-            <AntFormGroup :required="true">
-              <AntInput
-                v-model="formModel.email"
-                type="email"
-                :placeholder="$t('register.emailPlaceholder')"
-                :error="errors.email"
-                prefix-icon="mail"
-                size="large"
-              />
-            </AntFormGroup>
-            <AntFormGroup :required="true">
-              <AntInput
-                v-model="formModel.password"
-                :label="$t('register.passwordLabel')"
-                type="password"
-                :placeholder="$t('register.passwordPlaceholder')"
-                :error="errors.password"
-                prefix-icon="lock"
-                size="large"
-              />
-            </AntFormGroup>
-            <AntFormGroup :required="true">
-              <AntButton
-                @click="handleRegister"
+  <div
+    class="min-h-screen bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center p-4"
+  >
+    <div class="max-w-5xl w-full rounded-2xl shadow-2xl overflow-hidden">
+      <a-row class="min-h-[600px]">
+        <!-- Left side - Logo & Branding -->
+        <a-col
+          :xs="24"
+          :sm="24"
+          :md="12"
+          class="p-8 flex flex-col justify-center items-center"
+        >
+          <div class="text-center">
+            <a-image
+              :src="require('@/assets/logo/DEV-HELPER.gif')"
+              :alt="'DevHelper'"
+              class="w-full mb-8"
+              :preview="false"
+            />
+            <h2 class="text-white text-2xl font-bold mb-4">
+              {{ $t("register.title") }}
+            </h2>
+            <p class="text-white font-mono text-sm">
+              {{ $t("register.description") }}
+            </p>
+          </div>
+        </a-col>
+
+        <!-- Right side - Register Form -->
+        <a-col :xs="24" :sm="24" :md="12" class="p-8 bg-white">
+          <div class="max-w-md mx-auto">
+            <h1
+              class="text-3xl font-bold font-mono text-amber-800 mb-8 text-center"
+            >
+              {{ $t("register.title") }}
+            </h1>
+
+            <a-form :model="formModel" class="space-y-6">
+              <a-form-item :required="true">
+                <a-input
+                  v-model:value="formModel.username"
+                  :placeholder="$t('register.usernamePlaceholder')"
+                  size="large"
+                  :status="errors.username ? 'error' : ''"
+                >
+                  <template #prefix>
+                    <UserOutlined />
+                  </template>
+                </a-input>
+              </a-form-item>
+
+              <a-form-item :required="true">
+                <a-input
+                  v-model:value="formModel.email"
+                  type="email"
+                  :placeholder="$t('register.emailPlaceholder')"
+                  size="large"
+                  :status="errors.email ? 'error' : ''"
+                >
+                  <template #prefix>
+                    <MailOutlined />
+                  </template>
+                </a-input>
+              </a-form-item>
+
+              <a-form-item :required="true">
+                <a-input-password
+                  v-model:value="formModel.password"
+                  :placeholder="$t('register.passwordPlaceholder')"
+                  size="large"
+                  :status="errors.password ? 'error' : ''"
+                >
+                  <template #prefix>
+                    <LockOutlined />
+                  </template>
+                </a-input-password>
+              </a-form-item>
+
+              <a-button
                 type="primary"
-                html-type="submit"
-                class="register-button rounded-md"
-                size="large"
+                @click="handleRegister"
+                class="w-full h-12 rounded-lg bg-amber-600 hover:bg-amber-700 border-none focus:border-none focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-700"
                 :loading="loading"
-                :loading-text="$t('loading.default')"
               >
                 {{ $t("register.submitButton") }}
-              </AntButton>
-            </AntFormGroup>
-          </AntForm>
-          <AntRow
-            justify="center"
-            class="social-login-buttons"
-            gutter="{16}"
-            gap="{16}"
-          >
-            <AntCol span="{8}">
-              <AntButton
-                type="ghost"
-                @click="handleGoogleRegister"
-                :icon="'google'"
-                block
-              >
-                Google
-              </AntButton>
-            </AntCol>
-            <AntCol span="{8}">
-              <AntButton
-                type="primary"
-                @click="handleGithubRegister()"
-                :icon="'github'"
-                block
-              >
-                GitHub
-              </AntButton>
-            </AntCol>
-          </AntRow>
+              </a-button>
 
-          <RouterLink :to="{ name: 'LoginPage' }">{{
-            $t("register.loginLink")
-          }}</RouterLink>
-        </AntCard>
-      </template>
-    </AntTwoColumnCard>
-    <AntModalMessage
-      :visible="messageVisible"
+              <div class="relative my-8">
+                <div class="absolute inset-0 flex items-center">
+                  <div class="w-full border-t border-gray-200"></div>
+                </div>
+                <div class="relative flex justify-center text-sm">
+                  <span class="px-2 bg-white text-gray-500">
+                    {{ $t("register.orRegisterWith") }}
+                  </span>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-4">
+                <a-button
+                  class="h-12 rounded-lg border-2 hover:border-amber-500 hover:text-amber-600 transition-colors duration-300"
+                  @click="handleGoogleRegister"
+                >
+                  Google
+                </a-button>
+                <a-button
+                  class="h-12 rounded-lg border-2 hover:border-amber-500 hover:text-amber-600 transition-colors duration-300"
+                  @click="handleGithubRegister"
+                >
+                  GitHub
+                </a-button>
+              </div>
+
+              <div class="text-center mt-6">
+                <router-link
+                  :to="{ name: 'LoginPage' }"
+                  class="text-amber-600 hover:text-amber-700 transition-colors"
+                >
+                  {{ $t("register.loginLink") }}
+                </router-link>
+              </div>
+            </a-form>
+          </div>
+        </a-col>
+      </a-row>
+    </div>
+
+    <a-modal
+      v-model:visible="messageVisible"
       :title="messageTitle"
-      :content="messageContent"
-      :type="messageType"
-      @update:visible="messageVisible = $event"
+      :closable="true"
+      @ok="messageVisible = false"
     >
       <p>{{ messageContent }}</p>
-    </AntModalMessage>
+    </a-modal>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, defineAsyncComponent } from "vue";
+export default {
+  name: "UserRegisterPage",
+};
+</script>
+
+<script setup lang="ts">
+import { ref } from "vue";
 import { useI18n } from "vue-i18n";
+import { useRouter } from "vue-router";
 import * as yup from "yup";
-import { dynamicImport } from "@/utils/importUtils";
 import {
-  GoogleOutlined,
-  FacebookOutlined,
-  GithubOutlined,
+  UserOutlined,
+  MailOutlined,
+  LockOutlined,
 } from "@ant-design/icons-vue";
 import { auth, githubProvider, googleProvider } from "@/firebaseConfig";
 import {
@@ -133,202 +161,142 @@ import {
 } from "firebase/auth";
 import { getFirebaseMessage } from "@/services/firebase/firebaseMessages";
 import { FirebaseError } from "firebase/app";
-import { useRouter } from "vue-router";
 
-const components = dynamicImport([
-  "components/container/AntCard",
-  "components/container/AntInput",
-  "components/container/AntButton",
-  "components/container/AntModalMessage",
-  "components/container/AntFormGroup",
-  "components/container/AntForm",
-  "components/container/AntTwoColumnCard",
-  "components/container/RouterLink",
-  "components/container/AntImage",
-  "components/container/AntRow",
-  "components/container/AntCol",
-  "components/container/AntText",
-]);
+const { t } = useI18n();
+const router = useRouter();
 
-export default defineComponent({
-  name: "UserRegister",
-  components: {
-    AntCard: defineAsyncComponent(components["components/container/AntCard"]),
-    AntInput: defineAsyncComponent(components["components/container/AntInput"]),
-    AntButton: defineAsyncComponent(
-      components["components/container/AntButton"]
-    ),
-    AntModalMessage: defineAsyncComponent(
-      components["components/container/AntModalMessage"]
-    ),
-    AntFormGroup: defineAsyncComponent(
-      components["components/container/AntFormGroup"]
-    ),
-    AntForm: defineAsyncComponent(components["components/container/AntForm"]),
-    AntTwoColumnCard: defineAsyncComponent(
-      components["components/container/AntTwoColumnCard"]
-    ),
-    RouterLink: defineAsyncComponent(
-      components["components/container/RouterLink"]
-    ),
-    AntImage: defineAsyncComponent(components["components/container/AntImage"]),
-    AntRow: defineAsyncComponent(components["components/container/AntRow"]),
-    AntCol: defineAsyncComponent(components["components/container/AntCol"]),
-    // AntText: defineAsyncComponent(components["components/container/AntText"]),
-    // eslint-disable-next-line vue/no-unused-components
-    GoogleOutlined,
-    // eslint-disable-next-line vue/no-unused-components
-    FacebookOutlined,
-    // eslint-disable-next-line vue/no-unused-components
-    GithubOutlined,
-  },
-  setup() {
-    const { t } = useI18n();
-    const router = useRouter();
-    const formModel = ref({
-      username: "",
-      email: "",
-      password: "",
-    });
-    const loading = ref(false);
-    const messageVisible = ref(false);
-    const messageTitle = ref("");
-    const messageContent = ref("");
-    const messageType = ref("info");
-    const errors = ref<Record<string, string>>({});
-
-    const schema = yup.object().shape({
-      username: yup.string().required(t("register.errorMessage")),
-      email: yup
-        .string()
-        .email(t("register.invalidEmail"))
-        .required(t("register.errorMessage")),
-      password: yup.string().required(t("register.errorMessage")),
-    });
-    const handleRegister = async () => {
-      try {
-        await schema.validate(formModel.value, { abortEarly: false });
-        loading.value = true;
-        console.log("registering user");
-
-        await createUserWithEmailAndPassword(
-          auth,
-          formModel.value.email,
-          formModel.value.password
-        );
-        loading.value = false;
-        messageTitle.value = t("register.title");
-        messageContent.value = t("register.successMessage");
-        messageType.value = "success";
-        messageVisible.value = true;
-        router.push({ name: "LoginPage" });
-      } catch (err) {
-        loading.value = false;
-        if (err instanceof yup.ValidationError) {
-          const errorMessages: Record<string, string> = {};
-          err.inner.forEach((error) => {
-            if (error.path) {
-              errorMessages[error.path] = error.message;
-            }
-          });
-          errors.value = errorMessages;
-        } else if (err instanceof FirebaseError) {
-          messageTitle.value = t("register.title");
-          const errorMessage = getFirebaseMessage(err.code, t);
-          messageContent.value = errorMessage;
-          messageType.value = "error";
-          messageVisible.value = true;
-        }
-      }
-    };
-
-    const handleGoogleRegister = async () => {
-      loading.value = true;
-      try {
-        if (window.innerWidth <= 768) {
-          await signInWithRedirect(auth, googleProvider);
-        } else {
-          await signInWithPopup(auth, googleProvider);
-        }
-        messageTitle.value = t("register.successTitle");
-        messageContent.value = t("register.successMessage");
-        messageType.value = "success";
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } catch (error: any) {
-        const errorMessage = getFirebaseMessage(error.code, t);
-        messageTitle.value = t("register.errorTitle");
-        messageContent.value = errorMessage;
-        messageType.value = "error";
-      } finally {
-        loading.value = false;
-        messageVisible.value = true;
-        router.push({ name: "LoginPage" });
-      }
-    };
-
-    const handleGithubRegister = async () => {
-      loading.value = true;
-      try {
-        if (window.innerWidth <= 768) {
-          // 768px or smaller for mobile
-          await signInWithRedirect(auth, githubProvider);
-        } else {
-          await signInWithPopup(auth, githubProvider);
-        }
-        messageTitle.value = t("register.successTitle");
-        messageContent.value = t("register.successMessage");
-        messageType.value = "success";
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } catch (error: any) {
-        const errorMessage = getFirebaseMessage(error.code, t);
-        messageTitle.value = t("register.errorTitle");
-        messageContent.value = errorMessage;
-        messageType.value = "error";
-      } finally {
-        loading.value = false;
-        messageVisible.value = true;
-        router.push({ name: "LoginPage" });
-      }
-    };
-
-    return {
-      formModel,
-      loading,
-      handleRegister,
-      handleGithubRegister,
-      handleGoogleRegister,
-      messageVisible,
-      messageTitle,
-      messageContent,
-      messageType,
-      errors,
-      t,
-    };
-  },
+const formModel = ref({
+  username: "",
+  email: "",
+  password: "",
 });
+
+const loading = ref(false);
+const messageVisible = ref(false);
+const messageTitle = ref("");
+const messageContent = ref("");
+const messageType = ref("info");
+const errors = ref<Record<string, string>>({});
+
+const schema = yup.object().shape({
+  username: yup.string().required(t("register.errorMessage")),
+  email: yup
+    .string()
+    .email(t("register.invalidEmail"))
+    .required(t("register.errorMessage")),
+  password: yup.string().required(t("register.errorMessage")),
+});
+
+const handleRegister = async () => {
+  try {
+    await schema.validate(formModel.value, { abortEarly: false });
+    loading.value = true;
+
+    await createUserWithEmailAndPassword(
+      auth,
+      formModel.value.email,
+      formModel.value.password
+    );
+
+    messageTitle.value = t("register.successTitle");
+    messageContent.value = t("register.successMessage");
+    messageType.value = "success";
+    messageVisible.value = true;
+    router.push({ name: "LoginPage" });
+  } catch (err) {
+    if (err instanceof yup.ValidationError) {
+      const errorMessages: Record<string, string> = {};
+      err.inner.forEach((error) => {
+        if (error.path) {
+          errorMessages[error.path] = error.message;
+        }
+      });
+      errors.value = errorMessages;
+    } else if (err instanceof FirebaseError) {
+      messageTitle.value = t("register.title");
+      messageContent.value = getFirebaseMessage(err.code, t);
+      messageType.value = "error";
+      messageVisible.value = true;
+    }
+  } finally {
+    loading.value = false;
+  }
+};
+
+const handleGoogleRegister = async () => {
+  loading.value = true;
+  try {
+    if (window.innerWidth <= 768) {
+      await signInWithRedirect(auth, googleProvider);
+    } else {
+      await signInWithPopup(auth, googleProvider);
+    }
+    messageTitle.value = t("register.successTitle");
+    messageContent.value = t("register.successMessage");
+    messageType.value = "success";
+    router.push({ name: "LoginPage" });
+  } catch (error: any) {
+    messageTitle.value = t("register.errorTitle");
+    messageContent.value = getFirebaseMessage(error.code, t);
+    messageType.value = "error";
+  } finally {
+    loading.value = false;
+    messageVisible.value = true;
+  }
+};
+
+const handleGithubRegister = async () => {
+  loading.value = true;
+  try {
+    if (window.innerWidth <= 768) {
+      await signInWithRedirect(auth, githubProvider);
+    } else {
+      await signInWithPopup(auth, githubProvider);
+    }
+    messageTitle.value = t("register.successTitle");
+    messageContent.value = t("register.successMessage");
+    messageType.value = "success";
+    router.push({ name: "LoginPage" });
+  } catch (error: any) {
+    messageTitle.value = t("register.errorTitle");
+    messageContent.value = getFirebaseMessage(error.code, t);
+    messageType.value = "error";
+  } finally {
+    loading.value = false;
+    messageVisible.value = true;
+  }
+};
 </script>
 
-<style scoped lang="stylus">
-.register-page
-  display flex
-  justify-content center
-  align-items center
-  height 100vh
-  max-width 1200px
-  margin 20px auto
+<style lang="stylus">
+:deep(.ant-input-affix-wrapper) {
+  &:hover, &:focus {
+    border-color: #d97706 !important;
+  }
+}
 
-.logo
-  width 100%
-  height auto
+:deep(.ant-btn-primary) {
+  background: #d97706 !important;
+  &:hover {
+    background: #b45309 !important;
+  }
+}
 
-.register-card
-  width 100%
-  border none
-  box-shadow none
+:deep(.ant-btn) {
+  &:hover {
+    color: #d97706;
+    border-color: #d97706;
+  }
+}
 
-.register-button
-  width 100%
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.3s ease;
+}
 
-.social-login-buttons
-  margin 10px auto
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
+}
 </style>
