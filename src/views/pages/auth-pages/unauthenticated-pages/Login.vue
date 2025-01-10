@@ -1,233 +1,232 @@
 <template>
-  <div class="login-page">
-    <div class="login-container">
-      <AntTwoColumnCard
-        :gutter="24"
-        :leftSpanXs="24"
-        :leftSpanSm="24"
-        :leftSpanMd="12"
-        :leftSpanLg="12"
-        :leftSpanXl="12"
-        :rightSpanXs="24"
-        :rightSpanSm="24"
-        :rightSpanMd="12"
-        :rightSpanLg="12"
-        :rightSpanXl="12"
-      >
-        <template #left>
-          <div class="terms-conditions">
-            <AntImage
-              :src="require('@/assets/logo/logo-dev-helper-1.svg')"
+  <div
+    class="min-h-screen bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center p-4"
+  >
+    <div class="max-w-5xl w-full rounded-2xl shadow-2xl overflow-hidden">
+      <a-row class="min-h-[600px]">
+        <!-- Left side -->
+        <a-col
+          :xs="24"
+          :sm="24"
+          :md="12"
+          class="p-8 flex flex-col justify-center items-center"
+        >
+          <div class="text-center">
+            <a-image
+              :src="require('@/assets/logo/DEV-HELPER.gif')"
               :alt="'DevHelper'"
-              width="100%"
-              height="auto"
+              class="w-full mb-8"
               :preview="false"
             />
-          </div>
-        </template>
-        <template #right>
-          <AntCard class="login-card" :title="$t('login.title')">
-            <AntForm @submit.prevent="handleLogin" :model="formModel">
-              <AntFormGroup :required="true">
-                <AntInput
-                  v-model="formModel.username"
-                  :placeholder="$t('login.usernamePlaceholder')"
-                  :error="errors.username"
-                  prefix-icon="user"
-                  size="large"
-                />
-              </AntFormGroup>
-              <AntFormGroup :required="true">
-                <AntInput
-                  v-model="formModel.password"
-                  type="password"
-                  :placeholder="$t('login.passwordPlaceholder')"
-                  :error="errors.password"
-                  prefix-icon="lock"
-                  size="large"
-                />
-              </AntFormGroup>
-              <AntFormGroup :required="true">
-                <AntButton
-                  type="primary"
-                  html-type="submit"
-                  class="w-full rounded-md"
-                  size="large"
-                  :loading="loading"
-                  :loading-text="$t('loading.default')"
-                >
-                  {{ $t("login.submitButton") }}
-                </AntButton>
-              </AntFormGroup>
-            </AntForm>
-            <AntRow
-              justify="center"
-              class="social-login-buttons"
-              gutter="{16}"
-              gap="{16}"
+            <h2
+              class="text-white text-2xl font-bold mb-4 scroll-animate fade-up"
             >
-              <AntCol span="{8}">
-                <AntButton type="primary" :icon="'google'" block>
-                  Google
-                </AntButton>
-              </AntCol>
-              <AntCol span="{8}">
-                <AntButton type="default" :icon="'github'" block>
-                  GitHub
-                </AntButton>
-              </AntCol>
-            </AntRow>
-            <RouterLink :to="{ name: 'RegisterPage' }">{{
-              $t("login.registerLink")
-            }}</RouterLink>
-          </AntCard>
-        </template>
-      </AntTwoColumnCard>
+              {{ $t("login.welcomeMessage") }}
+            </h2>
+            <p class="text-white font-mono text-sm scroll-animate fade-up">
+              {{ $t("login.description") }}
+            </p>
+          </div>
+        </a-col>
+
+        <!-- Right side -->
+        <a-col :xs="24" :sm="24" :md="12" class="p-8 bg-white">
+          <div class="max-w-md mx-auto">
+            <h1
+              class="text-3xl font-bold font-mono text-amber-800 mb-8 text-center scroll-animate fade-up"
+            >
+              {{ $t("login.title") }}
+            </h1>
+
+            <a-form :model="formModel" class="space-y-6">
+              <a-form-item
+                :required="true"
+                :validate-status="errors.username ? 'error' : ''"
+                :help="errors.username"
+              >
+                <a-input
+                  v-model:value="formModel.username"
+                  :placeholder="$t('login.usernamePlaceholder')"
+                  size="large"
+                >
+                  <template #prefix>
+                    <UserOutlined />
+                  </template>
+                </a-input>
+              </a-form-item>
+
+              <a-form-item
+                :required="true"
+                :validate-status="errors.password ? 'error' : ''"
+                :help="errors.password"
+              >
+                <a-input-password
+                  v-model:value="formModel.password"
+                  :placeholder="$t('login.passwordPlaceholder')"
+                  size="large"
+                >
+                  <template #prefix>
+                    <LockOutlined />
+                  </template>
+                </a-input-password>
+              </a-form-item>
+
+              <a-button
+                type="primary"
+                @click="handleLogin"
+                class="w-full h-12 rounded-lg bg-amber-600 hover:bg-amber-700 border-none focus:border-none focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-700 scroll-animate fade-up"
+                :loading="loading"
+              >
+                {{ $t("login.submitButton") }}
+              </a-button>
+
+              <div class="relative my-8">
+                <div class="absolute inset-0 flex items-center">
+                  <div class="w-full border-t border-gray-200"></div>
+                </div>
+                <div class="relative flex justify-center text-sm">
+                  <span
+                    class="px-2 bg-white text-gray-500 scroll-animate fade-up"
+                  >
+                    {{ $t("login.orLoginWith") }}
+                  </span>
+                </div>
+              </div>
+
+              <div class="text-center mt-6">
+                <router-link
+                  :to="{ name: 'RegisterPage' }"
+                  class="text-amber-600 hover:text-amber-700 transition-colors scroll-animate fade-up"
+                >
+                  {{ $t("login.registerLink") }}
+                </router-link>
+              </div>
+            </a-form>
+          </div>
+        </a-col>
+      </a-row>
     </div>
-    <AntModalMessage
-      :visible="messageVisible"
+
+    <a-modal
+      v-model:visible="messageVisible"
       :title="messageTitle"
-      :content="messageContent"
-      :type="messageType"
-      @update:visible="messageVisible = $event"
+      :closable="true"
+      @ok="messageVisible = false"
     >
       <p>{{ messageContent }}</p>
-    </AntModalMessage>
+    </a-modal>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, defineAsyncComponent } from "vue";
+export default {
+  name: "UserLoginPage",
+};
+</script>
+
+<script setup lang="ts">
+import { ref, onMounted } from "vue";
 import { useI18n } from "vue-i18n";
 import * as yup from "yup";
-import { dynamicImport } from "@/utils/importUtils";
+import { UserOutlined, LockOutlined } from "@ant-design/icons-vue";
 
-const components = dynamicImport([
-  "components/container/AntCard",
-  "components/container/AntInput",
-  "components/container/AntButton",
-  "components/container/AntModalMessage",
-  "components/container/AntFormGroup",
-  "components/container/AntForm",
-  "components/container/AntTwoColumnCard",
-  "components/container/RouterLink",
-  "components/container/AntImage",
-  "components/container/AntRow",
-  "components/container/AntCol",
-  "components/container/AntText",
-]);
+const { t } = useI18n();
 
-export default defineComponent({
-  name: "UserLogin",
-  components: {
-    AntCard: defineAsyncComponent(components["components/container/AntCard"]),
-    AntInput: defineAsyncComponent(components["components/container/AntInput"]),
-    AntButton: defineAsyncComponent(
-      components["components/container/AntButton"]
-    ),
-    AntModalMessage: defineAsyncComponent(
-      components["components/container/AntModalMessage"]
-    ),
-    AntFormGroup: defineAsyncComponent(
-      components["components/container/AntFormGroup"]
-    ),
-    AntForm: defineAsyncComponent(components["components/container/AntForm"]),
-    AntTwoColumnCard: defineAsyncComponent(
-      components["components/container/AntTwoColumnCard"]
-    ),
-    RouterLink: defineAsyncComponent(
-      components["components/container/RouterLink"]
-    ),
-    AntImage: defineAsyncComponent(components["components/container/AntImage"]),
-    AntRow: defineAsyncComponent(components["components/container/AntRow"]),
-    AntCol: defineAsyncComponent(components["components/container/AntCol"]),
-    // AntText: defineAsyncComponent(components["components/container/AntText"]),
-  },
-  setup() {
-    const { t } = useI18n();
-    const formModel = ref({
-      username: "",
-      password: "",
-    });
-    const loading = ref(false);
-    const messageVisible = ref(false);
-    const messageTitle = ref("");
-    const messageContent = ref("");
-    const messageType = ref("info");
-    const errors = ref<Record<string, string>>({});
+const formModel = ref({
+  username: "",
+  password: "",
+});
 
-    const schema = yup.object().shape({
-      username: yup.string().required(t("login.errorMessage")),
-      password: yup.string().required(t("login.errorMessage")),
-    });
-    const handleLogin = async () => {
-      try {
-        await schema.validate(formModel.value, { abortEarly: false });
-        loading.value = true;
-        setTimeout(() => {
-          loading.value = false;
-          messageTitle.value = t("login.successTitle");
-          messageContent.value = t("login.successMessage");
-          messageType.value = "success";
-          messageVisible.value = true;
-        }, 1000);
-      } catch (err) {
-        if (err instanceof yup.ValidationError) {
-          const errorMessages: Record<string, string> = {};
-          err.inner.forEach((error) => {
-            if (error.path) {
-              errorMessages[error.path] = error.message;
-            }
-          });
-          errors.value = errorMessages;
+const loading = ref(false);
+const messageVisible = ref(false);
+const messageTitle = ref("");
+const messageContent = ref("");
+const messageType = ref("info");
+const errors = ref<Record<string, string>>({});
+
+const schema = yup.object().shape({
+  username: yup.string().required(t("login.errorMessage")),
+  password: yup.string().required(t("login.errorMessage")),
+});
+
+const handleLogin = async () => {
+  try {
+    errors.value = {};
+    await schema.validate(formModel.value, { abortEarly: false });
+    loading.value = true;
+
+    // Thực hiện login logic ở đây
+
+    setTimeout(() => {
+      loading.value = false;
+      messageTitle.value = t("login.successTitle");
+      messageContent.value = t("login.successMessage");
+      messageType.value = "success";
+      messageVisible.value = true;
+    }, 1000);
+  } catch (err) {
+    if (err instanceof yup.ValidationError) {
+      const errorMessages: Record<string, string> = {};
+      err.inner.forEach((error) => {
+        if (error.path) {
+          errorMessages[error.path] = error.message;
         }
-      }
-    };
+      });
+      errors.value = errorMessages;
+    }
+  }
+};
 
-    return {
-      formModel,
-      loading,
-      handleLogin,
-      messageVisible,
-      messageTitle,
-      messageContent,
-      messageType,
-      errors,
-      t,
-    };
-  },
+onMounted(() => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("animate");
+        }
+      });
+    },
+    {
+      threshold: 0.1,
+    }
+  );
+
+  document.querySelectorAll(".scroll-animate").forEach((el) => {
+    observer.observe(el);
+  });
 });
 </script>
 
-<style scoped lang="stylus">
-.login-page
-  display flex
-  justify-content center
-  align-items center
-  height 100vh
-  max-width 1200px
-  margin 20px auto
+<style lang="stylus">
+.scroll-animate {
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, opacity;
 
+  &.animate {
+    opacity: 1;
+    transform: translate(0) scale(1) !important;
+  }
+}
 
+.fade-up {
+  transform: translateY(50px);
+}
 
-.login-container
+.fade-up.animate {
+  transform: translateY(0);
+}
 
-  position relative
-  z-index 2
-  max-width 1200px
+:deep(.ant-btn) {
+  border-radius: 8px;
 
+  &:hover {
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+  }
+}
 
-.login-card
-  width 100%
-  border none
-  box-shadow none
-
-.login-button
-  width 100%
-
-.terms-conditions
-  padding 20px
-
-.social-login-buttons
-  margin 10px auto
+.container {
+  max-width: 1280px;
+}
 </style>

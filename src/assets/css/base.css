@@ -1,6 +1,7 @@
 * {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
  
   /* Scrollbar */
   ::-webkit-scrollbar {
@@ -18,3 +19,55 @@
     scrollbar-width: thin;
     scrollbar-color: #1f1e1d26 #f1f1f1;
   }
+
+.scroll-animate {
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, opacity;
+
+  &.animate {
+    opacity: 1;
+    transform: translate(0) scale(1) !important;
+  }
+}
+
+.fade-up {
+  transform: translateY(50px);
+}
+
+.fade-up.animate {
+  transform: translateY(0);
+}
+
+.slide-left {
+  transform: translateX(-100px);
+}
+
+.slide-left.animate {
+  transform: translateX(0);
+}
+
+.slide-right {
+  transform: translateX(100px);
+}
+
+.slide-right.animate {
+  transform: translateX(0);
+}
+
+.zoom-in {
+  transform: scale(0.5);
+}
+
+.zoom-in.animate {
+  transform: scale(1);
+}
+
+:deep(.ant-btn) {
+  border-radius: 8px;
+
+  &:hover {
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+  }
+}

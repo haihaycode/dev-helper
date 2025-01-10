@@ -15,6 +15,10 @@
         "register": {
           "title": "Đăng ký - DevHelper",
           "description": "Đăng ký DevHelper."
+        },
+        "about": {
+          "title": "Về chúng tôi - DevHelper",
+          "description": "Tìm hiểu thêm về DevHelper và đội ngũ phát triển của chúng tôi."
         }
       },
       "translation": {
@@ -30,7 +34,7 @@
     "nav": {
       "home": "Trang chủ",
       "about": "Về chúng tôi",
-      "tool": "Công cụ dev",
+      "tool": "Công cụ ",
       "contact": "Liên hệ",
       "translate": "Ngôn ngữ"
     },
@@ -39,6 +43,7 @@
     },
     "login": {
       "title": "Chào mừng trở lại DevHelper! Vui lòng đăng nhập",
+
       "usernamePlaceholder": "Tên đăng nhập",
       "passwordPlaceholder": "Mật khẩu",
       "submitButton": "Đăng nhập",
@@ -46,10 +51,14 @@
       "successMessage": "Đăng nhập thành công!",
       "errorMessage": "Vui lòng nhập tên đăng nhập và mật khẩu!",
       "registerLink": "Chưa có tài khoản? Đăng ký tại đây",
-      "orLoginWith": "----- hoặc đăng nhập với -----"
+      "orLoginWith": "hoặc đăng nhập với",
+      "welcomeMessage": "Chào mừng đến với DevHelper",
+      "description": "Nền tảng hỗ trợ phát triển ứng dụng toàn diện",
+      "orContinueWith": "Hoặc tiếp tục với"
     },
     "register": {
       "title": "Tham gia với chúng tôi: Tạo tài khoản của bạn",
+      "description": "Tham gia với chúng tôi để trở thành một phần của cộng đồng DevHelper và bắt đầu hành trình thành công của bạn.",
       "usernamePlaceholder": "Tên đăng nhập",
       "emailPlaceholder": "Email",
       "passwordPlaceholder": "Mật khẩu",
@@ -59,7 +68,7 @@
       "errorMessage": "Vui lòng điền đầy đủ thông tin!",
       "invalidEmail": "Vui lòng nhập địa chỉ email hợp lệ!",
       "loginLink": "Đã có tài khoản? Đăng nhập tại đây",
-      "orRegisterWith": "----- hoặc tạo tài khoản với -----"
+      "orRegisterWith": "hoặc tạo tài khoản với"
     },
     "firebase": {
       "auth": {
@@ -112,6 +121,30 @@
         "Crypto": "Công cụ mã hóa khóa bí mật là các phần mềm hoặc phần cứng sử dụng các thuật toán mã hóa để bảo vệ dữ liệu bằng cách sử dụng một khóa bí mật. Các công cụ này được thiết kế để bảo vệ thông tin nhạy cảm bằng cách biến đổi nó thành định dạng không thể đọc được, chỉ có thể được khôi phục lại dạng ban đầu bằng cách sử dụng khóa bí mật đúng. Khóa được sử dụng trong quá trình mã hóa này được giữ bí mật và cần thiết cho cả hai hoạt động mã hóa và giải mã, đảm bảo rằng chỉ những người dùng được ủy quyền với khóa bí mật mới có thể truy cập dữ liệu gốc.",
         "GetUserInfo": "Công cụ lấy thông tin người dùng được thiết kế để thu thập thông tin người dùng từ các nền tảng khác nhau. Các công cụ này có thể giúp thu thập dữ liệu như hồ sơ người dùng, nhật ký hoạt động và các thông tin liên quan khác.",
         "DownloadWithoutWatermark": "Công cụ tải xuống không có watermark cho phép người dùng tải nội dung từ các nền tảng khác nhau mà không có bất kỳ watermark nào. Các công cụ này hữu ích để có được các tệp phương tiện sạch và không có thương hiệu."
+      }
+    },
+    "about": {
+      "cta": {
+        "title": "Bắt đầu hành trình của bạn ngay hôm nay",
+        "description": "Tham gia cùng hàng nghìn nhà phát triển đang sử dụng DevHelper",
+        "primaryButton": "Đăng ký ngay",
+        "secondaryButton": "Đăng nhập"
+      },
+      "title": "DevHelper - Nền tảng hỗ trợ phát triển",
+      "description": "Chúng tôi cung cấp các công cụ và giải pháp toàn diện để giúp các nhà phát triển xây dựng ứng dụng tốt hơn, nhanh hơn.",
+      "learnMore": "Tìm hiểu thêm",
+      "features": {
+        "title": "Tính năng nổi bật"
+      },
+      "team": {
+        "title": "Đội ngũ của chúng tôi"
+      },
+      "contact": {
+        "title": "Liên hệ với chúng tôi",
+        "namePlaceholder": "Họ và tên",
+        "emailPlaceholder": "Email",
+        "messagePlaceholder": "Tin nhắn",
+        "submit": "Gửi tin nhắn"
       }
     }
   }

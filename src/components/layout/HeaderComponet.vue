@@ -13,7 +13,6 @@
         <router-link
           to="/"
           class="hover:text-gray-400"
-          active-class="text-yellow-500"
           exact-active-class="border-b-2 border-yellow-500"
           v-t="'nav.home'"
         ></router-link>
@@ -106,8 +105,8 @@ export default defineComponent({
 
 <style scoped>
 .logo {
-  font-size: 1.5rem; /* equivalent to text-2xl */
-  font-weight: bold; /* equivalent to font-bold */
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
-
 </style>
