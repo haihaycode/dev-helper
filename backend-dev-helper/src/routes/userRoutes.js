@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.post("/register", userController.register.bind(userController));
 router.post("/login", userController.login.bind(userController));
+router.post("/refresh-token", userController.refreshToken.bind(userController));
 router.get(
   "/users",
   verifyToken,

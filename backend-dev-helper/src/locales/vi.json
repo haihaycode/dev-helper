@@ -6,18 +6,24 @@
       "missingFields": "Vui lòng điền đầy đủ thông tin!",
       "unauthorized": "Không có quyền truy cập!",
       "tokenNotFound": "Không tìm thấy token xác thực!",
-      "invalidToken": "Token không hợp lệ!"
+      "invalidToken": "Token không hợp lệ!",
+      "invalidPagination": "Thông số phân trang không hợp lệ!",
+      "missingRefreshToken": "Không tìm thấy refresh token!",
+      "invalidRefreshToken": "Refresh token không hợp lệ hoặc đã hết hạn!"
     },
     "system": {
       "default": "Lỗi hệ thống",
-      "notFound": "Không tìm thấy tài nguyên"
+      "notFound": "Không tìm thấy tài nguyên",
+      "missingJWTSecret": "Thiếu cấu hình JWT_SECRET",
+      "missingRefreshTokenSecret": "Thiếu cấu hình REFRESH_TOKEN_SECRET"
     }
   },
   "success": {
     "auth": {
       "registered": "Đăng ký thành công!",
       "loggedIn": "Đăng nhập thành công!",
-      "getUserList": "Lấy danh sách người dùng thành công!"
+      "getUserList": "Lấy danh sách người dùng thành công!",
+      "tokenRefreshed": "Làm mới token thành công!"
     }
   }
 } 

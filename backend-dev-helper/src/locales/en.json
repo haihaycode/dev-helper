@@ -6,18 +6,24 @@
       "missingFields": "Please fill in all required fields!",
       "unauthorized": "Unauthorized access!",
       "tokenNotFound": "Authentication token not found!",
-      "invalidToken": "Invalid token!"
+      "invalidToken": "Invalid token!",
+      "invalidPagination": "Invalid pagination parameters!",
+      "missingRefreshToken": "Refresh token not found!",
+      "invalidRefreshToken": "Invalid or expired refresh token!"
     },
     "system": {
       "default": "System error",
-      "notFound": "Resource not found"
+      "notFound": "Resource not found",
+      "missingJWTSecret": "Missing JWT_SECRET configuration",
+      "missingRefreshTokenSecret": "Missing REFRESH_TOKEN_SECRET configuration"
     }
   },
   "success": {
     "auth": {
       "registered": "Registration successful!",
       "loggedIn": "Login successful!",
-      "getUserList": "User list retrieved successfully!"
+      "getUserList": "User list retrieved successfully!",
+      "tokenRefreshed": "Token refreshed successfully!"
     }
   }
 } 
