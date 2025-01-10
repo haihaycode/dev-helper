@@ -109,5 +109,4 @@ export default defineComponent({
   font-size: 1.5rem; /* equivalent to text-2xl */
   font-weight: bold; /* equivalent to font-bold */
 }
-
 </style>
