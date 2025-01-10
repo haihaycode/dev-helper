@@ -2,6 +2,30 @@
     "project": {
         "name": "DevHelper"
     },
+    "about": {
+        "title": "About DevHelper",
+        "description": "DevHelper is a platform that provides comprehensive application development support.",
+        "learnMore": "Learn More",
+        "features": {
+            "title": "Features"
+        },
+        "team": {
+            "title": "Team"
+        },
+        "contact": {
+            "title": "Contact Us",
+            "namePlaceholder": "Name",
+            "emailPlaceholder": "Email",
+            "messagePlaceholder": "Message",
+            "submit": "Submit"
+        },
+        "cta": {
+            "title": "Start your journey today",
+            "description": "Join thousands of developers using DevHelper",
+            "primaryButton": "Sign up now",
+            "secondaryButton": "Sign in now"
+          }
+    },
     "translation": {
         "title": "Select language",
         "selectLanguage": "Select language",
@@ -21,6 +45,10 @@
     "register": {
       "title": "Register - DevHelper",
       "description": "Register for DevHelper."
+    },
+    "about": {
+      "title": "About Us - DevHelper",
+      "description": "Learn more about DevHelper and our development team."
     }
   },
     "message": {

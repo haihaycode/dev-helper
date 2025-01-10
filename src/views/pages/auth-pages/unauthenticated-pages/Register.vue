@@ -18,10 +18,12 @@
               class="w-full mb-8"
               :preview="false"
             />
-            <h2 class="text-white text-2xl font-bold mb-4">
+            <h2
+              class="text-white text-2xl font-bold mb-4 scroll-animate fade-up"
+            >
               {{ $t("register.title") }}
             </h2>
-            <p class="text-white font-mono text-sm">
+            <p class="text-white font-mono text-sm scroll-animate fade-up">
               {{ $t("register.description") }}
             </p>
           </div>
@@ -31,18 +33,25 @@
         <a-col :xs="24" :sm="24" :md="12" class="p-8 bg-white">
           <div class="max-w-md mx-auto">
             <h1
-              class="text-3xl font-bold font-mono text-amber-800 mb-8 text-center"
+              class="text-3xl font-bold font-mono text-amber-800 mb-8 text-center scroll-animate fade-up"
             >
               {{ $t("register.title") }}
             </h1>
 
-            <a-form :model="formModel" class="space-y-6">
-              <a-form-item :required="true">
+            <a-form
+              @submit.prevent="handleRegister"
+              :model="formModel"
+              class="space-y-6"
+            >
+              <a-form-item
+                :required="true"
+                :validate-status="errors.username ? 'error' : ''"
+                :help="errors.username"
+              >
                 <a-input
                   v-model:value="formModel.username"
                   :placeholder="$t('register.usernamePlaceholder')"
                   size="large"
-                  :status="errors.username ? 'error' : ''"
                 >
                   <template #prefix>
                     <UserOutlined />
@@ -50,13 +59,16 @@
                 </a-input>
               </a-form-item>
 
-              <a-form-item :required="true">
+              <a-form-item
+                :required="true"
+                :validate-status="errors.email ? 'error' : ''"
+                :help="errors.email"
+              >
                 <a-input
                   v-model:value="formModel.email"
                   type="email"
                   :placeholder="$t('register.emailPlaceholder')"
                   size="large"
-                  :status="errors.email ? 'error' : ''"
                 >
                   <template #prefix>
                     <MailOutlined />
@@ -64,12 +76,15 @@
                 </a-input>
               </a-form-item>
 
-              <a-form-item :required="true">
+              <a-form-item
+                :required="true"
+                :validate-status="errors.password ? 'error' : ''"
+                :help="errors.password"
+              >
                 <a-input-password
                   v-model:value="formModel.password"
                   :placeholder="$t('register.passwordPlaceholder')"
                   size="large"
-                  :status="errors.password ? 'error' : ''"
                 >
                   <template #prefix>
                     <LockOutlined />
@@ -80,7 +95,7 @@
               <a-button
                 type="primary"
                 @click="handleRegister"
-                class="w-full h-12 rounded-lg bg-amber-600 hover:bg-amber-700 border-none focus:border-none focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-700"
+                class="w-full h-12 rounded-lg bg-amber-600 hover:bg-amber-700 border-none focus:border-none focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-700 scroll-animate fade-up"
                 :loading="loading"
               >
                 {{ $t("register.submitButton") }}
@@ -91,7 +106,9 @@
                   <div class="w-full border-t border-gray-200"></div>
                 </div>
                 <div class="relative flex justify-center text-sm">
-                  <span class="px-2 bg-white text-gray-500">
+                  <span
+                    class="px-2 bg-white text-gray-500 scroll-animate fade-up"
+                  >
                     {{ $t("register.orRegisterWith") }}
                   </span>
                 </div>
@@ -99,13 +116,13 @@
 
               <div class="grid grid-cols-2 gap-4">
                 <a-button
-                  class="h-12 rounded-lg border-2 hover:border-amber-500 hover:text-amber-600 transition-colors duration-300"
+                  class="h-12 rounded-lg border-2 hover:border-amber-500 hover:text-amber-600 transition-colors duration-300 scroll-animate fade-up"
                   @click="handleGoogleRegister"
                 >
                   Google
                 </a-button>
                 <a-button
-                  class="h-12 rounded-lg border-2 hover:border-amber-500 hover:text-amber-600 transition-colors duration-300"
+                  class="h-12 rounded-lg border-2 hover:border-amber-500 hover:text-amber-600 transition-colors duration-300 scroll-animate fade-up"
                   @click="handleGithubRegister"
                 >
                   GitHub
@@ -115,7 +132,7 @@
               <div class="text-center mt-6">
                 <router-link
                   :to="{ name: 'LoginPage' }"
-                  class="text-amber-600 hover:text-amber-700 transition-colors"
+                  class="text-amber-600 hover:text-amber-700 transition-colors scroll-animate fade-up"
                 >
                   {{ $t("register.loginLink") }}
                 </router-link>
@@ -144,7 +161,7 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useI18n } from "vue-i18n";
 import { useRouter } from "vue-router";
 import * as yup from "yup";
@@ -266,37 +283,57 @@ const handleGithubRegister = async () => {
     messageVisible.value = true;
   }
 };
+
+onMounted(() => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("animate");
+        }
+      });
+    },
+    {
+      threshold: 0.1,
+    }
+  );
+
+  document.querySelectorAll(".scroll-animate").forEach((el) => {
+    observer.observe(el);
+  });
+});
 </script>
 
 <style lang="stylus">
-:deep(.ant-input-affix-wrapper) {
-  &:hover, &:focus {
-    border-color: #d97706 !important;
+.scroll-animate {
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, opacity;
+
+  &.animate {
+    opacity: 1;
+    transform: translate(0) scale(1) !important;
   }
 }
 
-:deep(.ant-btn-primary) {
-  background: #d97706 !important;
-  &:hover {
-    background: #b45309 !important;
-  }
+.fade-up {
+  transform: translateY(50px);
+}
+
+.fade-up.animate {
+  transform: translateY(0);
 }
 
 :deep(.ant-btn) {
+  border-radius: 8px;
+
   &:hover {
-    color: #d97706;
-    border-color: #d97706;
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
   }
 }
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: all 0.3s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-  transform: translateY(-10px);
+.container {
+  max-width: 1280px;
 }
 </style>
