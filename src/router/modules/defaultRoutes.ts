@@ -9,6 +9,7 @@ const components = dynamicImport([
   "views/pages/auth-pages/unauthenticated-pages/Login",
   "views/pages/auth-pages/unauthenticated-pages/Register",
   "views/pages/home-pages/v1/home-page",
+  "views/pages/about-pages/v1/about-page",
   "views/pages/folder-test/base-pages",
 ]);
 
@@ -36,6 +37,24 @@ const defaultRoutes: Array<RouteRecordRaw> = [
         },
         name: "homePage",
         component: components["views/pages/home-pages/v1/home-page"],
+      },
+      {
+        path: "about",
+        name: "AboutPage",
+        component: components["views/pages/about-pages/v1/about-page"],
+        meta: {
+          title: t("meta.about.title"),
+          metaTags: [
+            {
+              name: "description",
+              content: t("meta.about.description"),
+            },
+            {
+              property: "og:description",
+              content: t("meta.about.description"),
+            },
+          ],
+        },
       },
       {
         path: "c/login",

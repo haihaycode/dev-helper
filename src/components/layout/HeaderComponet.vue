@@ -13,7 +13,6 @@
         <router-link
           to="/"
           class="hover:text-gray-400"
-          active-class="text-yellow-500"
           exact-active-class="border-b-2 border-yellow-500"
           v-t="'nav.home'"
         ></router-link>

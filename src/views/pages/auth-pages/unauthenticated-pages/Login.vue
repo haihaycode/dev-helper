@@ -18,10 +18,12 @@
               class="w-full mb-8"
               :preview="false"
             />
-            <h2 class="text-white text-2xl font-bold mb-4">
+            <h2
+              class="text-white text-2xl font-bold mb-4 scroll-animate fade-up"
+            >
               {{ $t("login.welcomeMessage") }}
             </h2>
-            <p class="text-white font-mono text-sm">
+            <p class="text-white font-mono text-sm scroll-animate fade-up">
               {{ $t("login.description") }}
             </p>
           </div>
@@ -31,7 +33,7 @@
         <a-col :xs="24" :sm="24" :md="12" class="p-8 bg-white">
           <div class="max-w-md mx-auto">
             <h1
-              class="text-3xl font-bold font-mono text-amber-800 mb-8 text-center"
+              class="text-3xl font-bold font-mono text-amber-800 mb-8 text-center scroll-animate fade-up"
             >
               {{ $t("login.title") }}
             </h1>
@@ -72,7 +74,7 @@
               <a-button
                 type="primary"
                 @click="handleLogin"
-                class="w-full h-12 rounded-lg bg-amber-600 hover:bg-amber-700 border-none focus:border-none focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-700"
+                class="w-full h-12 rounded-lg bg-amber-600 hover:bg-amber-700 border-none focus:border-none focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-700 scroll-animate fade-up"
                 :loading="loading"
               >
                 {{ $t("login.submitButton") }}
@@ -83,7 +85,9 @@
                   <div class="w-full border-t border-gray-200"></div>
                 </div>
                 <div class="relative flex justify-center text-sm">
-                  <span class="px-2 bg-white text-gray-500">
+                  <span
+                    class="px-2 bg-white text-gray-500 scroll-animate fade-up"
+                  >
                     {{ $t("login.orLoginWith") }}
                   </span>
                 </div>
@@ -92,7 +96,7 @@
               <div class="text-center mt-6">
                 <router-link
                   :to="{ name: 'RegisterPage' }"
-                  class="text-amber-600 hover:text-amber-700 transition-colors"
+                  class="text-amber-600 hover:text-amber-700 transition-colors scroll-animate fade-up"
                 >
                   {{ $t("login.registerLink") }}
                 </router-link>
@@ -121,7 +125,7 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useI18n } from "vue-i18n";
 import * as yup from "yup";
 import { UserOutlined, LockOutlined } from "@ant-design/icons-vue";
@@ -172,28 +176,57 @@ const handleLogin = async () => {
     }
   }
 };
+
+onMounted(() => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("animate");
+        }
+      });
+    },
+    {
+      threshold: 0.1,
+    }
+  );
+
+  document.querySelectorAll(".scroll-animate").forEach((el) => {
+    observer.observe(el);
+  });
+});
 </script>
 
 <style lang="stylus">
-:deep(.ant-input-affix-wrapper) {
-  &:hover, &:focus {
-    border-color: #d97706 !important;
+.scroll-animate {
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, opacity;
+
+  &.animate {
+    opacity: 1;
+    transform: translate(0) scale(1) !important;
   }
 }
 
-:deep(.ant-btn-primary) {
-  background: #d97706 !important;
+.fade-up {
+  transform: translateY(50px);
+}
+
+.fade-up.animate {
+  transform: translateY(0);
+}
+
+:deep(.ant-btn) {
+  border-radius: 8px;
+
   &:hover {
-    background: #b45309 !important;
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
   }
 }
 
-:deep(.ant-form-item) {
-  margin-bottom: 0;
-}
-
-:deep(.ant-form-item-explain-error) {
-  font-size: 12px;
-  margin-top: 4px;
+.container {
+  max-width: 1280px;
 }
 </style>
