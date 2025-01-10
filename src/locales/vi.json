@@ -39,6 +39,7 @@
     },
     "login": {
       "title": "Chào mừng trở lại DevHelper! Vui lòng đăng nhập",
+
       "usernamePlaceholder": "Tên đăng nhập",
       "passwordPlaceholder": "Mật khẩu",
       "submitButton": "Đăng nhập",
@@ -46,10 +47,14 @@
       "successMessage": "Đăng nhập thành công!",
       "errorMessage": "Vui lòng nhập tên đăng nhập và mật khẩu!",
       "registerLink": "Chưa có tài khoản? Đăng ký tại đây",
-      "orLoginWith": "----- hoặc đăng nhập với -----"
+      "orLoginWith": "hoặc đăng nhập với",
+      "welcomeMessage": "Chào mừng đến với DevHelper",
+      "description": "Nền tảng hỗ trợ phát triển ứng dụng toàn diện",
+      "orContinueWith": "Hoặc tiếp tục với"
     },
     "register": {
       "title": "Tham gia với chúng tôi: Tạo tài khoản của bạn",
+      "description": "Tham gia với chúng tôi để trở thành một phần của cộng đồng DevHelper và bắt đầu hành trình thành công của bạn.",
       "usernamePlaceholder": "Tên đăng nhập",
       "emailPlaceholder": "Email",
       "passwordPlaceholder": "Mật khẩu",
@@ -59,7 +64,7 @@
       "errorMessage": "Vui lòng điền đầy đủ thông tin!",
       "invalidEmail": "Vui lòng nhập địa chỉ email hợp lệ!",
       "loginLink": "Đã có tài khoản? Đăng nhập tại đây",
-      "orRegisterWith": "----- hoặc tạo tài khoản với -----"
+      "orRegisterWith": "hoặc tạo tài khoản với"
     },
     "firebase": {
       "auth": {
@@ -114,4 +119,5 @@
         "DownloadWithoutWatermark": "Công cụ tải xuống không có watermark cho phép người dùng tải nội dung từ các nền tảng khác nhau mà không có bất kỳ watermark nào. Các công cụ này hữu ích để có được các tệp phương tiện sạch và không có thương hiệu."
       }
     }
+
   }

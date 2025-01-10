@@ -87,8 +87,6 @@ class UserService {
 
   async getAllUsers({ page, limit, search, sort, order }) {
     const offset = (page - 1) * limit;
-
-    // Validate sort field để tránh SQL injection
     const allowedSortFields = [
       "id",
       "username",
@@ -99,12 +97,9 @@ class UserService {
     if (!allowedSortFields.includes(sort)) {
       sort = "created_at";
     }
-
-    // Validate order
     if (!["ASC", "DESC"].includes(order)) {
       order = "DESC";
     }
-
     const { users, total } = await User.getAllUsers({
       offset,
       limit,
@@ -112,9 +107,7 @@ class UserService {
       sort,
       order,
     });
-
     const totalPages = Math.ceil(total / limit);
-
     return {
       users: users.map((user) => new UserEntity(user)),
       totalItems: total,

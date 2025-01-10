@@ -7,6 +7,7 @@
       v-bind="$attrs"
       :value="modelValue"
       @input="updateValue"
+      class="h-12 rounded-lg hover:border-amber-500 focus:border-amber-500 focus:outline-none focus:ring-0"
       :class="[
         'w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500',
         { 'border-red-500': error },

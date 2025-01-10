@@ -45,10 +45,14 @@
         "successMessage": "Login successful !",
         "errorMessage": "Please enter username and password!",
         "registerLink": "Don't have an account? Register here",
-        "orLoginWith": "----- or login with -----"
+        "orLoginWith": " or login with ",
+        "welcomeMessage": "Welcome to DevHelper",
+        "description": "Comprehensive application development support platform",
+        "orContinueWith": "Or continue with"
     },
     "register": {
         "title": "Join Us: Create Your Account",
+        "description": "Join us to become a part of the DevHelper community and start your journey to success.",
         "usernamePlaceholder": "Username",
         "emailPlaceholder": "Email",
         "passwordPlaceholder": "Password",
@@ -58,7 +62,7 @@
         "errorMessage": "Please fill out all fields !",
         "invalidEmail": "Please enter a valid email address!",
         "loginLink": "Already have an account? Login here",
-        "orRegisterWith": "----- or create an account with -----"
+        "orRegisterWith": " or create an account with "
     },
     "firebase": {
           "auth": {
