@@ -1,66 +1,54 @@
 <template>
-  <AntModal
+  <a-modal
     :visible="visible"
     :footer="null"
-    :title="titleModal"
+    :title="title"
     :closable="closable"
     @cancel="closeModal"
+    class="bg-gradient-to-r from-yellow-400 to-orange-400 text-white rounded-lg shadow-lg"
   >
     <template #default>
-      <AntAlert
-        :message="title"
-        :description="content"
-        :type="type"
-        :banner="banner"
-        :show-icon="true"
-      ></AntAlert>
-
-      <div class="modal-content">
-        <slot></slot>
+      <div class="p-1">
+        <div v-if="banner" class="">
+          <img :src="banner" alt="Banner" class="w-full h-40" />
+        </div>
+        <div class="p-2">
+          <h2 class="text-xl text-yellow-700 font-mono">
+            {{ title }}
+          </h2>
+          <p class="text-base text-yellow-600 mb-2">{{ content }}</p>
+        </div>
       </div>
     </template>
-  </AntModal>
+  </a-modal>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import AntModal from "@/components/container/AntModal.vue";
-import AntAlert from "@/components/container/AntAlert.vue";
 
 export default defineComponent({
   name: "AntModalMessage",
-  components: {
-    AntModal,
-    AntAlert,
-  },
   props: {
-    titleModal: {
+    title: {
       type: String,
-      default: "Notification",
+      default: "Thông báo",
     },
     visible: {
       type: Boolean,
       default: false,
     },
-    title: {
-      type: String,
-      default: "",
-    },
     content: {
       type: String,
       default: "",
     },
-    type: {
-      type: String,
-      default: "info", // 'success', 'info', 'warning', 'error'
-    },
-    banner: {
-      type: Boolean,
-      default: false,
-    },
     closable: {
       type: Boolean,
       default: true,
+    },
+    banner: {
+      type: String,
+      default:
+        "https://hoanghamobile.com/tin-tuc/wp-content/uploads/2023/12/background-tet-17.jpg", // Thêm prop banner
     },
   },
   methods: {
@@ -72,7 +60,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.modal-content {
-  margin-top: 16px;
+.ant-modal-body {
+  padding: 0px !important;
 }
 </style>

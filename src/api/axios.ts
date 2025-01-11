@@ -69,6 +69,10 @@ Axios.interceptors.request.use(
       }
       (config.headers as AxiosHeaders)["Authorization"] = `Bearer ${token}`;
     }
+    const locale = store.getters["locale/locale"];
+    if (locale) {
+      (config.headers as AxiosHeaders)["Accept-Language"] = locale;
+    }
     return config;
   },
   (error: any) => {
