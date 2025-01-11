@@ -24,7 +24,7 @@
               {{ $t("login.welcomeMessage") }}
             </h2>
             <p class="text-white font-mono text-sm scroll-animate fade-up">
-              {{ $t("login.description") }}
+              {{ $t("register.description") }}
             </p>
           </div>
         </a-col>
@@ -38,7 +38,11 @@
               {{ $t("login.title") }}
             </h1>
 
-            <a-form :model="formModel" class="space-y-6">
+            <a-form
+              @submit.prevent="handleLogin"
+              :model="formModel"
+              class="space-y-6"
+            >
               <a-form-item
                 :required="true"
                 :validate-status="errors.username ? 'error' : ''"
@@ -74,8 +78,8 @@
               <a-button
                 type="primary"
                 @click="handleLogin"
-                class="w-full h-12 rounded-lg bg-amber-600 hover:bg-amber-700 border-none focus:border-none focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-700 scroll-animate fade-up"
-                :loading="loading"
+                class="w-full h-12 rounded-lg bg-amber-600 hover:bg-amber-700 border-none focus:border-none focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-700"
+                :loading="isLoadingPost"
               >
                 {{ $t("login.submitButton") }}
               </a-button>
@@ -105,16 +109,14 @@
           </div>
         </a-col>
       </a-row>
+      <AntModalMessage
+        :visible="user?.success"
+        :title="t('meta.login.title')"
+        :content="user?.message"
+        :type="'success'"
+        :closable="true"
+      />
     </div>
-
-    <a-modal
-      v-model:visible="messageVisible"
-      :title="messageTitle"
-      :closable="true"
-      @ok="messageVisible = false"
-    >
-      <p>{{ messageContent }}</p>
-    </a-modal>
   </div>
 </template>
 
@@ -125,25 +127,21 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { useI18n } from "vue-i18n";
 import * as yup from "yup";
-import { UserOutlined, LockOutlined } from "@ant-design/icons-vue";
+import { loginUser } from "@/api/userApi";
+import { useStore } from "vuex";
+import { UserResponse } from "@/models/user";
+import AntModalMessage from "@/components/container/AntModalMessage.vue";
 
 const { t } = useI18n();
+const store = useStore();
+const isLoadingPost = computed(() => store.getters["loading/isLoadingPost"]);
+const formModel = ref({ username: "", password: "" });
+const user = ref<UserResponse | null>(null); // Định nghĩa user là UserResponse hoặc null
 
-const formModel = ref({
-  username: "",
-  password: "",
-});
-
-const loading = ref(false);
-const messageVisible = ref(false);
-const messageTitle = ref("");
-const messageContent = ref("");
-const messageType = ref("info");
 const errors = ref<Record<string, string>>({});
-
 const schema = yup.object().shape({
   username: yup.string().required(t("login.errorMessage")),
   password: yup.string().required(t("login.errorMessage")),
@@ -153,17 +151,12 @@ const handleLogin = async () => {
   try {
     errors.value = {};
     await schema.validate(formModel.value, { abortEarly: false });
-    loading.value = true;
 
-    // Thực hiện login logic ở đây
-
-    setTimeout(() => {
-      loading.value = false;
-      messageTitle.value = t("login.successTitle");
-      messageContent.value = t("login.successMessage");
-      messageType.value = "success";
-      messageVisible.value = true;
-    }, 1000);
+    const userResponse: UserResponse = await loginUser(
+      formModel.value.username,
+      formModel.value.password
+    );
+    user.value = userResponse;
   } catch (err) {
     if (err instanceof yup.ValidationError) {
       const errorMessages: Record<string, string> = {};

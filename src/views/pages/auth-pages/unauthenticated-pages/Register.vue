@@ -303,7 +303,6 @@ onMounted(() => {
   });
 });
 </script>
-
 <style lang="stylus">
 .scroll-animate {
   opacity: 0;
