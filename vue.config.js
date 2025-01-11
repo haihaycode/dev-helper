@@ -5,6 +5,15 @@ module.exports = defineConfig({
   transpileDependencies: ["ant-design-vue"],
   devServer: {
     port: 4300,
+    server: {
+      proxy: {
+        "/api": {
+          target:
+            "https://ideal-space-carnival-444xxpx4vpp3q4r6-5000.app.github.dev",
+          changeOrigin: true,
+        },
+      },
+    },
     client: {
       overlay: {
         warnings: false,
