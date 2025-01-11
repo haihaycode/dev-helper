@@ -6,6 +6,7 @@ export interface User {
   e: string; // Name/email
   id: number;
   username: string;
+  email: string;
   role: string;
   created_at: string;
   updated_at: string;

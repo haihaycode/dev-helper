@@ -4,11 +4,13 @@ import { UserResponse } from "@/models/user";
 export const registerUser = async (
   username: string,
   password: string,
+  email: string,
   role?: string
 ): Promise<UserResponse> => {
   const response = await Axios.post("/api/auth/register", {
     username,
     password,
+    email,
     role,
   });
   return response.data as UserResponse;
