@@ -134,7 +134,7 @@ import { loginUser } from "@/api/userApi";
 import { useStore } from "vuex";
 import { UserResponse } from "@/models/user";
 import AntModalMessage from "@/components/container/AntModalMessage.vue";
-
+import { LockOutlined, UserOutlined } from "@ant-design/icons-vue";
 const { t } = useI18n();
 const store = useStore();
 const isLoadingPost = computed(() => store.getters["loading/isLoadingPost"]);

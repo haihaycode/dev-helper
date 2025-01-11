@@ -57,11 +57,6 @@ Axios.interceptors.request.use(
       default:
         break;
     }
-
-    if (config.method === "post") {
-      console.log("request : post");
-    }
-
     const token = store.getters["auth/token"];
     if (token) {
       if (!config.headers) {
@@ -70,9 +65,7 @@ Axios.interceptors.request.use(
       (config.headers as AxiosHeaders)["Authorization"] = `Bearer ${token}`;
     }
     const locale = store.getters["locale/locale"];
-    if (locale) {
-      (config.headers as AxiosHeaders)["Accept-Language"] = locale;
-    }
+    (config.headers as AxiosHeaders)["Accept-Language"] = locale || "en";
     return config;
   },
   (error: any) => {
