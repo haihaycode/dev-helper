@@ -2,7 +2,10 @@
   <div
     class="min-h-screen bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center p-4"
   >
-    <div class="max-w-5xl w-full rounded-2xl shadow-2xl overflow-hidden">
+    <div
+      v-if="step === 1"
+      class="max-w-5xl w-full rounded-2xl shadow-2xl overflow-hidden"
+    >
       <a-row class="min-h-[600px]">
         <!-- Left side - Logo & Branding -->
         <a-col
@@ -143,6 +146,41 @@
         </a-col>
       </a-row>
     </div>
+    <div v-else>
+      <div class="text-center mt-8 bg-white p-8 rounded-sm bg-opacity-80">
+        <h1 class="text-3xl font-bold text-amber-600 mb-4">
+          {{ $t("register.otpTitle") }}
+        </h1>
+        <p class="text-gray-700 text-lg mb-6">
+          {{ $t("register.otpDescription") }}
+        </p>
+        <AntOtp />
+        <div class="flex justify-center gap-4 px-8 mt-8">
+          <a-button
+            type="primary"
+            class="w-full h-12 rounded-sm bg-amber-600 hover:bg-amber-700 border-none focus:border-none focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-700 scroll-animate fade-up"
+          >
+            {{ $t("register.optResend") }}
+          </a-button>
+          <a-button
+            type="primary"
+            class="w-full h-12 rounded-sm bg-amber-600 hover:bg-amber-700 border-none focus:border-none focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-700 scroll-animate fade-up"
+          >
+            {{ $t("register.otpSubmitButton") }}
+          </a-button>
+        </div>
+        <p
+          @click="
+            () => {
+              step = 1;
+            }
+          "
+          class="text-amber-600 text-sm mb-6 mt-2 cursor-pointer underline"
+        >
+          {{ $t("back.title") }}
+        </p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -162,6 +200,7 @@ import {
   MailOutlined,
   LockOutlined,
 } from "@ant-design/icons-vue";
+import AntOtp from "@/components/container/AntOtp.vue";
 
 const { t } = useI18n();
 const router = useRouter();
@@ -174,6 +213,7 @@ const formModel = ref({
 
 const loading = ref(false);
 const errors = ref<Record<string, string>>({});
+const step = ref(2);
 
 const schema = yup.object().shape({
   username: yup.string().required(t("register.errorMessage")),
@@ -187,7 +227,6 @@ const schema = yup.object().shape({
 const handleRegister = async () => {
   try {
     await schema.validate(formModel.value, { abortEarly: false });
-
     // logic
     router.push({ name: "LoginPage" });
   } catch (err) {

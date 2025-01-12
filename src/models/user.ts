@@ -13,7 +13,11 @@ export interface User {
   accessToken: string;
   refreshToken: string;
 }
+export interface Otp {
+  otp: string;
+}
 export type UserResponse = BaseModel<User>;
+export type OtpResponse = BaseModel<Otp>;
 
 // Define the structure for AuthState
 export interface AuthState {
