@@ -38,6 +38,11 @@
       "contact": "Liên hệ",
       "translate": "Ngôn ngữ"
     },
+    "back": {
+      "title": "Quay lại",
+      "backtohome": "Trở về trang chủ",
+      "description": "Quay lại"
+    },
     "loading": {
       "default": "Đang tải..."
     },
@@ -57,7 +62,8 @@
       "orContinueWith": "Hoặc tiếp tục với",
       "captchaError": "Vui lòng nhập mã CAPTCHA!",
       "captchaMismatch": "Mã CAPTCHA không đúng!",
-      "captchaPlaceholder": "Nhập mã CAPTCHA"
+      "captchaPlaceholder": "Nhập mã CAPTCHA",
+      "otpSent": "Mã OTP đã được gửi đến email của bạn"
     },
     "register": {
       "title": "Tham gia với chúng tôi: Tạo tài khoản của bạn",
@@ -71,7 +77,11 @@
       "errorMessage": "Vui lòng điền đầy đủ thông tin!",
       "invalidEmail": "Vui lòng nhập địa chỉ email hợp lệ!",
       "loginLink": "Đã có tài khoản? Đăng nhập tại đây",
-      "orRegisterWith": "hoặc tạo tài khoản với"
+      "orRegisterWith": "hoặc tạo tài khoản với",
+      "otpTitle": "Nhập mã OTP",
+      "otpDescription": "Vui lòng nhập mã OTP đã được gửi đến email của bạn",
+      "otpSubmitButton": "Xác nhận OTP",
+      "optResend": "Gửi lại OTP"
     },
     "firebase": {
       "auth": {

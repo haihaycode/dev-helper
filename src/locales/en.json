@@ -61,6 +61,11 @@
         "contact": "Contact",
         "translate": "Language"
     },
+    "back": {
+        "title": "Back to page ",
+        "backtohome": "Back to home page",
+        "description": "Back to page"
+    },
     "loading": {
         "default": "Loading..."
     },
@@ -93,7 +98,11 @@
         "errorMessage": "Please fill out all fields !",
         "invalidEmail": "Please enter a valid email address!",
         "loginLink": "Already have an account? Login here",
-        "orRegisterWith": " or create an account with "
+        "orRegisterWith": " or create an account with ",
+        "otpTitle": "Enter OTP code",
+        "otpDescription": "Please enter the OTP code sent to your email",
+        "otpSubmitButton": "Verify OTP",
+        "optResend": "Resend OTP"
     },
     "firebase": {
           "auth": {

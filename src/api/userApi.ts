@@ -1,5 +1,5 @@
 import Axios from "@/api/axios";
-import { UserResponse } from "@/models/user";
+import { OtpResponse, UserResponse } from "@/models/user";
 
 export const registerUser = async (
   username: string,
@@ -22,4 +22,9 @@ export const loginUser = async (
 ): Promise<UserResponse> => {
   const response = await Axios.post("/api/auth/login", { username, password });
   return response.data as UserResponse;
+};
+
+export const sendOtp = async (email: string): Promise<OtpResponse> => {
+  const response = await Axios.post("/api/auth/send-otp", { email });
+  return response.data as OtpResponse;
 };
