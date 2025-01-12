@@ -49,12 +49,13 @@
                 :help="errors.username"
               >
                 <a-input
+                  class="hover:border-amber-600 focus:border-amber-600 focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-700 font-mono"
                   v-model:value="formModel.username"
                   :placeholder="$t('login.usernamePlaceholder')"
                   size="large"
                 >
                   <template #prefix>
-                    <UserOutlined />
+                    <UserOutlined class="text-amber-600 text-lg" />
                   </template>
                 </a-input>
               </a-form-item>
@@ -65,20 +66,45 @@
                 :help="errors.password"
               >
                 <a-input-password
+                  class="hover:border-amber-600 focus:border-amber-600 focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-700 font-mono"
                   v-model:value="formModel.password"
                   :placeholder="$t('login.passwordPlaceholder')"
                   size="large"
                 >
                   <template #prefix>
-                    <LockOutlined />
+                    <LockOutlined class="text-amber-600 text-lg" />
                   </template>
                 </a-input-password>
+              </a-form-item>
+
+              <!-- Captcha -->
+              <a-form-item
+                :required="true"
+                :validate-status="errors.captcha ? 'error' : ''"
+                :help="errors.captcha"
+                class="flex items-center space-x-2"
+              >
+                <a-input
+                  class="flex-grow hover:border-amber-600 focus:border-amber-600 focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-700 font-mono"
+                  v-model:value="formModel.captcha"
+                  :placeholder="$t('login.captchaPlaceholder')"
+                  size="large"
+                >
+                  <template #suffix>
+                    <CaptchaCode
+                      v-model:captcha="captchaCode"
+                      @on-change="handleCaptchaChange"
+                      ref="captcha"
+                      class="flex-shrink-0"
+                    />
+                  </template>
+                </a-input>
               </a-form-item>
 
               <a-button
                 type="primary"
                 @click="handleLogin"
-                class="w-full h-12 rounded-lg bg-amber-600 hover:bg-amber-700 border-none focus:border-none focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-700"
+                class="w-full h-12 rounded-sm bg-amber-600 hover:bg-amber-700 border-none focus:border-none focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-700"
                 :loading="isLoadingPost"
               >
                 {{ $t("login.submitButton") }}
@@ -110,12 +136,13 @@
         </a-col>
       </a-row>
       <AntModalMessage
-        :visible="user?.success"
+        :visible="isModalVisible"
         :title="t('meta.login.title')"
-        :content="user?.message"
+        :content="user?.message ?? ''"
         :type="'success'"
         :closable="true"
-      />
+        @update:visible="isModalVisible = false"
+      ></AntModalMessage>
     </div>
   </div>
 </template>
@@ -135,28 +162,39 @@ import { useStore } from "vuex";
 import { UserResponse } from "@/models/user";
 import AntModalMessage from "@/components/container/AntModalMessage.vue";
 import { LockOutlined, UserOutlined } from "@ant-design/icons-vue";
+import CaptchaCode from "vue-captcha-code";
+
 const { t } = useI18n();
 const store = useStore();
 const isLoadingPost = computed(() => store.getters["loading/isLoadingPost"]);
-const formModel = ref({ username: "", password: "" });
-const user = ref<UserResponse | null>(null); // Định nghĩa user là UserResponse hoặc null
+const formModel = ref({ username: "", password: "", captcha: "" });
+const user = ref<UserResponse | null>(null);
+const captchaCode = ref("");
+const isModalVisible = ref(false);
 
 const errors = ref<Record<string, string>>({});
 const schema = yup.object().shape({
   username: yup.string().required(t("login.errorMessage")),
   password: yup.string().required(t("login.errorMessage")),
+  captcha: yup.string().required(t("login.captchaError")),
 });
-
+const handleCaptchaChange = (code: string) => {
+  captchaCode.value = code;
+};
 const handleLogin = async () => {
   try {
     errors.value = {};
     await schema.validate(formModel.value, { abortEarly: false });
-
+    if (formModel.value.captcha !== captchaCode.value) {
+      errors.value.captcha = t("login.captchaMismatch");
+      return;
+    }
     const userResponse: UserResponse = await loginUser(
       formModel.value.username,
       formModel.value.password
     );
     user.value = userResponse;
+    isModalVisible.value = true;
   } catch (err) {
     if (err instanceof yup.ValidationError) {
       const errorMessages: Record<string, string> = {};
@@ -167,6 +205,8 @@ const handleLogin = async () => {
       });
       errors.value = errorMessages;
     }
+  } finally {
+    handleCaptchaChange(captchaCode.value);
   }
 };
 

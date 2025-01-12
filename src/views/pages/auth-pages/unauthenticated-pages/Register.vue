@@ -49,12 +49,13 @@
                 :help="errors.username"
               >
                 <a-input
+                  class="hover:border-amber-600 focus:border-amber-600 focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-700 font-mono"
                   v-model:value="formModel.username"
                   :placeholder="$t('register.usernamePlaceholder')"
                   size="large"
                 >
                   <template #prefix>
-                    <UserOutlined />
+                    <UserOutlined class="text-amber-600 text-lg" />
                   </template>
                 </a-input>
               </a-form-item>
@@ -65,13 +66,14 @@
                 :help="errors.email"
               >
                 <a-input
+                  class="hover:border-amber-600 focus:border-amber-600 focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-700 font-mono"
                   v-model:value="formModel.email"
                   type="email"
                   :placeholder="$t('register.emailPlaceholder')"
                   size="large"
                 >
                   <template #prefix>
-                    <MailOutlined />
+                    <MailOutlined class="text-amber-600 text-lg" />
                   </template>
                 </a-input>
               </a-form-item>
@@ -82,12 +84,13 @@
                 :help="errors.password"
               >
                 <a-input-password
+                  class="hover:border-amber-600 focus:border-amber-600 focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-700 font-mono"
                   v-model:value="formModel.password"
                   :placeholder="$t('register.passwordPlaceholder')"
                   size="large"
                 >
                   <template #prefix>
-                    <LockOutlined />
+                    <LockOutlined class="text-amber-600 text-lg" />
                   </template>
                 </a-input-password>
               </a-form-item>
@@ -95,7 +98,7 @@
               <a-button
                 type="primary"
                 @click="handleRegister"
-                class="w-full h-12 rounded-lg bg-amber-600 hover:bg-amber-700 border-none focus:border-none focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-700 scroll-animate fade-up"
+                class="w-full h-12 rounded-sm bg-amber-600 hover:bg-amber-700 border-none focus:border-none focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-700 scroll-animate fade-up"
                 :loading="loading"
               >
                 {{ $t("register.submitButton") }}
@@ -117,13 +120,11 @@
               <div class="grid grid-cols-2 gap-4">
                 <a-button
                   class="h-12 rounded-lg border-2 hover:border-amber-500 hover:text-amber-600 transition-colors duration-300 scroll-animate fade-up"
-                  @click="handleGoogleRegister"
                 >
                   Google
                 </a-button>
                 <a-button
                   class="h-12 rounded-lg border-2 hover:border-amber-500 hover:text-amber-600 transition-colors duration-300 scroll-animate fade-up"
-                  @click="handleGithubRegister"
                 >
                   GitHub
                 </a-button>
@@ -142,15 +143,6 @@
         </a-col>
       </a-row>
     </div>
-
-    <a-modal
-      v-model:visible="messageVisible"
-      :title="messageTitle"
-      :closable="true"
-      @ok="messageVisible = false"
-    >
-      <p>{{ messageContent }}</p>
-    </a-modal>
   </div>
 </template>
 
@@ -170,14 +162,6 @@ import {
   MailOutlined,
   LockOutlined,
 } from "@ant-design/icons-vue";
-import { auth, githubProvider, googleProvider } from "@/firebaseConfig";
-import {
-  createUserWithEmailAndPassword,
-  signInWithPopup,
-  signInWithRedirect,
-} from "firebase/auth";
-import { getFirebaseMessage } from "@/services/firebase/firebaseMessages";
-import { FirebaseError } from "firebase/app";
 
 const { t } = useI18n();
 const router = useRouter();
@@ -209,16 +193,7 @@ const handleRegister = async () => {
     await schema.validate(formModel.value, { abortEarly: false });
     loading.value = true;
 
-    await createUserWithEmailAndPassword(
-      auth,
-      formModel.value.email,
-      formModel.value.password
-    );
-
-    messageTitle.value = t("register.successTitle");
-    messageContent.value = t("register.successMessage");
-    messageType.value = "success";
-    messageVisible.value = true;
+    // logic
     router.push({ name: "LoginPage" });
   } catch (err) {
     if (err instanceof yup.ValidationError) {
@@ -229,58 +204,9 @@ const handleRegister = async () => {
         }
       });
       errors.value = errorMessages;
-    } else if (err instanceof FirebaseError) {
-      messageTitle.value = t("register.title");
-      messageContent.value = getFirebaseMessage(err.code, t);
-      messageType.value = "error";
-      messageVisible.value = true;
     }
   } finally {
     loading.value = false;
-  }
-};
-
-const handleGoogleRegister = async () => {
-  loading.value = true;
-  try {
-    if (window.innerWidth <= 768) {
-      await signInWithRedirect(auth, googleProvider);
-    } else {
-      await signInWithPopup(auth, googleProvider);
-    }
-    messageTitle.value = t("register.successTitle");
-    messageContent.value = t("register.successMessage");
-    messageType.value = "success";
-    router.push({ name: "LoginPage" });
-  } catch (error: any) {
-    messageTitle.value = t("register.errorTitle");
-    messageContent.value = getFirebaseMessage(error.code, t);
-    messageType.value = "error";
-  } finally {
-    loading.value = false;
-    messageVisible.value = true;
-  }
-};
-
-const handleGithubRegister = async () => {
-  loading.value = true;
-  try {
-    if (window.innerWidth <= 768) {
-      await signInWithRedirect(auth, githubProvider);
-    } else {
-      await signInWithPopup(auth, githubProvider);
-    }
-    messageTitle.value = t("register.successTitle");
-    messageContent.value = t("register.successMessage");
-    messageType.value = "success";
-    router.push({ name: "LoginPage" });
-  } catch (error: any) {
-    messageTitle.value = t("register.errorTitle");
-    messageContent.value = getFirebaseMessage(error.code, t);
-    messageType.value = "error";
-  } finally {
-    loading.value = false;
-    messageVisible.value = true;
   }
 };
 

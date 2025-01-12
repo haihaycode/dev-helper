@@ -76,7 +76,10 @@
         "orLoginWith": " or login with ",
         "welcomeMessage": "Welcome to DevHelper",
         "description": "Comprehensive application development support platform",
-        "orContinueWith": "Or continue with"
+        "orContinueWith": "Or continue with",
+        "captchaError": "Please enter the captcha code!",
+        "captchaMismatch": "The captcha code is incorrect!",
+        "captchaPlaceholder": "Enter the captcha code"
     },
     "register": {
         "title": "Join Us: Create Your Account",
