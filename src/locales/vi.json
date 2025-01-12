@@ -46,6 +46,19 @@
     "loading": {
       "default": "Đang tải..."
     },
+    "otp": {
+      "title": "Vui lòng nhập mã OTP đã được gửi đến email của bạn",
+      "description": "Vui lòng nhập mã OTP đã được gửi đến email của bạn",
+      "submitButton": "Xác nhận OTP",
+      "optResend": "Gửi lại OTP",
+      "otpSentSuccess": "Mã OTP đã được gửi đến email của bạn",
+      "otpSentDescription": "Vui lòng kiểm tra email của bạn để nhận mã OTP",
+      "otpMismatch": "Mã OTP không đúng",
+      "otpMismatchDescription": "Vui lòng nhập mã OTP đúng",
+      "emailMismatch": "Email không đúng",
+      "emailMismatchDescription": "Vui lòng nhập email đúng với email ban đầu",
+      "otp6Digits": "Vui lòng nhập 6 chữ số OTP"
+    },
     "login": {
       "title": "Chào mừng trở lại DevHelper! Vui lòng đăng nhập",
 
@@ -81,7 +94,13 @@
       "otpTitle": "Nhập mã OTP",
       "otpDescription": "Vui lòng nhập mã OTP đã được gửi đến email của bạn",
       "otpSubmitButton": "Xác nhận OTP",
-      "optResend": "Gửi lại OTP"
+      "optResend": "Gửi lại OTP",
+      "otpSentSuccess": "Mã OTP đã được gửi đến email của bạn",
+      "otpSentDescription": "Vui lòng kiểm tra email của bạn để nhận mã OTP",
+      "otpMismatch": "Mã OTP không đúng",
+      "otpMismatchDescription": "Vui lòng nhập mã OTP đúng",
+      "emailMismatch": "Email không đúng",
+      "emailMismatchDescription": "Vui lòng nhập email đúng với email ban đầu"
     },
     "firebase": {
       "auth": {

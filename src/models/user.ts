@@ -15,6 +15,7 @@ export interface User {
 }
 export interface Otp {
   otp: string;
+  email: string;
 }
 export type UserResponse = BaseModel<User>;
 export type OtpResponse = BaseModel<Otp>;
