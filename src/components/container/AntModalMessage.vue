@@ -24,6 +24,7 @@ import { CloseOutlined } from "@ant-design/icons-vue";
 
 export default {
   name: "CustomModal",
+  emits: ["update:visible"],
   props: {
     visible: {
       type: Boolean,
