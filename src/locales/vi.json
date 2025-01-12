@@ -54,7 +54,10 @@
       "orLoginWith": "hoặc đăng nhập với",
       "welcomeMessage": "Chào mừng đến với DevHelper",
       "description": "Nền tảng hỗ trợ phát triển ứng dụng toàn diện",
-      "orContinueWith": "Hoặc tiếp tục với"
+      "orContinueWith": "Hoặc tiếp tục với",
+      "captchaError": "Vui lòng nhập mã CAPTCHA!",
+      "captchaMismatch": "Mã CAPTCHA không đúng!",
+      "captchaPlaceholder": "Nhập mã CAPTCHA"
     },
     "register": {
       "title": "Tham gia với chúng tôi: Tạo tài khoản của bạn",
