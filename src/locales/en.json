@@ -69,6 +69,19 @@
     "loading": {
         "default": "Loading..."
     },
+    "otp": {
+        "title": "Please enter the OTP code sent to your email",
+        "description": "Please enter the OTP code sent to your email",
+        "submitButton": "Verify OTP",
+        "optResend": "Resend OTP",
+        "otpSentSuccess": "OTP code has been sent to your email",
+        "otpSentDescription": "Please check your email to receive the OTP code",
+        "otpMismatch": "OTP code is incorrect",
+        "otpMismatchDescription": "Please enter the correct OTP code",
+        "emailMismatch": "Email is incorrect",
+        "emailMismatchDescription": "Please enter the correct email",
+        "otp6Digits": "Please enter 6 digits OTP code"
+    },
     "login": {
         "title": "Welcome Back DevHelper ! Please Log In",
         "usernamePlaceholder": "Username",
@@ -102,7 +115,13 @@
         "otpTitle": "Enter OTP code",
         "otpDescription": "Please enter the OTP code sent to your email",
         "otpSubmitButton": "Verify OTP",
-        "optResend": "Resend OTP"
+        "optResend": "Resend OTP",
+        "otpSentSuccess": "OTP code has been sent to your email",
+        "otpSentDescription": "Please check your email to receive the OTP code",
+        "otpMismatch": "OTP code is incorrect",
+        "otpMismatchDescription": "Please enter the correct OTP code",
+        "emailMismatch": "Email is incorrect",
+        "emailMismatchDescription": "Please enter the correct email"
     },
     "firebase": {
           "auth": {
