@@ -173,10 +173,6 @@ const formModel = ref({
 });
 
 const loading = ref(false);
-const messageVisible = ref(false);
-const messageTitle = ref("");
-const messageContent = ref("");
-const messageType = ref("info");
 const errors = ref<Record<string, string>>({});
 
 const schema = yup.object().shape({
@@ -191,7 +187,6 @@ const schema = yup.object().shape({
 const handleRegister = async () => {
   try {
     await schema.validate(formModel.value, { abortEarly: false });
-    loading.value = true;
 
     // logic
     router.push({ name: "LoginPage" });
@@ -205,8 +200,6 @@ const handleRegister = async () => {
       });
       errors.value = errorMessages;
     }
-  } finally {
-    loading.value = false;
   }
 };
 
