@@ -21,9 +21,10 @@
 
 <script lang="ts">
 import { CloseOutlined } from "@ant-design/icons-vue";
+import { defineComponent } from "vue";
 
-export default {
-  name: "CustomModal",
+export default defineComponent({
+  name: "AntModalMessage",
   emits: ["update:visible"],
   props: {
     visible: {
@@ -47,5 +48,9 @@ export default {
   components: {
     CloseOutlined,
   },
-};
+});
 </script>
+
+<style scoped>
+/* Style tùy chỉnh cho modal nếu cần */
+</style>
