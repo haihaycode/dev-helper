@@ -193,8 +193,12 @@ const handleLogin = async () => {
       formModel.value.username,
       formModel.value.password
     );
+
     user.value = userResponse;
+    store.dispatch("auth/setToken", userResponse.data!.accessToken);
+    store.dispatch("auth/setRefreshToken", userResponse.data!.refreshToken);
     isModalVisible.value = true;
+
   } catch (err) {
     if (err instanceof yup.ValidationError) {
       const errorMessages: Record<string, string> = {};

@@ -161,44 +161,46 @@
             </a-form>
           </div>
           <div v-if="step === 2">
-            <div class="text-center mt-8 bg-white p-8 rounded-sm bg-opacity-80">
-              <h1 class="text-3xl font-bold text-amber-600 mb-4">
-                {{ $t("register.otpTitle") }}
-              </h1>
-              <p class="text-gray-700 text-lg mb-6">
-                {{ $t("register.otpDescription") }}
-              </p>
-              <AntOtp @otpEntered="handleCheckOtpAndRegister" />
-              <div class="flex justify-center gap-4 px-8 mt-8">
-                <a-button
-                  @click="handleResendOtp"
-                  :loading="isLoadingPost"
-                  :disabled="countDown > 0"
-                  type="primary"
-                  class="w-full h-12 rounded-sm bg-amber-600 hover:bg-amber-700 border-none focus:border-none focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-700"
-                >
-                  {{ countDown <= 0 ? $t("register.optResend") : countDown }}
-                </a-button>
-                <a-button
-                  @click="handleCheckOtpAndRegister"
-                  :loading="isLoadingPost"
-                  type="primary"
-                  class="w-full h-12 rounded-sm bg-amber-600 hover:bg-amber-700 border-none focus:border-none focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-700"
-                >
-                  {{ $t("register.otpSubmitButton") }}
-                </a-button>
-              </div>
-              <p
-                @click="
-                  () => {
-                    step = 1;
-                  }
-                "
-                class="text-amber-600 text-sm mb-6 mt-2 cursor-pointer underline"
+            <a-spin :spinning="isLoadingPost" :tip="$t('loading.default')">
+              <div
+                class="text-center mt-8 bg-white p-8 rounded-sm bg-opacity-80"
               >
-                {{ $t("back.title") }}
-              </p>
-            </div>
+                <h1 class="text-3xl font-bold text-amber-600 mb-4">
+                  {{ $t("register.otpTitle") }}
+                </h1>
+                <p class="text-gray-700 text-lg mb-6">
+                  {{ $t("register.otpDescription") }}
+                </p>
+                <AntOtp @otpEntered="handleCheckOtpAndRegister" />
+                <div class="flex justify-center gap-4 px-8 mt-8">
+                  <span
+                    @click="
+                      () => {
+                        countDown > 0 ? null : handleResendOtp();
+                      }
+                    "
+                    :disabled="countDown > 0"
+                    class="cursor-pointer text-amber-600 hover:text-amber-700 transition-colors duration-300"
+                  >
+                    {{
+                      countDown <= 0
+                        ? $t("register.optResend")
+                        : $t("otp.otpCountDown") + " " + countDown + "s"
+                    }}
+                  </span>
+                </div>
+                <p
+                  @click="
+                    () => {
+                      step = 1;
+                    }
+                  "
+                  class="text-amber-600 text-sm mb-6 mt-2 cursor-pointer underline"
+                >
+                  {{ $t("back.title") }}
+                </p>
+              </div>
+            </a-spin>
           </div>
         </a-col>
       </a-row>
@@ -226,9 +228,10 @@ import { notification } from "ant-design-vue";
 import AntOtp from "@/components/container/AntOtp.vue";
 import CaptchaCode from "vue-captcha-code";
 import { useStore } from "vuex";
-import { sendOtp } from "@/api/userApi";
+import { sendOtp, registerUser } from "@/api/userApi";
 import { DEV } from "@/api/config";
-import { Otp } from "@/models/user";
+import { Otp, UserResponse } from "@/models/user";
+import { encryptWithSecretKey } from "@/utils/uniqueIdUtils";
 
 const { t } = useI18n();
 // const router = useRouter();
@@ -323,6 +326,8 @@ const handleCheckAndSendOtp = async () => {
 };
 //step 2 : check otp and register
 const handleCheckOtpAndRegister = async (otp: string) => {
+  console.log(otp);
+  console.log(DataResponse.value?.otp);
   let message = null;
   if (DataResponse.value?.email !== formModel.value.email) {
     message = t("register.emailMismatch");
@@ -335,7 +340,7 @@ const handleCheckOtpAndRegister = async (otp: string) => {
     countDown.value = 0;
     return;
   }
-  if (otp !== DataResponse.value?.otp) {
+  if (encryptWithSecretKey(otp, "secretKey") !== DataResponse.value?.otp) {
     message = t("register.otpMismatch");
     notification.error({
       message: message,
@@ -344,8 +349,20 @@ const handleCheckOtpAndRegister = async (otp: string) => {
     });
     return;
   }
-  console.log(otp);
-  console.log(DataResponse.value?.otp);
   //TODO: register call api
+  try {
+    const res: UserResponse = await registerUser(
+      formModel.value.username,
+      formModel.value.password,
+      formModel.value.email
+    );
+    notification.success({
+      message: res.message || "",
+      description: t("register.successMessage"),
+      placement: "bottomRight",
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 </script>

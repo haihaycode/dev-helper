@@ -59,7 +59,10 @@
         "about": "About Us",
         "tool": "Tool dev",
         "contact": "Contact",
-        "translate": "Language"
+        "translate": "Language",
+        "login": "Login",
+        "register": "Register",
+        "logout": "Logout"
     },
     "back": {
         "title": "Back to page ",
@@ -80,7 +83,8 @@
         "otpMismatchDescription": "Please enter the correct OTP code",
         "emailMismatch": "Email is incorrect",
         "emailMismatchDescription": "Please enter the correct email",
-        "otp6Digits": "Please enter 6 digits OTP code"
+        "otp6Digits": "Please enter 6 digits OTP code",
+        "otpCountDown": "Resend OTP in"
     },
     "login": {
         "title": "Welcome Back DevHelper ! Please Log In",
