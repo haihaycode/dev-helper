@@ -1,3 +1,5 @@
+import CryptoJS from "crypto-js";
+
 /**
  * Tạo một unique ID bằng cách sử dụng UUID v4
  * @returns {string} Unique ID
@@ -36,4 +38,8 @@ export function generatePerformanceId(): string {
   return `${performance.now().toString(36)}-${Math.random()
     .toString(36)
     .substr(2, 9)}`;
+}
+
+export function encryptWithSecretKey(data: string, secretKey: string): string {
+  return CryptoJS.AES.encrypt(data, secretKey).toString();
 }

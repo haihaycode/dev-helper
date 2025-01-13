@@ -28,3 +28,9 @@ export const sendOtp = async (email: string): Promise<OtpResponse> => {
   const response = await Axios.post("/api/auth/send-otp", { email });
   return response.data as OtpResponse;
 };
+
+export const getCurrentUser = async (): Promise<UserResponse> => {
+  const response = await Axios.get("/api/auth/current-user");
+  return response.data as UserResponse;
+};
+
