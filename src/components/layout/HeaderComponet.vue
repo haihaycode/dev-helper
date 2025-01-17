@@ -39,7 +39,7 @@
         ></router-link>
 
         <!-- User Info Menu -->
-        <a-dropdown v-if="token && user">
+        <a-dropdown v-if="user" :trigger="['click']">
           <a
             class="ant-dropdown-link flex items-center py-4 hover:text-gray-400 hover:border-b-2 border-yellow-500"
             @click.prevent
@@ -62,7 +62,7 @@
           </template>
         </a-dropdown>
         <router-link
-          v-if="!token"
+          v-if="!user"
           to="/c/login"
           class="hover:text-gray-400 py-4"
           active-class="text-yellow-500"
@@ -84,6 +84,39 @@
       @close="showDrawer = false"
     >
       <nav class="flex flex-col space-y-4">
+        <a-dropdown v-if="user">
+          <a
+            class="ant-dropdown-link flex items-center py-4 hover:text-gray-400 border-b-2 border-yellow-500"
+            @click.prevent
+          >
+            <UserOutlined /> &nbsp;
+            {{ user.username }}
+          </a>
+
+          <template #overlay>
+            <a-menu>
+              <a-menu-item key="0"> </a-menu-item>
+              <a-menu-divider />
+              <a-menu-item
+                class="hover:text-gray-400 flex items-center"
+                key="3"
+                @click="logout"
+              >
+                <LogoutOutlined /> &nbsp; {{ $t("nav.logout") }}</a-menu-item
+              >
+            </a-menu>
+          </template>
+        </a-dropdown>
+        <router-link
+          @click="showDrawer = false"
+          v-if="!user"
+          to="/c/login"
+          class="hover:text-gray-400 py-4"
+          active-class="text-yellow-500"
+          exact-active-class="border-b-2 border-yellow-500"
+        >
+          {{ $t("nav.login") + " / " + $t("nav.register") }}
+        </router-link>
         <router-link
           to="/"
           @click.native="showDrawer = false"
@@ -127,6 +160,7 @@ import {
 import { useStore } from "vuex";
 import { getCurrentUser } from "@/api/userApi";
 import { User } from "@/models/user";
+import { effect } from "vue";
 
 export default defineComponent({
   name: "HeaderComponent",
@@ -140,24 +174,28 @@ export default defineComponent({
     const showDropdown = ref(false);
     const store = useStore();
     const user = ref<User | null>(null);
-    const token = store.getters["auth/token"];
 
     const handleGetCurrentUser = async () => {
       const userResponse = await getCurrentUser();
       user.value = userResponse.data || null;
     };
-    if (token) {
-      handleGetCurrentUser();
-    }
+
+    effect(() => {
+      const token = store.getters["auth/token"];
+      if (token) {
+        handleGetCurrentUser();
+      }
+    });
     const logout = () => {
+      user.value = null;
       store.dispatch("auth/logout");
     };
+
     return {
       showDrawer,
       user,
       handleGetCurrentUser,
       logout,
-      token,
       showDropdown,
     };
   },

@@ -1,3 +1,4 @@
+//disable-eslint
 export function dynamicImport(components: string[]) {
   const imports: { [key: string]: any } = {};
   components.forEach((component) => {
