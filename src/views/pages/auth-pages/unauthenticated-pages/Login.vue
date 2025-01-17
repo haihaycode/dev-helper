@@ -40,6 +40,7 @@
 
             <a-form
               @submit.prevent="handleLogin"
+              @keyup.enter="handleLogin"
               :model="formModel"
               class="space-y-6"
             >
@@ -135,14 +136,6 @@
           </div>
         </a-col>
       </a-row>
-      <AntModalMessage
-        :visible="isModalVisible"
-        :title="t('meta.login.title')"
-        :content="user?.message ?? ''"
-        :type="'success'"
-        :closable="true"
-        @update:visible="isModalVisible = false"
-      ></AntModalMessage>
     </div>
   </div>
 </template>
@@ -160,17 +153,18 @@ import * as yup from "yup";
 import { loginUser } from "@/api/userApi";
 import { useStore } from "vuex";
 import { UserResponse } from "@/models/user";
-import AntModalMessage from "@/components/container/AntModalMessage.vue";
+import { notification } from "ant-design-vue";
 import { LockOutlined, UserOutlined } from "@ant-design/icons-vue";
 import CaptchaCode from "vue-captcha-code";
+import { useRouter } from "vue-router";
 
 const { t } = useI18n();
 const store = useStore();
+const router = useRouter();
 const isLoadingPost = computed(() => store.getters["loading/isLoadingPost"]);
 const formModel = ref({ username: "", password: "", captcha: "" });
 const user = ref<UserResponse | null>(null);
 const captchaCode = ref("");
-const isModalVisible = ref(false);
 
 const errors = ref<Record<string, string>>({});
 const schema = yup.object().shape({
@@ -195,10 +189,17 @@ const handleLogin = async () => {
     );
 
     user.value = userResponse;
-    store.dispatch("auth/setToken", userResponse.data!.accessToken);
-    store.dispatch("auth/setRefreshToken", userResponse.data!.refreshToken);
-    isModalVisible.value = true;
-
+    if (userResponse.data) {
+      store.dispatch("auth/setToken", userResponse.data.accessToken);
+      store.dispatch("auth/setRefreshToken", userResponse.data.refreshToken);
+      router.push("/");
+    }
+    notification.success({
+      message: t("meta.login.title"),
+      description: userResponse.message,
+      duration: 3,
+      placement: "bottomRight",
+    });
   } catch (err) {
     if (err instanceof yup.ValidationError) {
       const errorMessages: Record<string, string> = {};

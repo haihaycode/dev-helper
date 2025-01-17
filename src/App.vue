@@ -1,24 +1,22 @@
 <template>
   <div id="app">
-    <Loading :visible="loading" />
-    <router-view />
+    <a-spin
+      :spinning="isLoadingGet || loading"
+      size="large"
+      wrapperClassName="spin-wrapper"
+    >
+      <router-view />
+    </a-spin>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, defineAsyncComponent, computed } from "vue";
+import { defineComponent, ref, computed } from "vue";
 import { useRouter } from "vue-router";
-import { dynamicImport } from "@/utils/importUtils";
 import { useStore } from "vuex";
-const components = dynamicImport(["components/container/AntLoading"]);
 
 export default defineComponent({
   name: "App",
-  components: {
-    Loading: defineAsyncComponent(
-      components["components/container/AntLoading"]
-    ),
-  },
   setup() {
     const store = useStore();
     const router = useRouter();
@@ -34,25 +32,9 @@ export default defineComponent({
       loading.value = false;
     });
 
-    // router.beforeEach((to, from, next) => {
-    //   store.commit("loading/SET_LOADING_GET", true); // Cập nhật trạng thái loading khi chuyển hướng
-    //   const isLoadingGet = computed(
-    //     () => store.getters["loading/isLoadingGet"]
-    //   );
-    //   console.log(isLoadingGet.value);
-    //   next();
-    // });
-
-    // router.afterEach(() => {
-    //   store.commit("loading/SET_LOADING_GET", false); // Kết thúc loading khi chuyển hướng xong
-    //   const isLoadingGet = computed(
-    //     () => store.getters["loading/isLoadingGet"]
-    //   );
-    //   console.log(isLoadingGet.value);
-    // });
-
     return {
       loading,
+      isLoadingGet,
     };
   },
 });
@@ -65,4 +47,5 @@ export default defineComponent({
   -moz-osx-font-smoothing grayscale
   text-align center
   color #2c3e50
+
 </style>
