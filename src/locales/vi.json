@@ -32,6 +32,14 @@
       "hello": "Xin chào Thế giới!"
     },
     "nav": {
+      "account": {
+        "title": "Tài khoản",
+        "description": "Tài khoản của bạn"
+      },
+      "setting": {
+        "title": "Cài đặt",
+        "description": "Cài đặt "
+      },
       "home": "Trang chủ",
       "about": "Về chúng tôi",
       "tool": "Công cụ ",

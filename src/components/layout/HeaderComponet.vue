@@ -44,20 +44,40 @@
             class="ant-dropdown-link flex items-center py-4 hover:text-gray-400 hover:border-b-2 border-yellow-500"
             @click.prevent
           >
-            <UserOutlined /> &nbsp;
+            <UserOutlined class="" /> &nbsp;
             {{ user.username }}
           </a>
           <template #overlay>
             <a-menu>
-              <a-menu-item key="0"> </a-menu-item>
+              <a-menu-item key="0" @click="$router.push('/c/account')">
+                <a-anchor-link :title="user?.email">
+                  <div class="flex items-center">
+                    <UserOutlined /> &nbsp;
+                    {{ $t("nav.account.description") }}
+                  </div>
+                </a-anchor-link>
+              </a-menu-item>
               <a-menu-divider />
+              <a-menu-item key="1" @click="$router.push('/c/setting')">
+                <a-anchor-link>
+                  <div class="flex items-center">
+                    <SettingOutlined /> &nbsp;
+                    {{ $t("nav.setting.description") }}
+                  </div>
+                </a-anchor-link>
+              </a-menu-item>
               <a-menu-item
+                key="2"
                 class="hover:text-gray-400 flex items-center"
-                key="3"
                 @click="logout"
               >
-                <LogoutOutlined /> &nbsp; {{ $t("nav.logout") }}</a-menu-item
-              >
+                <a-anchor-link>
+                  <div class="flex items-center">
+                    <LogoutOutlined /> &nbsp;
+                    {{ $t("nav.logout") }}
+                  </div>
+                </a-anchor-link>
+              </a-menu-item>
             </a-menu>
           </template>
         </a-dropdown>
@@ -95,15 +115,35 @@
 
           <template #overlay>
             <a-menu>
-              <a-menu-item key="0"> </a-menu-item>
+              <a-menu-item key="0" @click="$router.push('/c/account')">
+                <a-anchor-link :title="user?.email">
+                  <div class="flex items-center">
+                    <UserOutlined /> &nbsp;
+                    {{ $t("nav.account.description") }}
+                  </div>
+                </a-anchor-link>
+              </a-menu-item>
               <a-menu-divider />
+              <a-menu-item key="1" @click="$router.push('/c/setting')">
+                <a-anchor-link>
+                  <div class="flex items-center">
+                    <SettingOutlined /> &nbsp;
+                    {{ $t("nav.setting.description") }}
+                  </div>
+                </a-anchor-link>
+              </a-menu-item>
               <a-menu-item
+                key="2"
                 class="hover:text-gray-400 flex items-center"
-                key="3"
                 @click="logout"
               >
-                <LogoutOutlined /> &nbsp; {{ $t("nav.logout") }}</a-menu-item
-              >
+                <a-anchor-link>
+                  <div class="flex items-center">
+                    <LogoutOutlined /> &nbsp;
+                    {{ $t("nav.logout") }}
+                  </div>
+                </a-anchor-link>
+              </a-menu-item>
             </a-menu>
           </template>
         </a-dropdown>
@@ -120,8 +160,6 @@
         <router-link
           to="/"
           @click.native="showDrawer = false"
-          active-class="border-l-4 pl-2 border-yellow-500"
-          exact-active-class="border-l-4 pl-2 border-yellow-500"
           v-t="'nav.home'"
         ></router-link>
         <router-link
@@ -156,6 +194,7 @@ import {
   MenuOutlined,
   UserOutlined,
   LogoutOutlined,
+  SettingOutlined,
 } from "@ant-design/icons-vue";
 import { useStore } from "vuex";
 import { getCurrentUser } from "@/api/userApi";
@@ -168,6 +207,7 @@ export default defineComponent({
     MenuOutlined,
     UserOutlined,
     LogoutOutlined,
+    SettingOutlined,
   },
   setup() {
     const showDrawer = ref(false);
