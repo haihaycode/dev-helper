@@ -55,6 +55,14 @@
         "hello": "Hello World!"
     },
     "nav": {
+        "account": {
+            "title": "Account",
+            "description": "Your account"
+        },
+        "setting": {
+            "title": "Setting",
+            "description": "Setting "
+        },
         "home": "Home",
         "about": "About Us",
         "tool": "Tool dev",
