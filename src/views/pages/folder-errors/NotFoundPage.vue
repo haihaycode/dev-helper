@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-opacity-0">
+  <div class="bg-opacity-0 rubberBand">
     <a-result status="404" title="404" :sub-title="t('error.404.message')">
       <template #extra>
         <a-button type="primary" @click="goBack">{{

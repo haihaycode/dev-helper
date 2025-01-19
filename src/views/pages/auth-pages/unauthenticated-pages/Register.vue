@@ -2,7 +2,9 @@
   <div
     class="min-h-screen bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center p-4"
   >
-    <div class="max-w-5xl w-full rounded-2xl shadow-2xl overflow-hidden">
+    <div
+      class="max-w-5xl w-full rounded-2xl shadow-2xl overflow-hidden zoomInRight"
+    >
       <a-row class="min-h-[600px]">
         <!-- Left side - Logo & Branding -->
         <a-col
@@ -37,6 +39,7 @@
             </h1>
 
             <a-form
+              @keypress.enter="handleCheckAndSendOtp"
               @submit.prevent="handleCheckAndSendOtp"
               :model="formModel"
               class="space-y-6"
@@ -49,6 +52,7 @@
                 <a-input
                   type="text"
                   class="hover:border-amber-600 focus:border-amber-600 focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-700 font-mono"
+                  :class="['', { 'border-red-500 shake': errors.username }]"
                   v-model:value="formModel.username"
                   :placeholder="$t('register.usernamePlaceholder')"
                   size="large"
@@ -67,6 +71,7 @@
                 <a-input
                   type="email"
                   class="hover:border-amber-600 focus:border-amber-600 focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-700 font-mono"
+                  :class="['', { 'border-red-500 shake': errors.email }]"
                   v-model:value="formModel.email"
                   :placeholder="$t('register.emailPlaceholder')"
                   size="large"
@@ -84,6 +89,7 @@
               >
                 <a-input-password
                   class="hover:border-amber-600 focus:border-amber-600 focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-700 font-mono"
+                  :class="['', { 'border-red-500 shake': errors.password }]"
                   v-model:value="formModel.password"
                   :placeholder="$t('register.passwordPlaceholder')"
                   size="large"
@@ -102,6 +108,7 @@
               >
                 <a-input
                   class="flex-grow hover:border-amber-600 focus:border-amber-600 focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-700 font-mono"
+                  :class="['', { 'border-red-500 shake': errors.captcha }]"
                   v-model:value="formModel.captcha"
                   :placeholder="$t('login.captchaPlaceholder')"
                   size="large"

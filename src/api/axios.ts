@@ -10,7 +10,15 @@ import store from "@/store";
 import { message } from "ant-design-vue";
 import router from "@/router";
 import i18n from "@/services/i18n";
+import { getAccessToken } from "@/utils/global";
 
+interface AxiosRequestConfig extends InternalAxiosRequestConfig {
+  loading?: boolean;
+  authenticate?: boolean;
+}
+interface AxiosResponseConfig extends AxiosResponse {
+  config: AxiosRequestConfig;
+}
 const Axios: AxiosInstance = axios.create({
   baseURL: HOST,
   timeout: MAX_TIME_OUT,
@@ -36,29 +44,33 @@ const processQueue = (error: any, token: string | null = null) => {
 };
 
 Axios.interceptors.request.use(
-  (config: InternalAxiosRequestConfig) => {
+  (config: AxiosRequestConfig) => {
     const method = config.method?.toUpperCase();
-    switch (method) {
-      case "GET":
-        store.dispatch("loading/setLoadingGet", true);
-        break;
-      case "POST":
-        store.dispatch("loading/setLoadingPost", true);
-        break;
-      case "PUT":
-        store.dispatch("loading/setLoadingPut", true);
-        break;
-      case "DELETE":
-        store.dispatch("loading/setLoadingDelete", true);
-        break;
-      case "PATCH":
-        store.dispatch("loading/setLoadingPatch", true);
-        break;
-      default:
-        break;
+    if (config.loading !== undefined ? config.loading : true) {
+      switch (method) {
+        case "GET":
+          store.dispatch("loading/setLoadingGet", true);
+          break;
+        case "POST":
+          store.dispatch("loading/setLoadingPost", true);
+          break;
+        case "PUT":
+          store.dispatch("loading/setLoadingPut", true);
+          break;
+        case "DELETE":
+          store.dispatch("loading/setLoadingDelete", true);
+          break;
+        case "PATCH":
+          store.dispatch("loading/setLoadingPatch", true);
+          break;
+        default:
+          break;
+      }
     }
-    const token = store.getters["auth/token"];
-    if (token) {
+    const token = getAccessToken();
+    if (
+      token && config.authenticate !== undefined ? config.authenticate : true
+    ) {
       if (!config.headers) {
         config.headers = {} as AxiosHeaders;
       }
@@ -75,7 +87,7 @@ Axios.interceptors.request.use(
 );
 
 Axios.interceptors.response.use(
-  (response: AxiosResponse) => {
+  (response: AxiosResponseConfig) => {
     const method = response.config.method?.toUpperCase();
     switch (method) {
       case "GET":
@@ -96,11 +108,10 @@ Axios.interceptors.response.use(
       default:
         break;
     }
-
     if (response.status === SUCCESS_CODE) {
       return response;
     } else {
-      message.error(response.data.message || "Có lỗi xảy ra!");
+      message.error(response.data.message || i18n.global.t("message.error"));
       return Promise.reject(response);
     }
   },

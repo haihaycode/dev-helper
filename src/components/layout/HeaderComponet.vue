@@ -5,7 +5,7 @@
       <!-- Logo -->
       <router-link
         to="/"
-        class="logo text-xl font-bold hover:text-gray-400 py-4"
+        class="logo text-xl font-bold hover:text-gray-400 py-4 tracking-in-expand"
         v-t="'project.name'"
       ></router-link>
       <!-- Desktop Menu -->

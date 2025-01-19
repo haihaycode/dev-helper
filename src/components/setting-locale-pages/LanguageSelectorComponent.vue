@@ -1,4 +1,3 @@
-<!-- filepath: /D:/.my.project/vue3x/DevHelper/src/components/setting-locale-pages/LanguageSelectorComponent.vue -->
 <template>
   <div>
     <a-button
