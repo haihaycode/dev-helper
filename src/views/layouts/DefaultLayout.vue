@@ -1,7 +1,7 @@
 <template>
   <a-layout>
     <HeaderComponet />
-    <a-layout-content class="content">
+    <a-layout-content class="bg-pan-left">
       <router-view />
     </a-layout-content>
     <LanguageSelectorComponent />
@@ -40,9 +40,9 @@ a-menu-item:hover
   background-color #1890ff
   transition background-color 0.3s ease
 
-.content
-  background-image url('@/assets/bg/.bg-1.png')
-  background-size cover
-  background-position center
-  background-repeat no-repeat
+// .content
+//   background-image url('@/assets/bg/.bg-1.png')
+//   background-size cover
+//   background-position center
+//   background-repeat no-repeat
 </style>

@@ -52,7 +52,19 @@
     }
   },
     "message": {
-        "hello": "Hello World!"
+        "hello": "Hello World!",
+        "success": "Success",
+        "error": "Error !",
+        "warning": "Warning",
+        "info": "Info",
+        "default": "Something went wrong",
+        "loading": "Loading",
+        "notFound": "Not Found",
+        "unauthorized": "Unauthorized",
+        "forbidden": "Forbidden",
+        "badRequest": "Bad Request",
+        "internalServerError": "Internal Server Error"
+
     },
     "nav": {
         "account": {

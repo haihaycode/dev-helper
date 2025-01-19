@@ -2,14 +2,17 @@
   <div
     class="min-h-screen bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center p-4"
   >
-    <div class="max-w-5xl w-full rounded-2xl shadow-2xl overflow-hidden">
+    <div
+      class="max-w-5xl w-full rounded-2xl shadow-2xl overflow-hidden"
+      :class="animation"
+    >
       <a-row class="min-h-[600px]">
         <!-- Left side -->
         <a-col
           :xs="24"
           :sm="24"
           :md="12"
-          class="p-8 flex flex-col justify-center items-center"
+          class="p-8 flex flex-col justify-center items-center jello-horizontal"
         >
           <div class="text-center">
             <a-image
@@ -51,6 +54,7 @@
               >
                 <a-input
                   class="hover:border-amber-600 focus:border-amber-600 focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-700 font-mono"
+                  :class="['', { 'border-red-500 shake': errors.username }]"
                   v-model:value="formModel.username"
                   :placeholder="$t('login.usernamePlaceholder')"
                   size="large"
@@ -68,6 +72,7 @@
               >
                 <a-input-password
                   class="hover:border-amber-600 focus:border-amber-600 focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-700 font-mono"
+                  :class="['', { 'border-red-500 shake': errors.password }]"
                   v-model:value="formModel.password"
                   :placeholder="$t('login.passwordPlaceholder')"
                   size="large"
@@ -94,6 +99,7 @@
                   <template #suffix>
                     <CaptchaCode
                       v-model:captcha="captchaCode"
+                      :class="['', { 'border-red-500 shake': errors.captcha }]"
                       @on-change="handleCaptchaChange"
                       ref="captcha"
                       class="flex-shrink-0"
@@ -126,6 +132,7 @@
 
               <div class="text-center mt-6">
                 <router-link
+                  @click="animation = 'bounceOut'"
                   :to="{ name: 'RegisterPage' }"
                   class="text-amber-600 hover:text-amber-700 transition-colors scroll-animate fade-up"
                 >
@@ -165,6 +172,7 @@ const isLoadingPost = computed(() => store.getters["loading/isLoadingPost"]);
 const formModel = ref({ username: "", password: "", captcha: "" });
 const user = ref<UserResponse | null>(null);
 const captchaCode = ref("");
+const animation = ref("zoomInLeft");
 
 const errors = ref<Record<string, string>>({});
 const schema = yup.object().shape({
@@ -192,7 +200,10 @@ const handleLogin = async () => {
     if (userResponse.data) {
       store.dispatch("auth/setToken", userResponse.data.accessToken);
       store.dispatch("auth/setRefreshToken", userResponse.data.refreshToken);
-      router.push("/");
+      animation.value = "zoomOutUp";
+      setTimeout(() => {
+        router.push("/");
+      }, 1000);
     }
     notification.success({
       message: t("meta.login.title"),

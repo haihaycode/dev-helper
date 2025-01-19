@@ -13,6 +13,5 @@ const i18n = createI18n({
   locale: store.getters["locale/locale"],
   messages,
 });
-console.log(store.getters["locale/locale"]);
 
 export default i18n;

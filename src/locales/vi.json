@@ -29,7 +29,18 @@
         "en" : "Tiếng Anh"
         },
     "message": {
-      "hello": "Xin chào Thế giới!"
+      "hello": "Xin chào Thế giới!",
+      "success": "Thành công",
+      "error": "Lỗi",
+      "warning": "Cảnh báo",
+      "info": "Thông tin",
+      "default": "Có lỗi xảy ra",
+      "loading": "Đang tải",
+      "notFound": "Không tìm thấy",
+      "unauthorized": "Không được phép",
+      "forbidden": "Bị cấm",
+      "badRequest": "Yêu cầu không hợp lệ",
+      "internalServerError": "Lỗi máy chủ nội bộ"
     },
     "nav": {
       "account": {
