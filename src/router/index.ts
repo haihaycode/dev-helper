@@ -31,6 +31,9 @@ router.beforeEach((to, from, next) => {
 });
 
 router.afterEach((to, from, next) => {
+  console.log("to", to);
+  console.log("from", from);
+  console.log("next", next);
   const nearestWithTitle = to.matched
     .slice()
     .reverse()
@@ -47,9 +50,7 @@ router.afterEach((to, from, next) => {
   Array.from(document.querySelectorAll("[data-vue-router-controlled]")).map(
     (el) => el.parentNode?.removeChild(el)
   );
-
   if (!nearestWithMeta) return;
-
   (nearestWithMeta.meta.metaTags as any[])
     .map((tagDef: any) => {
       const tag = document.createElement("meta");

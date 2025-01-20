@@ -12,7 +12,7 @@ const accountRoutes: Array<RouteRecordRaw> = [
         meta: {
           requiresAuth: true,
         },
-        name: "my-account",
+        name: "AccountPage",
         component: Account,
       },
     ],

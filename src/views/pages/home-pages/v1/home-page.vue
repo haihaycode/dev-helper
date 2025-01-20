@@ -1,4 +1,3 @@
-<!-- eslint-disable vue/no-unused-components -->
 <template>
   <div class="home-page">
     <AntText class="">
@@ -6,12 +5,10 @@
     </AntText>
   </div>
 </template>
-<script lang="ts"></script>
 
 <script setup lang="ts">
 import AntText from "@/components/container/AntText.vue";
 import { ref, effect } from "vue";
-import store from "@/store";
 const animation = ref("");
 
 effect(() => {

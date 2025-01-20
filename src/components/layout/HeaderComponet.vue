@@ -49,7 +49,10 @@
           </a>
           <template #overlay>
             <a-menu>
-              <a-menu-item key="0" @click="$router.push('/c/account')">
+              <a-menu-item
+                key="0"
+                @click="$router.push({ name: 'AccountPage' })"
+              >
                 <a-anchor-link :title="user?.email">
                   <div class="flex items-center">
                     <UserOutlined /> &nbsp;

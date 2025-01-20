@@ -37,6 +37,10 @@ export const animationClasses = [
   "wobble",
   "lightSpeedIn",
   "lightSpeedOut",
+  "tracking-in-expand",
+  "jello-horizontal",
+  "bg-pan-left",
+  "text-pop-up-top"
 ];
 
 //  https://www.theappguruz.com/tag-tools/web/CSSAnimations/

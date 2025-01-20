@@ -21,7 +21,6 @@ export default function middleware(
 const isAuthenticated = () => {
   const token = store.getters["auth/token"];
   const user: User = store.getters["auth/user"];
-  console.log("isAuthenticated", token, user);
   if (token && user) {
     return true;
   }
