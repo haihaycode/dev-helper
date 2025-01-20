@@ -40,6 +40,7 @@ export const animationClasses = [
 ];
 
 //  https://www.theappguruz.com/tag-tools/web/CSSAnimations/
+// https://animista.net/play/text/pop-up/text-pop-up-top
 export const link = "https://www.theappguruz.com/tag-tools/web/CSSAnimations/";
 
 export function getAnimationClass(index: number): string | undefined {

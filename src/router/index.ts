@@ -4,12 +4,15 @@ import defaultRoutes from "./modules/defaultRoutes";
 import errorRoutes from "./modules/errorRoutes";
 import basePages from "./modules/baseRoutes";
 import toolsRoutes from "./modules/toolsRoutes";
+import accountRoutes from "./modules/accountRoutes";
+import middleware from "@/middleware/middleware";
 
 const routes: Array<RouteRecordRaw> = [
   ...defaultRoutes,
   ...errorRoutes,
   ...basePages,
   ...toolsRoutes,
+  ...accountRoutes,
   // ...adminRoutes,
 ];
 
@@ -18,7 +21,16 @@ const router = createRouter({
   routes,
 });
 
-router.afterEach((to) => {
+router.beforeEach((to, from, next) => {
+  if (to.meta.requiresAuth) {
+    console.log("requiresAuth");
+    middleware(to, from, next);
+  } else {
+    next();
+  }
+});
+
+router.afterEach((to, from, next) => {
   const nearestWithTitle = to.matched
     .slice()
     .reverse()

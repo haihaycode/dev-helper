@@ -1,18 +1,19 @@
 import { RouteRecordRaw } from "vue-router";
 import DefaultLayout from "@/views/layouts/DefaultLayout.vue";
-import { dynamicImport } from "@/utils/importUtils";
-
-const components = dynamicImport(["views/pages/folder-test/base-pages"]);
+import Account from "@/views/pages/auth-pages/authenticated-pages/Account.vue";
 
 const accountRoutes: Array<RouteRecordRaw> = [
   {
-    path: "/r/base",
+    path: "/a",
     component: DefaultLayout,
     children: [
       {
-        path: "base-page",
-        name: "BasePage",
-        component: components["views/pages/folder-test/base-pages"],
+        path: "account",
+        meta: {
+          requiresAuth: true,
+        },
+        name: "my-account",
+        component: Account,
       },
     ],
   },

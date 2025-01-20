@@ -164,6 +164,7 @@ import { notification } from "ant-design-vue";
 import { LockOutlined, UserOutlined } from "@ant-design/icons-vue";
 import CaptchaCode from "vue-captcha-code";
 import { useRouter } from "vue-router";
+import { getPreviousRoute } from "@/utils/routeUtils";
 
 const { t } = useI18n();
 const store = useStore();
@@ -202,8 +203,8 @@ const handleLogin = async () => {
       store.dispatch("auth/setRefreshToken", userResponse.data.refreshToken);
       animation.value = "zoomOutUp";
       setTimeout(() => {
-        router.push("/");
-      }, 1000);
+        router.push(getPreviousRoute());
+      }, 1200);
     }
     notification.success({
       message: t("meta.login.title"),
