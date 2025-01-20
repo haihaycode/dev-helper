@@ -30,10 +30,9 @@ router.beforeEach((to, from, next) => {
   }
 });
 
-router.afterEach((to, from, next) => {
+router.afterEach((to, from) => {
   console.log("to", to);
   console.log("from", from);
-  console.log("next", next);
   const nearestWithTitle = to.matched
     .slice()
     .reverse()
