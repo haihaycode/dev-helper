@@ -203,7 +203,9 @@ const handleLogin = async () => {
       store.dispatch("auth/setRefreshToken", userResponse.data.refreshToken);
       animation.value = "zoomOutUp";
       setTimeout(() => {
-        router.push(getPreviousRoute());
+        router.push(
+          getPreviousRoute() === "/c/login" ? "/" : getPreviousRoute()
+        );
       }, 1200);
     }
     notification.success({
@@ -274,9 +276,5 @@ onMounted(() => {
     transform: translateY(-2px);
     transition: all 0.3s ease;
   }
-}
-
-.container {
-  max-width: 1280px;
 }
 </style>

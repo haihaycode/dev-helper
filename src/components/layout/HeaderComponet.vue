@@ -219,8 +219,13 @@ export default defineComponent({
     const user = ref<User | null>(null);
 
     const handleGetCurrentUser = async () => {
-      const userResponse = await getCurrentUser();
-      user.value = userResponse.data || null;
+      try {
+        const userResponse = await getCurrentUser();
+        user.value = userResponse.data || null;
+      } catch (error) {
+        console.error(error);
+        user.value = null;
+      }
     };
 
     effect(() => {
