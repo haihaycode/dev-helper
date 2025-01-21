@@ -11,6 +11,7 @@ import { message } from "ant-design-vue";
 import router from "@/router";
 import i18n from "@/services/i18n";
 import { getAccessToken } from "@/utils/global";
+import { notification } from "ant-design-vue";
 
 interface AxiosRequestConfig extends InternalAxiosRequestConfig {
   loading?: boolean;
@@ -139,19 +140,28 @@ Axios.interceptors.response.use(
     }
 
     if (error.response && error.response.status === 404) {
-      message.error(i18n.global.t("error.api.dataNotFound"));
+      notification.error({
+        message: i18n.global.t("error.api.dataNotFound"),
+        description: "The page you are looking for does not exist.",
+      });
       router.push({ name: "NotFound" });
       return Promise.reject(error);
     }
 
     if (error.message === "Network Error") {
-      message.error(i18n.global.t("error.api.networkError"));
+      notification.error({
+        message: i18n.global.t("error.api.networkError"),
+        description: "The page you are looking for does not exist.",
+      });
       router.push({ name: "ServerError" });
       return Promise.reject(error);
     }
 
     if (error.code === "ECONNABORTED" && error.message.includes("timeout")) {
-      message.error(i18n.global.t("error.api.timeoutError"));
+      notification.error({
+        message: i18n.global.t("error.api.timeoutError"),
+        description: "The page you are looking for does not exist.",
+      });
       router.push({ name: "ServerError" });
       return Promise.reject(error);
     }
@@ -190,7 +200,10 @@ Axios.interceptors.response.use(
             .catch((err: Error) => {
               processQueue(err, null);
               store.dispatch("auth/logout");
-              message.error(i18n.global.t("error.api.sessionExpired"));
+              notification.error({
+                message: i18n.global.t("error.api.sessionExpired"),
+                description: "The page you are looking for does not exist.",
+              });
               reject(err);
             })
             .finally(() => {
@@ -198,12 +211,18 @@ Axios.interceptors.response.use(
             });
         });
       } else {
-        message.error(i18n.global.t("error.api.sessionExpired"));
+        notification.error({
+          message: i18n.global.t("error.api.sessionExpired"),
+          description: "The page you are looking for does not exist.",
+        });
         store.dispatch("auth/logout");
       }
     }
     if (error.response && error.response.data) {
-      message.error(error.response.data.message || "Có lỗi xảy ra!");
+      notification.error({
+        message: error.response.data.message || "Có lỗi xảy ra!",
+        description: "The page you are looking for does not exist.",
+      });
     }
     return Promise.reject(error);
   }
