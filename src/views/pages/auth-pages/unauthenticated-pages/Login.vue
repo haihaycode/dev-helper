@@ -1,6 +1,6 @@
 <template>
   <div
-    class="min-h-screen bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center p-4"
+    class="min-h-screen bg-gradient-to-br from-blue-500 to-gray-800 flex items-center justify-center p-4"
   >
     <div
       class="max-w-5xl w-full rounded-2xl shadow-2xl overflow-hidden"
@@ -36,7 +36,7 @@
         <a-col :xs="24" :sm="24" :md="12" class="p-8 bg-white">
           <div class="max-w-md mx-auto">
             <h1
-              class="text-3xl font-bold font-mono text-amber-800 mb-8 text-center scroll-animate fade-up"
+              class="text-3xl font-bold font-mono text-blue-900 mb-8 text-center scroll-animate fade-up"
             >
               {{ $t("login.title") }}
             </h1>
@@ -53,14 +53,14 @@
                 :help="errors.username"
               >
                 <a-input
-                  class="hover:border-amber-600 focus:border-amber-600 focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-700 font-mono"
-                  :class="['', { 'border-red-500 shake': errors.username }]"
+                  class="hover:border-blue-900 focus:border-blue-900 focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-900 border-blue-900  font-mono"
+                  :class="['', { 'border-red-700 shake': errors.username }]"
                   v-model:value="formModel.username"
                   :placeholder="$t('login.usernamePlaceholder')"
                   size="large"
                 >
                   <template #prefix>
-                    <UserOutlined class="text-amber-600 text-lg" />
+                    <UserOutlined class="text-blue-700 text-lg" />
                   </template>
                 </a-input>
               </a-form-item>
@@ -71,14 +71,14 @@
                 :help="errors.password"
               >
                 <a-input-password
-                  class="hover:border-amber-600 focus:border-amber-600 focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-700 font-mono"
-                  :class="['', { 'border-red-500 shake': errors.password }]"
+                  class="hover:border-blue-900 focus:border-blue-900 focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-900 border-blue-900  font-mono"
+                  :class="['', { 'border-red-700 shake': errors.password }]"
                   v-model:value="formModel.password"
                   :placeholder="$t('login.passwordPlaceholder')"
                   size="large"
                 >
                   <template #prefix>
-                    <LockOutlined class="text-amber-600 text-lg" />
+                    <LockOutlined class="text-blue-700 text-lg"  />
                   </template>
                 </a-input-password>
               </a-form-item>
@@ -91,7 +91,7 @@
                 class="flex items-center space-x-2"
               >
                 <a-input
-                  class="flex-grow hover:border-amber-600 focus:border-amber-600 focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-700 font-mono"
+                  class="hover:border-blue-900 focus:border-blue-900 focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-900 border-blue-900  font-mono"
                   v-model:value="formModel.captcha"
                   :placeholder="$t('login.captchaPlaceholder')"
                   size="large"
@@ -111,7 +111,7 @@
               <a-button
                 type="primary"
                 @click="handleLogin"
-                class="w-full h-12 rounded-sm bg-amber-600 hover:bg-amber-700 border-none focus:border-none focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-700"
+                class="w-full h-12 rounded-sm bg-blue-900 hover:bg-gray-200 border-none focus:border-none focus:outline-none focus:ring-0 focus:shadow-none focus:bg-blue-700"
                 :loading="isLoadingPost"
               >
                 {{ $t("login.submitButton") }}
@@ -134,7 +134,7 @@
                 <router-link
                   @click="animation = 'bounceOut'"
                   :to="{ name: 'RegisterPage' }"
-                  class="text-amber-600 hover:text-amber-700 transition-colors scroll-animate fade-up"
+                  class="text-blue-700 hover:text-blue-400 transition-colors scroll-animate fade-up"
                 >
                   {{ $t("login.registerLink") }}
                 </router-link>

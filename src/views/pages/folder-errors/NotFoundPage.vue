@@ -11,15 +11,17 @@
 </template>
 
 <script lang="ts">
+import { useRouter } from "vue-router";
 import { defineComponent } from "vue";
 import { useI18n } from "vue-i18n";
-
+import { getPreviousRoute } from "@/utils/routeUtils";
 export default defineComponent({
   name: "NotFoundPage",
   setup() {
     const { t } = useI18n();
+    const router = useRouter();
     const goBack = () => {
-      window.history.back();
+      router.push(getPreviousRoute());
     };
     return { t, goBack };
   },

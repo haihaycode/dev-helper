@@ -1,59 +1,63 @@
 <!-- eslint-disable vue/no-deprecated-v-on-native-modifier -->
 <template>
-  <header class="bg-gray-800 text-white shadow-md">
+  <header class="primary-navbar text-white shadow-md">
     <div class="container mx-auto flex justify-between items-center px-4">
       <!-- Logo -->
       <router-link
         to="/"
-        class="logo text-xl font-bold hover:text-gray-400 py-4 tracking-in-expand"
+        class="logo text-xl font-bold hover:text-blue-100 py-4 tracking-in-expand"
         v-t="'project.name'"
       ></router-link>
       <!-- Desktop Menu -->
       <nav class="hidden md:flex space-x-4">
         <router-link
           to="/"
-          class="hover:text-gray-400 py-4"
-          exact-active-class="border-b-2 border-yellow-500"
+          class="primary-text-light hover:text-gray-400 py-4"
+          exact-active-class="border-b-2 border-blue-200 font-bold"
           v-t="'nav.home'"
         ></router-link>
         <router-link
           to="/about"
-          class="hover:text-gray-400 py-4"
-          active-class="text-yellow-500"
-          exact-active-class="border-b-2 border-yellow-500"
+          class="primary-text-light hover:text-gray-400 py-4"
+          active-class="text-yellow-500 font-bold"
+          exact-active-class="border-b-2 border-blue-200"
           v-t="'nav.about'"
         ></router-link>
         <router-link
           to="/t/tools"
-          class="hover:text-gray-400 py-4"
-          active-class="text-yellow-500"
-          exact-active-class="border-b-2 border-yellow-500"
+          class="primary-text-light hover:text-gray-400 py-4"
+          active-class="text-yellow-500 font-bold"
+          exact-active-class="border-b-2 border-blue-200"
           v-t="'nav.tool'"
         ></router-link>
         <router-link
           to="/contact"
-          class="hover:text-gray-400 py-4"
-          active-class="text-yellow-500"
-          exact-active-class="border-b-2 border-yellow-500"
+          class="primary-text-light hover:text-gray-400 py-4"
+          active-class="text-yellow-500 font-bold"
+          exact-active-class="border-b-2 border-blue-200"
           v-t="'nav.contact'"
         ></router-link>
 
         <!-- User Info Menu -->
         <a-dropdown v-if="user" :trigger="['click']">
-          <a
-            class="ant-dropdown-link flex items-center py-4 hover:text-gray-400 hover:border-b-2 border-yellow-500"
-            @click.prevent
+          <p
+            :class="
+              $route.path.includes('account')
+                ? 'border-b-2 border-gray-100 font-bold'
+                : ''
+            "
+            class="ant-dropdown-link flex items-center py-4 hover:text-gray-400 hover:border-b-2 border-blue-200 hover:cursor-pointer"
           >
             <UserOutlined class="" /> &nbsp;
             {{ user.username }}
-          </a>
+          </p>
           <template #overlay>
             <a-menu>
               <a-menu-item
                 key="0"
-                @click="$router.push({ name: 'AccountPage' })"
+                @click="$router.push({ name: 'AccountOverview' })"
               >
-                <a-anchor-link :title="user?.email">
+                <a-anchor-link :title="user?.email" @click.prevent>
                   <div class="flex items-center">
                     <UserOutlined /> &nbsp;
                     {{ $t("nav.account.description") }}
@@ -88,8 +92,8 @@
           v-if="!user"
           to="/c/login"
           class="hover:text-gray-400 py-4"
-          active-class="text-yellow-500"
-          exact-active-class="border-b-2 border-yellow-500"
+          active-class="text-blue-100"
+          exact-active-class="border-b-2 border-blue-200"
         >
           {{ $t("nav.login") + " / " + $t("nav.register") }}
         </router-link>
@@ -118,7 +122,10 @@
 
           <template #overlay>
             <a-menu>
-              <a-menu-item key="0" @click="$router.push('/c/account')">
+              <a-menu-item
+                key="0"
+                @click="$router.push({ name: 'AccountOverview' })"
+              >
                 <a-anchor-link :title="user?.email">
                   <div class="flex items-center">
                     <UserOutlined /> &nbsp;

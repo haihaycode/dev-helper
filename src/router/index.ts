@@ -22,12 +22,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.meta.requiresAuth) {
-    console.log("requiresAuth");
-    middleware(to, from, next);
-  } else {
-    next();
-  }
+  middleware(to, from, next);
 });
 
 router.afterEach((to, from) => {

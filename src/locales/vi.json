@@ -3,6 +3,10 @@
     "project": {
       "name": "DevHelper"
     },
+    "role":{
+     "admin" : "Quản trị viên",
+     "user" :"Người dùng "
+    },
     "meta": {
         "home": {
           "title": "Trang chủ - DevHelper",
@@ -44,6 +48,11 @@
     },
     "nav": {
       "account": {
+        "information": "Tài khoản",
+        "personalInformation": "Thông tin cá nhân",
+        "changePassword": "Đổi mật khẩu",
+        "securityAndPrivacy": "Bảo mật và quyền riêng tư",
+        "overview": "Tổng quan",
         "title": "Tài khoản",
         "description": "Tài khoản của bạn"
       },
