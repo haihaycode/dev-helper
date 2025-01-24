@@ -1,6 +1,6 @@
 <template>
   <div
-    class="min-h-screen bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center p-4"
+    class="min-h-screen bg-gradient-to-br from-blue-500 to-gray-700 flex items-center justify-center p-4"
   >
     <div
       class="max-w-5xl w-full rounded-2xl shadow-2xl overflow-hidden zoomInRight"
@@ -33,7 +33,7 @@
         <a-col :xs="24" :sm="24" :md="12" class="p-8 bg-white">
           <div v-if="step === 1" class="max-w-md mx-auto">
             <h1
-              class="text-3xl font-bold font-mono text-amber-800 mb-8 text-center"
+              class="text-3xl font-bold font-mono text-blue-900 mb-8 text-center"
             >
               {{ $t("register.title") }}
             </h1>
@@ -51,14 +51,14 @@
               >
                 <a-input
                   type="text"
-                  class="hover:border-amber-600 focus:border-amber-600 focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-700 font-mono"
-                  :class="['', { 'border-red-500 shake': errors.username }]"
+                  class="hover:border-blue-900 focus:border-blue-900 focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-900 border-blue-900 font-mono"
+                  :class="['', { 'border-red-900 shake': errors.username }]"
                   v-model:value="formModel.username"
                   :placeholder="$t('register.usernamePlaceholder')"
                   size="large"
                 >
                   <template #prefix>
-                    <UserOutlined class="text-amber-600 text-lg" />
+                    <UserOutlined class="text-blue-900 text-lg" />
                   </template>
                 </a-input>
               </a-form-item>
@@ -70,14 +70,14 @@
               >
                 <a-input
                   type="email"
-                  class="hover:border-amber-600 focus:border-amber-600 focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-700 font-mono"
-                  :class="['', { 'border-red-500 shake': errors.email }]"
+                  class="hover:border-blue-900 focus:border-blue-900 focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-900 border-blue-900 font-mono"
+                  :class="['', { 'border-red-900 shake': errors.email }]"
                   v-model:value="formModel.email"
                   :placeholder="$t('register.emailPlaceholder')"
                   size="large"
                 >
                   <template #prefix>
-                    <MailOutlined class="text-amber-600 text-lg" />
+                    <MailOutlined class="text-blue-900 text-lg" />
                   </template>
                 </a-input>
               </a-form-item>
@@ -88,14 +88,14 @@
                 :help="errors.password"
               >
                 <a-input-password
-                  class="hover:border-amber-600 focus:border-amber-600 focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-700 font-mono"
-                  :class="['', { 'border-red-500 shake': errors.password }]"
+                  class="hover:border-blue-900 focus:border-blue-900 focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-900 border-blue-900 font-mono"
+                  :class="['', { 'border-red-900 shake': errors.password }]"
                   v-model:value="formModel.password"
                   :placeholder="$t('register.passwordPlaceholder')"
                   size="large"
                 >
                   <template #prefix>
-                    <LockOutlined class="text-amber-600 text-lg" />
+                    <LockOutlined class="text-blue-900 text-lg" />
                   </template>
                 </a-input-password>
               </a-form-item>
@@ -107,8 +107,8 @@
                 class="flex items-center space-x-2"
               >
                 <a-input
-                  class="flex-grow hover:border-amber-600 focus:border-amber-600 focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-700 font-mono"
-                  :class="['', { 'border-red-500 shake': errors.captcha }]"
+                  class="hover:border-blue-900 focus:border-blue-900 focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-900 border-blue-900 font-mono flex-row"
+                  :class="['', { 'border-red-900 shake': errors.captcha }]"
                   v-model:value="formModel.captcha"
                   :placeholder="$t('login.captchaPlaceholder')"
                   size="large"
@@ -127,7 +127,7 @@
               <a-button
                 type="primary"
                 @click="handleCheckAndSendOtp"
-                class="w-full h-12 rounded-sm bg-amber-600 hover:bg-amber-700 border-none focus:border-none focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-700"
+                class="w-full h-12 rounded-sm bg-blue-900 hover:bg-gray-200 border-none focus:border-none focus:outline-none focus:ring-0 focus:shadow-none focus:bg-blue-900"
                 :loading="isLoadingPost"
               >
                 {{ $t("register.submitButton") }}
@@ -138,7 +138,7 @@
                   <div class="w-full border-t border-gray-200"></div>
                 </div>
                 <div class="relative flex justify-center text-sm">
-                  <span class="px-2 bg-white text-gray-500">
+                  <span class="px-2 bg-white text-gray-400">
                     {{ $t("register.orRegisterWith") }}
                   </span>
                 </div>
@@ -146,12 +146,12 @@
 
               <div class="grid grid-cols-2 gap-4">
                 <a-button
-                  class="h-12 rounded-lg border-2 hover:border-amber-500 hover:text-amber-600 transition-colors duration-300"
+                  class="h-12 rounded-lg border-1 hover:border-blue-900 hover:text-gray-600 transition-colors duration-300"
                 >
                   Google
                 </a-button>
                 <a-button
-                  class="h-12 rounded-lg border-2 hover:border-amber-500 hover:text-amber-600 transition-colors duration-300"
+                  class="h-12 rounded-lg border-1 hover:border-blue-900 hover:text-gray-600 transition-colors duration-300"
                 >
                   GitHub
                 </a-button>
@@ -160,7 +160,7 @@
               <div class="text-center mt-6">
                 <router-link
                   :to="{ name: 'LoginPage' }"
-                  class="text-amber-600 hover:text-amber-700 transition-colors"
+                  class="text-blue-900 hover:text-blue-700 transition-colors"
                 >
                   {{ $t("register.loginLink") }}
                 </router-link>
@@ -172,7 +172,7 @@
               <div
                 class="text-center mt-8 bg-white p-8 rounded-sm bg-opacity-80"
               >
-                <h1 class="text-3xl font-bold text-amber-600 mb-4">
+                <h1 class="text-3xl font-bold text-blue-900 mb-4">
                   {{ $t("register.otpTitle") }}
                 </h1>
                 <p class="text-gray-700 text-lg mb-6">
@@ -187,7 +187,7 @@
                       }
                     "
                     :disabled="countDown > 0"
-                    class="cursor-pointer text-amber-600 hover:text-amber-700 transition-colors duration-300"
+                    class="cursor-pointer text-blue-900 hover:text-blue-700 transition-colors duration-300"
                   >
                     {{
                       countDown <= 0
@@ -202,7 +202,7 @@
                       step = 1;
                     }
                   "
-                  class="text-amber-600 text-sm mb-6 mt-2 cursor-pointer underline"
+                  class="text-blue-900 text-sm mb-6 mt-2 cursor-pointer underline"
                 >
                   {{ $t("back.title") }}
                 </p>

@@ -2,6 +2,10 @@
     "project": {
         "name": "DevHelper"
     },
+    "role":{
+     "admin" : "Administrator",
+     "user" :"User"
+    },
     "about": {
         "title": "About DevHelper",
         "description": "DevHelper is a platform that provides comprehensive application development support.",
@@ -68,6 +72,11 @@
     },
     "nav": {
         "account": {
+            "information": "Account",
+            "personalInformation": "Personal information",
+            "changePassword": "Change password",
+            "securityAndPrivacy": "Security and Privacy",
+            "overview": "Overview",
             "title": "Account",
             "description": "Your account"
         },

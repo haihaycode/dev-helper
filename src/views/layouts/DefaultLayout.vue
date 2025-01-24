@@ -1,7 +1,7 @@
 <template>
   <a-layout>
     <HeaderComponet />
-    <a-layout-content class="bg-pan-left">
+    <a-layout-content class="">
       <router-view />
     </a-layout-content>
     <LanguageSelectorComponent />
@@ -19,30 +19,12 @@ export default defineComponent({
   components: { HeaderComponet, FooterComponent, LanguageSelectorComponent },
 });
 </script>
-
-<style lang="stylus" scoped>
-.header
-  display flex
-  align-items center
-  background-color #001529
-  padding 0 20px
-
-.logo
-  color #fff
-  font-size 24px
-  font-weight bold
-  margin-right 40px
-
-a-menu-item
-  font-size 16px
-
-a-menu-item:hover
-  background-color #1890ff
-  transition background-color 0.3s ease
-
-// .content
-//   background-image url('@/assets/bg/.bg-1.png')
-//   background-size cover
-//   background-position center
-//   background-repeat no-repeat
+<style>
+.ant-layout {
+  background: linear-gradient(
+    to bottom right,
+    #eaedf2,
+    rgba(136, 181, 250, 0.183)
+  ) !important;
+}
 </style>

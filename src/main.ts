@@ -7,6 +7,7 @@ import "ant-design-vue/dist/antd.css";
 import "@/assets/css/tailwind.css";
 import "@/assets/css/base.css";
 import "@/assets/css/animations.css";
+import "@/assets/css/primary.scss";
 import i18n from "@/services/i18n";
 import { VueFire, VueFireAuth } from "vuefire";
 
