@@ -1,5 +1,4 @@
 // models/user.ts
-// Define the structure for the User object
 import { BaseModel } from "./base";
 export interface User {
   a: string; // Role

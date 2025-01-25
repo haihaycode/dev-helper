@@ -145,7 +145,13 @@
                 </div>
               </div>
               <EditOutlined
+                @click="isVisible = true"
                 class="text-blue-900 absolute bottom-2 right-2 text-xl hover:text-2xl hover:text-blue-900"
+              />
+              <ModalUpdateInformationAccount
+                :isVisible="isVisible"
+                :user="null"
+                @update:isVisible="isVisible = $event"
               />
             </div>
           </div>
@@ -195,6 +201,7 @@ import siderComponent from "@/components/account/siderComponent.vue";
 import { User } from "@/models/user";
 import { getRole, getUser } from "@/services/auth/authService";
 import { ref, onMounted } from "vue";
+import ModalUpdateInformationAccount from "@/components/account/modalUpdateInformationAccount.vue";
 import {
   UserOutlined,
   LinkOutlined,
@@ -211,6 +218,7 @@ const user = ref<User | null>(null);
 onMounted(async () => {
   user.value = await getUser();
 });
+const isVisible = ref(false);
 </script>
 <style scoped>
 :deep(.slick-slide) {

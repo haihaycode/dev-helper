@@ -85,13 +85,24 @@
                 "title": "Profile",
                 "description": "Your profile",
                 "name": "Fullname",
+                "username": "Username",
                 "address": "Address",
                 "phone": "Phone",
                 "dob": "Date of birth",
                 "nickname": "Nickname",
                 "hobbies": "Hobbies",
                 "createdTime": "Created time",
-                "updatedTime": "Updated time"
+                "updatedTime": "Updated time",
+                "email": "Email",
+                "password": "Password",
+                "confirmPassword": "Confirm password",
+                "updateInformation": "Update information",
+                "cancel": "Cancel",
+                "update": "Update",
+                "validate": {
+                    "fullName": "Fullname is required",
+                    "username": "Username is required"
+                }
             }
         },
         "setting": {
@@ -198,6 +209,12 @@
             "message": "Sorry, something went wrong.",
             "button": "Go back"
         }
+    },
+    "empty":{
+        "description": "No data",
+        "placeholder": "...",
+        "required": "*"
+
     },
     "tools":{
         "type":{

@@ -1,4 +1,4 @@
-export interface Loading {
+export interface ILoading {
   isLoadingGet: boolean;
   isLoadingPost: boolean;
   isLoadingPut: boolean;
