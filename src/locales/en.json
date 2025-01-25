@@ -78,7 +78,21 @@
             "securityAndPrivacy": "Security and Privacy",
             "overview": "Overview",
             "title": "Account",
-            "description": "Your account"
+            "description": "Your account",
+            "informationProfile" : "Information Profile",
+            "historyActivity": "History Activity",
+            "profile":{
+                "title": "Profile",
+                "description": "Your profile",
+                "name": "Fullname",
+                "address": "Address",
+                "phone": "Phone",
+                "dob": "Date of birth",
+                "nickname": "Nickname",
+                "hobbies": "Hobbies",
+                "createdTime": "Created time",
+                "updatedTime": "Updated time"
+            }
         },
         "setting": {
             "title": "Setting",

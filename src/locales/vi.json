@@ -54,7 +54,21 @@
         "securityAndPrivacy": "Bảo mật và quyền riêng tư",
         "overview": "Tổng quan",
         "title": "Tài khoản",
-        "description": "Tài khoản của bạn"
+        "description": "Tài khoản của bạn",
+        "informationProfile" : "Hồ sơ thông tin",
+        "historyActivity": "Lịch sử hoạt động",
+        "profile": {
+          "title": "Hồ sơ",
+          "description": "Hồ sơ cá nhân của bạn",
+          "name": "Họ và tên",
+          "address": "Địa chỉ",
+          "phone": "Số điện thoại",
+          "dob": "Ngày sinh",
+          "nickname": "Biệt danh",
+          "hobbies": "Sở thích",
+          "createdTime": "Thời gian tạo",
+          "updatedTime": "Cập nhật lần cuối"
+        }
       },
       "setting": {
         "title": "Cài đặt",
