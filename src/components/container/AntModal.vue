@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { defineComponent, ref } from "vue";
+import { defineComponent } from "vue";
 import { Modal as AntModal } from "ant-design-vue";
 
 export default defineComponent({
@@ -38,6 +38,4 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-/* Style tùy chỉnh cho Modal (nếu cần) */
-</style>
+<style scoped></style>

@@ -2,9 +2,9 @@
 // store/modules/loading.ts
 
 import { MutationTree, ActionTree, GetterTree } from "vuex";
-import { Loading } from "@/models/loading";
+import { ILoading } from "@/models/loading";
 
-export interface State extends Loading {
+export interface State extends ILoading {
   isLoadingGet: boolean;
   isLoadingPost: boolean;
   isLoadingPut: boolean;
@@ -21,7 +21,7 @@ const state: State = {
 };
 
 // Getters interface
-const getters: GetterTree<Loading, any> = {
+const getters: GetterTree<ILoading, any> = {
   isLoadingGet: (state) => state.isLoadingGet,
   isLoadingPost: (state) => state.isLoadingPost,
   isLoadingPut: (state) => state.isLoadingPut,
@@ -30,7 +30,7 @@ const getters: GetterTree<Loading, any> = {
 };
 
 // Actions interface
-const actions: ActionTree<Loading, any> = {
+const actions: ActionTree<ILoading, any> = {
   setLoadingGet({ commit }, isLoading: boolean) {
     commit("SET_LOADING_GET", isLoading);
   },
@@ -53,7 +53,7 @@ const actions: ActionTree<Loading, any> = {
 };
 
 // Mutations interface
-const mutations: MutationTree<Loading> = {
+const mutations: MutationTree<ILoading> = {
   SET_LOADING_GET(state, isLoading: boolean) {
     state.isLoadingGet = isLoading;
   },
