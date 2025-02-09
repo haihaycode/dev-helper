@@ -12,33 +12,6 @@
         :model="formModelInformationProfile"
         :rules="rules"
       >
-        <a-form-item name="username">
-          <p class="text-blue-900 font-mono font-bold">
-            {{ $t("nav.account.profile.username") }}
-          </p>
-          <p class="text-gray-500 px-2">
-            {{
-              formModelInformationProfile.username || $t("empty.description")
-            }}
-          </p>
-        </a-form-item>
-        <a-form-item name="email">
-          <p class="text-blue-900 font-mono font-bold">
-            {{ $t("nav.account.profile.email") }}
-          </p>
-          <p class="text-gray-500 px-2">
-            {{ formModelInformationProfile.email || $t("empty.description") }}
-          </p>
-        </a-form-item>
-        <a-form-item name="phone">
-          <p class="text-blue-900 font-mono font-bold">
-            {{ $t("nav.account.profile.phone") }}
-          </p>
-          <p class="text-gray-500 px-2">
-            {{ formModelInformationProfile.phone || $t("empty.description") }}
-          </p>
-        </a-form-item>
-        <a-divider />
         <a-form-item
           name="fullName"
           :rules="rules.fullName"
@@ -57,13 +30,27 @@
             v-model="formModelInformationProfile.fullName"
           />
         </a-form-item>
-
-        <a-form-item
-          name="address"
-          :rules="rules.address"
-          :validate-status="errors.address ? 'error' : ''"
-          :help="errors.address"
-        >
+        <a-form-item name="nickname">
+          <p class="text-blue-900 font-mono font-bold">
+            {{ $t("nav.account.profile.nickname") }}
+          </p>
+          <a-input
+            placeholder="..."
+            class="border-blue-900 focus:border-blue-700 hover:border-blue-700"
+            v-model="formModelInformationProfile.nickname"
+          />
+        </a-form-item>
+        <a-form-item name="hobbies">
+          <p class="text-blue-900 font-mono font-bold">
+            {{ $t("nav.account.profile.hobbies") }}
+          </p>
+          <a-input
+            placeholder="..."
+            class="border-blue-900 focus:border-blue-700 hover:border-blue-700"
+            v-model="formModelInformationProfile.hobbies"
+          />
+        </a-form-item>
+        <a-form-item name="address">
           <p class="text-blue-900 font-mono font-bold">
             {{ $t("nav.account.profile.address") }}
           </p>
@@ -161,11 +148,6 @@ const rules = ref({
       message: i18n.global.t("nav.account.profile.validate.username"),
     },
   ],
-  address: [
-    {
-      required: false,
-    },
-  ],
   dob: [
     {
       required: false,
@@ -183,8 +165,11 @@ const handleUpdateInformationProfile = async () => {
       const errorMessages: Record<string, string> = {};
       err.inner.forEach((error) => {
         if (error.path) {
-          errorMessages[error.path as keyof typeof rules.value] =
-            rules.value[error.path as keyof typeof rules.value][0].message;
+          const rule = rules.value[error.path as keyof typeof rules.value][0];
+          if (rule && "message" in rule) {
+            errorMessages[error.path as keyof typeof rules.value] =
+              rule.message;
+          }
         }
       });
       errors.value = errorMessages;

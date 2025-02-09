@@ -49,6 +49,7 @@
         class="mt-4 ml-2 mr-2 border-l-2 pl-2 border-gray-200"
       >
         <li
+          @click="$router.push({ name: 'AccountInformation' })"
           :class="
             $route.path.includes('account/tab=information')
               ? ' bg-gray-300 bg-opacity-15 text-blue-900 font-bold'
@@ -60,6 +61,21 @@
             @click="$router.push({ name: 'AccountInformation' })"
             class="hover:text-gray-700 hover:underline"
             >{{ $t("nav.account.personalInformation") }}</a
+          >
+        </li>
+        <li
+          @click="$router.push({ name: 'AccountCalendarWork' })"
+          :class="
+            $route.path.includes('account/tab=calendar-work')
+              ? ' bg-gray-300 bg-opacity-15 text-blue-900 font-bold'
+              : ''
+          "
+          class="p-2 mb-2 text-left rounded-md hover:bg-gray-200 hover:cursor-pointer hover:text-gray-700"
+        >
+          <a
+            @click="$router.push({ name: 'AccountCalendarWork' })"
+            class="hover:text-gray-700 hover:underline"
+            >{{ $t("nav.account.calendarWork") }}</a
           >
         </li>
         <li

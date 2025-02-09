@@ -81,6 +81,7 @@
             "description": "Your account",
             "informationProfile" : "Information Profile",
             "historyActivity": "History Activity",
+            "calendarWork": "Calendar Work",
             "profile":{
                 "title": "Profile",
                 "description": "Your profile",

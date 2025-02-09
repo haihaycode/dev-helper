@@ -57,6 +57,7 @@
         "description": "Tài khoản của bạn",
         "informationProfile" : "Hồ sơ thông tin",
         "historyActivity": "Lịch sử hoạt động",
+        "calendarWork": "Lịch công việc",
         "profile": {
           "title": "Hồ sơ",
           "description": "Hồ sơ cá nhân của bạn",
