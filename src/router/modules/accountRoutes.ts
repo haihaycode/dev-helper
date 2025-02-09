@@ -2,6 +2,7 @@ import { RouteRecordRaw } from "vue-router";
 import DefaultLayout from "@/views/layouts/DefaultLayout.vue";
 import AccountOverview from "@/views/pages/auth-pages/authenticated-pages/AccountOverview.vue";
 import AccountInformation from "@/views/pages/auth-pages/authenticated-pages/AccountInfomation.vue";
+import AccountCalendarWork from "@/views/pages/auth-pages/authenticated-pages/AccountCalendarWork.vue";
 const accountRoutes: Array<RouteRecordRaw> = [
   {
     path: "/a",
@@ -44,6 +45,15 @@ const accountRoutes: Array<RouteRecordRaw> = [
             },
             name: "AccountInformation",
             component: AccountInformation,
+          },
+          {
+            path: "account/tab=calendar-work",
+            meta: {
+              tag: "infomationaccount",
+              requiresAuth: true,
+            },
+            name: "AccountCalendarWork",
+            component: AccountCalendarWork,
           },
         ],
       },

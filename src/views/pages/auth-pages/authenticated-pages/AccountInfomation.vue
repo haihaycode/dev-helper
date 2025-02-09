@@ -42,13 +42,29 @@
                     >{{ user?.username }}
                   </span>
                 </div>
-                <p
-                  class="relative p-4 font-mono text-gray-500 mt-1 bg-gray-200 bg-opacity-15"
+                <div
+                  @click="isBioEdit = true"
+                  class="relative p-4 min-h-[100px] font-mono text-gray-500 mt-1 bg-gray-200 bg-opacity-15 truncate"
                 >
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Laboriosam nam suscipit magnam culpa doloribus
-                  <EditOutlined class="text-gray-400 absolute top-1 right-1" />
-                </p>
+                  <textarea
+                    v-if="isBioEdit"
+                    v-model="bio"
+                    placeholder="..."
+                    @blur="
+                      () => {
+                        isBioEdit = false;
+                      }
+                    "
+                    class="bg-opacity-0 bg-none w-full h-full border-none focus:border-none hover:border-none focus:outline-none focus:ring-0 focus:shadow-none focus:bg-blue-100 focus:bg-opacity-0"
+                  />
+                  <p v-if="!isBioEdit" class="cursor-pointer">
+                    {{ bio || $t("empty.description") }}
+                  </p>
+                  <EditOutlined
+                    @click="isBioEdit = true"
+                    class="text-gray-400 absolute top-1 right-1"
+                  />
+                </div>
                 <div class="social-media flex space-x-3 mt-2 w-[100px] mx-auto">
                   <a-popover title="Facebook" trigger="click">
                     <template #content>
@@ -209,16 +225,16 @@ import {
   GithubOutlined,
   TwitterOutlined,
   EditOutlined,
-  ArrowDownOutlined,
-  ArrowUpOutlined,
 } from "@ant-design/icons-vue";
-import { BellAlertIcon, ListBulletIcon } from "@heroicons/vue/24/outline";
 
 const user = ref<User | null>(null);
+const bio = ref<string>("");
+
 onMounted(async () => {
   user.value = await getUser();
 });
 const isVisible = ref(false);
+const isBioEdit = ref(false);
 </script>
 <style scoped>
 :deep(.slick-slide) {
