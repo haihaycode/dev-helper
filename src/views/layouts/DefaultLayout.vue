@@ -1,7 +1,7 @@
 <template>
   <a-layout>
     <HeaderComponet />
-    <a-layout-content class="">
+    <a-layout-content class="min-h-screen">
       <router-view />
     </a-layout-content>
     <LanguageSelectorComponent />
