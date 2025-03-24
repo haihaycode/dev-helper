@@ -278,8 +278,4 @@ onMounted(() => {
     transition: all 0.3s ease;
   }
 }
-
-.container {
-  max-width: 1280px;
-}
 </style>

@@ -3,6 +3,10 @@
     "project": {
       "name": "DevHelper"
     },
+    "role":{
+     "admin" : "Quản trị viên",
+     "user" :"Người dùng "
+    },
     "meta": {
         "home": {
           "title": "Trang chủ - DevHelper",
@@ -29,21 +33,92 @@
         "en" : "Tiếng Anh"
         },
     "message": {
-      "hello": "Xin chào Thế giới!"
+      "hello": "Xin chào Thế giới!",
+      "success": "Thành công",
+      "error": "Lỗi",
+      "warning": "Cảnh báo",
+      "info": "Thông tin",
+      "default": "Có lỗi xảy ra",
+      "loading": "Đang tải",
+      "notFound": "Không tìm thấy",
+      "unauthorized": "Không được phép",
+      "forbidden": "Bị cấm",
+      "badRequest": "Yêu cầu không hợp lệ",
+      "internalServerError": "Lỗi máy chủ nội bộ"
     },
     "nav": {
+      "account": {
+        "information": "Tài khoản",
+        "personalInformation": "Thông tin cá nhân",
+        "changePassword": "Đổi mật khẩu",
+        "securityAndPrivacy": "Bảo mật và quyền riêng tư",
+        "overview": "Tổng quan",
+        "title": "Tài khoản",
+        "description": "Tài khoản của bạn",
+        "informationProfile" : "Hồ sơ thông tin",
+        "historyActivity": "Lịch sử hoạt động",
+        "calendarWork": "Lịch công việc",
+        "profile": {
+          "title": "Hồ sơ",
+          "description": "Hồ sơ cá nhân của bạn",
+          "name": "Họ và tên",
+          "username": "Tên đăng nhập",
+          "address": "Địa chỉ",
+          "phone": "Số điện thoại",
+          "dob": "Ngày sinh",
+          "nickname": "Biệt danh",
+          "hobbies": "Sở thích",
+          "createdTime": "Thời gian tạo",
+          "updatedTime": "Cập nhật lần cuối",
+          "email": "Email",
+          "password": "Mật khẩu",
+          "confirmPassword": "Xác nhận mật khẩu",
+          "updateInformation": "Cập nhật thông tin",
+          "cancel": "Hủy",
+          "update": "Cập nhật",
+          "validate": {
+            "fullName": "Họ và tên là bắt buộc",
+            "username": "Tên đăng nhập là bắt buộc"
+          }
+        }
+      },
+      "setting": {
+        "title": "Cài đặt",
+        "description": "Cài đặt "
+      },
       "home": "Trang chủ",
       "about": "Về chúng tôi",
       "tool": "Công cụ ",
       "contact": "Liên hệ",
-      "translate": "Ngôn ngữ"
+      "translate": "Ngôn ngữ",
+      "login": "Đăng nhập",
+      "register": "Đăng ký",
+      "logout": "Đăng xuất"
+    },
+    "back": {
+      "title": "Quay lại",
+      "backtohome": "Trở về trang chủ",
+      "description": "Quay lại"
     },
     "loading": {
       "default": "Đang tải..."
     },
+    "otp": {
+      "title": "Vui lòng nhập mã OTP đã được gửi đến email của bạn",
+      "description": "Vui lòng nhập mã OTP đã được gửi đến email của bạn",
+      "submitButton": "Xác nhận OTP",
+      "optResend": "Gửi lại OTP",
+      "otpSentSuccess": "Mã OTP đã được gửi đến email của bạn",
+      "otpSentDescription": "Vui lòng kiểm tra email của bạn để nhận mã OTP",
+      "otpMismatch": "Mã OTP không đúng",
+      "otpMismatchDescription": "Vui lòng nhập mã OTP đúng",
+      "emailMismatch": "Email không đúng",
+      "emailMismatchDescription": "Vui lòng nhập email đúng với email ban đầu",
+      "otp6Digits": "Vui lòng nhập 6 chữ số OTP",
+      "otpCountDown": "Gửi lại OTP trong"
+    },
     "login": {
       "title": "Chào mừng trở lại DevHelper! Vui lòng đăng nhập",
-
       "usernamePlaceholder": "Tên đăng nhập",
       "passwordPlaceholder": "Mật khẩu",
       "submitButton": "Đăng nhập",
@@ -54,7 +129,11 @@
       "orLoginWith": "hoặc đăng nhập với",
       "welcomeMessage": "Chào mừng đến với DevHelper",
       "description": "Nền tảng hỗ trợ phát triển ứng dụng toàn diện",
-      "orContinueWith": "Hoặc tiếp tục với"
+      "orContinueWith": "Hoặc tiếp tục với",
+      "captchaError": "Vui lòng nhập mã CAPTCHA!",
+      "captchaMismatch": "Mã CAPTCHA không đúng!",
+      "captchaPlaceholder": "Nhập mã CAPTCHA",
+      "otpSent": "Mã OTP đã được gửi đến email của bạn"
     },
     "register": {
       "title": "Tham gia với chúng tôi: Tạo tài khoản của bạn",
@@ -68,7 +147,17 @@
       "errorMessage": "Vui lòng điền đầy đủ thông tin!",
       "invalidEmail": "Vui lòng nhập địa chỉ email hợp lệ!",
       "loginLink": "Đã có tài khoản? Đăng nhập tại đây",
-      "orRegisterWith": "hoặc tạo tài khoản với"
+      "orRegisterWith": "hoặc tạo tài khoản với",
+      "otpTitle": "Nhập mã OTP",
+      "otpDescription": "Vui lòng nhập mã OTP đã được gửi đến email của bạn",
+      "otpSubmitButton": "Xác nhận OTP",
+      "optResend": "Gửi lại OTP",
+      "otpSentSuccess": "Mã OTP đã được gửi đến email của bạn",
+      "otpSentDescription": "Vui lòng kiểm tra email của bạn để nhận mã OTP",
+      "otpMismatch": "Mã OTP không đúng",
+      "otpMismatchDescription": "Vui lòng nhập mã OTP đúng",
+      "emailMismatch": "Email không đúng",
+      "emailMismatchDescription": "Vui lòng nhập email đúng với email ban đầu"
     },
     "firebase": {
       "auth": {
@@ -79,6 +168,11 @@
         "operationNotAllowed": "Hoạt động không được phép.",
         "defaultError": "Đã xảy ra lỗi không xác định."
       }
+    },
+    "empty":{
+        "description": "Không có",
+        "placeholder": "...",
+        "required": "*"
     },
     "error": {
       "api": {

@@ -1,6 +1,5 @@
 <!-- eslint-disable vue/no-unused-components -->
 <!-- eslint-disable vue/no-unused-components -->
-<!-- filepath: /d:/.my.project/vue3x/DevHelper/src/components/container/AntInput.vue -->
 <template>
   <div :class="['relative', customClass]">
     <a-input
@@ -10,7 +9,7 @@
       class="h-12 rounded-lg hover:border-amber-500 focus:border-amber-500 focus:outline-none focus:ring-0"
       :class="[
         'w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500',
-        { 'border-red-500': error },
+        { 'border-red-500 ': error },
       ]"
     />
     <a-tooltip v-if="error" :title="error" placement="bottom">

@@ -1,18 +1,61 @@
 import { RouteRecordRaw } from "vue-router";
 import DefaultLayout from "@/views/layouts/DefaultLayout.vue";
-import { dynamicImport } from "@/utils/importUtils";
-
-const components = dynamicImport(["views/pages/folder-test/base-pages"]);
-
+import AccountOverview from "@/views/pages/auth-pages/authenticated-pages/AccountOverview.vue";
+import AccountInformation from "@/views/pages/auth-pages/authenticated-pages/AccountInfomation.vue";
+import AccountCalendarWork from "@/views/pages/auth-pages/authenticated-pages/AccountCalendarWork.vue";
 const accountRoutes: Array<RouteRecordRaw> = [
   {
-    path: "/r/base",
+    path: "/a",
+    name: "Account",
     component: DefaultLayout,
     children: [
       {
-        path: "base-page",
-        name: "BasePage",
-        component: components["views/pages/folder-test/base-pages"],
+        path: "",
+        name: "AccountOverview",
+        children: [
+          {
+            path: "account",
+            meta: {
+              requiresAuth: true,
+              tag: "overviewaccount",
+            },
+            name: "AccountOverview",
+            component: AccountOverview,
+          },
+          {
+            path: "account/tab=overview",
+            meta: {
+              requiresAuth: true,
+              tag: "overviewaccount",
+            },
+            name: "AccountOverview",
+            component: AccountOverview,
+          },
+        ],
+      },
+      {
+        name: "AccountInformation",
+        path: "",
+        children: [
+          {
+            path: "account/tab=information",
+            meta: {
+              tag: "infomationaccount",
+              requiresAuth: true,
+            },
+            name: "AccountInformation",
+            component: AccountInformation,
+          },
+          {
+            path: "account/tab=calendar-work",
+            meta: {
+              tag: "infomationaccount",
+              requiresAuth: true,
+            },
+            name: "AccountCalendarWork",
+            component: AccountCalendarWork,
+          },
+        ],
       },
     ],
   },

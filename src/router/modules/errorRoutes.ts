@@ -1,6 +1,7 @@
 import { RouteRecordRaw } from "vue-router";
 import { dynamicImport } from "@/utils/importUtils";
 import { generateCryptoId } from "@/utils/uniqueIdUtils";
+import { setPreviousRoute } from "@/utils/routeUtils";
 
 const components = dynamicImport([
   "views/pages/folder-errors/NotFoundPage",
@@ -14,6 +15,7 @@ const errorRoutes: Array<RouteRecordRaw> = [
     component: components["views/pages/folder-errors/NotFoundPage"],
     beforeEnter: (to, from, next) => {
       if (!to.query.errorId) {
+        setPreviousRoute(from.path);
         const errorId = generateCryptoId();
         to.query.errorId = errorId;
         next({ ...to, query: { ...to.query, errorId } });

@@ -2,6 +2,10 @@
     "project": {
         "name": "DevHelper"
     },
+    "role":{
+     "admin" : "Administrator",
+     "user" :"User"
+    },
     "about": {
         "title": "About DevHelper",
         "description": "DevHelper is a platform that provides comprehensive application development support.",
@@ -52,17 +56,90 @@
     }
   },
     "message": {
-        "hello": "Hello World!"
+        "hello": "Hello World!",
+        "success": "Success",
+        "error": "Error !",
+        "warning": "Warning",
+        "info": "Info",
+        "default": "Something went wrong",
+        "loading": "Loading",
+        "notFound": "Not Found",
+        "unauthorized": "Unauthorized",
+        "forbidden": "Forbidden",
+        "badRequest": "Bad Request",
+        "internalServerError": "Internal Server Error"
+
     },
     "nav": {
+        "account": {
+            "information": "Account",
+            "personalInformation": "Personal information",
+            "changePassword": "Change password",
+            "securityAndPrivacy": "Security and Privacy",
+            "overview": "Overview",
+            "title": "Account",
+            "description": "Your account",
+            "informationProfile" : "Information Profile",
+            "historyActivity": "History Activity",
+            "calendarWork": "Calendar Work",
+            "profile":{
+                "title": "Profile",
+                "description": "Your profile",
+                "name": "Fullname",
+                "username": "Username",
+                "address": "Address",
+                "phone": "Phone",
+                "dob": "Date of birth",
+                "nickname": "Nickname",
+                "hobbies": "Hobbies",
+                "createdTime": "Created time",
+                "updatedTime": "Updated time",
+                "email": "Email",
+                "password": "Password",
+                "confirmPassword": "Confirm password",
+                "updateInformation": "Update information",
+                "cancel": "Cancel",
+                "update": "Update",
+                "validate": {
+                    "fullName": "Fullname is required",
+                    "username": "Username is required"
+                }
+            }
+        },
+        "setting": {
+            "title": "Setting",
+            "description": "Setting "
+        },
         "home": "Home",
         "about": "About Us",
         "tool": "Tool dev",
         "contact": "Contact",
-        "translate": "Language"
+        "translate": "Language",
+        "login": "Login",
+        "register": "Register",
+        "logout": "Logout"
+    },
+    "back": {
+        "title": "Back to page ",
+        "backtohome": "Back to home page",
+        "description": "Back to page"
     },
     "loading": {
         "default": "Loading..."
+    },
+    "otp": {
+        "title": "Please enter the OTP code sent to your email",
+        "description": "Please enter the OTP code sent to your email",
+        "submitButton": "Verify OTP",
+        "optResend": "Resend OTP",
+        "otpSentSuccess": "OTP code has been sent to your email",
+        "otpSentDescription": "Please check your email to receive the OTP code",
+        "otpMismatch": "OTP code is incorrect",
+        "otpMismatchDescription": "Please enter the correct OTP code",
+        "emailMismatch": "Email is incorrect",
+        "emailMismatchDescription": "Please enter the correct email",
+        "otp6Digits": "Please enter 6 digits OTP code",
+        "otpCountDown": "Resend OTP in"
     },
     "login": {
         "title": "Welcome Back DevHelper ! Please Log In",
@@ -76,7 +153,10 @@
         "orLoginWith": " or login with ",
         "welcomeMessage": "Welcome to DevHelper",
         "description": "Comprehensive application development support platform",
-        "orContinueWith": "Or continue with"
+        "orContinueWith": "Or continue with",
+        "captchaError": "Please enter the captcha code!",
+        "captchaMismatch": "The captcha code is incorrect!",
+        "captchaPlaceholder": "Enter the captcha code"
     },
     "register": {
         "title": "Join Us: Create Your Account",
@@ -90,7 +170,17 @@
         "errorMessage": "Please fill out all fields !",
         "invalidEmail": "Please enter a valid email address!",
         "loginLink": "Already have an account? Login here",
-        "orRegisterWith": " or create an account with "
+        "orRegisterWith": " or create an account with ",
+        "otpTitle": "Enter OTP code",
+        "otpDescription": "Please enter the OTP code sent to your email",
+        "otpSubmitButton": "Verify OTP",
+        "optResend": "Resend OTP",
+        "otpSentSuccess": "OTP code has been sent to your email",
+        "otpSentDescription": "Please check your email to receive the OTP code",
+        "otpMismatch": "OTP code is incorrect",
+        "otpMismatchDescription": "Please enter the correct OTP code",
+        "emailMismatch": "Email is incorrect",
+        "emailMismatchDescription": "Please enter the correct email"
     },
     "firebase": {
           "auth": {
@@ -120,6 +210,12 @@
             "message": "Sorry, something went wrong.",
             "button": "Go back"
         }
+    },
+    "empty":{
+        "description": "No data",
+        "placeholder": "...",
+        "required": "*"
+
     },
     "tools":{
         "type":{

@@ -10,7 +10,16 @@ import store from "@/store";
 import { message } from "ant-design-vue";
 import router from "@/router";
 import i18n from "@/services/i18n";
+import { getAccessToken } from "@/utils/global";
+import { notification } from "ant-design-vue";
 
+interface AxiosRequestConfig extends InternalAxiosRequestConfig {
+  loading?: boolean;
+  authenticate?: boolean;
+}
+interface AxiosResponseConfig extends AxiosResponse {
+  config: AxiosRequestConfig;
+}
 const Axios: AxiosInstance = axios.create({
   baseURL: HOST,
   timeout: MAX_TIME_OUT,
@@ -36,39 +45,40 @@ const processQueue = (error: any, token: string | null = null) => {
 };
 
 Axios.interceptors.request.use(
-  (config: InternalAxiosRequestConfig) => {
+  (config: AxiosRequestConfig) => {
     const method = config.method?.toUpperCase();
-    switch (method) {
-      case "GET":
-        store.dispatch("loading/setLoadingGet", true);
-        break;
-      case "POST":
-        store.dispatch("loading/setLoadingPost", true);
-        break;
-      case "PUT":
-        store.dispatch("loading/setLoadingPut", true);
-        break;
-      case "DELETE":
-        store.dispatch("loading/setLoadingDelete", true);
-        break;
-      case "PATCH":
-        store.dispatch("loading/setLoadingPatch", true);
-        break;
-      default:
-        break;
+    if (config.loading !== undefined ? config.loading : true) {
+      switch (method) {
+        case "GET":
+          store.dispatch("loading/setLoadingGet", true);
+          break;
+        case "POST":
+          store.dispatch("loading/setLoadingPost", true);
+          break;
+        case "PUT":
+          store.dispatch("loading/setLoadingPut", true);
+          break;
+        case "DELETE":
+          store.dispatch("loading/setLoadingDelete", true);
+          break;
+        case "PATCH":
+          store.dispatch("loading/setLoadingPatch", true);
+          break;
+        default:
+          break;
+      }
     }
-
-    if (config.method === "post") {
-      console.log("request : post");
-    }
-
-    const token = store.getters["auth/token"];
-    if (token) {
+    const token = getAccessToken();
+    if (
+      token && config.authenticate !== undefined ? config.authenticate : true
+    ) {
       if (!config.headers) {
         config.headers = {} as AxiosHeaders;
       }
       (config.headers as AxiosHeaders)["Authorization"] = `Bearer ${token}`;
     }
+    const locale = store.getters["locale/locale"];
+    (config.headers as AxiosHeaders)["Accept-Language"] = locale || "en";
     return config;
   },
   (error: any) => {
@@ -78,7 +88,7 @@ Axios.interceptors.request.use(
 );
 
 Axios.interceptors.response.use(
-  (response: AxiosResponse) => {
+  (response: AxiosResponseConfig) => {
     const method = response.config.method?.toUpperCase();
     switch (method) {
       case "GET":
@@ -99,11 +109,10 @@ Axios.interceptors.response.use(
       default:
         break;
     }
-
     if (response.status === SUCCESS_CODE) {
       return response;
     } else {
-      message.error(response.data.message || "Có lỗi xảy ra!");
+      message.error(response.data.message || i18n.global.t("message.error"));
       return Promise.reject(response);
     }
   },
@@ -131,19 +140,28 @@ Axios.interceptors.response.use(
     }
 
     if (error.response && error.response.status === 404) {
-      message.error(i18n.global.t("error.api.dataNotFound"));
+      notification.error({
+        message: i18n.global.t("error.api.dataNotFound"),
+        description: "The page you are looking for does not exist.",
+      });
       router.push({ name: "NotFound" });
       return Promise.reject(error);
     }
 
     if (error.message === "Network Error") {
-      message.error(i18n.global.t("error.api.networkError"));
+      notification.error({
+        message: i18n.global.t("error.api.networkError"),
+        description: "The page you are looking for does not exist.",
+      });
       router.push({ name: "ServerError" });
       return Promise.reject(error);
     }
 
     if (error.code === "ECONNABORTED" && error.message.includes("timeout")) {
-      message.error(i18n.global.t("error.api.timeoutError"));
+      notification.error({
+        message: i18n.global.t("error.api.timeoutError"),
+        description: "The page you are looking for does not exist.",
+      });
       router.push({ name: "ServerError" });
       return Promise.reject(error);
     }
@@ -182,7 +200,10 @@ Axios.interceptors.response.use(
             .catch((err: Error) => {
               processQueue(err, null);
               store.dispatch("auth/logout");
-              message.error(i18n.global.t("error.api.sessionExpired"));
+              notification.error({
+                message: i18n.global.t("error.api.sessionExpired"),
+                description: "The page you are looking for does not exist.",
+              });
               reject(err);
             })
             .finally(() => {
@@ -190,15 +211,20 @@ Axios.interceptors.response.use(
             });
         });
       } else {
-        message.error(i18n.global.t("error.api.sessionExpired"));
+        notification.error({
+          message: i18n.global.t("error.api.sessionExpired"),
+          description: "The page you are looking for does not exist.",
+        });
         store.dispatch("auth/logout");
       }
     }
     if (error.response && error.response.data) {
-      message.error(error.response.data.message || "Có lỗi xảy ra!");
+      notification.error({
+        message: error.response.data.message || "Có lỗi xảy ra!",
+        description: "The page you are looking for does not exist.",
+      });
     }
     return Promise.reject(error);
   }
 );
-
 export default Axios;

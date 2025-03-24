@@ -1,10 +1,9 @@
-<!-- filepath: /D:/.my.project/vue3x/DevHelper/src/components/setting-locale-pages/LanguageSelectorComponent.vue -->
 <template>
   <div>
     <a-button
       v-if="!showModal"
       shape="circle"
-      class="fixed bottom-4 right-4 z-50 bg-yellow-500 hover:bg-white text-white hover:text-yellow-500 focus:outline-none"
+      class="fixed bottom-4 right-4 z-50 bg-blue-900 hover:bg-white text-white hover:text-blue-900 focus:outline-none"
       @click="showModal = true"
     >
       {{ selectedLanguage }}</a-button
@@ -25,7 +24,7 @@
           v-for="(lang, key) in languages"
           :key="key"
           :value="key"
-          class="block mb-2 hover:text-yellow-500"
+          class="block mb-2 hover:text-blue-900"
           :class="{
             'bg-gray-500 text-white ': selectedLanguage === key,
           }"

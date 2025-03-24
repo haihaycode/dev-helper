@@ -4,12 +4,15 @@ import defaultRoutes from "./modules/defaultRoutes";
 import errorRoutes from "./modules/errorRoutes";
 import basePages from "./modules/baseRoutes";
 import toolsRoutes from "./modules/toolsRoutes";
+import accountRoutes from "./modules/accountRoutes";
+import middleware from "@/middleware/middleware";
 
 const routes: Array<RouteRecordRaw> = [
   ...defaultRoutes,
   ...errorRoutes,
   ...basePages,
   ...toolsRoutes,
+  ...accountRoutes,
   // ...adminRoutes,
 ];
 
@@ -18,7 +21,13 @@ const router = createRouter({
   routes,
 });
 
-router.afterEach((to) => {
+router.beforeEach((to, from, next) => {
+  middleware(to, from, next);
+});
+
+router.afterEach((to, from) => {
+  console.log("to", to);
+  console.log("from", from);
   const nearestWithTitle = to.matched
     .slice()
     .reverse()
@@ -35,9 +44,7 @@ router.afterEach((to) => {
   Array.from(document.querySelectorAll("[data-vue-router-controlled]")).map(
     (el) => el.parentNode?.removeChild(el)
   );
-
   if (!nearestWithMeta) return;
-
   (nearestWithMeta.meta.metaTags as any[])
     .map((tagDef: any) => {
       const tag = document.createElement("meta");

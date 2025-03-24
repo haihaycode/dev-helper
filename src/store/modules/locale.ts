@@ -1,16 +1,16 @@
 import Cookies from "js-cookie";
 
 // modules/locale.ts
-export interface LocaleState {
+export interface ILocaleState {
   locale: string;
 }
 
-const state: LocaleState = {
+const state: ILocaleState = {
   locale: Cookies.get("locale") || "en",
 };
 
 const getters = {
-  locale: (state: LocaleState): string => state.locale,
+  locale: (state: ILocaleState): string => state.locale,
 };
 
 const actions = {
@@ -22,7 +22,7 @@ const actions = {
 };
 
 const mutations = {
-  SET_LOCALE(state: LocaleState, locale: string): void {
+  SET_LOCALE(state: ILocaleState, locale: string): void {
     state.locale = locale;
   },
 };

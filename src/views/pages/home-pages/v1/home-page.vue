@@ -1,25 +1,18 @@
-<!-- eslint-disable vue/no-unused-components -->
 <template>
   <div class="home-page">
-    <AntText>
-      <h1>Home Page</h1>
+    <AntText class="">
+      <h1 :class="animation">Home Page</h1>
     </AntText>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, defineAsyncComponent } from "vue";
-import { dynamicImport } from "@/utils/importUtils";
-const components = dynamicImport(["components/container/AntText"]);
-export default defineComponent({
-  name: "home-page",
-  components: {
-    // eslint-disable-next-line vue/no-unused-components
-    AntText: defineAsyncComponent(components["components/container/AntText"]),
-  },
-  setup() {
-    return {};
-  },
+<script setup lang="ts">
+import AntText from "@/components/container/AntText.vue";
+import { ref, effect } from "vue";
+const animation = ref("");
+
+effect(() => {
+  animation.value = "zoomInDown";
 });
 </script>
 

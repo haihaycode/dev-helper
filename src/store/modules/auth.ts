@@ -65,7 +65,7 @@ const mutations = {
     state.token = null;
     state.refreshToken = null;
     state.user = null;
-    router.push({ name: "login" });
+    router.push({ name: "LoginPage" });
   },
 };
 
