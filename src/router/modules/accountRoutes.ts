@@ -1,4 +1,5 @@
 import { RouteRecordRaw } from "vue-router";
+import MobileInfoLayout from "@/views/pages/auth-pages/authenticated-pages/MobileInfoLayout.vue";
 import DefaultLayout from "@/views/layouts/DefaultLayout.vue";
 import AccountOverview from "@/views/pages/auth-pages/authenticated-pages/AccountOverview.vue";
 import AccountInformation from "@/views/pages/auth-pages/authenticated-pages/AccountInfomation.vue";
@@ -21,6 +22,15 @@ const accountRoutes: Array<RouteRecordRaw> = [
             },
             name: "AccountOverview",
             component: AccountOverview,
+          },
+          {
+            path: "account/tab=mobile",
+            meta: {
+              requiresAuth: true,
+              tag: "MobileInfoLayout",
+            },
+            name: "MobileInfoLayout",
+            component: MobileInfoLayout,
           },
           {
             path: "account/tab=overview",

@@ -124,7 +124,7 @@
             <a-menu>
               <a-menu-item
                 key="0"
-                @click="$router.push({ name: 'AccountOverview' })"
+                @click="$router.push({ name: 'MobileInfoLayout' })"
               >
                 <a-anchor-link :title="user?.email">
                   <div class="flex items-center">
