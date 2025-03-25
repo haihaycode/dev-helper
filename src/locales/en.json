@@ -106,6 +106,17 @@
                 }
             }
         },
+        "l" :{
+         "english": {
+            "title": "English",
+            "description": "Learn English",
+            "overview":"Overview",
+            "vocabulary":"Vocabulary",
+            "listVocabulary":"List Vocabulary",
+            "listGrammar":"List Grammar"
+         },
+         "japanese": "Learn Japanese"
+        },
         "setting": {
             "title": "Setting",
             "description": "Setting "
