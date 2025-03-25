@@ -24,6 +24,13 @@
           v-t="'nav.about'"
         ></router-link>
         <router-link
+          to="/l/english"
+          class="primary-text-light hover:text-gray-400 py-4"
+          active-class="border-b-2 border-blue-200"
+          exact-active-class="border-b-2 border-blue-200"
+          v-t="'nav.l.english.description'"
+        ></router-link>
+        <router-link
           to="/t/tools"
           class="primary-text-light hover:text-gray-400 py-4"
           active-class="text-yellow-500 font-bold"
@@ -171,6 +178,13 @@
           to="/"
           @click.native="showDrawer = false"
           v-t="'nav.home'"
+        ></router-link>
+        <router-link
+          to="/l/english/tab=mobile"
+          @click.native="showDrawer = false"
+          active-class="border-l-4 pl-2 border-yellow-500"
+          exact-active-class="border-l-4 pl-2 border-yellow-500"
+          v-t="'nav.l.english.description'"
         ></router-link>
         <router-link
           to="/about"

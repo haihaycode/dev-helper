@@ -6,6 +6,7 @@ import basePages from "./modules/baseRoutes";
 import toolsRoutes from "./modules/toolsRoutes";
 import accountRoutes from "./modules/accountRoutes";
 import middleware from "@/middleware/middleware";
+import learnEnlishRoutes from "./modules/learnEnglishRoutes";
 
 const routes: Array<RouteRecordRaw> = [
   ...defaultRoutes,
@@ -13,6 +14,7 @@ const routes: Array<RouteRecordRaw> = [
   ...basePages,
   ...toolsRoutes,
   ...accountRoutes,
+  ...learnEnlishRoutes,
   // ...adminRoutes,
 ];
 
