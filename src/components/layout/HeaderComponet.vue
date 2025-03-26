@@ -1,7 +1,9 @@
 <!-- eslint-disable vue/no-deprecated-v-on-native-modifier -->
 <template>
   <header class="primary-navbar text-white shadow-md">
-    <div class="container mx-auto flex justify-between items-center px-4">
+    <div
+      class="container mx-auto flex justify-between items-center px-4 font-bold"
+    >
       <!-- Logo -->
       <router-link
         to="/"
@@ -17,13 +19,6 @@
           v-t="'nav.home'"
         ></router-link>
         <router-link
-          to="/about"
-          class="primary-text-light hover:text-gray-400 py-4"
-          active-class="text-yellow-500 font-bold"
-          exact-active-class="border-b-2 border-blue-200"
-          v-t="'nav.about'"
-        ></router-link>
-        <router-link
           to="/l/english"
           class="primary-text-light hover:text-gray-400 py-4"
           active-class="border-b-2 border-blue-200"
@@ -35,16 +30,8 @@
           class="primary-text-light hover:text-gray-400 py-4"
           active-class="text-yellow-500 font-bold"
           exact-active-class="border-b-2 border-blue-200"
-          v-t="'nav.tool'"
+          v-t="'nav.solution'"
         ></router-link>
-        <router-link
-          to="/contact"
-          class="primary-text-light hover:text-gray-400 py-4"
-          active-class="text-yellow-500 font-bold"
-          exact-active-class="border-b-2 border-blue-200"
-          v-t="'nav.contact'"
-        ></router-link>
-
         <!-- User Info Menu -->
         <a-dropdown v-if="user" :trigger="['click']">
           <p
@@ -187,25 +174,11 @@
           v-t="'nav.l.english.description'"
         ></router-link>
         <router-link
-          to="/about"
-          @click.native="showDrawer = false"
-          active-class="border-l-4 pl-2 border-yellow-500"
-          exact-active-class="border-l-4 pl-2 border-yellow-500"
-          v-t="'nav.about'"
-        ></router-link>
-        <router-link
           to="/t/tools"
           @click.native="showDrawer = false"
           active-class="border-l-4 pl-2 border-yellow-500"
           exact-active-class="border-l-4 pl-2 border-yellow-500"
-          v-t="'nav.tool'"
-        ></router-link>
-        <router-link
-          to="/contact"
-          @click.native="showDrawer = false"
-          active-class="border-l-4 pl-2 border-yellow-500"
-          exact-active-class="border-l-4 pl-2 border-yellow-500"
-          v-t="'nav.contact'"
+          v-t="'nav.solution'"
         ></router-link>
       </nav>
     </a-drawer>

@@ -113,7 +113,11 @@
             "overview":"Overview",
             "vocabulary":"Vocabulary",
             "listVocabulary":"List Vocabulary",
-            "listGrammar":"List Grammar"
+            "listGrammar":"List Grammar",
+            "btn":{
+                "addVocabulary": "Add Vocabulary",
+                "addGrammar": "Add Grammar"
+            }
          },
          "japanese": "Learn Japanese"
         },
@@ -124,6 +128,7 @@
         "home": "Home",
         "about": "About Us",
         "tool": "Tool dev",
+        "solution": "Solution",
         "contact": "Contact",
         "translate": "Language",
         "login": "Login",
