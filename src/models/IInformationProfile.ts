@@ -1,4 +1,4 @@
-import { BaseModel } from "./base";
+import { IBaseModel } from "./base";
 
 export interface IInformationProfile {
   email: string;
@@ -18,4 +18,4 @@ export interface IInformationProfile {
   linkInstagram: string;
   linkTwitter: string;
 }
-export type IInformationProfileResponse = BaseModel<IInformationProfile>;
+export type IInformationProfileResponse = IBaseModel<IInformationProfile>;

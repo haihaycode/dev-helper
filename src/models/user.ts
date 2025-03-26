@@ -1,5 +1,5 @@
 // models/user.ts
-import { BaseModel } from "./base";
+import { IBaseModel } from "./base";
 export interface User {
   a: string; // Role
   e: string; // Name/email
@@ -16,8 +16,8 @@ export interface Otp {
   otp: string;
   email: string;
 }
-export type UserResponse = BaseModel<User>;
-export type OtpResponse = BaseModel<Otp>;
+export type UserResponse = IBaseModel<User>;
+export type OtpResponse = IBaseModel<Otp>;
 
 // Define the structure for AuthState
 export interface AuthState {

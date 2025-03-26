@@ -2,7 +2,8 @@
   <LearnEnglishPagePatternLayout :title="$t('nav.l.english.listVocabulary')">
     <template #content>
       <div id="listVocabulary">
-        <div class="flex justify-end navigation mb-2">
+        <div class="flex justify-between navigation mb-2">
+          <SearchFilter @search="handleFetchVocabulary" />
           <button
             v-t="'nav.l.english.btn.addVocabulary'"
             class="px-2 py-2 bg-blue-900 hover:bg-blue-400 rounded-sm text-white"
@@ -27,9 +28,12 @@
 import LearnEnglishPagePatternLayout from "../LearnEnglishPagePatternLayout.vue";
 import ModalVocabularyAdd from "@/components/learn-english/vocabulary/ModalVocabularyAdd.vue";
 import TableVocabulariesComponent from "@/components/learn-english/vocabulary/TableVocabulariesComponent.vue";
+import SearchFilter from "@/components/learn-english/vocabulary/SearchFilter.vue";
 import { ref } from "vue";
-
 const showModalVoabularyAdd = ref(false);
+const handleFetchVocabulary = (searchValue: string) => {
+  console.log(searchValue);
+};
 const listVocabulary = [
   {
     english: "Hello",

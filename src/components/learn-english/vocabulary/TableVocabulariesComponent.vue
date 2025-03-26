@@ -5,6 +5,7 @@
       :columns="columns"
       rowKey="english"
       @rowClick="handleRowClick"
+      :locale="{ emptyText: 'No vocabularies available' }"
     ></a-table>
     <a-drawer
       title="Vocabulary Details"
@@ -36,47 +37,43 @@
 
 <script lang="ts" setup>
 import { ref, defineProps, onMounted, onUnmounted } from "vue";
+import { IVocabulary } from "@/models/IIearnEnglish";
 import "ant-design-vue/dist/antd.css";
-const isSmallScreen = ref(false);
+import { IPageInfo } from "@/models/base";
 
 defineProps({
   vocabularyList: {
-    type: Array as () => {
-      english: string;
-      translate: string;
-      image?: string;
-      example_sentence?: string;
-    }[],
+    type: Array as () => Array<IVocabulary>,
+    required: false,
+  },
+  PageInfo: {
+    type: Object as () => IPageInfo<null>,
     required: false,
   },
 });
+
+const isSmallScreen = ref(false);
 const columns = [
   {
     title: "English",
     dataIndex: "english",
     key: "english",
+    class: "px-2 rounded-sm text-black-900 font-bold",
   },
   {
     title: "Translate",
     dataIndex: "translate",
     key: "translate",
+    class: "px-2 rounded-sm text-blue-900 font-bold",
   },
 ];
 
 const drawerVisible = ref(false);
-const selectedVocabulary = ref<{
-  english: string;
-  translate: string;
-  image?: string;
-  example_sentence?: string;
-} | null>(null);
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const handleRowClick = (record: any) => {
+const selectedVocabulary = ref<IVocabulary | null>(null);
+const handleRowClick = (record: IVocabulary) => {
   selectedVocabulary.value = record;
   drawerVisible.value = true;
 };
-
 const handleResize = () => {
   isSmallScreen.value = window.innerWidth <= 640;
 };
@@ -85,7 +82,6 @@ onMounted(() => {
   handleResize();
   window.addEventListener("resize", handleResize);
 });
-
 onUnmounted(() => {
   window.removeEventListener("resize", handleResize);
 });
