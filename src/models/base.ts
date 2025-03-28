@@ -14,17 +14,16 @@ export interface IBaseModelList<T> {
   error?: string;
 }
 export interface IBaseModelPaged<T> {
-  success: boolean;
-  timestamp: string;
-  data?: T[];
-  pageInfo?: IPageInfo<T>;
+  success?: boolean;
+  timestamp?: string;
+  data?: T;
   message?: string;
   error?: string;
 }
 export interface IPageInfo<T> {
-  currentPage: number;
+  page: number;
   pageSize: number;
-  totalItems: number;
+  totalCount: number;
   totalPages: number;
-  items?: T[];
+  results?: T[];
 }

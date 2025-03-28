@@ -1,14 +1,14 @@
 import Axios from "@/api/axios";
 import { OtpResponse, UserResponse } from "@/models/user";
 import { AxiosRequestConfig } from "axios";
-
+import { getPath, api } from "./config";
 export const registerUser = async (
   username: string,
   password: string,
   email: string,
   role?: string
 ): Promise<UserResponse> => {
-  const response = await Axios.post("/api/auth/register", {
+  const response = await Axios.post(getPath(api.auth.user.register), {
     username,
     password,
     email,
@@ -23,19 +23,23 @@ export const loginUser = async (
   loading = true,
   authenticate = false
 ): Promise<UserResponse> => {
-  const response = await Axios.post("/api/auth/login", { username, password }, {
-    loading,
-    authenticate,
-  } as AxiosRequestConfig);
+  const response = await Axios.post(
+    getPath(api.auth.user.login),
+    { username, password },
+    {
+      loading,
+      authenticate,
+    } as AxiosRequestConfig
+  );
   return response.data as UserResponse;
 };
 
 export const sendOtp = async (email: string): Promise<OtpResponse> => {
-  const response = await Axios.post("/api/auth/send-otp", { email });
+  const response = await Axios.post(getPath(api.auth.user.sendOtp), { email });
   return response.data as OtpResponse;
 };
 
 export const getCurrentUser = async (): Promise<UserResponse> => {
-  const response = await Axios.get("/api/auth/current-user");
+  const response = await Axios.get(getPath(api.auth.user.getCurrentUser));
   return response.data as UserResponse;
 };
