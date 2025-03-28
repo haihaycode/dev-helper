@@ -3,7 +3,7 @@
     <template #content>
       <div id="listVocabulary">
         <div class="flex justify-between navigation mb-2">
-          <SearchFilter @search="handleFetchVocabulary" />
+          <SearchFilter @search="handleSearch" />
           <button
             v-t="'nav.l.english.btn.addVocabulary'"
             class="px-2 py-2 bg-blue-900 hover:bg-blue-400 rounded-sm text-white"
@@ -12,7 +12,10 @@
         </div>
         <div id="content ">
           <TableVocabulariesComponent
+            :page-info="vocabulariesResponse?.data"
             :vocabularyList="vocabulariesResponse?.data?.results"
+            @page-change="handlePageChange"
+            @page-size-change="handlePageSizeChange"
           />
         </div>
       </div>
@@ -40,12 +43,11 @@ import {
 import { getAllVocabularies } from "@/api/vocabulary";
 
 const showModalVoabularyAdd = ref(false); //modal add vocabulary
-
 const vocabulariesResponse = ref<IVocabulariesResponse>();
 const vocabularyRequest = ref<IVocabularyRequest>({
   query: "",
   page: 1,
-  pageSize: 5,
+  pageSize: 10,
   is_deleted: false,
   orderBy: {
     column: "id",
@@ -53,17 +55,40 @@ const vocabularyRequest = ref<IVocabularyRequest>({
   },
 });
 
-const handleFetchVocabulary = async (searchValue: string) => {
-  vocabularyRequest.value.query = searchValue;
-  vocabulariesResponse.value = await getAllVocabularies(
-    vocabularyRequest.value
-  );
+const handleSearch = (value: string) => {
+  vocabularyRequest.value.query = value;
+  vocabularyRequest.value.page = 1;
+  handleFetchVocabulary();
+};
+const handlePageChange = (page: number) => {
+  vocabularyRequest.value.page = page;
+  handleFetchVocabulary();
+};
+const handlePageSizeChange = ({
+  current,
+  pageSize,
+}: {
+  current: number;
+  pageSize: number;
+}) => {
+  vocabularyRequest.value.page = current;
+  vocabularyRequest.value.pageSize = pageSize;
+  handleFetchVocabulary();
+};
+const handleFetchVocabulary = async () => {
+  try {
+    vocabulariesResponse.value = await getAllVocabularies(
+      vocabularyRequest.value
+    );
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 onMounted(() => {
-  handleFetchVocabulary("");
+  handleFetchVocabulary();
 });
 watchEffect(() => {
-  handleFetchVocabulary("");
+  handleFetchVocabulary();
 });
 </script>

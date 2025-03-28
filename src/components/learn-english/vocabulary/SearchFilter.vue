@@ -1,7 +1,7 @@
 <template>
   <div id="searchFilter" class="min-w-2 max-w-3xl">
     <div class="flex items-center justify-center rounded-sm">
-      <a-input
+      <input
         type="text"
         v-model="searchValue"
         @input="onInput"
@@ -16,23 +16,13 @@
 import { ref } from "vue";
 import { debounce } from "lodash";
 import { defineEmits } from "vue";
-
-// Reactive search value
 const searchValue = ref("");
-
-// Emit event for parent component
 const emit = defineEmits(["search"]);
-
-// Debounced emit function
+const debounceDelay = 500;
 const debouncedEmit = debounce(() => {
-  console.log("Debounced function executed"); // Debug if debounce works
-  console.log("Debounced search value:", searchValue.value); // Debug if searchValue updates
   emit("search", searchValue.value);
-}, 300);
-
-// Input handler
+}, debounceDelay);
 const onInput = () => {
-  console.log("Raw input value:", searchValue.value); // Debug immediate input value
-  debouncedEmit(); // Call debounced function
+  debouncedEmit();
 };
 </script>
