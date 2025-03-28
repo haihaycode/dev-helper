@@ -11,18 +11,28 @@
     </div>
   </div>
 </template>
+
 <script lang="ts" setup>
 import { ref } from "vue";
+import { debounce } from "lodash";
+import { defineEmits } from "vue";
+
+// Reactive search value
 const searchValue = ref("");
-// eslint-disable-next-line no-undef
+
+// Emit event for parent component
 const emit = defineEmits(["search"]);
-let debounceTimer: ReturnType<typeof setTimeout> | null = null;
+
+// Debounced emit function
+const debouncedEmit = debounce(() => {
+  console.log("Debounced function executed"); // Debug if debounce works
+  console.log("Debounced search value:", searchValue.value); // Debug if searchValue updates
+  emit("search", searchValue.value);
+}, 300);
+
+// Input handler
 const onInput = () => {
-  if (debounceTimer) {
-    clearTimeout(debounceTimer);
-  }
-  debounceTimer = setTimeout(() => {
-    emit("search", searchValue.value);
-  }, 300);
+  console.log("Raw input value:", searchValue.value); // Debug immediate input value
+  debouncedEmit(); // Call debounced function
 };
 </script>
