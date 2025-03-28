@@ -6,7 +6,16 @@
       rowKey="english"
       @rowClick="handleRowClick"
       :locale="{ emptyText: 'No vocabularies available' }"
+      :pagination="false"
     ></a-table>
+    <PaginationComponent
+      :pageInfo="pageInfo"
+      @pageChange="handlePageChange"
+      @pageSizeChange="
+        handlePageSizeChange(pageInfo?.page ?? 1, pageInfo?.pageSize ?? 10)
+      "
+    />
+
     <a-drawer
       title="Vocabulary Details"
       :visible="drawerVisible"
@@ -36,21 +45,32 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, defineProps, onMounted, onUnmounted } from "vue";
+import { ref, defineProps, onMounted, onUnmounted, PropType } from "vue";
 import { IVocabulary } from "@/models/IIearnEnglish";
 import "ant-design-vue/dist/antd.css";
 import { IPageInfo } from "@/models/base";
+import { defineEmits } from "vue";
+import PaginationComponent from "@/components/navigation/PaginationComponent.vue";
 
 defineProps({
   vocabularyList: {
     type: Array as () => Array<IVocabulary>,
     required: false,
   },
-  PageInfo: {
-    type: Object as () => IPageInfo<null>,
+  pageInfo: {
+    type: Object as PropType<IPageInfo<IVocabulary> | undefined>,
     required: false,
   },
 });
+
+const emit = defineEmits(["pageChange", "pageSizeChange"]);
+const handlePageChange = (page: number) => {
+  emit("pageChange", page);
+};
+const handlePageSizeChange = (current: number, pageSize: number) => {
+  console.log(current + "-" + pageSize);
+  emit("pageSizeChange", { current, pageSize });
+};
 
 const isSmallScreen = ref(false);
 const columns = [
@@ -77,7 +97,6 @@ const handleRowClick = (record: IVocabulary) => {
 const handleResize = () => {
   isSmallScreen.value = window.innerWidth <= 640;
 };
-
 onMounted(() => {
   handleResize();
   window.addEventListener("resize", handleResize);
