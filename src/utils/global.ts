@@ -1,6 +1,18 @@
 import { User } from "@/models/user";
 import store from "@/store";
 
+export const PAGE_SIZE_DEFALT = 10;
+export const PAGE_FIRST = 1;
+export const QUERY_DEFAUlT = "";
+export const ORDER_BY = {
+  COLUMN_DEFAULT: "id",
+  ORDER_DEFAULT: "desc",
+};
+export const IS_DELETED = {
+  is_Irue: true,
+  is_False: false,
+};
+
 export function loadCookie(name: string) {
   const cookie = document.cookie
     .split("; ")

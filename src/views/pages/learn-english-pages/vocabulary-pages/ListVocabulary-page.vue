@@ -41,17 +41,24 @@ import {
   IVocabulariesResponse,
 } from "@/models/IIearnEnglish";
 import { getAllVocabularies } from "@/api/vocabulary";
+import {
+  IS_DELETED,
+  ORDER_BY,
+  PAGE_FIRST,
+  PAGE_SIZE_DEFALT,
+  QUERY_DEFAUlT,
+} from "@/utils/global";
 
 const showModalVoabularyAdd = ref(false); //modal add vocabulary
 const vocabulariesResponse = ref<IVocabulariesResponse>();
 const vocabularyRequest = ref<IVocabularyRequest>({
-  query: "",
-  page: 1,
-  pageSize: 10,
-  is_deleted: false,
+  query: QUERY_DEFAUlT,
+  page: PAGE_FIRST,
+  pageSize: PAGE_SIZE_DEFALT,
+  is_deleted: IS_DELETED.is_False,
   orderBy: {
-    column: "id",
-    order: "desc",
+    column: ORDER_BY.COLUMN_DEFAULT,
+    order: ORDER_BY.ORDER_DEFAULT,
   },
 });
 
@@ -66,13 +73,11 @@ const handlePageChange = (page: number) => {
 };
 const handlePageSizeChange = ({
   current,
-  pageSize,
 }: {
-  current: number;
-  pageSize: number;
+  current: { current: number; pageSize: number };
 }) => {
-  vocabularyRequest.value.page = current;
-  vocabularyRequest.value.pageSize = pageSize;
+  vocabularyRequest.value.page = current.current;
+  vocabularyRequest.value.pageSize = current.pageSize;
   handleFetchVocabulary();
 };
 const handleFetchVocabulary = async () => {
