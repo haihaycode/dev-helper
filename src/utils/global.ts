@@ -13,6 +13,15 @@ export const IS_DELETED = {
   is_False: false,
 };
 
+export const SCROLL_TO = {
+  TOP: () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  },
+  BOTTOM: () => {
+    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+  },
+};
+
 export function loadCookie(name: string) {
   const cookie = document.cookie
     .split("; ")
