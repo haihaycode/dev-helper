@@ -11,9 +11,7 @@
     <PaginationComponent
       :pageInfo="pageInfo"
       @pageChange="handlePageChange"
-      @pageSizeChange="
-        handlePageSizeChange(pageInfo?.page ?? 1, pageInfo?.pageSize ?? 10)
-      "
+      @pageSizeChange="handlePageSizeChange"
     />
 
     <a-drawer
@@ -68,7 +66,6 @@ const handlePageChange = (page: number) => {
   emit("pageChange", page);
 };
 const handlePageSizeChange = (current: number, pageSize: number) => {
-  console.log(current + "-" + pageSize);
   emit("pageSizeChange", { current, pageSize });
 };
 

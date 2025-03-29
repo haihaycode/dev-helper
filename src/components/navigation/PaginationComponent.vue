@@ -1,9 +1,9 @@
 <template>
   <div id="PaginationComponent">
     <a-pagination
-      :current="pageInfo?.page"
-      :pageSize="pageInfo?.pageSize"
-      :total="pageInfo?.totalCount"
+      :current="Number(pageInfo?.page) ?? 1"
+      :pageSize="Number(pageInfo?.pageSize ?? 10)"
+      :total="Number(pageInfo?.totalCount) || 0"
       @change="handlePageChange"
       show-size-changer
       @showSizeChange="handlePageSizeChange"
@@ -17,6 +17,7 @@ import { defineProps, defineEmits } from "vue";
 import { IPageInfo } from "@/models/base";
 import { IVocabulary } from "@/models/IIearnEnglish";
 import { PropType } from "vue";
+import { SCROLL_TO } from "@/utils/global";
 
 defineProps({
   pageInfo: {
@@ -26,9 +27,11 @@ defineProps({
 });
 const emit = defineEmits(["pageChange", "pageSizeChange"]);
 const handlePageChange = (page: number) => {
+  SCROLL_TO.TOP();
   emit("pageChange", page);
 };
 const handlePageSizeChange = (current: number, pageSize: number) => {
+  SCROLL_TO.TOP();
   emit("pageSizeChange", { current, pageSize });
 };
 </script>

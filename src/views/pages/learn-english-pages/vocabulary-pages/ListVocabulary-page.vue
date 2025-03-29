@@ -34,52 +34,71 @@ import LearnEnglishPagePatternLayout from "../LearnEnglishPagePatternLayout.vue"
 import ModalVocabularyAdd from "@/components/learn-english/vocabulary/ModalVocabularyAdd.vue";
 import TableVocabulariesComponent from "@/components/learn-english/vocabulary/TableVocabulariesComponent.vue";
 import SearchFilter from "@/components/learn-english/vocabulary/SearchFilter.vue";
-import { ref, watchEffect, onMounted } from "vue";
+import { ref, onMounted, watchEffect } from "vue";
 
 import {
   IVocabularyRequest,
   IVocabulariesResponse,
 } from "@/models/IIearnEnglish";
 import { getAllVocabularies } from "@/api/vocabulary";
+import {
+  IS_DELETED,
+  ORDER_BY,
+  PAGE_FIRST,
+  PAGE_SIZE_DEFALT,
+  QUERY_DEFAUlT,
+} from "@/utils/global";
 
-const showModalVoabularyAdd = ref(false); //modal add vocabulary
+// States
+const showModalVoabularyAdd = ref(false); // modal add vocabulary
 const vocabulariesResponse = ref<IVocabulariesResponse>();
 const vocabularyRequest = ref<IVocabularyRequest>({
-  query: "",
-  page: 1,
-  pageSize: 10,
-  is_deleted: false,
+  query: QUERY_DEFAUlT,
+  page: PAGE_FIRST,
+  pageSize: PAGE_SIZE_DEFALT,
+  is_deleted: IS_DELETED.is_False,
   orderBy: {
-    column: "id",
-    order: "desc",
+    column: ORDER_BY.COLUMN_DEFAULT,
+    order: ORDER_BY.ORDER_DEFAULT,
   },
 });
+const loadedPages = ref<{ [key: number]: IVocabulariesResponse }>({});
 
 const handleSearch = (value: string) => {
   vocabularyRequest.value.query = value;
   vocabularyRequest.value.page = 1;
+  loadedPages.value = {};
   handleFetchVocabulary();
 };
+
 const handlePageChange = (page: number) => {
   vocabularyRequest.value.page = page;
   handleFetchVocabulary();
 };
+
 const handlePageSizeChange = ({
   current,
-  pageSize,
 }: {
-  current: number;
-  pageSize: number;
+  current: { current: number; pageSize: number };
 }) => {
-  vocabularyRequest.value.page = current;
-  vocabularyRequest.value.pageSize = pageSize;
+  vocabularyRequest.value.page = current.current;
+  vocabularyRequest.value.pageSize = current.pageSize;
+  loadedPages.value = {};
   handleFetchVocabulary();
 };
+
 const handleFetchVocabulary = async () => {
+  const currentPage = vocabularyRequest.value.page;
+  if (currentPage !== undefined && loadedPages.value[currentPage]) {
+    vocabulariesResponse.value = loadedPages.value[currentPage];
+    return;
+  }
   try {
-    vocabulariesResponse.value = await getAllVocabularies(
-      vocabularyRequest.value
-    );
+    const response = await getAllVocabularies(vocabularyRequest.value);
+    vocabulariesResponse.value = response;
+    if (currentPage !== undefined) {
+      loadedPages.value[currentPage] = response;
+    }
   } catch (error) {
     console.error(error);
   }
@@ -88,6 +107,7 @@ const handleFetchVocabulary = async () => {
 onMounted(() => {
   handleFetchVocabulary();
 });
+
 watchEffect(() => {
   handleFetchVocabulary();
 });
