@@ -250,8 +250,6 @@ Axios.interceptors.response.use(
                 console.log("try get token from api refreshToken");
                 console.log(data);
                 store.dispatch("auth/setToken", data.accessToken);
-                Axios.defaults.headers.common["Authorization"] =
-                  "Bearer " + data.accessToken;
                 store.dispatch("auth/setRefreshToken", data.refreshToken);
                 processQueue(null, data.accessToken);
                 resolve(Axios(originalRequest));
