@@ -10,8 +10,8 @@
     :size="size"
     :html-type="htmlType"
   >
-    <template v-if="loading">{{ loadingText }}</template>
-    <template v-else><slot></slot></template>
+    <div v-if="loading">{{ loadingText }}</div>
+    <div v-else><slot></slot></div>
   </a-button>
 </template>
 <script lang="ts">
@@ -49,7 +49,7 @@ export default defineComponent({
     buttonClass: {
       type: String,
       default:
-        "bg-yellow-500 text-white hover:bg-yellow-600 focus:outline-none outline-none ring-0 border-none",
+        "w-full bg-blue-800 hover:bg-blue-600 text-white px-4 py-6 rounded transition",
     },
     loading: {
       type: Boolean,

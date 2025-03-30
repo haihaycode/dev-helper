@@ -23,7 +23,13 @@
       <ModalVocabularyAdd
         v-if="showModalVoabularyAdd"
         :modelValue="showModalVoabularyAdd"
-        @update:modelValue="showModalVoabularyAdd = $event"
+        @update:modelValue="
+          ($event) => {
+            showModalVoabularyAdd = $event;
+            loadedPages = {};
+            handleFetchVocabulary();
+          }
+        "
         @close="showModalVoabularyAdd = false"
       />
     </template>

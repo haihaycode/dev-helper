@@ -5,6 +5,7 @@
     :visible="visible"
     @cancel="closeModal"
     @ok="closeModal"
+    :footer="isVisibleFooter ?? null"
   >
     <slot></slot>
   </a-modal>
@@ -28,6 +29,11 @@ export default defineComponent({
     customClass: {
       type: String,
       default: "",
+    },
+    isVisibleFooter: {
+      requied: false,
+      type: Object,
+      default: null,
     },
   },
   methods: {
