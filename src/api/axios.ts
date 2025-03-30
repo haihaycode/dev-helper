@@ -13,6 +13,8 @@ import {
   THROTTLE_DELAY,
   MAX_REQUESTS,
   BLOCK_TIME,
+  api,
+  getPath,
 } from "@/api/config";
 import store from "@/store";
 import { message } from "ant-design-vue";
@@ -234,17 +236,27 @@ Axios.interceptors.response.use(
         originalRequest._retry = true;
         isRefreshing = true;
         return new Promise((resolve, reject) => {
-          Axios.post("/api/public/refresh", {
+          Axios.post(getPath(api.auth.user.refreshToken), {
             refreshToken: store.getters["auth/refreshToken"],
           })
-            .then((response: AxiosResponse<{ token: string }>) => {
-              const { data } = response;
-              store.dispatch("auth/setToken", data.token);
-              Axios.defaults.headers.common["Authorization"] =
-                "Bearer " + data.token;
-              processQueue(null, data.token);
-              resolve(Axios(originalRequest));
-            })
+            .then(
+              (
+                response: AxiosResponse<{
+                  accessToken: string;
+                  refreshToken: string; //new
+                }>
+              ) => {
+                const { data } = response;
+                console.log("try get token from api refreshToken");
+                console.log(data);
+                store.dispatch("auth/setToken", data.accessToken);
+                Axios.defaults.headers.common["Authorization"] =
+                  "Bearer " + data.accessToken;
+                store.dispatch("auth/setRefreshToken", data.refreshToken);
+                processQueue(null, data.accessToken);
+                resolve(Axios(originalRequest));
+              }
+            )
             .catch((err: Error) => {
               processQueue(err, null);
               store.dispatch("auth/logout");

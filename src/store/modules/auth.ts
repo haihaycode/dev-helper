@@ -26,10 +26,12 @@ const getters = {
 };
 const actions = {
   setToken({ commit }: { commit: Function }, token: string): void {
-    Cookies.set("tokenU", token, { expires: 1 }); // expires: 1 là 1 ngày
+    Cookies.set("tokenU", token, { expires: 1 });
     commit("SET_TOKEN", token);
     const decoded = jwtDecode<User>(token);
-    Cookies.set("userU", JSON.stringify(decoded), { expires: 1 });
+    Cookies.set("userU", JSON.stringify(decoded), {
+      expires: 1,
+    });
     commit("SET_USER", decoded);
   },
 
