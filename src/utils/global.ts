@@ -1,5 +1,7 @@
 import { User } from "@/models/user";
 import store from "@/store";
+import i18n from "@/services/i18n";
+import { string } from "yup";
 
 export const PAGE_SIZE_DEFALT = 10;
 export const PAGE_FIRST = 1;
@@ -69,3 +71,21 @@ export function getUser() {
 export function setUser(user: User) {
   store.dispatch("auth/setUser", user);
 }
+export const translate = (p0: string) => {
+  return i18n.global.t(p0);
+};
+
+export const fileToBase64 = (file: File): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      if (reader.result) {
+        resolve(reader.result as string);
+      }
+    };
+    reader.onerror = (error) => {
+      reject(error);
+    };
+  });
+};

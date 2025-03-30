@@ -74,3 +74,8 @@
     transition: all 0.3s ease;
   }
 }
+
+
+.dashed-border {
+  border-bottom: 1px dashed #1d4ed8;
+}

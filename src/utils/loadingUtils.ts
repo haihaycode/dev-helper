@@ -1,14 +1,16 @@
 import store from "@/store";
 
-export function getLoadingGet() {
+export const getLoadingGet = (): boolean => {
   return store.getters["loading/isLoadingGet"];
-}
-export function getLoadingPost() {
+};
+export const getLoadingPost = (): boolean => {
   return store.getters["loading/isLoadingPost"];
-}
-export function getLoadingPut() {
+};
+
+export const getLoadingPut = (): boolean => {
   return store.getters["loading/isLoadingPut"];
-}
-export function getLoadingDelete() {
+};
+export const getLoadingDelete = (): boolean => {
   return store.getters["loading/isLoadingDelete"];
-}
+};
+

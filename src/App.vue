@@ -7,10 +7,7 @@
       class="min-h-screen"
     >
       <!-- Thêm hiệu ứng chờ với transition -->
-      <transition
-        name="fade-wait"
-        mode="out-in"
-      >
+      <transition name="fade-wait" mode="out-in">
         <router-view />
       </transition>
     </a-spin>

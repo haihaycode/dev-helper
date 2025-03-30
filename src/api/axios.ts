@@ -5,7 +5,7 @@ import axios, {
   InternalAxiosRequestConfig,
   AxiosHeaders,
 } from "axios";
-import { MAX_TIME_OUT, HOST, SUCCESS_CODE } from "@/api/config";
+import { MAX_TIME_OUT, HOST, SUCCESS_CODE, ERROR_CODE } from "@/api/config";
 import store from "@/store";
 import { message } from "ant-design-vue";
 import router from "@/router";
@@ -109,8 +109,11 @@ Axios.interceptors.response.use(
       default:
         break;
     }
-    if (response.status === SUCCESS_CODE) {
+    if (response.status in SUCCESS_CODE) {
       return response;
+    } else if (response.status in ERROR_CODE) {
+      message.error(response.data.message || i18n.global.t("message.error"));
+      return Promise.reject(response);
     } else {
       message.error(response.data.message || i18n.global.t("message.error"));
       return Promise.reject(response);

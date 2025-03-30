@@ -1,9 +1,11 @@
 import Axios from "@/api/axios";
 import {
   IVocabulariesResponse,
+  IVocabulary,
   IVocabularyRequest,
 } from "@/models/IIearnEnglish";
 import { getPath, api } from "./config";
+import { IBaseModel } from "@/models/base";
 
 export const getAllVocabularies = async (
   body: IVocabularyRequest
@@ -12,4 +14,11 @@ export const getAllVocabularies = async (
     params: body,
   });
   return response.data as IVocabulariesResponse;
+};
+
+export const createVocabulary = async (
+  body: IVocabulary
+): Promise<IBaseModel<IVocabulary>> => {
+  const response = await Axios.post(getPath(api.vocabulary.create), body);
+  return response.data as IBaseModel<IVocabulary>;
 };
