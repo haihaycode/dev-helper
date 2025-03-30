@@ -5,12 +5,24 @@ import axios, {
   InternalAxiosRequestConfig,
   AxiosHeaders,
 } from "axios";
-import { MAX_TIME_OUT, HOST, SUCCESS_CODE, ERROR_CODE } from "@/api/config";
+import {
+  MAX_TIME_OUT,
+  HOST,
+  SUCCESS_CODE,
+  ERROR_CODE,
+  THROTTLE_DELAY,
+  MAX_REQUESTS,
+  BLOCK_TIME,
+} from "@/api/config";
 import store from "@/store";
 import { message } from "ant-design-vue";
 import router from "@/router";
 import i18n from "@/services/i18n";
-import { getAccessToken } from "@/utils/global";
+import {
+  getAccessToken,
+  getFromLocalStorage,
+  saveToLocalStorage,
+} from "@/utils/global";
 import { notification } from "ant-design-vue";
 
 interface AxiosRequestConfig extends InternalAxiosRequestConfig {
@@ -20,12 +32,17 @@ interface AxiosRequestConfig extends InternalAxiosRequestConfig {
 interface AxiosResponseConfig extends AxiosResponse {
   config: AxiosRequestConfig;
 }
+
 const Axios: AxiosInstance = axios.create({
   baseURL: HOST,
   timeout: MAX_TIME_OUT,
   responseType: "json",
   withCredentials: false,
 });
+
+let requestTimes: number[] = getFromLocalStorage("requestTimes") || [];
+let isBlockedUntil: number | null =
+  getFromLocalStorage("isBlockedUntil") || null;
 
 let isRefreshing = false;
 let failedQueue: Array<{
@@ -42,6 +59,34 @@ const processQueue = (error: any, token: string | null = null) => {
     }
   });
   failedQueue = [];
+};
+
+const getRemainingTime = (): number => {
+  if (!isBlockedUntil) return 0;
+  const currentTime = new Date().getTime();
+  return Math.max(0, Math.floor((isBlockedUntil - currentTime) / 1000));
+};
+
+const throttleRequest = (config: AxiosRequestConfig) => {
+  const currentTime = new Date().getTime();
+  const remainingTime = getRemainingTime();
+  if (isBlockedUntil && currentTime < isBlockedUntil) {
+    message.warning(`Truy cập bất thường. Thử lại sau ${remainingTime}s.`);
+    return Promise.reject(new Error("Throttling requests. Please wait."));
+  }
+  requestTimes = requestTimes.filter(
+    (time) => currentTime - time < THROTTLE_DELAY
+  );
+  if (requestTimes.length >= MAX_REQUESTS) {
+    isBlockedUntil = currentTime + BLOCK_TIME;
+    message.warning(`Truy cập bất thường. Thử lại sau ${remainingTime}s.`);
+    saveToLocalStorage("isBlockedUntil", isBlockedUntil);
+    return Promise.reject(new Error("Too many requests. Please wait."));
+  }
+  requestTimes.push(currentTime);
+  saveToLocalStorage("requestTimes", requestTimes);
+
+  return config;
 };
 
 Axios.interceptors.request.use(
@@ -79,7 +124,7 @@ Axios.interceptors.request.use(
     }
     const locale = store.getters["locale/locale"];
     (config.headers as AxiosHeaders)["Accept-Language"] = locale || "en";
-    return config;
+    return throttleRequest(config);
   },
   (error: any) => {
     store.dispatch("loading/setLoading", false);

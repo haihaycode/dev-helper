@@ -22,3 +22,12 @@ export const createVocabulary = async (
   const response = await Axios.post(getPath(api.vocabulary.create), body);
   return response.data as IBaseModel<IVocabulary>;
 };
+
+export const changeSpecial = async (
+  id: number
+): Promise<IBaseModel<IVocabulary>> => {
+  const response = await Axios.patch(
+    `${getPath(api.vocabulary.special)}?id=${id}`
+  );
+  return response.data as IBaseModel<IVocabulary>;
+};

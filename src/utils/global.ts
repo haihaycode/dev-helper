@@ -1,7 +1,6 @@
 import { User } from "@/models/user";
 import store from "@/store";
 import i18n from "@/services/i18n";
-import { string } from "yup";
 
 export const PAGE_SIZE_DEFALT = 10;
 export const PAGE_FIRST = 1;
@@ -88,4 +87,28 @@ export const fileToBase64 = (file: File): Promise<string> => {
       reject(error);
     };
   });
+};
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const encodeData = (data: any): string => {
+  return btoa(JSON.stringify(data));
+};
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const decodeData = (encodedData: string): any => {
+  return JSON.parse(atob(encodedData));
+};
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const saveToLocalStorage = (key: string, data: any) => {
+  const encodedData = encodeData(data);
+  localStorage.setItem(key, encodedData);
+};
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const getFromLocalStorage = (key: string): any => {
+  const encodedData = localStorage.getItem(key);
+  if (encodedData) {
+    return decodeData(encodedData);
+  }
+  return null;
 };
