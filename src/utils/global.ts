@@ -13,6 +13,7 @@ export const IS_DELETED = {
   is_Irue: true,
   is_False: false,
 };
+export const EXPIRES_TOKEN = 1;
 
 export const SCROLL_TO = {
   TOP: () => {
