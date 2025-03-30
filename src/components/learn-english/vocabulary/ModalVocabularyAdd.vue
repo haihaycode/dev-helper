@@ -1,6 +1,6 @@
 <!-- eslint-disable @typescript-eslint/no-explicit-any -->
 <template>
-  <AntModal :visible="show" @cancel="closeModal">
+  <AntModal :visible="show" @cancel="closeModal_noLoad">
     <div
       class="flex items-center justify-between border-b border-blue-800 pb-2 mb-4"
     >
@@ -85,7 +85,7 @@ const props = defineProps({
     required: true,
   },
 });
-const emit = defineEmits(["update:modelValue"]);
+const emit = defineEmits(["update:modelValue", "closenoload"]);
 const form = reactive({
   english: "",
   translate: "",
@@ -150,7 +150,7 @@ const handleSubmit = async () => {
       throw new Error("Required vocabulary data is missing");
     }
     message.success(translate("message.success"));
-    closeModal();
+    closeModal_Load();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (validationErrors: any) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -170,8 +170,10 @@ const handleFileUpload = (event: Event) => {
   const file = (event.target as HTMLInputElement).files?.[0];
   form.image = file || null;
 };
-
-const closeModal = () => {
+const closeModal_Load = () => {
   emit("update:modelValue", false);
+};
+const closeModal_noLoad = () => {
+  emit("closenoload", false);
 };
 </script>
