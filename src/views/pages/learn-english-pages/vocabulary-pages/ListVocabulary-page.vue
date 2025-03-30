@@ -30,6 +30,7 @@
             handleFetchVocabulary();
           }
         "
+        @closenoload="showModalVoabularyAdd = false"
         @close="showModalVoabularyAdd = false"
       />
     </template>
