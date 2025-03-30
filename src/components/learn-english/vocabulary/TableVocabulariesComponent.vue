@@ -1,13 +1,67 @@
 <template>
   <div id="TableVocabularies">
-    <a-table
-      :dataSource="vocabularyList"
-      :columns="columns"
-      rowKey="english"
-      @rowClick="handleRowClick"
-      :locale="{ emptyText: 'No vocabularies available' }"
-      :pagination="false"
-    ></a-table>
+    <table class="min-w-full table-auto border-collapse bg-slate-100">
+      <thead class="bg-blue-900 text-white">
+        <tr>
+          <th class="px-4 py-2 text-left font-bold">ENGLISH</th>
+          <th class="px-4 py-2 text-left font-bold">TRANSLATE</th>
+          <th class="px-4 py-2 text-left font-bold"></th>
+        </tr>
+      </thead>
+      <tbody class="table-body-vocabulary">
+        <tr
+          v-for="(record, index) in vocabularyList"
+          :key="index"
+          @click="handleRowClick(record)"
+          class="cursor-pointer hover:bg-gray-200"
+        >
+          <td class="px-4 py-2 text-left flex english">
+            <p class="font-semibold text-blue-900 mr-2">
+              {{ record.english?.toLocaleUpperCase() }}
+            </p>
+            <p
+              @click.stop
+              @click="record.id !== undefined && handleChangeSpecial(record)"
+            >
+              <StarFilled
+                v-show="record.is_special"
+                class="text-yellow-300 text-xl flex items-center transition-colors duration-500 hover:text-yellow-200 transform"
+              />
+              <StarOutlined
+                v-show="!record.is_special"
+                class="text-gray-300 text-xl flex items-center transition-colors duration-500 hover:text-gray-900 transform"
+              />
+            </p>
+          </td>
+          <td class="px-4 py-2 text-left translate">
+            {{ record.translate?.toLocaleUpperCase() }}
+          </td>
+          <td class="px-2 py-2">
+            <Dropdown trigger="click" @click.stop>
+              <a class="flex items-center justify-end text-2xl text-blue-900">
+                <EllipsisOutlined />
+              </a>
+              <template #overlay>
+                <Menu>
+                  <Menu.Item key="edit" @click="undefined" class="flex">
+                    {{ i18n.global.t("Edit") }}
+                  </Menu.Item>
+                  <Menu.Item key="delete" @click="undefined">
+                    {{ i18n.global.t("Delete") }}
+                  </Menu.Item>
+                </Menu>
+              </template>
+            </Dropdown>
+          </td>
+        </tr>
+        <tr v-if="!vocabularyList || getLoadingGet()" :aria-colspan="2">
+          <td colspan="2" class="px-4 py-2 text-center text-gray-500">
+            {{ i18n.global.t("loading.default") }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
     <PaginationComponent
       :pageInfo="pageInfo"
       @pageChange="handlePageChange"
@@ -49,7 +103,16 @@ import "ant-design-vue/dist/antd.css";
 import { IPageInfo } from "@/models/base";
 import { defineEmits } from "vue";
 import PaginationComponent from "@/components/navigation/PaginationComponent.vue";
-
+import {
+  StarOutlined,
+  StarFilled,
+  MoreOutlined,
+  EllipsisOutlined,
+  EditOutlined,
+} from "@ant-design/icons-vue";
+import { getLoadingGet } from "@/utils/loadingUtils";
+import i18n from "@/services/i18n";
+import { Dropdown, Menu } from "ant-design-vue";
 defineProps({
   vocabularyList: {
     type: Array as () => Array<IVocabulary>,
@@ -61,30 +124,19 @@ defineProps({
   },
 });
 
-const emit = defineEmits(["pageChange", "pageSizeChange"]);
+const emit = defineEmits(["pageChange", "pageSizeChange", "changeSpecial"]);
+
 const handlePageChange = (page: number) => {
   emit("pageChange", page);
 };
 const handlePageSizeChange = (current: number, pageSize: number) => {
   emit("pageSizeChange", { current, pageSize });
 };
+const handleChangeSpecial = (o: IVocabulary) => {
+  emit("changeSpecial", o);
+};
 
 const isSmallScreen = ref(false);
-const columns = [
-  {
-    title: "English",
-    dataIndex: "english",
-    key: "english",
-    class: "px-2 rounded-sm text-black-900 font-bold",
-  },
-  {
-    title: "Translate",
-    dataIndex: "translate",
-    key: "translate",
-    class: "px-2 rounded-sm text-blue-900 font-bold",
-  },
-];
-
 const drawerVisible = ref(false);
 const selectedVocabulary = ref<IVocabulary | null>(null);
 const handleRowClick = (record: IVocabulary) => {
@@ -104,10 +156,10 @@ onUnmounted(() => {
 </script>
 
 <style>
-.ant-table-tbody > tr:nth-child(odd) {
-  background-color: #ecf4fd00; /* Màu nền nhạt */
+.table-body-vocabulary > tr:nth-child(odd) {
+  background-color: #d7d7d700; /* Màu nền nhạt */
 }
-.ant-table-tbody > tr:nth-child(even) {
+.table-body-vocabulary > tr:nth-child(even) {
   background-color: #e5e7eb98; /* Màu nền đậm hơn */
 }
 </style>

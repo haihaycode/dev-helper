@@ -1,5 +1,15 @@
+export const DEV: boolean = process.env.NODE_ENV !== "production";
+// export const HOST: string = DEV
+//   ? "http://localhost:5000"
+//   : "https://dev-helper-backend.vercel.app";
+export const HOST = "https://dev-helper-backend.vercel.app";
+
+export const Domain: string = DEV
+  ? "localhost:5000"
+  : "https://dev-helper-backend.vercel.app";
+export const rapidHost = "rapidapi.com";
+
 export const MAX_TIME_OUT = 70000;
-// Mã trạng thái thành công
 export const SUCCESS_CODE = {
   "200": 200, // OK
   "201": 201, // Created
@@ -8,8 +18,6 @@ export const SUCCESS_CODE = {
   "207": 207, // Multi-Status
   "226": 226, // IM Used
 };
-
-// Mã trạng thái lỗi
 export const ERROR_CODE = {
   "400": 400, // Bad Request
   "401": 401, // Unauthorized
@@ -50,16 +58,10 @@ export const ERROR_CODE = {
   "510": 510, // Not Extended
   "511": 511, // Network Authentication Required
 };
-export const DEV: boolean = process.env.NODE_ENV !== "production";
-// export const HOST: string = DEV
-//   ? "http://localhost:5000"
-//   : "https://dev-helper-backend.vercel.app";
-export const HOST = "https://dev-helper-backend.vercel.app";
 
-export const Domain: string = DEV
-  ? "localhost:5000"
-  : "https://dev-helper-backend.vercel.app";
-export const rapidHost = "rapidapi.com";
+export const MAX_REQUESTS = 7; // Số lần request tối đa trong 5 giây
+export const THROTTLE_DELAY = 3000;
+export const BLOCK_TIME = DEV ? 15000 : 120000; //dev 30s , production 2p
 
 // API paths
 export const api = {
@@ -85,6 +87,7 @@ export const api = {
     create: "/vocabulary",
     update: "/vocabulary",
     delete: "/vocabulary",
+    special: "/vocabulary/special",
   },
 };
 

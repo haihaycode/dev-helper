@@ -9,6 +9,9 @@ export interface IVocabulary {
   user_id?: number;
   is_deleted?: boolean;
   slug?: string;
+  tags?: string;
+  notes?: string;
+  is_special?: boolean;
 }
 
 export interface IVocabularyRequest {

@@ -14,6 +14,7 @@
           <TableVocabulariesComponent
             :page-info="vocabulariesResponse?.data"
             :vocabularyList="vocabulariesResponse?.data?.results"
+            @change-special="handleChangeSpecical"
             @page-change="handlePageChange"
             @page-size-change="handlePageSizeChange"
           />
@@ -46,8 +47,9 @@ import { ref, onMounted, watchEffect } from "vue";
 import {
   IVocabularyRequest,
   IVocabulariesResponse,
+  IVocabulary,
 } from "@/models/IIearnEnglish";
-import { getAllVocabularies } from "@/api/vocabulary";
+import { changeSpecial, getAllVocabularies } from "@/api/vocabulary";
 import {
   IS_DELETED,
   ORDER_BY,
@@ -62,7 +64,7 @@ const vocabulariesResponse = ref<IVocabulariesResponse>();
 const vocabularyRequest = ref<IVocabularyRequest>({
   query: QUERY_DEFAUlT,
   page: PAGE_FIRST,
-  pageSize: PAGE_SIZE_DEFALT,
+  pageSize: PAGE_SIZE_DEFALT + 10,
   is_deleted: IS_DELETED.is_False,
   orderBy: {
     column: ORDER_BY.COLUMN_DEFAULT,
@@ -92,6 +94,28 @@ const handlePageSizeChange = ({
   vocabularyRequest.value.pageSize = current.pageSize;
   loadedPages.value = {};
   handleFetchVocabulary();
+};
+
+const handleChangeSpecical = async (o: IVocabulary) => {
+  const currentPage = vocabularyRequest.value.page;
+  if (currentPage !== undefined && loadedPages.value[currentPage]) {
+    const currentPageData = loadedPages.value[currentPage].data?.results;
+    currentPageData?.forEach(async (item, index) => {
+      if (item.id === o.id) {
+        currentPageData[index] = {
+          ...item,
+          is_special: !item.is_special,
+        };
+        try {
+          if (item.id !== undefined) {
+            await changeSpecial(item.id);
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    });
+  }
 };
 
 const handleFetchVocabulary = async () => {
