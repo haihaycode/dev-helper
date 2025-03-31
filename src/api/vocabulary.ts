@@ -23,6 +23,17 @@ export const createVocabulary = async (
   return response.data as IBaseModel<IVocabulary>;
 };
 
+export const updateVocabulary = async (
+  id: number,
+  body: IVocabulary
+): Promise<IBaseModel<IVocabulary>> => {
+  const response = await Axios.put(
+    `${getPath(api.vocabulary.update)}?id=${id}`,
+    body
+  );
+  return response.data as IBaseModel<IVocabulary>;
+};
+
 export const changeSpecial = async (
   id: number
 ): Promise<IBaseModel<IVocabulary>> => {

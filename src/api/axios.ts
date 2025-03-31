@@ -247,7 +247,7 @@ Axios.interceptors.response.use(
               ) => {
                 const { data } = response;
                 console.log("try get token from api refreshToken");
-                console.log(data.data.accessToken);
+                console.log(data);
                 store.dispatch("auth/setToken", data.data?.accessToken);
                 store.dispatch("auth/setRefreshToken", data.data?.refreshToken);
                 processQueue(null, data.data?.accessToken);

@@ -3,7 +3,7 @@
     <table class="min-w-full table-auto border-collapse bg-slate-100">
       <thead class="bg-blue-900 text-white">
         <tr>
-          <th class="px-4 py-2 text-left font-bold">ENGLISH</th>
+          <th class="px-4 py-2 text-left font-bold">WORD</th>
           <th class="px-4 py-2 text-left font-bold">TRANSLATE</th>
           <th class="px-4 py-2 text-left font-bold"></th>
         </tr>
@@ -43,7 +43,11 @@
               </a>
               <template #overlay>
                 <Menu>
-                  <Menu.Item key="edit" class="flex">
+                  <Menu.Item
+                    key="edit"
+                    @click="handleEdit(record)"
+                    class="flex"
+                  >
                     {{ i18n.global.t("Edit") }}
                   </Menu.Item>
                   <Menu.Item key="delete">
@@ -125,7 +129,7 @@ import {
 import { getLoadingGet } from "@/utils/loadingUtils";
 import i18n from "@/services/i18n";
 import { Dropdown, Menu } from "ant-design-vue";
-import { getLocale } from "@/utils/global";
+
 defineProps({
   vocabularyList: {
     type: Array as () => Array<IVocabulary>,
@@ -142,6 +146,7 @@ const emit = defineEmits([
   "pageSizeChange",
   "changeSpecial",
   "delete",
+  "edit",
 ]);
 
 const handlePageChange = (page: number) => {
@@ -155,6 +160,9 @@ const handleChangeSpecial = (o: IVocabulary) => {
 };
 const handleDelete = (o: IVocabulary) => {
   emit("delete", o);
+};
+const handleEdit = (o: IVocabulary) => {
+  emit("edit", o);
 };
 
 const isSmallScreen = ref(false);
