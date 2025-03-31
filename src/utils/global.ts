@@ -75,6 +75,10 @@ export const translate = (p0: string) => {
   return i18n.global.t(p0);
 };
 
+export const getLocale = (): string => {
+  return store.getters["locale/locale"];
+};
+
 export const fileToBase64 = (file: File): Promise<string> => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();

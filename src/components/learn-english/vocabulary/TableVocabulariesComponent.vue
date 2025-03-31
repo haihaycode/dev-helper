@@ -43,11 +43,23 @@
               </a>
               <template #overlay>
                 <Menu>
-                  <Menu.Item key="edit" @click="undefined" class="flex">
+                  <Menu.Item key="edit" class="flex">
                     {{ i18n.global.t("Edit") }}
                   </Menu.Item>
-                  <Menu.Item key="delete" @click="undefined">
-                    {{ i18n.global.t("Delete") }}
+                  <Menu.Item key="delete">
+                    <a-popconfirm
+                      :title="i18n.global.t('message.are_you_sure.delete')"
+                      :cancelText="i18n.global.t('message.are_you_sure.no')"
+                      :okText="i18n.global.t('message.are_you_sure.yes')"
+                      @confirm="handleDelete(record)"
+                    >
+                      <template #icon>
+                        <question-circle-outlined style="color: red" />
+                      </template>
+                      <p class="w-full">
+                        {{ i18n.global.t("message.delete") }}
+                      </p>
+                    </a-popconfirm>
                   </Menu.Item>
                 </Menu>
               </template>
@@ -103,16 +115,17 @@ import "ant-design-vue/dist/antd.css";
 import { IPageInfo } from "@/models/base";
 import { defineEmits } from "vue";
 import PaginationComponent from "@/components/navigation/PaginationComponent.vue";
+import { QuestionCircleOutlined } from "@ant-design/icons-vue";
+
 import {
   StarOutlined,
   StarFilled,
-  MoreOutlined,
   EllipsisOutlined,
-  EditOutlined,
 } from "@ant-design/icons-vue";
 import { getLoadingGet } from "@/utils/loadingUtils";
 import i18n from "@/services/i18n";
 import { Dropdown, Menu } from "ant-design-vue";
+import { getLocale } from "@/utils/global";
 defineProps({
   vocabularyList: {
     type: Array as () => Array<IVocabulary>,
@@ -124,7 +137,12 @@ defineProps({
   },
 });
 
-const emit = defineEmits(["pageChange", "pageSizeChange", "changeSpecial"]);
+const emit = defineEmits([
+  "pageChange",
+  "pageSizeChange",
+  "changeSpecial",
+  "delete",
+]);
 
 const handlePageChange = (page: number) => {
   emit("pageChange", page);
@@ -134,6 +152,9 @@ const handlePageSizeChange = (current: number, pageSize: number) => {
 };
 const handleChangeSpecial = (o: IVocabulary) => {
   emit("changeSpecial", o);
+};
+const handleDelete = (o: IVocabulary) => {
+  emit("delete", o);
 };
 
 const isSmallScreen = ref(false);

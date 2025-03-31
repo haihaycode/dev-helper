@@ -242,16 +242,15 @@ Axios.interceptors.response.use(
             .then(
               (
                 response: AxiosResponse<{
-                  accessToken: string;
-                  refreshToken: string; //new
+                  data: any;
                 }>
               ) => {
                 const { data } = response;
                 console.log("try get token from api refreshToken");
-                console.log(data);
-                store.dispatch("auth/setToken", data.accessToken);
-                store.dispatch("auth/setRefreshToken", data.refreshToken);
-                processQueue(null, data.accessToken);
+                console.log(data.data.accessToken);
+                store.dispatch("auth/setToken", data.data?.accessToken);
+                store.dispatch("auth/setRefreshToken", data.data?.refreshToken);
+                processQueue(null, data.data?.accessToken);
                 resolve(Axios(originalRequest));
               }
             )

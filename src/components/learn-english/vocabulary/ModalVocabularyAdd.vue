@@ -27,6 +27,7 @@
           v-model="form.english"
           placeholder="Enter the word"
           class="w-full px-0 py-2 dashed-border text-black rounded-sm focus:outline-none focus:ring-0 focus:ring-blue-900"
+          ref="englishFieldref"
         />
         <p v-if="errors.english" class="text-red-400 text-sm">
           {{ errors.english }}
@@ -86,7 +87,7 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, watch } from "vue";
+import { reactive, watch, ref } from "vue";
 import * as yup from "yup";
 import { defineProps, defineEmits } from "vue";
 import AntModal from "@/components/container/AntModal.vue";
@@ -135,9 +136,9 @@ const schema = yup.object().shape({
 const show = reactive({
   value: false,
 });
+const englishFieldref = ref<HTMLInputElement | null>(null);
 
 watch(
-  // eslint-disable-next-line no-undef
   () => props.modelValue,
   (newValue) => {
     show.value = newValue;
@@ -152,10 +153,10 @@ const handleSubmit = async () => {
   try {
     await schema.validate(form, { abortEarly: false });
     const vocabularyNew: IVocabulary = {
-      english: form.english,
-      translate: form.translate,
+      english: form.english.trim(),
+      translate: form.translate.trim(),
       image: form.image ? await fileToBase64(form.image as File) : undefined,
-      example_sentence: form.example_sentence,
+      example_sentence: form.example_sentence.trim(),
       is_special: form.is_special,
       tags: form.tags,
       notes: form.notes,

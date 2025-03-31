@@ -31,3 +31,12 @@ export const changeSpecial = async (
   );
   return response.data as IBaseModel<IVocabulary>;
 };
+
+export const deleteVoca = async (
+  id: number
+): Promise<IBaseModel<IVocabulary>> => {
+  const response = await Axios.delete(
+    `${getPath(api.vocabulary.delete)}?id=${id}`
+  );
+  return response.data as IBaseModel<IVocabulary>;
+};

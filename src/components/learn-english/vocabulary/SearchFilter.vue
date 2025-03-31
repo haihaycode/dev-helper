@@ -5,7 +5,7 @@
         type="text"
         v-model="searchValue"
         @input="onInput"
-        placeholder="Search..."
+        :placeholder="i18n.global.t('search.title')"
         class="flex-1 px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-900 rounded-sm text-gray-700"
       />
     </div>
@@ -16,12 +16,13 @@
 import { ref } from "vue";
 import { debounce } from "lodash";
 import { defineEmits } from "vue";
+import { DEBOUNCE_DELAY } from "@/api/config";
+import i18n from "@/services/i18n";
 const searchValue = ref("");
 const emit = defineEmits(["search"]);
-const debounceDelay = 500;
 const debouncedEmit = debounce(() => {
   emit("search", searchValue.value);
-}, debounceDelay);
+}, DEBOUNCE_DELAY);
 const onInput = () => {
   debouncedEmit();
 };
