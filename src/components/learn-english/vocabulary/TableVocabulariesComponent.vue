@@ -13,7 +13,11 @@
           v-for="(record, index) in vocabularyList"
           :key="index"
           @click="handleRowClick(record)"
-          class="cursor-pointer hover:bg-gray-200"
+          class="cursor-pointer transition-all duration-300 hover:bg-blue-100"
+          :class="[
+            selectedVocabulary?.id == record.id ? 'bg-blue-200' : '',
+            index % 2 === 0 ? 'bg-gray-100' : 'bg-white',
+          ]"
         >
           <td class="px-4 py-2 text-left flex english">
             <p class="font-semibold text-blue-900 mr-2">
@@ -149,6 +153,8 @@ const emit = defineEmits([
   "edit",
 ]);
 
+const selectedVocabulary = ref<IVocabulary | null>(null);
+
 const handlePageChange = (page: number) => {
   emit("pageChange", page);
 };
@@ -167,7 +173,7 @@ const handleEdit = (o: IVocabulary) => {
 
 const isSmallScreen = ref(false);
 const drawerVisible = ref(false);
-const selectedVocabulary = ref<IVocabulary | null>(null);
+
 const handleRowClick = (record: IVocabulary) => {
   selectedVocabulary.value = record;
   drawerVisible.value = true;
@@ -184,11 +190,4 @@ onUnmounted(() => {
 });
 </script>
 
-<style>
-.table-body-vocabulary > tr:nth-child(odd) {
-  background-color: #d7d7d700; /* Màu nền nhạt */
-}
-.table-body-vocabulary > tr:nth-child(even) {
-  background-color: #e5e7eb98; /* Màu nền đậm hơn */
-}
-</style>
+<style></style>

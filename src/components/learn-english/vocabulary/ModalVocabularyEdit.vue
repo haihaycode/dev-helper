@@ -83,7 +83,7 @@
         class="w-full h-12 rounded-sm bg-blue-900 hover:bg-gray-200 border-none focus:border-none focus:outline-none focus:ring-0 focus:shadow-none focus:bg-blue-700"
         :loading="getLoadingPut()"
       >
-        {{ i18n.global.t("save") }}
+        {{ i18n.global.t("Save") }}
       </a-button>
     </form>
   </AntModal>
@@ -96,7 +96,7 @@ import { defineProps, defineEmits } from "vue";
 import AntModal from "@/components/container/AntModal.vue";
 import { IVocabulary } from "@/models/IIearnEnglish";
 import { fileToBase64 } from "@/utils/global";
-import { getLoadingPost, getLoadingPut } from "@/utils/loadingUtils";
+import { getLoadingPut } from "@/utils/loadingUtils";
 import { StarFilled, StarOutlined } from "@ant-design/icons-vue";
 import i18n from "@/services/i18n";
 
