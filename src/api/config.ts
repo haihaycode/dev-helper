@@ -58,7 +58,7 @@ export const ERROR_CODE = {
   "510": 510, // Not Extended
   "511": 511, // Network Authentication Required
 };
-
+export const DEBOUNCE_DELAY = DEV ? 650 : 600;
 export const MAX_REQUESTS = 7; // Số lần request tối đa trong 5 giây
 export const THROTTLE_DELAY = 3000;
 export const BLOCK_TIME = DEV ? 15000 : 120000; //dev 30s , production 2p

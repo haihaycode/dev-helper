@@ -13,4 +13,3 @@ export const getLoadingPut = (): boolean => {
 export const getLoadingDelete = (): boolean => {
   return store.getters["loading/isLoadingDelete"];
 };
-

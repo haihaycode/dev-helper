@@ -17,6 +17,7 @@
             @change-special="handleChangeSpecical"
             @page-change="handlePageChange"
             @page-size-change="handlePageSizeChange"
+            @delete="handleDelete"
           />
         </div>
       </div>
@@ -49,7 +50,11 @@ import {
   IVocabulariesResponse,
   IVocabulary,
 } from "@/models/IIearnEnglish";
-import { changeSpecial, getAllVocabularies } from "@/api/vocabulary";
+import {
+  changeSpecial,
+  deleteVoca,
+  getAllVocabularies,
+} from "@/api/vocabulary";
 import {
   IS_DELETED,
   ORDER_BY,
@@ -115,6 +120,28 @@ const handleChangeSpecical = async (o: IVocabulary) => {
         }
       }
     });
+  }
+};
+
+const handleDelete = async (o: IVocabulary) => {
+  const currentPage = vocabularyRequest.value.page;
+  if (currentPage !== undefined && loadedPages.value[currentPage]) {
+    const currentPageData = loadedPages.value[currentPage].data?.results;
+    if (currentPageData) {
+      const indexToRemove = currentPageData.findIndex(
+        (item) => item.id === o.id
+      );
+      if (indexToRemove !== -1) {
+        currentPageData.splice(indexToRemove, 1);
+        try {
+          if (o.id !== undefined) {
+            await deleteVoca(o.id);
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    }
   }
 };
 

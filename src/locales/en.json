@@ -61,13 +61,24 @@
         "error": "Error !",
         "warning": "Warning",
         "info": "Info",
+        "delete" :"Delete",
         "default": "Something went wrong",
         "loading": "Loading",
         "notFound": "Not Found",
         "unauthorized": "Unauthorized",
         "forbidden": "Forbidden",
         "badRequest": "Bad Request",
-        "internalServerError": "Internal Server Error"
+        "internalServerError": "Internal Server Error",
+        "are_you_sure": {
+  "yes": "yes",
+  "no": "no",
+
+  "delete": "Are you sure you want to delete ?",
+  "update": "Are you sure you want to update ?",
+  "create": "Are you sure you want to create ?"
+}
+
+         
 
     },
     "nav": {
@@ -226,6 +237,9 @@
             "message": "Sorry, something went wrong.",
             "button": "Go back"
         }
+    },
+    "search":{
+        "title" : "Search ..."
     },
     "empty":{
         "description": "No data",
