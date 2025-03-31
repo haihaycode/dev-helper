@@ -1,10 +1,9 @@
-<!-- eslint-disable @typescript-eslint/no-explicit-any -->
 <template>
-  <AntModal :visible="show" @cancel="closeModal_noLoad">
+  <AntModal :visible="show" @cancel="closeModal(false, null)">
     <div
       class="flex items-center justify-between border-b border-blue-800 pb-2"
     >
-      <h2 class="text-xl font-bold text-blue-900">Add Vocabulary</h2>
+      <h2 class="text-xl font-bold text-blue-900">Edit Vocabulary</h2>
     </div>
     <form @submit.prevent="handleSubmit">
       <div class="flex justify-end operation">
@@ -33,6 +32,7 @@
           {{ errors.english }}
         </p>
       </div>
+
       <div class="mb-4">
         <label class="block mb-1 font-medium">Translation (Vietnamese)</label>
         <input
@@ -45,6 +45,7 @@
           {{ errors.translate }}
         </p>
       </div>
+
       <div class="mb-4">
         <label class="block mb-1 font-medium">Image (optional)</label>
         <input
@@ -57,6 +58,7 @@
           {{ errors.image }}
         </p>
       </div>
+
       <div class="mb-4">
         <label class="block mb-1 font-medium">Notes</label>
         <textarea
@@ -65,6 +67,7 @@
           class="w-full px-0 py-2 dashed-border text-black rounded-sm focus:outline-none focus:ring-0 focus:ring-blue-900"
         ></textarea>
       </div>
+
       <div class="mb-4">
         <label class="block mb-1 font-medium">Example Sentence</label>
         <textarea
@@ -78,9 +81,9 @@
         type="primary"
         @click="handleSubmit"
         class="w-full h-12 rounded-sm bg-blue-900 hover:bg-gray-200 border-none focus:border-none focus:outline-none focus:ring-0 focus:shadow-none focus:bg-blue-700"
-        :loading="getLoadingPost()"
+        :loading="getLoadingPut()"
       >
-        {{ $t("Add Vocablary") }}
+        {{ i18n.global.t("save") }}
       </a-button>
     </form>
   </AntModal>
@@ -93,33 +96,48 @@ import { defineProps, defineEmits } from "vue";
 import AntModal from "@/components/container/AntModal.vue";
 import { IVocabulary } from "@/models/IIearnEnglish";
 import { fileToBase64 } from "@/utils/global";
-import { createVocabulary } from "@/api/vocabulary";
-import { message } from "ant-design-vue";
-import { translate } from "@/utils/global";
-import { getLoadingPost } from "@/utils/loadingUtils";
+import { getLoadingPost, getLoadingPut } from "@/utils/loadingUtils";
 import { StarFilled, StarOutlined } from "@ant-design/icons-vue";
+import i18n from "@/services/i18n";
 
+// Props and emits
 const props = defineProps({
   modelValue: {
     type: Boolean,
     required: true,
+    default: null,
+  },
+  vocabularyToEdit: {
+    type: Object as () => IVocabulary | null,
   },
 });
-const emit = defineEmits(["update:modelValue", "closenoload"]);
-const form = reactive({
+const emit = defineEmits(["update:modelValue"]);
+
+const form = reactive<{
+  id?: number;
+  english: string;
+  translate: string;
+  image: File | null;
+  example_sentence: string | null;
+  tags: string;
+  notes: string | null;
+  is_special: boolean;
+}>({
   english: "",
   translate: "",
-  image: null as File | null,
-  example_sentence: "",
+  image: null,
+  example_sentence: null,
   tags: "",
-  notes: "",
+  notes: null,
   is_special: false,
 });
+
 const errors: { [key: string]: string } = reactive({
   english: "",
   translate: "",
   image: "",
 });
+
 const schema = yup.object().shape({
   english: yup.string().required("Word is required"),
   translate: yup.string().required("Translation is required"),
@@ -142,37 +160,40 @@ watch(
   () => props.modelValue,
   (newValue) => {
     show.value = newValue;
-  }
+    if (newValue && props.vocabularyToEdit) {
+      form.id = props.vocabularyToEdit.id;
+      form.english = props.vocabularyToEdit.english || "";
+      form.translate = props.vocabularyToEdit.translate || "";
+      form.image = null;
+      form.example_sentence = props.vocabularyToEdit.example_sentence || "";
+      form.notes = props.vocabularyToEdit.notes || null;
+      form.is_special = props.vocabularyToEdit.is_special || false;
+    }
+  },
+  { immediate: true }
 );
-
-// Handle form submission
 const handleSubmit = async () => {
-  Object.keys(errors).forEach((key) => {
-    errors[key] = "";
-  });
+  Object.keys(errors).forEach((key) => (errors[key] = ""));
   try {
     await schema.validate(form, { abortEarly: false });
+
     const vocabularyNew: IVocabulary = {
+      id: form.id,
       english: form.english.trim(),
       translate: form.translate.trim(),
       image: form.image ? await fileToBase64(form.image as File) : undefined,
-      example_sentence: form.example_sentence.trim(),
-      is_special: form.is_special,
-      tags: form.tags,
-      notes: form.notes,
+      example_sentence: form.example_sentence?.trim(),
+      is_special: !!form.is_special,
+      tags: form.tags.trim(),
+      notes: form.notes?.trim(),
     };
     if (vocabularyNew.english && vocabularyNew.translate) {
-      await createVocabulary(vocabularyNew);
+      closeModal(true, vocabularyNew);
     } else {
       throw new Error("Required vocabulary data is missing");
     }
-    message.success(translate("message.success"));
-    closeModal_Load();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (validationErrors: any) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     if (validationErrors?.inner) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       validationErrors.inner.forEach((err: any) => {
         errors[err.path] = err.message;
       });
@@ -183,14 +204,16 @@ const handleSubmit = async () => {
     }
   }
 };
+
 const handleFileUpload = (event: Event) => {
   const file = (event.target as HTMLInputElement).files?.[0];
   form.image = file || null;
 };
-const closeModal_Load = () => {
-  emit("update:modelValue", false);
-};
-const closeModal_noLoad = () => {
-  emit("closenoload", false);
+
+const closeModal = (loading: boolean, o: IVocabulary | null) => {
+  emit("update:modelValue", {
+    loading,
+    o,
+  });
 };
 </script>

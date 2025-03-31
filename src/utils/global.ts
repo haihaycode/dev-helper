@@ -9,6 +9,14 @@ export const ORDER_BY = {
   COLUMN_DEFAULT: "id",
   ORDER_DEFAULT: "desc",
 };
+
+// export const messageConfig = message.config({
+//   top: "100px",
+//   duration: 2,
+//   maxCount: 3,
+//   prefixCls: "my-message",
+// });
+
 export const IS_DELETED = {
   is_Irue: true,
   is_False: false,

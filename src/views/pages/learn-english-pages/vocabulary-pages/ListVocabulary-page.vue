@@ -18,6 +18,11 @@
             @page-change="handlePageChange"
             @page-size-change="handlePageSizeChange"
             @delete="handleDelete"
+            @edit="
+              (o) => {
+                vocaEdit = o;
+              }
+            "
           />
         </div>
       </div>
@@ -34,6 +39,22 @@
         "
         @closenoload="showModalVoabularyAdd = false"
         @close="showModalVoabularyAdd = false"
+      />
+      <ModalVocabularyEdit
+        v-if="vocaEdit ? true : false"
+        :model-value="vocaEdit ? true : false"
+        :vocabulary-to-edit="vocaEdit"
+        @update:model-value="
+          (o) => {
+            vocaEdit = o.o;
+
+            if (o.loading && vocaEdit) {
+              handleUpdate(vocaEdit);
+              loadedPages = {};
+              handleFetchVocabulary();
+            }
+          }
+        "
       />
     </template>
   </LearnEnglishPagePatternLayout>
@@ -54,6 +75,7 @@ import {
   changeSpecial,
   deleteVoca,
   getAllVocabularies,
+  updateVocabulary,
 } from "@/api/vocabulary";
 import {
   IS_DELETED,
@@ -62,9 +84,11 @@ import {
   PAGE_SIZE_DEFALT,
   QUERY_DEFAUlT,
 } from "@/utils/global";
+import ModalVocabularyEdit from "@/components/learn-english/vocabulary/ModalVocabularyEdit.vue";
 
 // States
-const showModalVoabularyAdd = ref(false); // modal add vocabulary
+const showModalVoabularyAdd = ref(false);
+const vocaEdit = ref<IVocabulary | null>(null);
 const vocabulariesResponse = ref<IVocabulariesResponse>();
 const vocabularyRequest = ref<IVocabularyRequest>({
   query: QUERY_DEFAUlT,
@@ -142,6 +166,17 @@ const handleDelete = async (o: IVocabulary) => {
         }
       }
     }
+  }
+};
+
+const handleUpdate = async (o: IVocabulary) => {
+  try {
+    if (o.id) {
+      await updateVocabulary(o.id, o);
+      vocaEdit.value = null;
+    }
+  } catch (error) {
+    console.error(error);
   }
 };
 
