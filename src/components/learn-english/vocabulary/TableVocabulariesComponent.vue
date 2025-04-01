@@ -17,7 +17,7 @@
             selectedVocabulary?.id == record.id ? 'bg-blue-200' : null,
             index % 2 === 0 ? 'bg-gray-100' : 'bg-white',
           ]"
-          class="cursor-pointer transition-all duration-300 hover:bg-blue-100"
+          class="cursor-pointer bg-opacity-50 transition-all duration-300 hover:bg-blue-100"
         >
           <td class="px-4 py-2 text-left flex english">
             <p class="font-semibold text-blue-900 mr-2">
@@ -87,36 +87,18 @@
       @pageSizeChange="handlePageSizeChange"
     />
 
-    <a-drawer
-      title="Vocabulary Details"
-      :visible="drawerVisible"
+    <DrawerVocaDetail
+      v-if="drawerVisible"
       @close="drawerVisible = false"
-      :width="isSmallScreen ? '100%' : 400"
-      :placement="isSmallScreen ? 'bottom' : 'right'"
-      :height="isSmallScreen ? '50vh' : undefined"
-    >
-      <div>
-        <p><strong>English:</strong> {{ selectedVocabulary?.english }}</p>
-        <p><strong>Translate:</strong> {{ selectedVocabulary?.translate }}</p>
-        <p>
-          <strong>Example Sentence:</strong>
-          {{ selectedVocabulary?.example_sentence }}
-        </p>
-        <div v-if="selectedVocabulary?.image">
-          <strong>Image:</strong>
-          <img
-            :src="selectedVocabulary.image"
-            alt="Vocabulary Image"
-            class="mt-2 rounded-md"
-          />
-        </div>
-      </div>
-    </a-drawer>
+      @edit="handleEdit"
+      :drawerVisible="drawerVisible"
+      :vocabulary="selectedVocabulary"
+    />
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref, defineProps, onMounted, onUnmounted, PropType } from "vue";
+import { ref, defineProps, PropType } from "vue";
 import { IVocabulary } from "@/models/IIearnEnglish";
 import "ant-design-vue/dist/antd.css";
 import { IPageInfo } from "@/models/base";
@@ -132,6 +114,7 @@ import {
 import { getLoadingGet } from "@/utils/loadingUtils";
 import i18n from "@/services/i18n";
 import { Dropdown, Menu } from "ant-design-vue";
+import DrawerVocaDetail from "./DrawerVocaDetail.vue";
 
 defineProps({
   vocabularyList: {
@@ -153,7 +136,6 @@ const emit = defineEmits([
 ]);
 
 const selectedVocabulary = ref<IVocabulary | null>(null);
-
 const handlePageChange = (page: number) => {
   emit("pageChange", page);
 };
@@ -170,23 +152,11 @@ const handleEdit = (o: IVocabulary) => {
   emit("edit", o);
 };
 
-const isSmallScreen = ref(false);
 const drawerVisible = ref(false);
-
 const handleRowClick = (record: IVocabulary) => {
   selectedVocabulary.value = record;
   drawerVisible.value = true;
 };
-const handleResize = () => {
-  isSmallScreen.value = window.innerWidth <= 640;
-};
-onMounted(() => {
-  handleResize();
-  window.addEventListener("resize", handleResize);
-});
-onUnmounted(() => {
-  window.removeEventListener("resize", handleResize);
-});
 </script>
 
 <style></style>
