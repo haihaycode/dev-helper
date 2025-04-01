@@ -1,14 +1,15 @@
 <template>
-  <LearnEnglishPagePatternLayout :title="$t('nav.l.english.listVocabulary')">
+  <LearnEnglishPagePatternLayout :title="i18n.global.t('vocabulary.list')">
     <template #content>
       <div id="listVocabulary">
         <div class="flex justify-between navigation mb-2">
           <SearchFilter @search="handleSearch" />
           <button
-            v-t="'nav.l.english.btn.addVocabulary'"
-            class="px-2 py-2 bg-blue-900 hover:bg-blue-400 rounded-sm text-white"
+            class="px-2 py-2 flex bg-blue-900 hover:bg-blue-400 rounded-sm text-white"
             @click="showModalVoabularyAdd = true"
-          ></button>
+          >
+            <PlusOutlined class="flex items-center" />
+          </button>
         </div>
         <div id="content ">
           <TableVocabulariesComponent
@@ -85,6 +86,8 @@ import {
   QUERY_DEFAUlT,
 } from "@/utils/global";
 import ModalVocabularyEdit from "@/components/learn-english/vocabulary/ModalVocabularyEdit.vue";
+import i18n from "@/services/i18n";
+import { PlusOutlined } from "@ant-design/icons-vue";
 
 // States
 const showModalVoabularyAdd = ref(false);

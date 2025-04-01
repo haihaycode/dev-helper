@@ -13,11 +13,11 @@
           v-for="(record, index) in vocabularyList"
           :key="index"
           @click="handleRowClick(record)"
-          class="cursor-pointer transition-all duration-300 hover:bg-blue-100"
           :class="[
-            selectedVocabulary?.id == record.id ? 'bg-blue-200' : '',
+            selectedVocabulary?.id == record.id ? 'bg-blue-200' : null,
             index % 2 === 0 ? 'bg-gray-100' : 'bg-white',
           ]"
+          class="cursor-pointer bg-opacity-50 transition-all duration-300 hover:bg-blue-100"
         >
           <td class="px-4 py-2 text-left flex english">
             <p class="font-semibold text-blue-900 mr-2">
@@ -52,20 +52,19 @@
                     @click="handleEdit(record)"
                     class="flex"
                   >
-                    {{ i18n.global.t("Edit") }}
+                    {{ i18n.global.t("btn.edit") }}
                   </Menu.Item>
                   <Menu.Item key="delete">
                     <a-popconfirm
-                      :title="i18n.global.t('message.are_you_sure.delete')"
-                      :cancelText="i18n.global.t('message.are_you_sure.no')"
-                      :okText="i18n.global.t('message.are_you_sure.yes')"
+                      :cancelText="i18n.global.t('btn.cancel')"
+                      :okText="i18n.global.t('btn.confirm')"
                       @confirm="handleDelete(record)"
                     >
                       <template #icon>
                         <question-circle-outlined style="color: red" />
                       </template>
                       <p class="w-full">
-                        {{ i18n.global.t("message.delete") }}
+                        {{ i18n.global.t("btn.delete") }}
                       </p>
                     </a-popconfirm>
                   </Menu.Item>
@@ -74,8 +73,8 @@
             </Dropdown>
           </td>
         </tr>
-        <tr v-if="!vocabularyList || getLoadingGet()" :aria-colspan="2">
-          <td colspan="2" class="px-4 py-2 text-center text-gray-500">
+        <tr v-if="!vocabularyList || getLoadingGet()" :aria-colspan="3">
+          <td colspan="3" class="px-4 py-2 text-center text-gray-500">
             {{ i18n.global.t("loading.default") }}
           </td>
         </tr>
@@ -88,36 +87,18 @@
       @pageSizeChange="handlePageSizeChange"
     />
 
-    <a-drawer
-      title="Vocabulary Details"
-      :visible="drawerVisible"
+    <DrawerVocaDetail
+      v-if="drawerVisible"
       @close="drawerVisible = false"
-      :width="isSmallScreen ? '100%' : 400"
-      :placement="isSmallScreen ? 'bottom' : 'right'"
-      :height="isSmallScreen ? '50vh' : undefined"
-    >
-      <div>
-        <p><strong>English:</strong> {{ selectedVocabulary?.english }}</p>
-        <p><strong>Translate:</strong> {{ selectedVocabulary?.translate }}</p>
-        <p>
-          <strong>Example Sentence:</strong>
-          {{ selectedVocabulary?.example_sentence }}
-        </p>
-        <div v-if="selectedVocabulary?.image">
-          <strong>Image:</strong>
-          <img
-            :src="selectedVocabulary.image"
-            alt="Vocabulary Image"
-            class="mt-2 rounded-md"
-          />
-        </div>
-      </div>
-    </a-drawer>
+      @edit="handleEdit"
+      :drawerVisible="drawerVisible"
+      :vocabulary="selectedVocabulary"
+    />
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref, defineProps, onMounted, onUnmounted, PropType } from "vue";
+import { ref, defineProps, PropType } from "vue";
 import { IVocabulary } from "@/models/IIearnEnglish";
 import "ant-design-vue/dist/antd.css";
 import { IPageInfo } from "@/models/base";
@@ -133,6 +114,7 @@ import {
 import { getLoadingGet } from "@/utils/loadingUtils";
 import i18n from "@/services/i18n";
 import { Dropdown, Menu } from "ant-design-vue";
+import DrawerVocaDetail from "./DrawerVocaDetail.vue";
 
 defineProps({
   vocabularyList: {
@@ -154,7 +136,6 @@ const emit = defineEmits([
 ]);
 
 const selectedVocabulary = ref<IVocabulary | null>(null);
-
 const handlePageChange = (page: number) => {
   emit("pageChange", page);
 };
@@ -171,23 +152,11 @@ const handleEdit = (o: IVocabulary) => {
   emit("edit", o);
 };
 
-const isSmallScreen = ref(false);
 const drawerVisible = ref(false);
-
 const handleRowClick = (record: IVocabulary) => {
   selectedVocabulary.value = record;
   drawerVisible.value = true;
 };
-const handleResize = () => {
-  isSmallScreen.value = window.innerWidth <= 640;
-};
-onMounted(() => {
-  handleResize();
-  window.addEventListener("resize", handleResize);
-});
-onUnmounted(() => {
-  window.removeEventListener("resize", handleResize);
-});
 </script>
 
 <style></style>
