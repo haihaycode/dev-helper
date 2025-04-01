@@ -1,124 +1,215 @@
 {
-    
-    "project": {
+  "project": {
       "name": "DevHelper"
-    },
-    "role":{
-     "admin" : "Quản trị viên",
-     "user" :"Người dùng "
-    },
-    "meta": {
-        "home": {
+  },
+  "role": {
+      "admin": "Quản trị viên",
+      "user": "Người dùng"
+  },
+  "about": {
+      "title": "Về DevHelper",
+      "description": "DevHelper là nền tảng cung cấp hỗ trợ phát triển ứng dụng toàn diện.",
+      "learnMore": "Tìm hiểu thêm",
+      "features": {
+          "title": "Tính năng"
+      },
+      "team": {
+          "title": "Đội ngũ"
+      },
+      "contact": {
+          "title": "Liên hệ với chúng tôi",
+          "namePlaceholder": "Tên",
+          "emailPlaceholder": "Email",
+          "messagePlaceholder": "Tin nhắn",
+          "submit": "Gửi"
+      },
+      "cta": {
+          "title": "Bắt đầu hành trình của bạn ngay hôm nay",
+          "description": "Tham gia cùng hàng nghìn lập trình viên sử dụng DevHelper",
+          "primaryButton": "Đăng ký ngay",
+          "secondaryButton": "Đăng nhập ngay"
+      }
+  },
+  "translation": {
+      "title": "Chọn ngôn ngữ",
+      "selectLanguage": "Chọn ngôn ngữ",
+      "description": "Đây là ví dụ về dịch thuật.",
+      "vi": "Tiếng Việt",
+      "en": "Tiếng Anh"
+  },
+  "meta": {
+      "home": {
           "title": "Trang chủ - DevHelper",
           "description": "Trang chủ của DevHelper."
-        },
-        "login": {
+      },
+      "login": {
           "title": "Đăng nhập - DevHelper",
           "description": "Đăng nhập vào DevHelper."
-        },
-        "register": {
+      },
+      "register": {
           "title": "Đăng ký - DevHelper",
-          "description": "Đăng ký DevHelper."
-        },
-        "about": {
+          "description": "Đăng ký tài khoản DevHelper."
+      },
+      "about": {
           "title": "Về chúng tôi - DevHelper",
           "description": "Tìm hiểu thêm về DevHelper và đội ngũ phát triển của chúng tôi."
-        }
-      },
-      "translation": {
-        "title": "Chọn ngôn ngữ",
-        "selectLanguage": "Chọn ngôn ngữ",
-        "description": "Đây là một ví dụ về dịch thuật.",
-        "vi" : "Tiếng Việt",
-        "en" : "Tiếng Anh"
-        },
-    "message": {
-      "hello": "Xin chào Thế giới!",
+      }
+  },
+  "message": {
+      "hello": "Xin chào thế giới!",
       "success": "Thành công",
-      "error": "Lỗi",
+      "error": "Lỗi!",
       "warning": "Cảnh báo",
       "info": "Thông tin",
-      "default": "Có lỗi xảy ra",
+      "delete": "Xóa",
+      "default": "Có gì đó không đúng",
       "loading": "Đang tải",
       "notFound": "Không tìm thấy",
-      "unauthorized": "Không được phép",
+      "unauthorized": "Không có quyền truy cập",
       "forbidden": "Bị cấm",
       "badRequest": "Yêu cầu không hợp lệ",
-      "internalServerError": "Lỗi máy chủ nội bộ"
-    },
-    "nav": {
+      "internalServerError": "Lỗi máy chủ nội bộ",
+      "are_you_sure": {
+          "yes": "Có",
+          "no": "Không",
+          "delete": "Bạn có chắc muốn xóa không?",
+          "update": "Bạn có chắc muốn cập nhật không?",
+          "create": "Bạn có chắc muốn tạo không?"
+      }
+  },
+  "nav": {
       "account": {
-        "information": "Tài khoản",
-        "personalInformation": "Thông tin cá nhân",
-        "changePassword": "Đổi mật khẩu",
-        "securityAndPrivacy": "Bảo mật và quyền riêng tư",
-        "overview": "Tổng quan",
-        "title": "Tài khoản",
-        "description": "Tài khoản của bạn",
-        "informationProfile" : "Hồ sơ thông tin",
-        "historyActivity": "Lịch sử hoạt động",
-        "calendarWork": "Lịch công việc",
-        "profile": {
-          "title": "Hồ sơ",
-          "description": "Hồ sơ cá nhân của bạn",
-          "name": "Họ và tên",
-          "username": "Tên đăng nhập",
-          "address": "Địa chỉ",
-          "phone": "Số điện thoại",
-          "dob": "Ngày sinh",
-          "nickname": "Biệt danh",
-          "hobbies": "Sở thích",
-          "createdTime": "Thời gian tạo",
-          "updatedTime": "Cập nhật lần cuối",
-          "email": "Email",
-          "password": "Mật khẩu",
-          "confirmPassword": "Xác nhận mật khẩu",
-          "updateInformation": "Cập nhật thông tin",
-          "cancel": "Hủy",
-          "update": "Cập nhật",
-          "validate": {
-            "fullName": "Họ và tên là bắt buộc",
-            "username": "Tên đăng nhập là bắt buộc"
+          "information": "Tài khoản",
+          "personalInformation": "Thông tin cá nhân",
+          "changePassword": "Đổi mật khẩu",
+          "securityAndPrivacy": "Bảo mật và quyền riêng tư",
+          "overview": "Tổng quan",
+          "title": "Tài khoản",
+          "description": "Tài khoản của bạn",
+          "informationProfile": "Thông tin hồ sơ",
+          "historyActivity": "Lịch sử hoạt động",
+          "calendarWork": "Lịch làm việc",
+          "profile": {
+              "title": "Hồ sơ",
+              "description": "Hồ sơ của bạn",
+              "name": "Họ và tên",
+              "username": "Tên đăng nhập",
+              "address": "Địa chỉ",
+              "phone": "Số điện thoại",
+              "dob": "Ngày sinh",
+              "nickname": "Biệt danh",
+              "hobbies": "Sở thích",
+              "createdTime": "Thời gian tạo",
+              "updatedTime": "Thời gian cập nhật",
+              "email": "Email",
+              "password": "Mật khẩu",
+              "confirmPassword": "Xác nhận mật khẩu",
+              "updateInformation": "Cập nhật thông tin",
+              "cancel": "Hủy",
+              "update": "Cập nhật",
+              "validate": {
+                  "fullName": "Họ và tên là bắt buộc",
+                  "username": "Tên đăng nhập là bắt buộc"
+              }
           }
-        }
+      },
+      "l": {
+          "english": {
+              "title": "Tiếng Anh",
+              "description": "Học ngôn ngữ",
+              "overview": "Tổng quan",
+              "vocabulary": "Từ vựng",
+              "listVocabulary": "Danh sách từ vựng",
+              "listGrammar": "Danh sách ngữ pháp",
+              "btn": {
+                  "addVocabulary": "Thêm từ vựng",
+                  "addGrammar": "Thêm ngữ pháp"
+              }
+          },
+          "japanese": "Học tiếng Nhật"
       },
       "setting": {
-        "title": "Cài đặt",
-        "description": "Cài đặt "
+          "title": "Cài đặt",
+          "description": "Cài đặt"
       },
       "home": "Trang chủ",
       "about": "Về chúng tôi",
-      "tool": "Công cụ ",
+      "tool": "Công cụ phát triển",
+      "solution": "Giải pháp",
       "contact": "Liên hệ",
       "translate": "Ngôn ngữ",
       "login": "Đăng nhập",
       "register": "Đăng ký",
       "logout": "Đăng xuất"
-    },
-    "back": {
-      "title": "Quay lại",
-      "backtohome": "Trở về trang chủ",
-      "description": "Quay lại"
-    },
-    "loading": {
+  },
+  "btn": {
+      "empty": "Không có dữ liệu",
+      "not_found": "Không tìm thấy dữ liệu",
+      "save": "Lưu",
+      "cancel": "Hủy",
+      "submit": "Gửi",
+      "edit": "Chỉnh sửa",
+      "delete": "Xóa",
+      "add": "Thêm",
+      "update": "Cập nhật",
+      "close": "Đóng",
+      "reset": "Đặt lại",
+      "download": "Tải về",
+      "upload": "Tải lên",
+      "confirm": "Xác nhận",
+      "search": "Tìm kiếm",
+      "back": "Quay lại",
+      "next": "Tiếp theo",
+      "finish": "Hoàn tất",
+      "start": "Bắt đầu",
+      "save_changes": "Lưu thay đổi",
+      "clear": "Xóa",
+      "view": "Xem",
+      "preview": "Xem trước",
+      "continue": "Tiếp tục",
+      "select": "Chọn",
+      "select_all": "Chọn tất cả",
+      "deselect_all": "Bỏ chọn tất cả",
+      "accept": "Chấp nhận",
+      "reject": "Từ chối",
+      "ok": "OK",
+      "apply": "Áp dụng",
+      "refresh": "Làm mới",
+      "send": "Gửi",
+      "cancel_request": "Hủy yêu cầu",
+      "mark_as_read": "Đánh dấu là đã đọc",
+      "mark_as_unread": "Đánh dấu là chưa đọc",
+      "archive": "Lưu trữ",
+      "restore": "Khôi phục",
+      "load_more": "Tải thêm",
+      "view_details": "Xem chi tiết",
+      "contact_support": "Liên hệ hỗ trợ",
+      "logout": "Đăng xuất"
+  },
+  "back": {
+      "title": "Quay lại trang",
+      "backtohome": "Quay lại trang chủ",
+      "description": "Quay lại trang"
+  },
+  "loading": {
       "default": "Đang tải..."
-    },
-    "otp": {
-      "title": "Vui lòng nhập mã OTP đã được gửi đến email của bạn",
-      "description": "Vui lòng nhập mã OTP đã được gửi đến email của bạn",
+  },
+  "otp": {
+      "title": "Vui lòng nhập mã OTP được gửi đến email của bạn",
+      "description": "Vui lòng nhập mã OTP được gửi đến email của bạn",
       "submitButton": "Xác nhận OTP",
       "optResend": "Gửi lại OTP",
       "otpSentSuccess": "Mã OTP đã được gửi đến email của bạn",
-      "otpSentDescription": "Vui lòng kiểm tra email của bạn để nhận mã OTP",
-      "otpMismatch": "Mã OTP không đúng",
-      "otpMismatchDescription": "Vui lòng nhập mã OTP đúng",
-      "emailMismatch": "Email không đúng",
-      "emailMismatchDescription": "Vui lòng nhập email đúng với email ban đầu",
-      "otp6Digits": "Vui lòng nhập 6 chữ số OTP",
-      "otpCountDown": "Gửi lại OTP trong"
-    },
-    "login": {
-      "title": "Chào mừng trở lại DevHelper! Vui lòng đăng nhập",
+      "otpSentDescription": "Vui lòng kiểm tra email để nhận mã OTP",
+      "otpMismatch": "Mã OTP không chính xác",
+      "otpMismatchDescription": "Vui lòng nhập mã OTP chính xác",
+      "emailMismatch": "Email không chính xác",
+      "emailMismatchDescription": "Vui lòng nhập email chính xác",
+      "otp6Digits": "Vui lòng nhập mã OTP 6 chữ số",
+      "otpCountDown": "Gửi lại OTP sau"
+  },
+  "login": {
+      "title": "Chào mừng quay lại DevHelper! Vui lòng đăng nhập",
       "usernamePlaceholder": "Tên đăng nhập",
       "passwordPlaceholder": "Mật khẩu",
       "submitButton": "Đăng nhập",
@@ -126,18 +217,17 @@
       "successMessage": "Đăng nhập thành công!",
       "errorMessage": "Vui lòng nhập tên đăng nhập và mật khẩu!",
       "registerLink": "Chưa có tài khoản? Đăng ký tại đây",
-      "orLoginWith": "hoặc đăng nhập với",
+      "orLoginWith": " hoặc đăng nhập bằng ",
       "welcomeMessage": "Chào mừng đến với DevHelper",
       "description": "Nền tảng hỗ trợ phát triển ứng dụng toàn diện",
       "orContinueWith": "Hoặc tiếp tục với",
-      "captchaError": "Vui lòng nhập mã CAPTCHA!",
-      "captchaMismatch": "Mã CAPTCHA không đúng!",
-      "captchaPlaceholder": "Nhập mã CAPTCHA",
-      "otpSent": "Mã OTP đã được gửi đến email của bạn"
-    },
-    "register": {
-      "title": "Tham gia với chúng tôi: Tạo tài khoản của bạn",
-      "description": "Tham gia với chúng tôi để trở thành một phần của cộng đồng DevHelper và bắt đầu hành trình thành công của bạn.",
+      "captchaError": "Vui lòng nhập mã captcha!",
+      "captchaMismatch": "Mã captcha không chính xác!",
+      "captchaPlaceholder": "Nhập mã captcha"
+  },
+  "register": {
+      "title": "Tham gia chúng tôi: Tạo tài khoản của bạn",
+      "description": "Tham gia cùng chúng tôi để trở thành một phần của cộng đồng DevHelper và bắt đầu hành trình đến thành công.",
       "usernamePlaceholder": "Tên đăng nhập",
       "emailPlaceholder": "Email",
       "passwordPlaceholder": "Mật khẩu",
@@ -145,100 +235,35 @@
       "submitButton": "Đăng ký",
       "successMessage": "Đăng ký thành công!",
       "errorMessage": "Vui lòng điền đầy đủ thông tin!",
-      "invalidEmail": "Vui lòng nhập địa chỉ email hợp lệ!",
+      "invalidEmail": "Vui lòng nhập email hợp lệ!",
       "loginLink": "Đã có tài khoản? Đăng nhập tại đây",
-      "orRegisterWith": "hoặc tạo tài khoản với",
+      "orRegisterWith": " hoặc tạo tài khoản với ",
       "otpTitle": "Nhập mã OTP",
-      "otpDescription": "Vui lòng nhập mã OTP đã được gửi đến email của bạn",
+      "otpDescription": "Vui lòng nhập mã OTP gửi đến email của bạn",
       "otpSubmitButton": "Xác nhận OTP",
       "optResend": "Gửi lại OTP",
       "otpSentSuccess": "Mã OTP đã được gửi đến email của bạn",
-      "otpSentDescription": "Vui lòng kiểm tra email của bạn để nhận mã OTP",
-      "otpMismatch": "Mã OTP không đúng",
-      "otpMismatchDescription": "Vui lòng nhập mã OTP đúng",
-      "emailMismatch": "Email không đúng",
-      "emailMismatchDescription": "Vui lòng nhập email đúng với email ban đầu"
-    },
-    "firebase": {
-      "auth": {
-        "userNotFound": "Không tìm thấy người dùng.",
-        "wrongPassword": "Mật khẩu không đúng.",
-        "emailAlreadyInUse": "Email đã được sử dụng.",
-        "weakPassword": "Mật khẩu quá yếu.",
-        "operationNotAllowed": "Hoạt động không được phép.",
-        "defaultError": "Đã xảy ra lỗi không xác định."
-      }
-    },
-    "empty":{
-        "description": "Không có",
-        "placeholder": "...",
-        "required": "*"
-    },
-    "error": {
-      "api": {
-        "networkError": "Không thể kết nối mạng. Vui lòng kiểm tra kết nối internet của bạn.",
-        "timeoutError": "Yêu cầu đã hết thời gian. Vui lòng thử lại.",
-        "sessionExpired": "Phiên đã hết hạn, vui lòng đăng nhập lại.",
-        "dataNotFound": "Không tìm thấy dữ liệu.",
-        "unknownError": "Đã xảy ra lỗi không xác định."
-      },
-      "404": {
-        "title": "Không tìm thấy trang",
-        "message": "Xin lỗi, trang bạn truy cập không tồn tại.",
-        "button": "Quay lại"
-      },
-      "500": {
-        "title": "Lỗi máy chủ nội bộ",
-        "message": "Xin lỗi, đã xảy ra sự cố.",
-        "button": "Quay lại"
-      }
-    },
-    "tools": {
-      "type": {
-        "name": {
-          "Crypto": "Công cụ mã hóa",
-          "Facebook": "Công cụ Facebook",
-          "TikTok": "Công cụ TikTok"
-        },
-        "description": {
-          "Crypto": "Công cụ mã hóa khóa bí mật là các phần mềm hoặc phần cứng sử dụng các thuật toán mã hóa để bảo vệ dữ liệu bằng cách sử dụng một khóa bí mật. Các công cụ này được thiết kế để bảo vệ thông tin nhạy cảm bằng cách biến đổi nó thành định dạng không thể đọc được, chỉ có thể được khôi phục lại dạng ban đầu bằng cách sử dụng khóa bí mật đúng. Khóa được sử dụng trong quá trình mã hóa này được giữ bí mật và cần thiết cho cả hai hoạt động mã hóa và giải mã, đảm bảo rằng chỉ những người dùng được ủy quyền với khóa bí mật mới có thể truy cập dữ liệu gốc.",
-          "Facebook": "Công cụ Facebook là các tiện ích và ứng dụng khác nhau được thiết kế để nâng cao trải nghiệm người dùng trên Facebook. Các công cụ này có thể bao gồm các tính năng quản lý bài đăng, phân tích tương tác, tự động hóa tác vụ và cải thiện bảo mật.",
-          "TikTok": "Công cụ TikTok là các ứng dụng và tiện ích được thiết kế để giúp người dùng tạo, quản lý và phân tích nội dung trên TikTok. Các công cụ này có thể hỗ trợ chỉnh sửa video, phân tích người theo dõi, theo dõi xu hướng và nhiều hơn nữa."
-        }
-      },
-      "name": {
-        "Crypto": "Công cụ mã hóa khóa bí mật",
-        "GetUserInfo": "Công cụ lấy thông tin người dùng",
-        "DownloadWithoutWatermark": "Công cụ tải xuống không có watermark"
-      },
-      "description": {
-        "Crypto": "Công cụ mã hóa khóa bí mật là các phần mềm hoặc phần cứng sử dụng các thuật toán mã hóa để bảo vệ dữ liệu bằng cách sử dụng một khóa bí mật. Các công cụ này được thiết kế để bảo vệ thông tin nhạy cảm bằng cách biến đổi nó thành định dạng không thể đọc được, chỉ có thể được khôi phục lại dạng ban đầu bằng cách sử dụng khóa bí mật đúng. Khóa được sử dụng trong quá trình mã hóa này được giữ bí mật và cần thiết cho cả hai hoạt động mã hóa và giải mã, đảm bảo rằng chỉ những người dùng được ủy quyền với khóa bí mật mới có thể truy cập dữ liệu gốc.",
-        "GetUserInfo": "Công cụ lấy thông tin người dùng được thiết kế để thu thập thông tin người dùng từ các nền tảng khác nhau. Các công cụ này có thể giúp thu thập dữ liệu như hồ sơ người dùng, nhật ký hoạt động và các thông tin liên quan khác.",
-        "DownloadWithoutWatermark": "Công cụ tải xuống không có watermark cho phép người dùng tải nội dung từ các nền tảng khác nhau mà không có bất kỳ watermark nào. Các công cụ này hữu ích để có được các tệp phương tiện sạch và không có thương hiệu."
-      }
-    },
-    "about": {
-      "cta": {
-        "title": "Bắt đầu hành trình của bạn ngay hôm nay",
-        "description": "Tham gia cùng hàng nghìn nhà phát triển đang sử dụng DevHelper",
-        "primaryButton": "Đăng ký ngay",
-        "secondaryButton": "Đăng nhập"
-      },
-      "title": "DevHelper - Nền tảng hỗ trợ phát triển",
-      "description": "Chúng tôi cung cấp các công cụ và giải pháp toàn diện để giúp các nhà phát triển xây dựng ứng dụng tốt hơn, nhanh hơn.",
-      "learnMore": "Tìm hiểu thêm",
-      "features": {
-        "title": "Tính năng nổi bật"
-      },
-      "team": {
-        "title": "Đội ngũ của chúng tôi"
-      },
-      "contact": {
-        "title": "Liên hệ với chúng tôi",
-        "namePlaceholder": "Họ và tên",
-        "emailPlaceholder": "Email",
-        "messagePlaceholder": "Tin nhắn",
-        "submit": "Gửi tin nhắn"
-      }
-    }
+      "otpSentDescription": "Vui lòng kiểm tra email để nhận mã OTP",
+      "otpMismatch": "Mã OTP không chính xác",
+      "otpMismatchDescription": "Vui lòng nhập mã OTP chính xác",
+      "emailMismatch": "Email không chính xác",
+      "emailMismatchDescription": "Vui lòng nhập email chính xác"
+  },
+  "image": {
+      "image": "Hình ảnh",
+      "optional": "(tùy chọn)",
+      "upload": "Tải lên hình ảnh",
+      "preview": "Xem trước hình ảnh",
+      "remove": "Xóa hình ảnh",
+      "choose": "Chọn hình ảnh",
+      "drag_drop": "Kéo và thả hình ảnh vào đây"
+  },
+  "footer": {
+      "about": "Giới thiệu",
+      "terms": "Điều khoản sử dụng",
+      "privacy": "Chính sách bảo mật",
+      "support": "Hỗ trợ",
+      "help": "Trợ giúp",
+      "contact": "Liên hệ"
   }
+}
