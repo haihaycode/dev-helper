@@ -5,7 +5,10 @@
       :loading="getLoadingGet()"
       :hoverable="true"
       :key="note.id"
-      class="p-1 rounded-sm shadow-sm relative bg-opacity-40"
+      :class="[
+        'p-1 rounded-sm shadow-sm relative bg-opacity-30',
+        getRandomColor(note.id),
+      ]"
     >
       <div class="flex justify-between items-center">
         <p class="text-[12px] sm:text-[15px] font-bold text-left max-w-[90%]">
@@ -19,7 +22,7 @@
 
       <div
         id="CONTENT"
-        class="min-h-[50px] md:min-h-[100px] text-[10px] sm:text-[14px] text-left"
+        class="text-[10px] sm:text-[14px] text-left min-h-[50px] md:min-h-[100px]"
       >
         {{ note.detail }}
       </div>
@@ -40,6 +43,21 @@ const props = defineProps({
     required: false,
   },
 });
+const colors = [
+  "bg-red-400",
+  "bg-green-400",
+  "bg-blue-400",
+  "bg-yellow-400",
+  "bg-indigo-400",
+  "bg-purple-400",
+  "bg-pink-400",
+  "bg-teal-400",
+  "bg-cyan-400",
+];
+
+const getRandomColor = (index: number) => {
+  return colors[index % colors.length];
+};
 </script>
 <style>
 .ant-card-body {
