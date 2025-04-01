@@ -133,7 +133,6 @@ import { getLoadingGet } from "@/utils/loadingUtils";
 import i18n from "@/services/i18n";
 import { Dropdown, Menu } from "ant-design-vue";
 
-
 defineProps({
   vocabularyList: {
     type: Array as () => Array<IVocabulary>,
