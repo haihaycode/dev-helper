@@ -62,6 +62,21 @@
           >
         </li>
         <li
+          @click="$router.push({ name: 'ListNotePage' })"
+          :class="
+            $route.path.includes('english/tab=notes')
+              ? ' bg-gray-300 bg-opacity-15 text-blue-900 font-bold'
+              : ''
+          "
+          class="p-2 mb-2 text-left rounded-md hover:bg-gray-200 hover:cursor-pointer hover:text-gray-700"
+        >
+          <a
+            @click="$router.push({ name: 'ListNotePage' })"
+            class="hover:text-gray-700 hover:underline"
+            >{{ i18n.global.t("note.title") }}</a
+          >
+        </li>
+        <li
           @click="$router.push({ name: 'AccountCalendarWork' })"
           :class="
             $route.path.includes('account/tab=calendar-work')
@@ -100,6 +115,7 @@
 </template>
 
 <script setup lang="ts">
+import i18n from "@/services/i18n";
 import {
   CubeTransparentIcon,
   ClipboardDocumentListIcon,

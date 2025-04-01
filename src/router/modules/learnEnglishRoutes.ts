@@ -3,6 +3,7 @@ import DefaultLayout from "@/views/layouts/DefaultLayout.vue";
 import OverviewPage from "@/views/pages/learn-english-pages/Overview-page.vue";
 import ListVocabularyPage from "@/views/pages/learn-english-pages/vocabulary-pages/ListVocabulary-page.vue";
 import MobilePageNavigation from "@/views/pages/learn-english-pages/MobilePageNavigation.vue";
+import ListNotePage from "@/views/pages/learn-english-pages/note-pages/ListNote-page.vue";
 const learnEnlishRoutes: Array<RouteRecordRaw> = [
   {
     path: "/l",
@@ -33,6 +34,15 @@ const learnEnlishRoutes: Array<RouteRecordRaw> = [
             },
             name: "LearnEnglishListVocabulary",
             component: ListVocabularyPage,
+          },
+          {
+            path: "english/tab=notes",
+            meta: {
+              requiresAuth: true,
+              tag: "vocabulary", //tag: "vocabulay"
+            },
+            name: "ListNotePage",
+            component: ListNotePage,
           },
           {
             path: "english/tab=mobile",

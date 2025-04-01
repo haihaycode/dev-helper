@@ -1,8 +1,8 @@
 <template>
   <LearnEnglishPagePatternLayout :title="i18n.global.t('vocabulary.list')">
     <template #content>
-      <div id="listVocabulary">
-        <div class="flex justify-between navigation mb-2">
+      <div id="LIST-VOCA">
+        <div id="ACTION" class="flex justify-between navigation mb-2">
           <SearchFilter @search="handleSearch" />
           <button
             class="px-2 py-2 flex bg-blue-900 hover:bg-blue-400 rounded-sm text-white"
@@ -11,7 +11,7 @@
             <PlusOutlined class="flex items-center" />
           </button>
         </div>
-        <div id="content ">
+        <div id="CONTENT ">
           <TableVocabulariesComponent
             :page-info="vocabulariesResponse?.data"
             :vocabularyList="vocabulariesResponse?.data?.results"
@@ -77,13 +77,13 @@ import {
   deleteVoca,
   getAllVocabularies,
   updateVocabulary,
-} from "@/api/vocabulary";
+} from "@/api/vocabularyApi";
 import {
   IS_DELETED,
   ORDER_BY,
   PAGE_FIRST,
-  PAGE_SIZE_DEFALT,
-  QUERY_DEFAUlT,
+  PAGE_SIZE_DEFAULT,
+  QUERY_DEFAULT,
 } from "@/utils/global";
 import ModalVocabularyEdit from "@/components/learn-english/vocabulary/ModalVocabularyEdit.vue";
 import i18n from "@/services/i18n";
@@ -94,9 +94,9 @@ const showModalVoabularyAdd = ref(false);
 const vocaEdit = ref<IVocabulary | null>(null);
 const vocabulariesResponse = ref<IVocabulariesResponse>();
 const vocabularyRequest = ref<IVocabularyRequest>({
-  query: QUERY_DEFAUlT,
+  query: QUERY_DEFAULT,
   page: PAGE_FIRST,
-  pageSize: PAGE_SIZE_DEFALT + 10,
+  pageSize: PAGE_SIZE_DEFAULT + 10,
   is_deleted: IS_DELETED.is_False,
   orderBy: {
     column: ORDER_BY.COLUMN_DEFAULT,

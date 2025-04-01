@@ -89,6 +89,16 @@ export const api = {
     delete: "/vocabulary",
     special: "/vocabulary/special",
   },
+  note: {
+    getAll: "/notes",
+    getOne: "/note",
+    create: "/note",
+    update: "/note",
+    delete: "/note",
+    getUserNotes: "/user-notes",
+    toggleDeleteStatus: "/note/toggle-delete",
+    toggleScopeStatus: "/note/scope",
+  },
 };
 
 export const getApiUrl = (path: string): string => {
