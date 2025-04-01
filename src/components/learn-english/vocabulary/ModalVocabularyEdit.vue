@@ -207,8 +207,10 @@ const handleSubmit = async () => {
     } else {
       throw new Error("Required vocabulary data is missing");
     }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (validationErrors: any) {
     if (validationErrors?.inner) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       validationErrors.inner.forEach((err: any) => {
         errors[err.path] = err.message;
       });

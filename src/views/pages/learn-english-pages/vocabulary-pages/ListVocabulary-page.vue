@@ -87,6 +87,7 @@ import {
 } from "@/utils/global";
 import ModalVocabularyEdit from "@/components/learn-english/vocabulary/ModalVocabularyEdit.vue";
 import i18n from "@/services/i18n";
+import { PlusOutlined } from "@ant-design/icons-vue";
 
 // States
 const showModalVoabularyAdd = ref(false);
