@@ -13,11 +13,11 @@
           v-for="(record, index) in vocabularyList"
           :key="index"
           @click="handleRowClick(record)"
-          class="cursor-pointer transition-all duration-300 hover:bg-blue-100"
           :class="[
-            selectedVocabulary?.id == record.id ? 'bg-blue-200' : '',
+            selectedVocabulary?.id == record.id ? 'bg-blue-200' : null,
             index % 2 === 0 ? 'bg-gray-100' : 'bg-white',
           ]"
+          class="cursor-pointer transition-all duration-300 hover:bg-blue-100"
         >
           <td class="px-4 py-2 text-left flex english">
             <p class="font-semibold text-blue-900 mr-2">
@@ -52,20 +52,19 @@
                     @click="handleEdit(record)"
                     class="flex"
                   >
-                    {{ i18n.global.t("Edit") }}
+                    {{ i18n.global.t("btn.edit") }}
                   </Menu.Item>
                   <Menu.Item key="delete">
                     <a-popconfirm
-                      :title="i18n.global.t('message.are_you_sure.delete')"
-                      :cancelText="i18n.global.t('message.are_you_sure.no')"
-                      :okText="i18n.global.t('message.are_you_sure.yes')"
+                      :cancelText="i18n.global.t('btn.cancel')"
+                      :okText="i18n.global.t('btn.confirm')"
                       @confirm="handleDelete(record)"
                     >
                       <template #icon>
                         <question-circle-outlined style="color: red" />
                       </template>
                       <p class="w-full">
-                        {{ i18n.global.t("message.delete") }}
+                        {{ i18n.global.t("btn.delete") }}
                       </p>
                     </a-popconfirm>
                   </Menu.Item>
@@ -74,8 +73,8 @@
             </Dropdown>
           </td>
         </tr>
-        <tr v-if="!vocabularyList || getLoadingGet()" :aria-colspan="2">
-          <td colspan="2" class="px-4 py-2 text-center text-gray-500">
+        <tr v-if="!vocabularyList || getLoadingGet()" :aria-colspan="3">
+          <td colspan="3" class="px-4 py-2 text-center text-gray-500">
             {{ i18n.global.t("loading.default") }}
           </td>
         </tr>
@@ -133,6 +132,7 @@ import {
 import { getLoadingGet } from "@/utils/loadingUtils";
 import i18n from "@/services/i18n";
 import { Dropdown, Menu } from "ant-design-vue";
+
 
 defineProps({
   vocabularyList: {

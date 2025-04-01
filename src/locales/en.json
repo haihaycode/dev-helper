@@ -2,9 +2,9 @@
     "project": {
         "name": "DevHelper"
     },
-    "role":{
-     "admin" : "Administrator",
-     "user" :"User"
+    "role": {
+        "admin": "Administrator",
+        "user": "User"
     },
     "about": {
         "title": "About DevHelper",
@@ -28,40 +28,40 @@
             "description": "Join thousands of developers using DevHelper",
             "primaryButton": "Sign up now",
             "secondaryButton": "Sign in now"
-          }
+        }
     },
     "translation": {
         "title": "Select language",
         "selectLanguage": "Select language",
         "description": "This is a translation example.",
-        "vi" : "Vietnamese",
-        "en" : "English"
+        "vi": "Vietnamese",
+        "en": "English"
     },
     "meta": {
-    "home": {
-      "title": "Home - DevHelper",
-      "description": "The home page of DevHelper."
+        "home": {
+            "title": "Home - DevHelper",
+            "description": "The home page of DevHelper."
+        },
+        "login": {
+            "title": "Login - DevHelper",
+            "description": "Login to DevHelper."
+        },
+        "register": {
+            "title": "Register - DevHelper",
+            "description": "Register for DevHelper."
+        },
+        "about": {
+            "title": "About Us - DevHelper",
+            "description": "Learn more about DevHelper and our development team."
+        }
     },
-    "login": {
-      "title": "Login - DevHelper",
-      "description": "Login to DevHelper."
-    },
-    "register": {
-      "title": "Register - DevHelper",
-      "description": "Register for DevHelper."
-    },
-    "about": {
-      "title": "About Us - DevHelper",
-      "description": "Learn more about DevHelper and our development team."
-    }
-  },
     "message": {
         "hello": "Hello World!",
         "success": "Success",
         "error": "Error !",
         "warning": "Warning",
         "info": "Info",
-        "delete" :"Delete",
+        "delete": "Delete",
         "default": "Something went wrong",
         "loading": "Loading",
         "notFound": "Not Found",
@@ -70,16 +70,12 @@
         "badRequest": "Bad Request",
         "internalServerError": "Internal Server Error",
         "are_you_sure": {
-  "yes": "yes",
-  "no": "no",
-
-  "delete": "Are you sure you want to delete ?",
-  "update": "Are you sure you want to update ?",
-  "create": "Are you sure you want to create ?"
-}
-
-         
-
+            "yes": "yes",
+            "no": "no",
+            "delete": "Are you sure you want to delete ?",
+            "update": "Are you sure you want to update ?",
+            "create": "Are you sure you want to create ?"
+        }
     },
     "nav": {
         "account": {
@@ -90,10 +86,10 @@
             "overview": "Overview",
             "title": "Account",
             "description": "Your account",
-            "informationProfile" : "Information Profile",
+            "informationProfile": "Information Profile",
             "historyActivity": "History Activity",
             "calendarWork": "Calendar Work",
-            "profile":{
+            "profile": {
                 "title": "Profile",
                 "description": "Your profile",
                 "name": "Fullname",
@@ -117,20 +113,20 @@
                 }
             }
         },
-        "l" :{
-         "english": {
-            "title": "English",
-            "description": "Learn English",
-            "overview":"Overview",
-            "vocabulary":"Vocabulary",
-            "listVocabulary":"List Vocabulary",
-            "listGrammar":"List Grammar",
-            "btn":{
-                "addVocabulary": "Add Vocabulary",
-                "addGrammar": "Add Grammar"
-            }
-         },
-         "japanese": "Learn Japanese"
+        "l": {
+            "english": {
+                "title": "English",
+                "description": "Learn English",
+                "overview": "Overview",
+                "vocabulary": "Vocabulary",
+                "listVocabulary": "List Vocabulary",
+                "listGrammar": "List Grammar",
+                "btn": {
+                    "addVocabulary": "Add Vocabulary",
+                    "addGrammar": "Add Grammar"
+                }
+            },
+            "japanese": "Learn Japanese"
         },
         "setting": {
             "title": "Setting",
@@ -144,6 +140,50 @@
         "translate": "Language",
         "login": "Login",
         "register": "Register",
+        "logout": "Logout"
+    },
+    "btn": {
+        "empty":"No data",
+        "not_found" :"Not found data",
+        "save": "Save",
+        "cancel": "Cancel",
+        "submit": "Submit",
+        "edit": "Edit",
+        "delete": "Delete",
+        "add": "Add",
+        "update": "Update",
+        "close": "Close",
+        "reset": "Reset",
+        "download": "Download",
+        "upload": "Upload",
+        "confirm": "Confirm",
+        "search": "Search",
+        "back": "Back",
+        "next": "Next",
+        "finish": "Finish",
+        "start": "Start",
+        "save_changes": "Save Changes",
+        "clear": "Clear",
+        "view": "View",
+        "preview": "Preview",
+        "continue": "Continue",
+        "select": "Select",
+        "select_all": "Select All",
+        "deselect_all": "Deselect All",
+        "accept": "Accept",
+        "reject": "Reject",
+        "ok": "OK",
+        "apply": "Apply",
+        "refresh": "Refresh",
+        "send": "Send",
+        "cancel_request": "Cancel Request",
+        "mark_as_read": "Mark as Read",
+        "mark_as_unread": "Mark as Unread",
+        "archive": "Archive",
+        "restore": "Restore",
+        "load_more": "Load More",
+        "view_details": "View Details",
+        "contact_support": "Contact Support",
         "logout": "Logout"
     },
     "back": {
@@ -191,7 +231,7 @@
         "usernamePlaceholder": "Username",
         "emailPlaceholder": "Email",
         "passwordPlaceholder": "Password",
-        "successTitle" : "Registration successful welcome to DevHelper !",
+        "successTitle": "Registration successful welcome to DevHelper !",
         "submitButton": "Register",
         "successMessage": "Registration successful !",
         "errorMessage": "Please fill out all fields !",
@@ -209,15 +249,66 @@
         "emailMismatch": "Email is incorrect",
         "emailMismatchDescription": "Please enter the correct email"
     },
+    "image": {
+        "image": "Image",
+        "optional": "(optional)",
+        "upload": "Upload Image",
+        "preview": "Preview Image",
+        "remove": "Remove Image",
+        "choose": "Choose Image",
+        "drag_drop": "Drag and Drop Image",
+        "select": "Select Image",
+        "edit": "Edit Image",
+        "resize": "Resize Image",
+        "rotate": "Rotate Image",
+        "cancel": "Cancel Upload"
+    },
+    "vocabulary": {
+        "add": "Add Voca",
+        "delete": "Delete Voca",
+        "edit": "Edit Voca",
+        "save": "Save Voca",
+        "update": "Update Voca",
+        "search": "Search Voca",
+        "clear": "Clear Voca",
+        "select": "Select Voca",
+        "view": "View Voca",
+        "mark": "Mark Voca",
+        "next": "Next Voca",
+        "previous": "Previous Voca",
+        "finish": "Finish Voca",
+        "confirm": "Confirm Voca",
+        "reject": "Reject Voca",
+        "reset": "Reset Voca",
+        "add_new": "New Vocabulary",
+        "apply": "Apply Voca",
+        "load_more": "Load More Voca",
+        "preview": "Preview Voca",
+        "download": "Download Voca",
+        "upload": "Upload Voca",
+        "review": "Review Voca",
+        "export": "Export Voca",
+        "import": "Import Voca",
+        "list": "List Vocabulary",
+        "word": "Word (to translate)",
+        "translate": "Translate (to)",
+        "word_placeholder": "Enter the Word",
+        "translate_placeholder": "Enter the Translate",
+        "detail": "Voca detail",
+        "notes" : "Notes",
+        "notes_enter" : "Enter the notes",
+        "example_sentence" :"Example Sentence",
+        "example_sentence_enter" :"Enter the Example Sentence"
+    },
     "firebase": {
-          "auth": {
+        "auth": {
             "userNotFound": "User  not found.",
             "wrongPassword": "Incorrect password.",
             "emailAlreadyInUse": "Email is already in use.",
             "weakPassword": "Password is too weak.",
             "operationNotAllowed": "Operation not allowed.",
             "defaultError": "An unknown error occurred."
-          }
+        }
     },
     "error": {
         "api": {
@@ -226,7 +317,7 @@
             "sessionExpired": "Session has expired, please log in again.",
             "dataNotFound": "Data not found.",
             "unknownError": "An unknown error occurred."
-            },
+        },
         "404": {
             "title": "Page Not Found",
             "message": "Sorry, the page you visited does not exist.",
@@ -238,26 +329,25 @@
             "button": "Go back"
         }
     },
-    "search":{
-        "title" : "Search ..."
+    "search": {
+        "title": "Search ..."
     },
-    "empty":{
+    "empty": {
         "description": "No data",
         "placeholder": "...",
         "required": "*"
-
     },
-    "tools":{
-        "type":{
-            "name":{
-            "Crypto":"Encryption Tools",
-            "Facebook":"Facebook Tools",
-            "TikTok":"TikTok Tools"
+    "tools": {
+        "type": {
+            "name": {
+                "Crypto": "Encryption Tools",
+                "Facebook": "Facebook Tools",
+                "TikTok": "TikTok Tools"
             },
-            "description":{
-            "Crypto":"Secret Key Encryption Tools refer to software or hardware tools that utilize encryption algorithms to secure data by using a secret key. These tools are designed to protect sensitive information by transforming it into an unreadable format, which can only be reverted back to its original form using the correct secret key. The key used in this encryption process is kept confidential and is essential for both the encryption and decryption operations, ensuring that only authorized users with the secret key can access the original data.",
-            "Facebook":"Facebook Tools refer to various utilities and applications designed to enhance the user experience on Facebook. These tools can include features for managing posts, analyzing engagement, automating tasks, and improving security.",
-            "TikTok":"TikTok Tools are applications and utilities designed to help users create, manage, and analyze content on TikTok. These tools can assist with video editing, follower analytics, trend tracking, and more."
+            "description": {
+                "Crypto": "Secret Key Encryption Tools refer to software or hardware tools that utilize encryption algorithms to secure data by using a secret key. These tools are designed to protect sensitive information by transforming it into an unreadable format, which can only be reverted back to its original form using the correct secret key. The key used in this encryption process is kept confidential and is essential for both the encryption and decryption operations, ensuring that only authorized users with the secret key can access the original data.",
+                "Facebook": "Facebook Tools refer to various utilities and applications designed to enhance the user experience on Facebook. These tools can include features for managing posts, analyzing engagement, automating tasks, and improving security.",
+                "TikTok": "TikTok Tools are applications and utilities designed to help users create, manage, and analyze content on TikTok. These tools can assist with video editing, follower analytics, trend tracking, and more."
             }
         },
         "name": {
