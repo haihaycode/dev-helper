@@ -300,6 +300,9 @@
         "example_sentence" :"Example Sentence",
         "example_sentence_enter" :"Enter the Example Sentence"
     },
+    "note":{
+        "title" : "My Notes"
+    },
     "firebase": {
         "auth": {
             "userNotFound": "User  not found.",

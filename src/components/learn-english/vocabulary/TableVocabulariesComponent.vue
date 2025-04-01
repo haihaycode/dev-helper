@@ -92,7 +92,7 @@
       @close="drawerVisible = false"
       @edit="handleEdit"
       :drawerVisible="drawerVisible"
-      :vocabulary="selectedVocabulary"
+      :vocabulary="selectedVocabulary !== null ? selectedVocabulary : {} as IVocabulary"
     />
   </div>
 </template>

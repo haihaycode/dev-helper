@@ -108,7 +108,7 @@ import { defineProps, defineEmits } from "vue";
 import AntModal from "@/components/container/AntModal.vue";
 import { IVocabulary } from "@/models/IIearnEnglish";
 import { fileToBase64 } from "@/utils/global";
-import { createVocabulary } from "@/api/vocabulary";
+import { createVocabulary } from "@/api/vocabularyApi";
 import { message } from "ant-design-vue";
 import { translate } from "@/utils/global";
 import { getLoadingPost } from "@/utils/loadingUtils";

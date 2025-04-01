@@ -2,9 +2,9 @@ import { User } from "@/models/user";
 import store from "@/store";
 import i18n from "@/services/i18n";
 
-export const PAGE_SIZE_DEFALT = 10;
+export const PAGE_SIZE_DEFAULT = 10;
 export const PAGE_FIRST = 1;
-export const QUERY_DEFAUlT = "";
+export const QUERY_DEFAULT = "";
 export const ORDER_BY = {
   COLUMN_DEFAULT: "id",
   ORDER_DEFAULT: "desc",
@@ -18,7 +18,7 @@ export const ORDER_BY = {
 // });
 
 export const IS_DELETED = {
-  is_Irue: true,
+  is_True: true,
   is_False: false,
 };
 export const EXPIRES_TOKEN = 1;
