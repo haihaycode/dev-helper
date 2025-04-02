@@ -2,6 +2,7 @@ import { User } from "@/models/user";
 import store from "@/store";
 import i18n from "@/services/i18n";
 
+export const DELAY_LOADING_MILLISECONDS = 10;
 export const PAGE_SIZE_DEFAULT = 10;
 export const PAGE_FIRST = 1;
 export const QUERY_DEFAULT = "";
@@ -124,4 +125,8 @@ export const getFromLocalStorage = (key: string): any => {
     return decodeData(encodedData);
   }
   return null;
+};
+
+export const truncateText = (text: string, maxLength: number) => {
+  return text.length > maxLength ? text.slice(0, maxLength) : text;
 };

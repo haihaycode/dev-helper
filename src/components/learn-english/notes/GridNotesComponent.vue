@@ -23,7 +23,13 @@
           id="CONTENT-DETAILS"
           class="text-[10px] sm:text-[14px] text-left min-h-[50px] md:min-h-[100px]"
         >
-          {{ note.detail }}
+          {{ truncateText(note.detail, 50) }}
+          <span
+            v-if="note.detail.length > 50"
+            class="text-blue-600 cursor-pointer font-semibold"
+          >
+            ...xem thêm
+          </span>
         </div>
       </a-card>
     </div>
@@ -48,11 +54,11 @@ import { defineProps } from "vue";
 import { Card as ACard } from "ant-design-vue";
 import { PushpinOutlined as AIcon } from "@ant-design/icons-vue";
 import { INote } from "@/models/INote";
-import { PAGE_SIZE_DEFAULT } from "@/utils/global";
+import { PAGE_SIZE_DEFAULT, truncateText } from "@/utils/global";
 
 const PAGE_SIZE =
   window.innerWidth <= 640 ? PAGE_SIZE_DEFAULT - 2 : PAGE_SIZE_DEFAULT + 2;
-const props = defineProps({
+defineProps({
   notes: {
     type: Array as () => Array<INote>,
     required: false,
