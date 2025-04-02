@@ -1,32 +1,45 @@
 <template>
-  <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-1">
-    <a-card
-      v-for="note in notes"
-      :loading="getLoadingGet()"
-      :hoverable="true"
-      :key="note.id"
-      :class="[
-        'p-1 rounded-sm shadow-sm relative bg-opacity-30',
-        getRandomColor(note.id),
-      ]"
-    >
-      <div class="flex justify-between items-center">
-        <p class="text-[12px] sm:text-[15px] font-bold text-left max-w-[90%]">
-          {{ note.title.toLocaleUpperCase() }}
-        </p>
-        <a-icon
-          type="pushpin"
-          class="text-[10px] sm:text-[20px] flex items-start absolute top-1 right-1 text-gray-700"
-        />
-      </div>
-
-      <div
-        id="CONTENT"
-        class="text-[10px] sm:text-[14px] text-left min-h-[50px] md:min-h-[100px]"
+  <div id="GRID-NOTES-COMPONENT">
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-1">
+      <a-card
+        v-for="note in notes"
+        :hoverable="true"
+        :key="note.id"
+        :class="[
+          'p-1 rounded-sm shadow-sm relative bg-opacity-30',
+          getRandomColor(note.id),
+        ]"
       >
-        {{ note.detail }}
-      </div>
-    </a-card>
+        <div class="flex justify-between items-center">
+          <p class="text-[12px] sm:text-[15px] font-bold text-left max-w-[90%]">
+            {{ note.title.toLocaleUpperCase() }}
+          </p>
+          <a-icon
+            type="pushpin"
+            class="text-[10px] sm:text-[20px] flex items-start absolute top-1 right-1 text-gray-700"
+          />
+        </div>
+        <div
+          id="CONTENT-DETAILS"
+          class="text-[10px] sm:text-[14px] text-left min-h-[50px] md:min-h-[100px]"
+        >
+          {{ note.detail }}
+        </div>
+      </a-card>
+    </div>
+    <div
+      v-if="loading"
+      class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-1 mt-1 opacity-40"
+    >
+      <a-card
+        v-for="i in PAGE_SIZE"
+        :loading="loading"
+        :hoverable="false"
+        :key="i"
+        class="p-1 rounded-sm shadow-sm"
+      >
+      </a-card>
+    </div>
   </div>
 </template>
 
@@ -35,12 +48,17 @@ import { defineProps } from "vue";
 import { Card as ACard } from "ant-design-vue";
 import { PushpinOutlined as AIcon } from "@ant-design/icons-vue";
 import { INote } from "@/models/INote";
-import { getLoadingGet } from "@/utils/loadingUtils";
+import { PAGE_SIZE_DEFAULT } from "@/utils/global";
 
+const PAGE_SIZE =
+  window.innerWidth <= 640 ? PAGE_SIZE_DEFAULT - 2 : PAGE_SIZE_DEFAULT + 2;
 const props = defineProps({
   notes: {
     type: Array as () => Array<INote>,
     required: false,
+  },
+  loading: {
+    type: Boolean,
   },
 });
 const colors = [
@@ -61,6 +79,13 @@ const getRandomColor = (index: number) => {
 </script>
 <style>
 .ant-card-body {
-  padding: 2px 2px 2px 2px;
+  min-height: 200px;
+  padding: 2px;
+}
+
+@media (max-width: 768px) {
+  .ant-card-body {
+    min-height: 120px;
+  }
 }
 </style>

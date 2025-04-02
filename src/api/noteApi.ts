@@ -2,11 +2,14 @@ import Axios from "@/api/axios";
 import { getPath, api } from "./config";
 import { IBaseModel } from "@/models/base";
 import { INote, INoteRequest, INotesResponse } from "@/models/INote";
+import { AxiosRequestConfig } from "axios";
 
 export const getAll = async (body: INoteRequest): Promise<INotesResponse> => {
   const response = await Axios.get(getPath(api.note.getAll), {
     params: body,
-  });
+    loading: false,
+    authenticate: true, //cần xác thực
+  } as AxiosRequestConfig);
   return response.data as INotesResponse;
 };
 
