@@ -1,7 +1,7 @@
 <template>
   <div id="TableVocabularies">
     <table class="min-w-full table-auto border-collapse bg-slate-100">
-      <thead class="bg-blue-900 text-white">
+      <thead class="bg-blue-900 bg-opacity-80 text-white">
         <tr>
           <th class="px-4 py-2 text-left font-bold">WORD</th>
           <th class="px-4 py-2 text-left font-bold">TRANSLATE</th>
@@ -13,11 +13,11 @@
           v-for="(record, index) in vocabularyList"
           :key="index"
           @click="handleRowClick(record)"
+          class="cursor-pointer bg-opacity-50 transition-all duration-300 hover:bg-gray-300"
           :class="[
-            selectedVocabulary?.id == record.id ? 'bg-blue-200' : null,
+            selectedVocabulary?.id == record.id ? 'bg-gray-300' : null,
             index % 2 === 0 ? 'bg-gray-100' : 'bg-white',
           ]"
-          class="cursor-pointer bg-opacity-50 transition-all duration-300 hover:bg-blue-100"
         >
           <td class="px-4 py-2 text-left flex english">
             <p class="font-semibold text-blue-900 mr-2">

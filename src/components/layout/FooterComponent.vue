@@ -1,5 +1,5 @@
 <template>
-  <a-layout-footer class="footer">
+  <a-layout-footer class="footer bg-gray-800 bg-opacity-70">
     <div class="footer-content">
       <div class="footer-left">
         <p>© 2024 DevHelper. All rights reserved.</p>
@@ -31,7 +31,6 @@ export default defineComponent({
 
 <style scoped lang="stylus">
 .footer
-  background-color #001529
   color white
   text-align center
   padding 20px 0

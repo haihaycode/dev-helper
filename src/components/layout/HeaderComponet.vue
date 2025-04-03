@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/no-deprecated-v-on-native-modifier -->
 <template>
-  <header class="primary-navbar text-white shadow-md">
+  <header class="bg-blue-900 text-white shadow-md">
     <div
       class="container mx-auto flex justify-between items-center px-4 font-bold"
     >
