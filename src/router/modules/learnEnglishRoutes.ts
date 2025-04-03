@@ -5,6 +5,9 @@ import ListVocabularyPage from "@/views/pages/learn-english-pages/vocabulary-pag
 import MobilePageNavigation from "@/views/pages/learn-english-pages/MobilePageNavigation.vue";
 import ListNotePage from "@/views/pages/learn-english-pages/note-pages/ListNote-page.vue";
 import NoteDetailPage from "@/views/pages/learn-english-pages/note-pages/NoteDetail-page.vue";
+import i18n from "@/services/i18n";
+
+const t = i18n.global.t;
 const learnEnlishRoutes: Array<RouteRecordRaw> = [
   {
     path: "/l",
@@ -23,6 +26,16 @@ const learnEnlishRoutes: Array<RouteRecordRaw> = [
             meta: {
               requiresAuth: true,
               tag: "LearnEnglishOverview",
+              metaTags: [
+                {
+                  name: "LearnEnglishOverview",
+                  content: t("nav.l.english.overview"),
+                },
+                {
+                  property: "og:LearnEnglishOverview",
+                  content: t("nav.l.english.overview"),
+                },
+              ],
             },
             name: "LearnEnglishOverview",
             component: OverviewPage,
@@ -32,6 +45,16 @@ const learnEnlishRoutes: Array<RouteRecordRaw> = [
             meta: {
               requiresAuth: true,
               tag: "vocabulary", //tag: "vocabulay"
+              metaTags: [
+                {
+                  name: "ListVocabularyPage",
+                  content: t("nav.l.english.listVocabulary"),
+                },
+                {
+                  property: "og:ListVocabularyPage",
+                  content: t("nav.l.english.listVocabulary"),
+                },
+              ],
             },
             name: "LearnEnglishListVocabulary",
             component: ListVocabularyPage,
@@ -41,6 +64,16 @@ const learnEnlishRoutes: Array<RouteRecordRaw> = [
             meta: {
               requiresAuth: true,
               tag: "vocabulary", //tag: "vocabulay"
+              metaTags: [
+                {
+                  name: "ListNotePage",
+                  content: t("note.title"),
+                },
+                {
+                  property: "og:ListNotePage",
+                  content: t("note.title"),
+                },
+              ],
             },
             name: "ListNotePage",
             component: ListNotePage,
