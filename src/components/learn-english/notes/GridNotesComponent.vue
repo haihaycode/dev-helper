@@ -18,6 +18,14 @@
             type="pushpin"
             class="text-[10px] sm:text-[20px] flex items-start absolute top-1 right-1 text-gray-700"
           />
+          <p
+            v-if="note?.updated_at"
+            class="text-sm text-gray-700 absolute bottom-1 right-1"
+          >
+            <span class="text-xs text-gray-500">
+              {{ getRelativeTime(note?.updated_at) }}</span
+            >
+          </p>
         </div>
         <div
           id="CONTENT-DETAILS"
@@ -54,7 +62,11 @@ import { defineProps } from "vue";
 import { Card as ACard } from "ant-design-vue";
 import { PushpinOutlined as AIcon } from "@ant-design/icons-vue";
 import { INote } from "@/models/INote";
-import { PAGE_SIZE_DEFAULT, truncateText } from "@/utils/global";
+import {
+  getRelativeTime,
+  PAGE_SIZE_DEFAULT,
+  truncateText,
+} from "@/utils/global";
 
 const PAGE_SIZE =
   window.innerWidth <= 640 ? PAGE_SIZE_DEFAULT - 2 : PAGE_SIZE_DEFAULT + 2;

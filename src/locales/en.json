@@ -143,8 +143,8 @@
         "logout": "Logout"
     },
     "btn": {
-        "empty":"No data",
-        "not_found" :"Not found data",
+        "empty": "No data",
+        "not_found": "Not found data",
         "save": "Save",
         "cancel": "Cancel",
         "submit": "Submit",
@@ -193,6 +193,14 @@
     },
     "loading": {
         "default": "Loading..."
+    },
+    "time": {
+        "justNow": "just now",
+        "minutesAgo": " minutes ago",
+        "hoursAgo": " hours ago",
+        "daysAgo": " days ago",
+        "monthsAgo": " months ago",
+        "yearsAgo": " years ago"
     },
     "otp": {
         "title": "Please enter the OTP code sent to your email",
@@ -295,13 +303,13 @@
         "word_placeholder": "Enter the Word",
         "translate_placeholder": "Enter the Translate",
         "detail": "Voca detail",
-        "notes" : "Notes",
-        "notes_enter" : "Enter the notes",
-        "example_sentence" :"Example Sentence",
-        "example_sentence_enter" :"Enter the Example Sentence"
+        "notes": "Notes",
+        "notes_enter": "Enter the notes",
+        "example_sentence": "Example Sentence",
+        "example_sentence_enter": "Enter the Example Sentence"
     },
-    "note":{
-        "title" : "My Notes"
+    "note": {
+        "title": "My Notes"
     },
     "firebase": {
         "auth": {

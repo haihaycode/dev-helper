@@ -12,6 +12,8 @@ export interface IVocabulary {
   tags?: string;
   notes?: string;
   is_special?: boolean;
+  updated_at?: string;
+  created_at?: string;
 }
 
 export interface IVocabularyRequest {

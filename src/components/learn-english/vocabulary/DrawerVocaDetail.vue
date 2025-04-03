@@ -56,6 +56,15 @@
             class="rounded-lg shadow-md max-w-full h-auto"
           />
         </div>
+
+        <p
+          v-if="selectedVocabulary?.updated_at"
+          class="text-sm text-gray-700 mb-2"
+        >
+          <span class="text-xs text-gray-500">
+            {{ getRelativeTime(selectedVocabulary?.updated_at) }}</span
+          >
+        </p>
       </div>
     </div>
   </a-drawer>
@@ -75,6 +84,7 @@ import { IVocabulary } from "@/models/IIearnEnglish";
 import "ant-design-vue/dist/antd.css";
 import i18n from "@/services/i18n";
 import { CloseOutlined, EditOutlined } from "@ant-design/icons-vue";
+import { getRelativeTime } from "@/utils/global";
 
 const emit = defineEmits(["close", "edit"]);
 const props = defineProps({
@@ -100,6 +110,8 @@ watch(
       if (!selectedVocabulary.value) {
         selectedVocabulary.value = {} as IVocabulary;
       }
+      selectedVocabulary.value.created_at = props.vocabulary.created_at;
+      selectedVocabulary.value.updated_at = props.vocabulary.updated_at;
       selectedVocabulary.value.id = props.vocabulary.id;
       selectedVocabulary.value.english = props.vocabulary.english || "";
       selectedVocabulary.value.translate = props.vocabulary.translate || "";
