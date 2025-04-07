@@ -130,3 +130,37 @@ export const getFromLocalStorage = (key: string): any => {
 export const truncateText = (text: string, maxLength: number) => {
   return text.length > maxLength ? text.slice(0, maxLength) : text;
 };
+
+export const getRelativeTime = (date: Date | string): string => {
+  let dateObj: Date;
+  if (date instanceof Date) {
+    dateObj = date;
+  } else if (typeof date === "string") {
+    dateObj = new Date(date);
+    if (isNaN(dateObj.getTime())) {
+      return i18n.global.t("time.justNow");
+    }
+  } else {
+    return i18n.global.t("time.justNow");
+  }
+  const now = new Date();
+  const diffInSeconds = Math.floor((now.getTime() - dateObj.getTime()) / 1000);
+  const diffInMinutes = Math.floor(diffInSeconds / 60);
+  const diffInHours = Math.floor(diffInMinutes / 60);
+  const diffInDays = Math.floor(diffInHours / 24);
+  const diffInMonths = Math.floor(diffInDays / 30);
+  const diffInYears = Math.floor(diffInDays / 365);
+  if (diffInSeconds < 60) {
+    return i18n.global.t("time.justNow");
+  } else if (diffInMinutes < 60) {
+    return diffInMinutes.toString() + " " + i18n.global.t("time.minutesAgo");
+  } else if (diffInHours < 24) {
+    return diffInHours.toString() + " " + i18n.global.t("time.hoursAgo");
+  } else if (diffInDays < 30) {
+    return diffInDays.toString() + " " + i18n.global.t("time.daysAgo");
+  } else if (diffInMonths < 12) {
+    return diffInMonths.toString() + " " + i18n.global.t("time.monthsAgo");
+  } else {
+    return diffInYears.toString() + " " + i18n.global.t("time.yearsAgo");
+  }
+};
