@@ -2,17 +2,35 @@
   <LearnEnglishPagePatternLayout :title="i18n.global.t('vocabulary.list')">
     <template #content>
       <div id="LIST-VOCA">
-        <div id="ACTION" class="flex justify-between navigation mb-2">
+        <div
+          id="ACTION"
+          class="flex justify-between flex-wrap space-y-2 md:space-y-0 navigation mb-2"
+        >
           <SearchFilter @search="handleSearch" />
-          <button
-            class="px-2 py-2 flex bg-blue-900 hover:bg-blue-400 rounded-sm text-white"
-            @click="showModalVoabularyAdd = true"
-          >
-            <PlusOutlined class="flex items-center" />
-          </button>
+          <div class="flex justify-end space-x-2">
+            <!-- Nút Thêm từ vựng -->
+            <button
+              class="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-blue-700 text-white hover:bg-blue-700 shadow transition-all duration-200"
+              @click="showModalVoabularyAdd = true"
+            >
+              <PlusOutlined class="text-base flex items-center" />
+              <span>{{ i18n.global.t("vocabulary.add_new") }}</span>
+            </button>
+
+            <!-- Nút Chọn luyện tập -->
+            <button
+              class="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-gray-200 text-black hover:bg-gray-300 shadow transition-all duration-200"
+              @click="isSelectPractice = !isSelectPractice"
+            >
+              <span>
+                {{ !isSelectPractice ? "Chọn luyện tập" : "Hủy chọn" }}
+              </span>
+            </button>
+          </div>
         </div>
         <div id="CONTENT ">
           <TableVocabulariesComponent
+            :is-select-practice="isSelectPractice"
             :page-info="vocabulariesResponse?.data"
             :vocabularyList="vocabulariesResponse?.data?.results"
             @change-special="handleChangeSpecical"
@@ -26,6 +44,27 @@
             "
           />
         </div>
+      </div>
+      <div id="DIRECTION" class="flex justify-center md:justify-end px-2 mt-4">
+        <button
+          @click="goToPracticePage"
+          class="px-5 py-2 bg-white hover:bg-gray-200 text-black font-semibold rounded-lg flex items-center gap-2 shadow"
+        >
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M5 12h14M12 5l7 7-7 7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          Bắt đầu luyện tập
+        </button>
       </div>
 
       <ModalVocabularyAdd
@@ -88,8 +127,10 @@ import {
 import ModalVocabularyEdit from "@/components/learn-english/vocabulary/ModalVocabularyEdit.vue";
 import i18n from "@/services/i18n";
 import { PlusOutlined } from "@ant-design/icons-vue";
+import { useRouter } from "vue-router";
 
 // States
+const isSelectPractice = ref(false);
 const showModalVoabularyAdd = ref(false);
 const vocaEdit = ref<IVocabulary | null>(null);
 const vocabulariesResponse = ref<IVocabulariesResponse>();
@@ -200,6 +241,11 @@ const handleFetchVocabulary = async () => {
   }
 };
 
+const router = useRouter();
+
+const goToPracticePage = () => {
+  router.push({ name: "PracticeVocaPage" });
+};
 onMounted(() => {
   handleFetchVocabulary();
 });
