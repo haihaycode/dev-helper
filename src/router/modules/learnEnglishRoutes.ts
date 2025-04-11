@@ -6,6 +6,7 @@ import MobilePageNavigation from "@/views/pages/learn-english-pages/MobilePageNa
 import ListNotePage from "@/views/pages/learn-english-pages/note-pages/ListNote-page.vue";
 import NoteDetailPage from "@/views/pages/learn-english-pages/note-pages/NoteDetail-page.vue";
 import i18n from "@/services/i18n";
+import PracticeVocaPage from "@/views/pages/learn-english-pages/vocabulary-pages/practiceVoca-page.vue";
 
 const t = i18n.global.t;
 const learnEnlishRoutes: Array<RouteRecordRaw> = [
@@ -58,6 +59,25 @@ const learnEnlishRoutes: Array<RouteRecordRaw> = [
             },
             name: "LearnEnglishListVocabulary",
             component: ListVocabularyPage,
+          },
+          {
+            path: "english/tab=practice-voca",
+            meta: {
+              requiresAuth: true,
+              tag: "vocabulary", //tag: "vocabulay"
+              metaTags: [
+                {
+                  name: "PracticeVocaPage",
+                  content: t("nav.l.english.PracticeVocaPage"),
+                },
+                {
+                  property: "og:PracticeVocaPage",
+                  content: t("nav.l.english.PracticeVocaPage"),
+                },
+              ],
+            },
+            name: "PracticeVocaPage",
+            component: PracticeVocaPage,
           },
           {
             path: "english/tab=notes",

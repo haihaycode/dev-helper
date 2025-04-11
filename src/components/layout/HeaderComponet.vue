@@ -1,13 +1,13 @@
 <!-- eslint-disable vue/no-deprecated-v-on-native-modifier -->
 <template>
-  <header class="bg-white text-blue-900 shadow-md">
+  <header class="bg-blue-900 text-white shadow-md">
     <div
-      class="container text-blue-700 mx-auto flex justify-between items-center px-4 font-bold"
+      class="container mx-auto flex justify-between items-center px-4 font-bold"
     >
       <!-- Logo -->
       <router-link
         to="/"
-        class="logo text-xl font-bold hover:text-blue-900 py-4 tracking-in-expand"
+        class="logo text-xl font-bold hover:text-gray-400 py-4 tracking-in-expand"
         v-t="'project.name'"
       ></router-link>
       <!-- Desktop Menu -->
@@ -15,21 +15,21 @@
         <router-link
           to="/"
           class="hover:text-gray-400 py-4"
-          exact-active-class="border-b-2 border-blue-500 font-bold"
+          exact-active-class="border-b-2 border-white font-bold"
           v-t="'nav.home'"
         ></router-link>
         <router-link
           to="/l/english"
           class="hover:text-gray-400 py-4"
-          active-class="border-b-2 border-blue-200"
-          exact-active-class="border-b-2 border-blue-500"
+          active-class="border-b-2 border-white"
+          exact-active-class="border-b-2 border-white"
           v-t="'nav.l.english.description'"
         ></router-link>
         <router-link
           to="/t/tools"
           class="hover:text-gray-400 py-4"
-          active-class="text-yellow-500 font-bold"
-          exact-active-class="border-b-2 border-blue-500"
+          active-class="text-blue-500 font-bold"
+          exact-active-class="border-b-2 border-white"
           v-t="'nav.solution'"
         ></router-link>
         <!-- User Info Menu -->
@@ -40,7 +40,7 @@
                 ? 'border-b-2 border-gray-100 font-bold'
                 : ''
             "
-            class="ant-dropdown-link flex items-center py-4 hover:text-gray-400 hover:border-b-2 border-blue-500 hover:cursor-pointer"
+            class="ant-dropdown-link flex items-center py-4 hover:text-gray-400 hover:border-b-2 border-white hover:cursor-pointer"
           >
             <UserOutlined class="" /> &nbsp;
             {{ user.username }}
@@ -86,15 +86,15 @@
           v-if="!user"
           to="/c/login"
           class="hover:text-gray-400 py-4"
-          active-class="text-blue-100"
-          exact-active-class="border-b-2 border-blue-200"
+          active-class="text-blue-500"
+          exact-active-class="border-b-2 border-white"
         >
           {{ $t("nav.login") + " / " + $t("nav.register") }}
         </router-link>
       </nav>
       <!-- Mobile Menu Toggle Button -->
       <MenuOutlined
-        class="text-blue-700 text-2xl md:hidden flex items-center"
+        class="text-white text-2xl md:hidden flex items-center"
         @click="showDrawer = true"
       />
     </div>
@@ -108,7 +108,7 @@
       <nav class="flex flex-col space-y-4">
         <a-dropdown v-if="user">
           <a
-            class="ant-dropdown-link flex items-center py-4 hover:text-gray-400 border-b-2 border-blue-700"
+            class="ant-dropdown-link flex items-center py-4 hover:text-gray-400 border-b-2 border-white-700"
             @click.prevent
           >
             <UserOutlined /> &nbsp;
@@ -121,7 +121,7 @@
                 key="0"
                 @click="$router.push({ name: 'MobileInfoLayout' })"
               >
-                <a-anchor-link class="hover:text-blue-900" :title="user?.email">
+                <a-anchor-link class="hover:text-gray-400" :title="user?.email">
                   <div class="flex items-center">
                     <UserOutlined /> &nbsp;
                     {{ $t("nav.account.description") }}
@@ -158,7 +158,7 @@
           to="/c/login"
           class="hover:text-gray-400 py-4"
           active-class="text-yellow-500"
-          exact-active-class="border-b-2 border-blue-700"
+          exact-active-class="border-b-2 border-white-700"
         >
           {{ $t("nav.login") + " / " + $t("nav.register") }}
         </router-link>
@@ -170,15 +170,15 @@
         <router-link
           to="/l/english/tab=mobile"
           @click.native="showDrawer = false"
-          active-class="border-l-4 pl-2 border-yellow-500"
-          exact-active-class="border-l-4 pl-2  border-blue-700"
+          active-class="border-l-4 pl-2 border-blue-500"
+          exact-active-class="border-l-4 pl-2  border-white-700"
           v-t="'nav.l.english.description'"
         ></router-link>
         <router-link
           to="/t/tools"
           @click.native="showDrawer = false"
-          active-class="border-l-4 pl-2 border-yellow-500"
-          exact-active-class="border-l-4 pl-2  border-blue-700"
+          active-class="border-l-4 pl-2 border-blue-500"
+          exact-active-class="border-l-4 pl-2  border-white-700"
           v-t="'nav.solution'"
         ></router-link>
       </nav>
