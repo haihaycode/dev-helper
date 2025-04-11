@@ -19,7 +19,7 @@
 
             <!-- Nút Chọn luyện tập -->
             <button
-              class="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-gray-200 text-gray-800 hover:bg-gray-300 shadow transition-all duration-200"
+              class="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-gray-200 text-black hover:bg-gray-300 shadow transition-all duration-200"
               @click="isSelectPractice = !isSelectPractice"
             >
               <span>
@@ -47,7 +47,8 @@
       </div>
       <div id="DIRECTION" class="flex justify-center md:justify-end px-2 mt-4">
         <button
-          class="px-5 py-2 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg flex items-center gap-2 shadow"
+          @click="goToPracticePage"
+          class="px-5 py-2 bg-white hover:bg-gray-200 text-black font-semibold rounded-lg flex items-center gap-2 shadow"
         >
           <svg
             class="w-5 h-5"
@@ -126,6 +127,7 @@ import {
 import ModalVocabularyEdit from "@/components/learn-english/vocabulary/ModalVocabularyEdit.vue";
 import i18n from "@/services/i18n";
 import { PlusOutlined } from "@ant-design/icons-vue";
+import { useRouter } from "vue-router";
 
 // States
 const isSelectPractice = ref(false);
@@ -239,6 +241,11 @@ const handleFetchVocabulary = async () => {
   }
 };
 
+const router = useRouter();
+
+const goToPracticePage = () => {
+  router.push({ name: "PracticeVocaPage" });
+};
 onMounted(() => {
   handleFetchVocabulary();
 });

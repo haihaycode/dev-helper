@@ -86,7 +86,7 @@
           v-if="!user"
           to="/c/login"
           class="hover:text-gray-400 py-4"
-          active-class="text-blue-500"
+          active-class="text-white"
           exact-active-class="border-b-2 border-white"
         >
           {{ $t("nav.login") + " / " + $t("nav.register") }}

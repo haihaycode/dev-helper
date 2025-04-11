@@ -167,7 +167,7 @@ import i18n from "@/services/i18n";
 import { Dropdown, Menu } from "ant-design-vue";
 import DrawerVocaDetail from "./DrawerVocaDetail.vue";
 
-const props = defineProps({
+defineProps({
   vocabularyList: {
     type: Array as () => Array<IVocabulary>,
     required: false,
