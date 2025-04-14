@@ -30,29 +30,8 @@
         </div>
       </div>
 
-      <div v-if="isLoading" class="space-y-4">
-        <div class="p-2 rounded-lg">
-          <div class="h-6 w-24 bg-gray-200 rounded animate-pulse mb-2"></div>
-          <div class="flex flex-wrap gap-2">
-            <div
-              class="flex items-center space-x-2 bg-white p-2 rounded-md shadow-sm"
-            >
-              <div class="h-4 w-16 bg-gray-200 rounded animate-pulse"></div>
-              <div class="h-8 w-8 bg-gray-200 rounded-full animate-pulse"></div>
-            </div>
-          </div>
-        </div>
-        <div v-for="i in 2" :key="i" class="p-2 rounded-lg">
-          <div class="h-6 w-32 bg-gray-200 rounded animate-pulse mb-2"></div>
-          <div class="space-y-3">
-            <div class="p-2 rounded-md shadow-sm">
-              <div
-                class="h-4 w-full bg-gray-200 rounded animate-pulse mb-2"
-              ></div>
-              <div class="h-4 w-3/4 bg-gray-200 rounded animate-pulse"></div>
-            </div>
-          </div>
-        </div>
+      <div v-if="isLoading" class="space-y-2">
+        <a-card :loading="isLoading" :hoverable="false" class="border-none" />
       </div>
 
       <!-- Phần hiển thị dữ liệu từ điển -->
@@ -107,7 +86,7 @@
                   <span
                     v-for="(syn, synIndex) in def.synonyms"
                     :key="synIndex"
-                    class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-sm"
+                    class="px-2 py-1 bg-green-100 text-green-800 rounded-sm text-sm"
                   >
                     {{ syn }}
                   </span>
@@ -225,6 +204,8 @@ const getInfo = async (word: string) => {
     if (response && response.length > 0) {
       dictionaryData.value = response[0];
     }
+  } catch (error) {
+    console.error(error);
   } finally {
     isLoading.value = false;
   }

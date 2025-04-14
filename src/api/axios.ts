@@ -15,6 +15,7 @@ import {
   BLOCK_TIME,
   api,
   getPath,
+  DICTIONARY_API_URL,
 } from "@/api/config";
 import store from "@/store";
 import { message } from "ant-design-vue";
@@ -190,6 +191,10 @@ Axios.interceptors.response.use(
     }
 
     if (error.response && error.response.status === 404) {
+      console.log(error);
+      if (error.request?.responseURL?.includes(DICTIONARY_API_URL)) {
+        return Promise.reject(error);
+      }
       notification.error({
         message: i18n.global.t("error.api.dataNotFound"),
         description: "The page you are looking for does not exist.",
