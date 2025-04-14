@@ -249,6 +249,24 @@
         "emailMismatch": "Email không chính xác",
         "emailMismatchDescription": "Vui lòng nhập email chính xác"
     },
+    "dictionary": {
+        "word": "Từ vựng",
+        "phonetics": "Phát âm",
+        "text": "Phiên âm",
+        "audio": "Âm thanh",
+        "sourceUrl": "Nguồn",
+        "license": "Giấy phép",
+        "name": "Tên",
+        "url": "Liên kết",
+        "meanings": "Nghĩa",
+        "partOfSpeech": "Loại từ",
+        "definitions": "Định nghĩa",
+        "definition": "Định nghĩa",
+        "example": "Ví dụ",
+        "synonyms": "Từ đồng nghĩa",
+        "antonyms": "Từ trái nghĩa",
+        "sourceUrls": "Nguồn tham khảo"
+    },
     "image": {
         "image": "Hình ảnh",
         "optional": "(tùy chọn)",

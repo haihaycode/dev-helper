@@ -10,7 +10,10 @@
     <div class="p-2">
       <div class="flex items-center justify-between mb-4">
         <span class="text-xl font-semibold text-blue-900">
-          {{ selectedVocabulary?.english?.toUpperCase() }}
+          {{ selectedVocabulary?.english?.toUpperCase() }} <br />
+          <span class="text-sm font-normal">{{
+            selectedVocabulary?.translate
+          }}</span>
         </span>
         <div class="flex items-center space-x-2 text-md">
           <EditOutlined
@@ -30,29 +33,8 @@
         </div>
       </div>
 
-      <div v-if="isLoading" class="space-y-4">
-        <div class="p-2 rounded-lg">
-          <div class="h-6 w-24 bg-gray-200 rounded animate-pulse mb-2"></div>
-          <div class="flex flex-wrap gap-2">
-            <div
-              class="flex items-center space-x-2 bg-white p-2 rounded-md shadow-sm"
-            >
-              <div class="h-4 w-16 bg-gray-200 rounded animate-pulse"></div>
-              <div class="h-8 w-8 bg-gray-200 rounded-full animate-pulse"></div>
-            </div>
-          </div>
-        </div>
-        <div v-for="i in 2" :key="i" class="p-2 rounded-lg">
-          <div class="h-6 w-32 bg-gray-200 rounded animate-pulse mb-2"></div>
-          <div class="space-y-3">
-            <div class="p-2 rounded-md shadow-sm">
-              <div
-                class="h-4 w-full bg-gray-200 rounded animate-pulse mb-2"
-              ></div>
-              <div class="h-4 w-3/4 bg-gray-200 rounded animate-pulse"></div>
-            </div>
-          </div>
-        </div>
+      <div v-if="isLoading" class="space-y-2">
+        <a-card :loading="isLoading" :hoverable="false" class="border-none" />
       </div>
 
       <!-- Phần hiển thị dữ liệu từ điển -->
@@ -97,17 +79,19 @@
             >
               <p class="text-gray-700">{{ def.definition }}</p>
               <p v-if="def.example" class="text-gray-600 italic mt-1">
-                Example: {{ def.example }}
+                {{ i18n.global.t("dictionary.example") }} : {{ def.example }}
               </p>
 
               <!-- Từ đồng nghĩa -->
               <div v-if="def.synonyms.length" class="mt-2">
-                <span class="text-sm font-medium text-gray-500">Synonyms:</span>
+                <span class="text-sm font-medium text-gray-500">
+                  {{ i18n.global.t("dictionary.synonyms") }} :
+                </span>
                 <div class="flex flex-wrap gap-1 mt-1">
                   <span
                     v-for="(syn, synIndex) in def.synonyms"
                     :key="synIndex"
-                    class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-sm"
+                    class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-green-900 dark:text-green-300"
                   >
                     {{ syn }}
                   </span>
@@ -116,7 +100,9 @@
 
               <!-- Từ trái nghĩa -->
               <div v-if="def.antonyms.length" class="mt-2">
-                <span class="text-sm font-medium text-gray-500">Antonyms:</span>
+                <span class="text-sm font-medium text-gray-500">
+                  {{ i18n.global.t("dictionary.antonyms") }} :</span
+                >
                 <div class="flex flex-wrap gap-1 mt-1">
                   <span
                     v-for="(ant, antIndex) in def.antonyms"
@@ -150,7 +136,8 @@
       <!-- Phần hiển thị dữ liệu từ vựng hiện tại -->
       <div id="content" class="bg-white mx-auto mt-6">
         <p class="text-lg text-gray-700 mb-2">
-          <strong>Translate : </strong> {{ selectedVocabulary?.translate }}
+          <strong>{{ i18n.global.t("vocabulary.translate") }} : </strong>
+          {{ selectedVocabulary?.translate }}
         </p>
 
         <p v-if="selectedVocabulary?.notes" class="text-lg text-gray-700 mb-2">
@@ -167,7 +154,9 @@
 
         <!-- Hiển thị hình ảnh nếu có -->
         <div v-if="selectedVocabulary?.image" class="mt-4">
-          <strong class="block text-blue-900 text-lg mb-2">Image:</strong>
+          <strong class="block text-blue-900 text-lg mb-2"
+            >{{ i18n.global.t("image.image") }} :
+          </strong>
           <img
             :src="selectedVocabulary.image"
             alt="Vocabulary Image"
@@ -225,6 +214,8 @@ const getInfo = async (word: string) => {
     if (response && response.length > 0) {
       dictionaryData.value = response[0];
     }
+  } catch (error) {
+    console.error(error);
   } finally {
     isLoading.value = false;
   }

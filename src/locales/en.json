@@ -308,6 +308,24 @@
         "example_sentence": "Example Sentence",
         "example_sentence_enter": "Enter the Example Sentence"
     },
+    "dictionary":{
+        "word": "Word",
+        "phonetics": "Phonetics",
+        "text": "Phonetic Text",
+        "audio": "Audio",
+        "sourceUrl": "Source URL",
+        "license": "License",
+        "name": "Name",
+        "url": "URL",
+        "meanings": "Meanings",
+        "partOfSpeech": "Part of Speech",
+        "definitions": "Definitions",
+        "definition": "Definition",
+        "example": "Example",
+        "synonyms": "Synonyms",
+        "antonyms": "Antonyms",
+        "sourceUrls": "Source URLs"
+    },
     "note": {
         "title": "My Notes"
     },
