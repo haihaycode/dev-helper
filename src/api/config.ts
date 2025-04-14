@@ -9,6 +9,8 @@ export const Domain: string = DEV
   : "https://dev-helper-backend.vercel.app";
 export const rapidHost = "rapidapi.com";
 
+export const DICTIONARY_API_URL = "https://api.dictionaryapi.dev";
+
 export const MAX_TIME_OUT = 70000;
 export const SUCCESS_CODE = {
   "200": 200, // OK
