@@ -107,7 +107,7 @@
                   <span
                     v-for="(ant, antIndex) in def.antonyms"
                     :key="antIndex"
-                    class="px-2 py-1 bg-red-100 text-red-800 rounded-full text-sm"
+                    class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-red-900 dark:text-red-300"
                   >
                     {{ ant }}
                   </span>
