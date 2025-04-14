@@ -3,7 +3,7 @@
     <table
       class="min-w-full table-auto border-collapse rounded-xl overflow-hidden shadow-sm bg-white"
     >
-      <thead class="bg-blue-900 bg-opacity-80 text-white">
+      <thead class="bg-gradient-to-br from-blue-500 to-gray-600 text-white">
         <tr>
           <th class="px-4 py-2 text-left font-bold">WORD</th>
           <th class="px-4 py-2 text-left font-bold">TRANSLATE</th>

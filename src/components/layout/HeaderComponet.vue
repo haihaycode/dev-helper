@@ -1,6 +1,12 @@
 <!-- eslint-disable vue/no-deprecated-v-on-native-modifier -->
 <template>
-  <header class="bg-blue-900 text-white shadow-md">
+  <header
+    class="bg-gradient-to-br from-blue-600 to-gray-600 text-white shadow-md"
+    :class="{
+      'bg-gradient-to-br from-blue-500 to-gray-600':
+        $route.meta?.name === 'Direc',
+    }"
+  >
     <div
       class="container mx-auto flex justify-between items-center px-4 font-bold"
     >
@@ -187,7 +193,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, computed } from "vue";
 import {
   MenuOutlined,
   UserOutlined,
@@ -198,6 +204,8 @@ import { useStore } from "vuex";
 import { getCurrentUser } from "@/api/userApi";
 import { User } from "@/models/user";
 import { effect } from "vue";
+import route from "@/store/modules/route";
+import { useRoute } from "vue-router";
 
 export default defineComponent({
   name: "HeaderComponent",
@@ -208,10 +216,13 @@ export default defineComponent({
     SettingOutlined,
   },
   setup() {
+    const route = useRoute();
     const showDrawer = ref(false);
     const showDropdown = ref(false);
     const store = useStore();
     const user = ref<User | null>(null);
+
+    const isDirecRoute = computed(() => route.meta?.name === "Direc");
 
     const handleGetCurrentUser = async () => {
       try {
@@ -240,6 +251,7 @@ export default defineComponent({
       handleGetCurrentUser,
       logout,
       showDropdown,
+      isDirecRoute,
     };
   },
 });

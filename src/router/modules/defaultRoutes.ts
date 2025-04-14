@@ -63,9 +63,10 @@ const defaultRoutes: Array<RouteRecordRaw> = [
           components["views/pages/auth-pages/unauthenticated-pages/Login"],
         meta: {
           title: t("meta.login.title"),
+          name: "Direc",
           metaTags: [
             {
-              name: "description",
+              name: "Login",
               content: t("meta.login.description"),
             },
             {
@@ -91,9 +92,10 @@ const defaultRoutes: Array<RouteRecordRaw> = [
           components["views/pages/auth-pages/unauthenticated-pages/Register"],
         meta: {
           title: t("meta.register.title"),
+          name: "Direc",
           metaTags: [
             {
-              name: "description",
+              name: "Register",
               content: t("meta.register.description"),
             },
             {

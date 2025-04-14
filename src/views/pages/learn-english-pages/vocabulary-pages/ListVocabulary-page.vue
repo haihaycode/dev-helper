@@ -8,18 +8,15 @@
         >
           <SearchFilter @search="handleSearch" />
           <div class="flex justify-end space-x-2">
-            <!-- Nút Thêm từ vựng -->
             <button
-              class="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-blue-700 text-white hover:bg-blue-700 shadow transition-all duration-200"
+              class="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-gradient-to-br from-blue-500 to-gray-600 text-white hover:bg-blue-700 shadow transition-all duration-200"
               @click="showModalVoabularyAdd = true"
             >
               <PlusOutlined class="text-base flex items-center" />
               <span>{{ i18n.global.t("vocabulary.add_new") }}</span>
             </button>
-
-            <!-- Nút Chọn luyện tập -->
             <button
-              class="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-gray-200 text-black hover:bg-gray-300 shadow transition-all duration-200"
+              class="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-gray-100 text-black hover:bg-gray-300 shadow transition-all duration-200"
               @click="isSelectPractice = !isSelectPractice"
             >
               <span>
@@ -45,7 +42,11 @@
           />
         </div>
       </div>
-      <div id="DIRECTION" class="flex justify-center md:justify-end px-2 mt-4">
+      <div
+        id="DIRECTION"
+        class="flex justify-center md:justify-end px-2 mt-4"
+        v-if="!getLoadingGet()"
+      >
         <button
           @click="goToPracticePage"
           class="px-5 py-2 bg-white hover:bg-gray-200 text-black font-semibold rounded-lg flex items-center gap-2 shadow"
@@ -128,6 +129,7 @@ import ModalVocabularyEdit from "@/components/learn-english/vocabulary/ModalVoca
 import i18n from "@/services/i18n";
 import { PlusOutlined } from "@ant-design/icons-vue";
 import { useRouter } from "vue-router";
+import { getLoadingGet } from "@/utils/loadingUtils";
 
 // States
 const isSelectPractice = ref(false);
