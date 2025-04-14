@@ -7,17 +7,16 @@
         >
           <!-- Timer + Score -->
           <div class="absolute top-4 right-6 text-right text-sm text-gray-500">
-            ⏰ <span class="font-bold text-red-500">{{ timeLeft }}s</span><br />
-            ⭐ Điểm :
-            <span class="text-green-600"
-              >{{ score }}/{{ questions.length }}</span
-            >
+            <span class="font-bold text-red-500 text-3xl">{{ timeLeft }}s</span
+            ><br />
+            Score :
+            <span class="text-green-600">{{ score }}</span>
           </div>
 
           <!-- Câu hỏi -->
           <div class="mb-4">
             <div class="text-sm text-gray-500 mb-1">
-              Câu {{ currentIndex + 1 }}
+              Câu {{ currentIndex + 1 }} / {{ questions.length }}
             </div>
             <div class="text-xl font-bold text-gray-800 tracking-wide">
               {{ upperCase(currentQuestion.question) }}
@@ -39,13 +38,79 @@
           </div>
 
           <!-- Nút tiếp theo -->
-          <div v-if="selectedAnswer || isTimeUp" class="mt-6 text-right">
+          <div
+            v-if="(selectedAnswer || isTimeUp) && !isLoading"
+            class="mt-6 text-right"
+          >
             <button
-              class="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-300"
+              class="bg-gradient-to-br from-blue-600 to-gray-600 text-white shadow-md p-2 rounded-md"
               @click="goToNextQuestion"
             >
-              {{ isLastQuestion ? "🎉 Kết thúc" : "Câu tiếp theo" }}
+              {{
+                isLastQuestion
+                  ? "🎉 Kết thúc"
+                  : `Tiếp tục (${nextQuestionCountdown}s)`
+              }}
             </button>
+          </div>
+
+          <!-- Hiển thị thông tin từ điển sau khi trả lời -->
+          <div v-if="selectedAnswer || isTimeUp" class="mt-6 border-t pt-4">
+            <div v-if="isLoading" class="space-y-2">
+              <a-card
+                :loading="isLoading"
+                :hoverable="false"
+                class="border-none"
+              />
+            </div>
+
+            <div v-else-if="dictionaryData" class="space-y-2">
+              <!-- Phát âm -->
+              <div class="p-2 rounded-lg">
+                <div class="flex flex-wrap gap-2">
+                  <div
+                    v-for="(phonetic, index) in dictionaryData.phonetics"
+                    :key="index"
+                    class="flex items-center space-x-2 bg-white p-2 rounded-md shadow-sm"
+                  >
+                    <span v-if="phonetic.text" class="text-gray-700">{{
+                      phonetic.text
+                    }}</span>
+                    <button
+                      v-if="phonetic.audio"
+                      @click="playAudio(phonetic.audio)"
+                      class="p-2 bg-blue-100 rounded-full hover:bg-blue-200 transition-colors"
+                    >
+                      <SoundOutlined class="text-blue-600 flex items-center" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Nghĩa -->
+              <div
+                v-for="(meaning, index) in dictionaryData.meanings"
+                :key="index"
+                class="p-2 rounded-lg"
+              >
+                <h3 class="text-lg font-semibold text-blue-900 mb-2">
+                  {{ meaning.partOfSpeech.toUpperCase() }}
+                </h3>
+                <div class="space-y-3">
+                  <div
+                    v-for="(def, defIndex) in meaning.definitions"
+                    :key="defIndex"
+                    class="p-2 rounded-md shadow-sm"
+                  >
+                    <p class="text-gray-700">{{ def.definition }}</p>
+                    <p v-if="def.example" class="text-gray-600 italic mt-1">
+                      {{ i18n.global.t("dictionary.example") }} :
+                      {{ def.example }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -63,6 +128,12 @@ import LearnEnglishPagePatternLayout from "../LearnEnglishPagePatternLayout.vue"
 import { IVocabulary } from "@/models/IIearnEnglish";
 import { practiceVoca } from "@/services/learn/practiceService";
 import { shuffle, upperCase } from "lodash";
+import { SoundOutlined } from "@ant-design/icons-vue";
+import { getVocabularyByDictionary } from "@/api/dictionaryApi";
+import { IDictionaryEntry } from "@/models/IDictionaryEntry";
+import i18n from "@/services/i18n";
+import correctSound from "@/assets/audio/correct-6033.mp3";
+import wrongSound from "@/assets/audio/error-5-199276.mp3";
 
 const STORAGE_KEY = "selected_vocabularies";
 const questions = ref(practiceVoca(shuffle(getStoredVocabularies())));
@@ -72,6 +143,10 @@ const score = ref(0);
 const timeLeft = ref(10);
 const timer = ref<number | null>(null);
 const isTimeUp = ref(false);
+const dictionaryData = ref<IDictionaryEntry | null>(null);
+const isLoading = ref(false);
+const nextQuestionCountdown = ref(10);
+const nextQuestionTimer = ref<number | null>(null);
 
 function getStoredVocabularies(): IVocabulary[] {
   try {
@@ -87,13 +162,54 @@ const isLastQuestion = computed(
   () => currentIndex.value === questions.value.length - 1
 );
 
+const playAudio = (audioUrl: string) => {
+  const audio = new Audio(audioUrl);
+  audio.play();
+};
+
+const getInfo = async (word: string) => {
+  try {
+    isLoading.value = true;
+    const response = await getVocabularyByDictionary(word);
+    if (response && response.length > 0) {
+      dictionaryData.value = response[0];
+      // Tự động phát âm thanh đầu tiên nếu có
+      const firstAudio = dictionaryData.value.phonetics.find((p) => p.audio);
+      if (firstAudio?.audio) {
+        playAudio(firstAudio.audio);
+      }
+    }
+  } catch (error) {
+    dictionaryData.value = null;
+  } finally {
+    isLoading.value = false;
+  }
+};
+
+const playResultSound = (isCorrect: boolean) => {
+  const audio = new Audio(isCorrect ? correctSound : wrongSound);
+  audio.play();
+};
+
 const selectAnswer = (option: string) => {
   if (selectedAnswer.value || isTimeUp.value) return;
   selectedAnswer.value = option;
-  if (option === currentQuestion.value.correctAnswer) {
-    score.value++;
+  const isCorrect = option === currentQuestion.value.correctAnswer;
+  if (isCorrect) {
+    // Tính điểm dựa trên thời gian còn lại
+    // Thời gian càng nhiều điểm càng cao, tối đa 1000 điểm
+    const maxTime = 10; // Thời gian tối đa cho mỗi câu
+    const maxScore = 1000; // Điểm tối đa cho mỗi câu
+    const timeBonus = Math.floor((timeLeft.value / maxTime) * maxScore);
+    score.value += timeBonus;
   }
+  // Phát âm thanh kết quả
+  playResultSound(isCorrect);
   stopTimer();
+  // Gọi API lấy thông tin từ điển sau khi trả lời
+  getInfo(currentQuestion.value.question);
+  // Bắt đầu đếm ngược cho câu tiếp theo
+  startNextQuestionCountdown();
 };
 
 const getOptionClass = (option: string) => {
@@ -114,6 +230,7 @@ const getOptionClass = (option: string) => {
 };
 
 const goToNextQuestion = () => {
+  stopNextQuestionCountdown();
   if (!isLastQuestion.value) {
     currentIndex.value++;
     selectedAnswer.value = null;
@@ -143,6 +260,24 @@ const stopTimer = () => {
   if (timer.value) clearInterval(timer.value);
 };
 
+const startNextQuestionCountdown = () => {
+  nextQuestionCountdown.value = 10;
+  nextQuestionTimer.value = setInterval(() => {
+    if (nextQuestionCountdown.value > 0) {
+      nextQuestionCountdown.value--;
+    } else {
+      goToNextQuestion();
+    }
+  }, 1000);
+};
+
+const stopNextQuestionCountdown = () => {
+  if (nextQuestionTimer.value) {
+    clearInterval(nextQuestionTimer.value);
+    nextQuestionTimer.value = null;
+  }
+};
+
 onMounted(() => {
   if (questions.value.length) {
     startTimer();
@@ -151,6 +286,7 @@ onMounted(() => {
 
 onUnmounted(() => {
   stopTimer();
+  stopNextQuestionCountdown();
 });
 </script>
 
