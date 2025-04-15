@@ -3,26 +3,48 @@
     <template #content>
       <div v-if="questions.length && currentQuestion">
         <div
-          class="p-6 rounded-2xl shadow-sm bg-white relative animate-fade-in transition-all duration-500"
+          class="p-6 rounded-2xl shadow-sm bg-white animate-fade-in transition-all duration-500"
         >
           <!-- Timer + Score -->
-          <div class="absolute top-4 right-6 text-right text-sm text-gray-500">
-            <span class="font-bold text-red-500 text-3xl">{{ timeLeft }}s</span
-            ><br />
-            Score :
-            <span class="text-green-600">{{ score }}</span>
+          <div
+            class="flex w-full items-end justify-end text-sm text-gray-500 space-x-2"
+          >
+            <p class="text-blue-700 text-sm">Score : {{ score }}</p>
+            <div class="relative w-12 h-12">
+              <svg class="w-full h-full transform -rotate-90">
+                <circle
+                  class="text-gray-200"
+                  stroke-width="4"
+                  stroke="currentColor"
+                  fill="transparent"
+                  r="20"
+                  cx="24"
+                  cy="24"
+                />
+                <circle
+                  class="text-red-500"
+                  stroke-width="4"
+                  stroke-dasharray="125.6"
+                  :stroke-dashoffset="125.6 - (timeLeft / 10) * 125.6"
+                  stroke-linecap="round"
+                  stroke="currentColor"
+                  fill="transparent"
+                  r="20"
+                  cx="24"
+                  cy="24"
+                />
+              </svg>
+              <span
+                class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-bold text-red-500 text-xl"
+              >
+                {{ timeLeft }}
+              </span>
+            </div>
           </div>
 
-          <!-- Câu hỏi -->
-          <div class="mb-4">
-            <div class="text-sm text-gray-500 mb-1">
-              Câu {{ currentIndex + 1 }} / {{ questions.length }}
-            </div>
-            <div class="text-xl font-bold text-gray-800 tracking-wide">
-              {{ upperCase(currentQuestion.question) }}
-            </div>
+          <div class="text-xl mb-1 font-bold text-gray-800 tracking-wide">
+            {{ upperCase(currentQuestion.question) }}
           </div>
-
           <!-- Các lựa chọn -->
           <div class="space-y-3">
             <button
@@ -35,6 +57,22 @@
             >
               {{ option }}
             </button>
+          </div>
+
+          <div class="mb-2 px-2 mt-1">
+            <div
+              class="text-blue-500 text-left py-1 rounded-full text-sm font-medium shadow-sm"
+            >
+              {{ currentIndex + 1 }} / {{ questions.length }}
+            </div>
+            <div class="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+              <div
+                class="h-full bg-gradient-to-r from-gray-400 to-blue-600 transition-all duration-500 ease-in-out"
+                :style="{
+                  width: `${((currentIndex + 1) / questions.length) * 100}%`,
+                }"
+              ></div>
+            </div>
           </div>
 
           <!-- Nút tiếp theo -->
@@ -293,5 +331,9 @@ onUnmounted(() => {
 <style scoped>
 button:disabled {
   cursor: not-allowed;
+}
+
+circle {
+  transition: stroke-dashoffset 1s linear;
 }
 </style>
