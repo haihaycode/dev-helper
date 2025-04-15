@@ -284,6 +284,21 @@
         "help": "Trợ giúp",
         "contact": "Liên hệ"
     },
+    "date": {
+        "startDate": "Ngày bắt đầu",
+        "endDate": "Ngày kết thúc",
+        "today": "Hôm nay",
+        "yesterday": "Hôm qua",
+        "lastWeek": "Tuần trước",
+        "lastMonth": "Tháng trước",
+        "lastYear": "Năm trước",
+        "thisWeek": "Tuần này",
+        "thisMonth": "Tháng này",
+        "thisYear": "Năm nay",
+        "nextWeek": "Tuần sau",
+        "nextMonth": "Tháng sau",
+        "nextYear": "Năm sau"
+    },
     "time": {
         "justNow": "vừa nãy",
         "minutesAgo": " phút trước",

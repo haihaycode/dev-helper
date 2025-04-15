@@ -1,13 +1,25 @@
 <template>
   <div id="TableVocabularies">
     <table
-      class="min-w-full table-auto border-collapse rounded-xl overflow-hidden shadow-sm bg-white"
+      class="min-w-full table-auto border-collapse border rounded-b-xl overflow-hidden shadow-sm bg-white"
     >
       <thead class="bg-gradient-to-br from-blue-500 to-gray-600 text-white">
         <tr>
           <th class="px-4 py-2 text-left font-bold">WORD</th>
           <th class="px-4 py-2 text-left font-bold">TRANSLATE</th>
-          <th class="px-4 py-2 text-left font-bold"></th>
+          <th
+            v-if="isSelectPractice"
+            class="px-4 py-2 text-left font-bold"
+            id="CHONTATCALUUVAOLOCALSTORAGEHOACXOACHONTATCA"
+          >
+            <a-checkbox
+              v-model:checked="state.checkAll"
+              :indeterminate="state.indeterminate"
+              @change="onCheckAllChange"
+            >
+            </a-checkbox>
+          </th>
+          <th v-else class="px-4 py-2 text-left font-bold" id="OPERATION"></th>
         </tr>
       </thead>
       <tbody
@@ -149,7 +161,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, defineProps, PropType, onMounted } from "vue";
+import { ref, defineProps, PropType, onMounted, watch } from "vue";
 import { IVocabulary } from "@/models/IIearnEnglish";
 import "ant-design-vue/dist/antd.css";
 import { IPageInfo } from "@/models/base";
@@ -167,7 +179,7 @@ import i18n from "@/services/i18n";
 import { Dropdown, Menu } from "ant-design-vue";
 import DrawerVocaDetail from "./DrawerVocaDetail.vue";
 
-defineProps({
+const props = defineProps({
   vocabularyList: {
     type: Array as () => Array<IVocabulary>,
     required: false,
@@ -256,6 +268,70 @@ const toggleVocabularyInStorage = (record: IVocabulary) => {
 const isInLocalStorage = (id: number) => {
   return storedVocabularyIds.value.includes(id);
 };
+
+const state = ref({
+  checkAll: false,
+  indeterminate: false,
+});
+
+const onCheckAllChange = (e: any) => {
+  const checked = e.target.checked;
+  state.value.checkAll = checked;
+  state.value.indeterminate = false;
+
+  if (checked) {
+    // Thêm tất cả từ vựng vào localStorage
+    const existingWords = JSON.parse(
+      localStorage.getItem("selected_vocabularies") || "[]"
+    );
+    const newWords =
+      props.vocabularyList?.filter(
+        (word) =>
+          !existingWords.some((existing: any) => existing.id === word.id)
+      ) || [];
+
+    if (newWords.length > 0) {
+      const updatedWords = [...existingWords, ...newWords];
+      localStorage.setItem(
+        "selected_vocabularies",
+        JSON.stringify(updatedWords)
+      );
+    }
+  } else {
+    // Xóa tất cả từ vựng trong bảng hiện tại khỏi localStorage
+    const existingWords = JSON.parse(
+      localStorage.getItem("selected_vocabularies") || "[]"
+    );
+    const wordIdsToRemove = props.vocabularyList?.map((word) => word.id) || [];
+    const updatedWords = existingWords.filter(
+      (word: any) => !wordIdsToRemove.includes(word.id)
+    );
+
+    localStorage.setItem("selected_vocabularies", JSON.stringify(updatedWords));
+  }
+
+  // Cập nhật danh sách từ vựng đã lưu
+  loadStoredVocabularies();
+};
+
+// Cập nhật trạng thái checkbox khi danh sách từ vựng thay đổi
+watch(
+  () => props.vocabularyList,
+  () => {
+    if (props.vocabularyList) {
+      const allInStorage = props.vocabularyList.every((word) =>
+        isInLocalStorage(word.id!)
+      );
+      const someInStorage = props.vocabularyList.some((word) =>
+        isInLocalStorage(word.id!)
+      );
+
+      state.value.checkAll = allInStorage;
+      state.value.indeterminate = someInStorage && !allInStorage;
+    }
+  },
+  { immediate: true }
+);
 
 onMounted(() => {
   loadStoredVocabularies();
