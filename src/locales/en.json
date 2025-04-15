@@ -389,5 +389,20 @@
             "GetUserInfo": "Get User Info Tools are designed to retrieve user information from various platforms. These tools can help in gathering data such as user profiles, activity logs, and other relevant information.",
             "DownloadWithoutWatermark": "Download Without Watermark Tools allow users to download content from various platforms without any watermarks. These tools are useful for obtaining clean and unbranded media files."
         }
+    },
+    "date": {
+        "startDate": "Start date",
+        "endDate": "End date",
+        "today": "Today",
+        "yesterday": "Yesterday",
+        "lastWeek": "Last week",
+        "lastMonth": "Last month",
+        "lastYear": "Last year",
+        "thisWeek": "This week",
+        "thisMonth": "This month",
+        "thisYear": "This year",
+        "nextWeek": "Next week",
+        "nextMonth": "Next month",
+        "nextYear": "Next year"
     }
 }

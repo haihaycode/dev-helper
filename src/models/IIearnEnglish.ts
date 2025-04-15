@@ -1,5 +1,5 @@
 import { IBaseModelPaged, IPageInfo } from "./base";
-import { IOrderBy } from "./IPagination";
+
 export interface IVocabulary {
   id?: number;
   english?: string;
@@ -17,11 +17,16 @@ export interface IVocabulary {
 }
 
 export interface IVocabularyRequest {
+  query?: string;
   page?: number;
   pageSize?: number;
-  query?: string;
-  is_deleted?: false | true;
-  orderBy?: IOrderBy;
+  is_deleted?: boolean;
+  orderBy?: {
+    column?: string;
+    order?: string;
+  };
+  startDate?: string;
+  endDate?: string;
 }
 
 export type IVocabulariesResponse = IBaseModelPaged<IPageInfo<IVocabulary>>;

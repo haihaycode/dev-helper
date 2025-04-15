@@ -1,7 +1,7 @@
 <template>
   <div id="TableVocabularies">
     <table
-      class="min-w-full table-auto border-collapse rounded-xl overflow-hidden shadow-sm bg-white"
+      class="min-w-full table-auto border-collapse border rounded-b-xl overflow-hidden shadow-sm bg-white"
     >
       <thead class="bg-gradient-to-br from-blue-500 to-gray-600 text-white">
         <tr>

@@ -2,27 +2,31 @@
   <LearnEnglishPagePatternLayout :title="i18n.global.t('vocabulary.list')">
     <template #content>
       <div id="LIST-VOCA">
-        <div
-          id="ACTION"
-          class="flex justify-between flex-wrap space-y-2 md:space-y-0 navigation mb-2"
-        >
-          <SearchFilter @search="handleSearch" />
-          <div class="flex justify-end space-x-2">
-            <button
-              class="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-gradient-to-br from-blue-500 to-gray-600 text-white hover:bg-blue-700 shadow transition-all duration-200"
-              @click="showModalVoabularyAdd = true"
-            >
-              <PlusOutlined class="text-base flex items-center" />
-              <span>{{ i18n.global.t("vocabulary.add_new") }}</span>
-            </button>
-            <button
-              class="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-gray-100 text-black hover:bg-gray-300 shadow transition-all duration-200"
-              @click="isSelectPractice = !isSelectPractice"
-            >
-              <span>
-                {{ !isSelectPractice ? "Chọn luyện tập" : "Hủy chọn" }}
-              </span>
-            </button>
+        <div id="ACTION">
+          <div
+            class="flex justify-between flex-wrap space-y-2 md:space-y-0 navigation mb-2"
+          >
+            <SearchFilter @search="handleSearch" />
+            <div class="flex justify-end space-x-2">
+              <button
+                class="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-gradient-to-br from-blue-500 to-gray-600 text-white hover:bg-blue-700 shadow transition-all duration-200"
+                @click="showModalVoabularyAdd = true"
+              >
+                <PlusOutlined class="text-base flex items-center" />
+                <span>{{ i18n.global.t("vocabulary.add_new") }}</span>
+              </button>
+              <button
+                class="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-gray-100 text-black hover:bg-gray-300 shadow transition-all duration-200"
+                @click="isSelectPractice = !isSelectPractice"
+              >
+                <span>
+                  {{ !isSelectPractice ? "Chọn luyện tập" : "Hủy chọn" }}
+                </span>
+              </button>
+            </div>
+          </div>
+          <div>
+            <DateRangePicker @dateChange="handleDateChange" />
           </div>
         </div>
         <div id="CONTENT ">
@@ -130,6 +134,7 @@ import i18n from "@/services/i18n";
 import { PlusOutlined } from "@ant-design/icons-vue";
 import { useRouter } from "vue-router";
 import { getLoadingGet } from "@/utils/loadingUtils";
+import DateRangePicker from "@/components/learn-english/vocabulary/DateRangePicker.vue";
 
 // States
 const isSelectPractice = ref(false);
@@ -145,6 +150,8 @@ const vocabularyRequest = ref<IVocabularyRequest>({
     column: ORDER_BY.COLUMN_DEFAULT,
     order: ORDER_BY.ORDER_DEFAULT,
   },
+  startDate: "",
+  endDate: "",
 });
 const loadedPages = ref<{ [key: number]: IVocabulariesResponse }>({});
 
@@ -248,6 +255,15 @@ const router = useRouter();
 const goToPracticePage = () => {
   router.push({ name: "PracticeVocaPage" });
 };
+
+const handleDateChange = (startDate: string, endDate: string) => {
+  vocabularyRequest.value.startDate = startDate;
+  vocabularyRequest.value.endDate = endDate;
+  vocabularyRequest.value.page = 1;
+  loadedPages.value = {};
+  handleFetchVocabulary();
+};
+
 onMounted(() => {
   handleFetchVocabulary();
 });
