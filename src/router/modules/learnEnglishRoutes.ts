@@ -99,10 +99,20 @@ const learnEnlishRoutes: Array<RouteRecordRaw> = [
             component: ListNotePage,
           },
           {
-            path: "english/tab=notes-detail",
+            path: "english/tab=notes/:slug",
             meta: {
               requiresAuth: true,
-              tag: "vocabulary", //tag: "vocabulay"
+              tag: "vocabulary",
+              metaTags: [
+                {
+                  name: "ListNotePage",
+                  content: t("note.title"),
+                },
+                {
+                  property: "og:ListNotePage",
+                  content: t("note.title"),
+                },
+              ],
             },
             name: "NoteDetailPage",
             component: NoteDetailPage,

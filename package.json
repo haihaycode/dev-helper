@@ -12,6 +12,7 @@
     "@ant-design/icons-vue": "^7.0.1",
     "@heroicons/vue": "^2.2.0",
     "@vue/reactivity": "^3.5.13",
+    "@vueup/vue-quill": "^1.2.0",
     "ant-design-vue": "^2.2.8",
     "axios": "^1.7.9",
     "core-js": "^3.8.3",

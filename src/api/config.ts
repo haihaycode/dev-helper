@@ -94,6 +94,7 @@ export const api = {
   note: {
     getAll: "/notes",
     getOne: "/note",
+    getOneBySlug: "/note/slug",
     create: "/note",
     update: "/note",
     delete: "/note",

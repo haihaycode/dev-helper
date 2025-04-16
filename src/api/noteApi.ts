@@ -29,6 +29,27 @@ export const update = async (
   return response.data as IBaseModel<INote>;
 };
 
+export const getOneById = async (id: number): Promise<IBaseModel<INote>> => {
+  const response = await Axios.get(`${getPath(api.note.getOne)}?id=${id}`, {
+    loading: false,
+    authenticate: true,
+  } as AxiosRequestConfig);
+  return response.data as IBaseModel<INote>;
+};
+
+export const getOneBySlug = async (
+  slug: string
+): Promise<IBaseModel<INote>> => {
+  const response = await Axios.get(
+    `${getPath(api.note.getOneBySlug)}?slug=${slug}`,
+    {
+      loading: false,
+      authenticate: true,
+    } as AxiosRequestConfig
+  );
+  return response.data as IBaseModel<INote>;
+};
+
 export const deleteNote = async (id: number): Promise<IBaseModel<INote>> => {
   const response = await Axios.delete(`${getPath(api.note.delete)}?id=${id}`);
   return response.data as IBaseModel<INote>;
