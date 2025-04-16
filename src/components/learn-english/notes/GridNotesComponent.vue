@@ -6,9 +6,10 @@
         :hoverable="true"
         :key="note.id"
         :class="[
-          'p-1 rounded-sm shadow-sm relative bg-opacity-30',
+          'p-1 rounded-sm shadow-sm relative bg-opacity-30 cursor-pointer',
           getRandomColor(note.id),
         ]"
+        @click="handleCardClick(note.slug)"
       >
         <div class="flex justify-between items-center">
           <p class="text-[12px] sm:text-[15px] font-bold text-left max-w-[90%]">
@@ -67,6 +68,9 @@ import {
   PAGE_SIZE_DEFAULT,
   truncateText,
 } from "@/utils/global";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 
 const PAGE_SIZE =
   window.innerWidth <= 640 ? PAGE_SIZE_DEFAULT - 2 : PAGE_SIZE_DEFAULT + 2;
@@ -93,6 +97,13 @@ const colors = [
 
 const getRandomColor = (index: number) => {
   return colors[index % colors.length];
+};
+
+const handleCardClick = (slug: string) => {
+  router.push({
+    name: "NoteDetailPage",
+    params: { slug },
+  });
 };
 </script>
 <style>
