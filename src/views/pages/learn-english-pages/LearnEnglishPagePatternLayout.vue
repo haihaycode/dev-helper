@@ -13,7 +13,7 @@
           </p>
 
           <div class="sm:block md:hidden">
-            <NavigateBackComponent />
+            <NavigateBackComponent :back-to="backTo" />
           </div>
         </div>
 
@@ -44,6 +44,11 @@ onMounted(async () => {
   // informationProfile.value = await getInformationProfile();
 });
 defineProps({
+  backTo: {
+    type: String,
+    required: false,
+    default: null,
+  },
   title: {
     type: String,
     required: true,

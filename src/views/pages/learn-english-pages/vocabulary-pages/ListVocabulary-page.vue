@@ -72,6 +72,16 @@
         </button>
       </div>
 
+      <div id="BANNER" class="mt-2">
+        <a-image
+          placeholder="true"
+          preview="false"
+          class="rounded-md"
+          :src="require('@/assets/bg/2e0801f0-14eb-4999-b059-aeb578e43c46.png')"
+          alt=""
+        />
+      </div>
+
       <ModalVocabularyAdd
         v-if="showModalVoabularyAdd"
         :modelValue="showModalVoabularyAdd"
