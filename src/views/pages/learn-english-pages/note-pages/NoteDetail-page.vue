@@ -1,5 +1,6 @@
 <template>
   <LearnEnglishPagePatternLayout
+    :backTo="'/l/english/tab=notes'"
     :title="truncateString(noteData.title || '...', 30)"
   >
     <template #content>
@@ -14,17 +15,21 @@
               theme="snow"
               class="h-[500px] mb-2"
             />
-            <div
-              v-else
-              class="ql-editor-viewer mb-2 text-left"
-              v-html="noteData.notes"
-            ></div>
+            <div v-else>
+              <QuillEditor
+                v-model:content="noteData.notes"
+                contentType="html"
+                :toolbar="toolbarOptions"
+                theme="bubble"
+                class="h-[500px] mb-0"
+              />
+            </div>
             <div class="flex justify-end items-center space-x-2 mx-2">
               <span>
                 {{ getRelativeTime(noteData.updated_at) }}
               </span>
               <EditOutlined
-                class="text-gray-500 hover:text-blue-500 cursor-pointer"
+                class="text-gray-500 hover:text-blue-500 cursor-pointer z-50"
                 @click="handleEditContent"
               />
             </div>
@@ -59,6 +64,7 @@
 
           <div id="ACTION" class="mt-4 flex justify-end space-x-2 p-2">
             <a-button
+              :loading="getLoadingPut()"
               class="bg-gradient-to-br from-blue-500 to-gray-600 rounded-sm"
               @click="handleSave"
               type="primary"
@@ -84,6 +90,7 @@ import { getOneBySlug, update } from "@/api/noteApi";
 import { useRoute, useRouter } from "vue-router";
 import { truncateString } from "@/utils/StringUtils";
 import { getRelativeTime } from "@/utils/global";
+import { getLoadingPut } from "@/utils/loadingUtils";
 
 const route = useRoute();
 const router = useRouter();

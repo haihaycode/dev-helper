@@ -11,8 +11,19 @@
 <script lang="ts" setup>
 import { ArrowLeftOutlined } from "@ant-design/icons-vue";
 import { useRouter } from "vue-router";
+import { defineProps } from "vue";
+
+const props = defineProps<{
+  backTo?: string;
+}>();
+
 const router = useRouter();
+
 function goBack() {
-  router.back(); // Go to the previous route
+  if (props.backTo) {
+    router.push(props.backTo);
+  } else {
+    router.back();
+  }
 }
 </script>
