@@ -1,10 +1,12 @@
 <template>
   <div id="app">
-    <LoadingSpinCustom :loading="loading">
-      <transition name="fade-wait" mode="out-in">
-        <router-view />
-      </transition>
-    </LoadingSpinCustom>
+    <Suspense>
+      <LoadingSpinCustom :loading="loading">
+        <transition name="fade-wait" mode="out-in">
+          <router-view />
+        </transition>
+      </LoadingSpinCustom>
+    </Suspense>
   </div>
 </template>
 
