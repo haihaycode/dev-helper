@@ -72,8 +72,6 @@
         </button>
       </div>
 
-     
-
       <ModalVocabularyAdd
         v-if="showModalVoabularyAdd"
         :modelValue="showModalVoabularyAdd"
