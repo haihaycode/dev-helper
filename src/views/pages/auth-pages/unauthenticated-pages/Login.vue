@@ -1,6 +1,6 @@
 <template>
   <div
-    class="min-h-screen bg-gradient-to-br from-blue-500 to-gray-800 flex items-center justify-center p-4"
+    class="md:min-h-screen bg-gradient-to-br from-blue-500 to-gray-800 flex items-center justify-center p-4"
   >
     <div
       class="max-w-5xl w-full rounded-2xl shadow-2xl overflow-hidden"
@@ -12,7 +12,7 @@
           :xs="24"
           :sm="24"
           :md="12"
-          class="p-8 flex flex-col justify-center items-center jello-horizontal"
+          class="hidden sm:flex p-8 flex-col justify-center items-center jello-horizontal"
         >
           <div class="text-center">
             <a-image
@@ -53,7 +53,7 @@
                 :help="errors.username"
               >
                 <a-input
-                  class="hover:border-blue-900 focus:border-blue-900 focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-900 border-blue-900  font-mono"
+                  class="hover:border-blue-900 focus:border-blue-900 focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-900 border-blue-900 font-mono"
                   :class="['', { 'border-red-700 shake': errors.username }]"
                   v-model:value="formModel.username"
                   :placeholder="$t('login.usernamePlaceholder')"
@@ -71,14 +71,14 @@
                 :help="errors.password"
               >
                 <a-input-password
-                  class="hover:border-blue-900 focus:border-blue-900 focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-900 border-blue-900  font-mono"
+                  class="hover:border-blue-900 focus:border-blue-900 focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-900 border-blue-900 font-mono"
                   :class="['', { 'border-red-700 shake': errors.password }]"
                   v-model:value="formModel.password"
                   :placeholder="$t('login.passwordPlaceholder')"
                   size="large"
                 >
                   <template #prefix>
-                    <LockOutlined class="text-blue-700 text-lg"  />
+                    <LockOutlined class="text-blue-700 text-lg" />
                   </template>
                 </a-input-password>
               </a-form-item>
@@ -91,7 +91,7 @@
                 class="flex items-center space-x-2"
               >
                 <a-input
-                  class="hover:border-blue-900 focus:border-blue-900 focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-900 border-blue-900  font-mono"
+                  class="hover:border-blue-900 focus:border-blue-900 focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-900 border-blue-900 font-mono"
                   v-model:value="formModel.captcha"
                   :placeholder="$t('login.captchaPlaceholder')"
                   size="large"
