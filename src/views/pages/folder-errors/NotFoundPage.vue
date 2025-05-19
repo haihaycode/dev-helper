@@ -5,6 +5,9 @@
         <a-button type="primary" @click="goBack">{{
           t("error.404.button")
         }}</a-button>
+        <a-button type="primary" style="margin-left: 8px" @click="goHome"
+          >Trang chủ</a-button
+        >
       </template>
     </a-result>
   </div>
@@ -23,7 +26,10 @@ export default defineComponent({
     const goBack = () => {
       router.push(getPreviousRoute());
     };
-    return { t, goBack };
+    const goHome = () => {
+      router.push("/");
+    };
+    return { t, goBack, goHome };
   },
 });
 </script>

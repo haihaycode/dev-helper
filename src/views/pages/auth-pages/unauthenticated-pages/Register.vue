@@ -1,6 +1,6 @@
 <template>
   <div
-    class="min-h-screen bg-gradient-to-br from-blue-500 to-gray-700 flex items-center justify-center p-4"
+    class="min-h-0 md:min-h-screen bg-gradient-to-br from-blue-500 to-gray-700 flex items-center justify-center p-4"
   >
     <div
       class="max-w-5xl w-full rounded-2xl shadow-2xl overflow-hidden zoomInRight"
@@ -11,7 +11,7 @@
           :xs="24"
           :sm="24"
           :md="12"
-          class="p-8 flex flex-col justify-center items-center"
+          class="hidden sm:flex p-8 flex-col justify-center items-center"
         >
           <div class="text-center">
             <a-image
