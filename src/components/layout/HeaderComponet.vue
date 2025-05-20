@@ -201,10 +201,8 @@ import {
   SettingOutlined,
 } from "@ant-design/icons-vue";
 import { useStore } from "vuex";
-import { getCurrentUser } from "@/api/userApi";
 import { User } from "@/models/user";
 import { effect } from "vue";
-import route from "@/store/modules/route";
 import { useRoute } from "vue-router";
 
 export default defineComponent({
@@ -224,20 +222,10 @@ export default defineComponent({
 
     const isDirecRoute = computed(() => route.meta?.name === "Direc");
 
-    const handleGetCurrentUser = async () => {
-      try {
-        const userResponse = await getCurrentUser();
-        user.value = userResponse.data || null;
-      } catch (error) {
-        console.error(error);
-        user.value = null;
-      }
-    };
-
     effect(() => {
       const token = store.getters["auth/token"];
       if (token) {
-        handleGetCurrentUser();
+        user.value = store.getters["auth/user"];
       }
     });
     const logout = () => {
@@ -248,7 +236,6 @@ export default defineComponent({
     return {
       showDrawer,
       user,
-      handleGetCurrentUser,
       logout,
       showDropdown,
       isDirecRoute,

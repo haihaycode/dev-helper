@@ -165,12 +165,17 @@ import { LockOutlined, UserOutlined } from "@ant-design/icons-vue";
 import CaptchaCode from "vue-captcha-code";
 import { useRouter } from "vue-router";
 import { getPreviousRoute } from "@/utils/routeUtils";
+import { DEV } from "@/api/config";
 
 const { t } = useI18n();
 const store = useStore();
 const router = useRouter();
 const isLoadingPost = computed(() => store.getters["loading/isLoadingPost"]);
-const formModel = ref({ username: "", password: "", captcha: "" });
+const formModel = ref({
+  username: DEV ? "haihaycode" : "",
+  password: DEV ? "123456" : "",
+  captcha: "",
+});
 const user = ref<UserResponse | null>(null);
 const captchaCode = ref("");
 const animation = ref("zoomInLeft");
@@ -202,6 +207,19 @@ const handleLogin = async () => {
       store.dispatch("auth/setToken", userResponse.data.accessToken);
       store.dispatch("auth/setRefreshToken", userResponse.data.refreshToken);
       animation.value = "zoomOutUp";
+
+      const user = {
+        email: userResponse.data.email,
+        a: userResponse.data.role,
+        e: userResponse.data.email,
+        id: userResponse.data.id,
+        username: userResponse.data.username,
+        role: userResponse.data.role,
+        created_at: userResponse.data.created_at,
+        updated_at: userResponse.data.updated_at,
+      };
+      store.dispatch("auth/setUser", user);
+
       setTimeout(() => {
         router.push(
           getPreviousRoute() === "/c/login" ? "/" : getPreviousRoute()
