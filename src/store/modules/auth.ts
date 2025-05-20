@@ -13,9 +13,15 @@ export interface State extends AuthState {
 const state: State = {
   token: Cookies.get("tokenU") || null,
   refreshToken: Cookies.get("refreshTokenU") || null,
-  user: Cookies.get("userU")
-    ? JSON.parse(Cookies.get("userU") as string)
-    : null,
+  user: (() => {
+    const userStr = Cookies.get("userU");
+    try {
+      return userStr && userStr !== "undefined" ? JSON.parse(userStr) : null;
+    } catch (err) {
+      console.error("Failed to parse userU cookie:", err);
+      return null;
+    }
+  })(),
 };
 const getters = {
   token: (state: AuthState): string | null => state.token,
@@ -34,6 +40,10 @@ const actions = {
     });
     commit("SET_USER", decoded);
   },
+  setUser({ commit }: { commit: Function }, user: User): void {
+    Cookies.set("userU", JSON.stringify(user), { expires: 1 });
+    commit("SET_USER", user);
+  },
 
   setRefreshToken(
     { commit }: { commit: Function },
@@ -42,7 +52,6 @@ const actions = {
     Cookies.set("refreshTokenU", refreshToken, { expires: 30 });
     commit("SET_REFRESH_TOKEN", refreshToken);
   },
-
   logout({ commit }: { commit: Function }): void {
     Cookies.remove("tokenU");
     Cookies.remove("refreshTokenU");

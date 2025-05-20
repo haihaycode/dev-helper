@@ -23,7 +23,7 @@ router.beforeEach((to, from, next) => {
 router.afterEach(() => {
   setTimeout(() => {
     loading.value = false;
-  }, 300);
+  }, 10);
 });
 </script>
 

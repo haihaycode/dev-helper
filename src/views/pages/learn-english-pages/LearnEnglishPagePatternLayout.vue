@@ -33,15 +33,15 @@ import SidebarComponent from "@/components/learn-english/SidebarComponent.vue";
 import NavigateBackComponent from "@/components/navigation/NavigateBackComponent.vue";
 
 import { User } from "@/models/user";
-import { getUser } from "@/services/auth/authService";
+import store from "@/store";
+
 import { ref, onMounted } from "vue";
 import { defineProps } from "vue";
 
 const user = ref<User | null>(null);
 
 onMounted(async () => {
-  user.value = await getUser();
-  // informationProfile.value = await getInformationProfile();
+  user.value = (store.getters["auth/user"] as User) || null;
 });
 defineProps({
   backTo: {
