@@ -1,5 +1,9 @@
 <template>
-  <LearnEnglishPagePatternLayout :title="$t('nav.l.english.overview')">
+  <LearnEnglishPagePatternLayout
+    :title="
+      $t('NAVIGATION_MENU.LANGUAGE_LEARNING_SECTION.ENGLISH_SUBMENU.OVERVIEW')
+    "
+  >
     <template #content>
       <div id="overview">
         <h1 class="">overview</h1>

@@ -1,14 +1,18 @@
 <template>
-  <LearnEnglishPagePatternLayout :title="'Practice Vocabulary'">
+  <LearnEnglishPagePatternLayout
+    :title="i18n.global.t('VOCABULARY_SECTION.PRACTICE_VOCABULARY_LABEL')"
+  >
     <template #content>
       <transition name="fade" mode="out-in">
         <div v-if="isBreakTime" class="text-center p-8">
           <div
             class="bg-gradient-to-br from-blue-500 to-gray-600 text-white p-8 rounded-2xl shadow-lg"
           >
-            <h2 class="text-3xl font-bold mb-4">🎉 Nghỉ giải lao!</h2>
+            <h2 class="text-3xl font-bold mb-4">
+              {{ i18n.global.t("VOCABULARY_SECTION.BREAK_TIME_TITLE") }}
+            </h2>
             <p class="text-xl mb-4">
-              Bạn đã hoàn thành {{ currentIndex + 1 }} câu hỏi
+              {{ i18n.global.t("VOCABULARY_SECTION.BREAK_TIME_DESCRIPTION") }}
             </p>
             <div class="text-4xl font-bold text-yellow-300">
               {{ breakTimeLeft }}s
@@ -100,8 +104,8 @@
               >
                 {{
                   isLastQuestion
-                    ? "🎉 Kết thúc"
-                    : `Tiếp tục (${nextQuestionCountdown}s)`
+                    ? i18n.global.t("VOCABULARY_SECTION.END_PRACTICE")
+                    : i18n.global.t("VOCABULARY_SECTION.CONTINUE_PRACTICE")
                 }}
               </button>
             </div>
@@ -169,7 +173,7 @@
           </div>
         </div>
         <div v-else class="text-center text-gray-400 mt-12 animate-fade-in">
-          Không có dữ liệu luyện tập.
+          {{ i18n.global.t("VOCABULARY_SECTION.NO_DATA") }}
         </div>
       </transition>
     </template>
@@ -301,7 +305,9 @@ const goToNextQuestion = () => {
     }
   } else {
     alert(
-      `Hoàn thành! Điểm số của bạn: ${score.value}/${questions.value.length}`
+      `${i18n.global.t("VOCABULARY_SECTION.FINISH_PRACTICE")}: ${score.value}/${
+        questions.value.length
+      }`
     );
   }
 };

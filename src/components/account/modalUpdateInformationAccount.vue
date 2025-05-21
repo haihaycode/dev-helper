@@ -2,7 +2,11 @@
   <AntModal :visible="isVisible" @cancel="closeModal">
     <template #title>
       <h1 class="text-xl text-left font-mono font-bold text-blue-900">
-        {{ $t("nav.account.profile.updateInformation") }}
+        {{
+          i18n.global.t(
+            "NAVIGATION_MENU.ACCOUNT_SECTION.PROFILE.UPDATE_INFORMATION"
+          )
+        }}
       </h1>
     </template>
 
@@ -19,7 +23,7 @@
           :help="errors.fullName"
         >
           <p class="text-blue-900 font-mono font-bold">
-            {{ $t("nav.account.profile.name") }}
+            {{ i18n.global.t("NAVIGATION_MENU.ACCOUNT_SECTION.PROFILE.NAME") }}
             <span v-if="rules.fullName[0].required" class="text-red-500"
               >*</span
             >
@@ -32,7 +36,9 @@
         </a-form-item>
         <a-form-item name="nickname">
           <p class="text-blue-900 font-mono font-bold">
-            {{ $t("nav.account.profile.nickname") }}
+            {{
+              i18n.global.t("NAVIGATION_MENU.ACCOUNT_SECTION.PROFILE.NICKNAME")
+            }}
           </p>
           <a-input
             placeholder="..."
@@ -42,7 +48,9 @@
         </a-form-item>
         <a-form-item name="hobbies">
           <p class="text-blue-900 font-mono font-bold">
-            {{ $t("nav.account.profile.hobbies") }}
+            {{
+              i18n.global.t("NAVIGATION_MENU.ACCOUNT_SECTION.PROFILE.HOBBIES")
+            }}
           </p>
           <a-input
             placeholder="..."
@@ -52,7 +60,9 @@
         </a-form-item>
         <a-form-item name="address">
           <p class="text-blue-900 font-mono font-bold">
-            {{ $t("nav.account.profile.address") }}
+            {{
+              i18n.global.t("NAVIGATION_MENU.ACCOUNT_SECTION.PROFILE.ADDRESS")
+            }}
           </p>
           <a-textarea
             placeholder="..."
@@ -68,7 +78,7 @@
           :help="errors.dob"
         >
           <p class="text-blue-900 font-mono font-bold">
-            {{ $t("nav.account.profile.dob") }}
+            {{ i18n.global.t("NAVIGATION_MENU.ACCOUNT_SECTION.PROFILE.DOB") }}
           </p>
           <a-date-picker
             format="DD/MM/YYYY"
@@ -85,14 +95,18 @@
         @click="closeModal"
         class="text-blue-900 hover:text-blue-700 border-blue-900 hover:border-blue-700"
       >
-        {{ $t("nav.account.profile.cancel") }}
+        {{ i18n.global.t("NAVIGATION_MENU.ACCOUNT_SECTION.PROFILE.CANCEL") }}
       </Button>
       <Button
         type="primary"
         class="text-white bg-blue-900 hover:bg-blue-700 focus:bg-blue-900"
         @click="handleUpdateInformationProfile"
       >
-        {{ $t("nav.account.profile.updateInformation") }}
+        {{
+          i18n.global.t(
+            "NAVIGATION_MENU.ACCOUNT_SECTION.PROFILE.UPDATE_INFORMATION"
+          )
+        }}
       </Button>
     </template>
   </AntModal>
@@ -139,13 +153,17 @@ const rules = ref({
   fullName: [
     {
       required: true,
-      message: i18n.global.t("nav.account.profile.validate.fullName"),
+      message: i18n.global.t(
+        "NAVIGATION_MENU.ACCOUNT_SECTION.PROFILE.VALIDATE.FULL_NAME"
+      ),
     },
   ],
   username: [
     {
       required: true,
-      message: i18n.global.t("nav.account.profile.validate.username"),
+      message: i18n.global.t(
+        "NAVIGATION_MENU.ACCOUNT_SECTION.PROFILE.VALIDATE.USERNAME"
+      ),
     },
   ],
   dob: [

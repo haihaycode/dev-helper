@@ -8,7 +8,9 @@
         class="text-lg text-left flex items-center gap-2 text-gray-500 hover:text-gray-700 hover:cursor-pointer"
       >
         <CubeTransparentIcon class="w-5 h-5" />{{
-          $t("nav.l.english.overview")
+          $t(
+            "NAVIGATION_MENU.LANGUAGE_LEARNING_SECTION.ENGLISH_SUBMENU.OVERVIEW"
+          )
         }}
       </router-link>
     </div>
@@ -30,7 +32,11 @@
               $route.meta.tag === 'vocabulary' ? 'text-blue-900 font-bold' : ''
             "
           >
-            {{ $t("nav.l.english.vocabulary") }}
+            {{
+              $t(
+                "NAVIGATION_MENU.LANGUAGE_LEARNING_SECTION.ENGLISH_SUBMENU.VOCABULARY"
+              )
+            }}
           </p>
           <div class="ml-auto pr-2">
             <p v-if="dropdownMenuVocabulary" class="text-gray-500 text-sm">
@@ -58,7 +64,11 @@
           <a
             @click="$router.push({ name: 'LearnEnglishListVocabulary' })"
             class="hover:text-gray-700 hover:underline"
-            >{{ $t("nav.l.english.listVocabulary") }}</a
+            >{{
+              $t(
+                "NAVIGATION_MENU.LANGUAGE_LEARNING_SECTION.ENGLISH_SUBMENU.LIST_VOCABULARY"
+              )
+            }}</a
           >
         </li>
         <li
@@ -73,7 +83,7 @@
           <a
             @click="$router.push({ name: 'ListNotePage' })"
             class="hover:text-gray-700 hover:underline"
-            >{{ i18n.global.t("note.title") }}</a
+            >{{ $t("NOTE_SECTION.TITLE") }}</a
           >
         </li>
         <li
@@ -88,7 +98,7 @@
           <a
             @click="$router.push({ name: 'AccountCalendarWork' })"
             class="hover:text-gray-700 hover:underline"
-            >{{ $t("nav.account.calendarWork") }}</a
+            >{{ $t("NAVIGATION_MENU.ACCOUNT_DROPDOWN.CALENDAR_WORK") }}</a
           >
         </li>
         <li
@@ -97,7 +107,7 @@
           <a
             href="#"
             class="text-gray-500 hover:text-gray-700 hover:underline"
-            >{{ $t("nav.account.changePassword") }}</a
+            >{{ $t("NAVIGATION_MENU.ACCOUNT_DROPDOWN.CHANGE_PASSWORD") }}</a
           >
         </li>
         <li
@@ -106,7 +116,9 @@
           <a
             href="#"
             class="text-gray-500 hover:text-gray-700 hover:underline"
-            >{{ $t("nav.account.securityAndPrivacy") }}</a
+            >{{
+              $t("NAVIGATION_MENU.ACCOUNT_DROPDOWN.SECURITY_AND_PRIVACY")
+            }}</a
           >
         </li>
       </ul>
@@ -115,7 +127,6 @@
 </template>
 
 <script setup lang="ts">
-import i18n from "@/services/i18n";
 import {
   CubeTransparentIcon,
   ClipboardDocumentListIcon,
@@ -124,6 +135,7 @@ import {
 } from "@heroicons/vue/24/outline";
 import { ref } from "vue";
 import { useRoute } from "vue-router";
+
 const route = useRoute();
 console.log(route.name);
 

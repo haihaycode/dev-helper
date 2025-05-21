@@ -9,7 +9,7 @@
       {{ selectedLanguage }}</a-button
     >
     <a-modal
-      :title="t('translation.selectLanguage')"
+      :title="$t('TRANSLATION_SECTION.SELECT_LANGUAGE_LABEL')"
       :visible="showModal"
       @ok="handleOk"
       @cancel="handleCancel"
@@ -50,8 +50,8 @@ export default defineComponent({
     const selectedLanguage = computed(() => store.getters["locale/locale"]);
 
     const languages = {
-      en: t("translation.en"),
-      vi: t("translation.vi"),
+      en: t("TRANSLATION_SECTION.VIETNAMESE"),
+      vi: t("TRANSLATION_SECTION.ENGLISH"),
     };
 
     const changeLanguage = (e: Event) => {

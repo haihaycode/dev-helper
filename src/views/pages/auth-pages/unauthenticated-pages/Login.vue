@@ -1,3 +1,7 @@
+Bạn muốn cập nhật component này để sử dụng các key i18n mới từ file JSON bạn đã
+cung cấp trước đó, đúng không? Dưới đây là phiên bản đã được cập nhật:
+TypeScript
+
 <template>
   <div
     class="md:min-h-screen bg-gradient-to-br from-blue-500 to-gray-800 flex items-center justify-center p-4"
@@ -7,7 +11,6 @@
       :class="animation"
     >
       <a-row class="min-h-[600px]">
-        <!-- Left side -->
         <a-col
           :xs="24"
           :sm="24"
@@ -24,21 +27,20 @@
             <h2
               class="text-white text-2xl font-bold mb-4 scroll-animate fade-up"
             >
-              {{ $t("login.welcomeMessage") }}
+              {{ $t("LOGIN_SECTION.WELCOME_MESSAGE") }}
             </h2>
             <p class="text-white font-mono text-sm scroll-animate fade-up">
-              {{ $t("register.description") }}
+              {{ $t("REGISTER_SECTION.DESCRIPTION") }}
             </p>
           </div>
         </a-col>
 
-        <!-- Right side -->
         <a-col :xs="24" :sm="24" :md="12" class="p-8 bg-white">
           <div class="max-w-md mx-auto">
             <h1
               class="text-3xl font-bold font-mono text-blue-900 mb-8 text-center scroll-animate fade-up"
             >
-              {{ $t("login.title") }}
+              {{ $t("LOGIN_SECTION.TITLE") }}
             </h1>
 
             <a-form
@@ -56,7 +58,7 @@
                   class="hover:border-blue-900 focus:border-blue-900 focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-900 border-blue-900 font-mono"
                   :class="['', { 'border-red-700 shake': errors.username }]"
                   v-model:value="formModel.username"
-                  :placeholder="$t('login.usernamePlaceholder')"
+                  :placeholder="$t('LOGIN_SECTION.USERNAME_INPUT_PLACEHOLDER')"
                   size="large"
                 >
                   <template #prefix>
@@ -74,7 +76,7 @@
                   class="hover:border-blue-900 focus:border-blue-900 focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-900 border-blue-900 font-mono"
                   :class="['', { 'border-red-700 shake': errors.password }]"
                   v-model:value="formModel.password"
-                  :placeholder="$t('login.passwordPlaceholder')"
+                  :placeholder="$t('LOGIN_SECTION.PASSWORD_INPUT_PLACEHOLDER')"
                   size="large"
                 >
                   <template #prefix>
@@ -83,7 +85,6 @@
                 </a-input-password>
               </a-form-item>
 
-              <!-- Captcha -->
               <a-form-item
                 :required="true"
                 :validate-status="errors.captcha ? 'error' : ''"
@@ -93,7 +94,7 @@
                 <a-input
                   class="hover:border-blue-900 focus:border-blue-900 focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-900 border-blue-900 font-mono"
                   v-model:value="formModel.captcha"
-                  :placeholder="$t('login.captchaPlaceholder')"
+                  :placeholder="$t('LOGIN_SECTION.CAPTCHA_INPUT_PLACEHOLDER')"
                   size="large"
                 >
                   <template #suffix>
@@ -114,7 +115,7 @@
                 class="w-full h-12 rounded-sm bg-blue-900 hover:bg-gray-200 border-none focus:border-none focus:outline-none focus:ring-0 focus:shadow-none focus:bg-blue-700"
                 :loading="isLoadingPost"
               >
-                {{ $t("login.submitButton") }}
+                {{ $t("LOGIN_SECTION.SUBMIT_BUTTON") }}
               </a-button>
 
               <div class="relative my-8">
@@ -125,7 +126,7 @@
                   <span
                     class="px-2 bg-white text-gray-500 scroll-animate fade-up"
                   >
-                    {{ $t("login.orLoginWith") }}
+                    {{ $t("LOGIN_SECTION.OR_LOGIN_WITH_TEXT") }}
                   </span>
                 </div>
               </div>
@@ -136,7 +137,7 @@
                   :to="{ name: 'RegisterPage' }"
                   class="text-blue-700 hover:text-blue-400 transition-colors scroll-animate fade-up"
                 >
-                  {{ $t("login.registerLink") }}
+                  {{ $t("LOGIN_SECTION.REGISTER_LINK") }}
                 </router-link>
               </div>
             </a-form>
@@ -152,7 +153,6 @@ export default {
   name: "UserLoginPage",
 };
 </script>
-
 <script setup lang="ts">
 import { ref, computed, onMounted } from "vue";
 import { useI18n } from "vue-i18n";
@@ -182,9 +182,9 @@ const animation = ref("zoomInLeft");
 
 const errors = ref<Record<string, string>>({});
 const schema = yup.object().shape({
-  username: yup.string().required(t("login.errorMessage")),
-  password: yup.string().required(t("login.errorMessage")),
-  captcha: yup.string().required(t("login.captchaError")),
+  username: yup.string().required(t("LOGIN_SECTION.ERROR_MESSAGE")),
+  password: yup.string().required(t("LOGIN_SECTION.ERROR_MESSAGE")),
+  captcha: yup.string().required(t("LOGIN_SECTION.CAPTCHA_ERROR_MESSAGE")),
 });
 const handleCaptchaChange = (code: string) => {
   captchaCode.value = code;
@@ -194,7 +194,7 @@ const handleLogin = async () => {
     errors.value = {};
     await schema.validate(formModel.value, { abortEarly: false });
     if (formModel.value.captcha !== captchaCode.value) {
-      errors.value.captcha = t("login.captchaMismatch");
+      errors.value.captcha = t("LOGIN_SECTION.CAPTCHA_MISMATCH_ERROR");
       return;
     }
     const userResponse: UserResponse = await loginUser(
@@ -227,7 +227,7 @@ const handleLogin = async () => {
       }, 1200);
     }
     notification.success({
-      message: t("meta.login.title"),
+      message: t("META.LOGIN.TITLE"),
       description: userResponse.message,
       duration: 3,
       placement: "bottomRight",
@@ -266,7 +266,6 @@ onMounted(() => {
   });
 });
 </script>
-
 <style lang="stylus">
 .scroll-animate {
   opacity: 0;

@@ -69,7 +69,7 @@
               @click="handleSave"
               type="primary"
             >
-              {{ i18n.global.t("btn.save") }}
+              {{ i18n.global.t("BUTTON_LABEL.SAVE_CHANGES") }}
             </a-button>
           </div>
         </div>

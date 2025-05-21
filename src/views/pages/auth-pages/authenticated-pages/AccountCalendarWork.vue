@@ -6,7 +6,7 @@
           <template #monthCellRender="{ current }">
             <div class="notes-month">
               <section>{{ current }}</section>
-              <span>Backlog number</span>
+              <span>{{ i18n.global.t("ACCOUNT_SECTION.BACKLOG_NUMBER") }}</span>
             </div>
           </template>
         </a-calendar>
@@ -18,9 +18,7 @@
 import AccountPagePatternLayout from "./AccountPagePatternLayout.vue";
 import { useStore } from "vuex";
 import { computed } from "vue";
+import i18n from "@/services/i18n";
 const store = useStore();
 const locale = computed(() => store.getters["locale/locale"]);
-console.log(locale);
-
-
 </script>

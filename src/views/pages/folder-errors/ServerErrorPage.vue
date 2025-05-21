@@ -23,10 +23,10 @@
         />
       </template>
       <template #right>
-        <AntCard class="error-card" :title="$t('error.500.title')">
-          <p>{{ $t("error.500.message") }}</p>
+        <AntCard class="error-card" :title="t('ERROR_PAGE.SERVER_ERROR.TITLE')">
+          <p>{{ t("ERROR_PAGE.SERVER_ERROR.MESSAGE") }}</p>
           <AntButton @click="goBack" type="primary">{{
-            $t("error.500.button")
+            t("ERROR_PAGE.SERVER_ERROR.BUTTON")
           }}</AntButton>
         </AntCard>
       </template>
@@ -53,7 +53,6 @@ export default defineComponent({
     AntButton: defineAsyncComponent(
       components["components/container/AntButton"]
     ),
-
     AntImage: defineAsyncComponent(components["components/container/AntImage"]),
     AntTwoColumnCard: defineAsyncComponent(
       components["components/container/AntTwoColumnCard"]

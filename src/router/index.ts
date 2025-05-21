@@ -3,7 +3,6 @@ import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import defaultRoutes from "./modules/defaultRoutes";
 import errorRoutes from "./modules/errorRoutes";
 import basePages from "./modules/baseRoutes";
-import toolsRoutes from "./modules/toolsRoutes";
 import accountRoutes from "./modules/accountRoutes";
 // import middleware from "@/middleware/middleware";
 import learnEnlishRoutes from "./modules/learnEnglishRoutes";
@@ -12,7 +11,6 @@ const routes: Array<RouteRecordRaw> = [
   ...defaultRoutes,
   ...errorRoutes,
   ...basePages,
-  ...toolsRoutes,
   ...accountRoutes,
   ...learnEnlishRoutes,
   // ...adminRoutes,
