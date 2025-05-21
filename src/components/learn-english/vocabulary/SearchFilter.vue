@@ -5,7 +5,7 @@
         type="text"
         v-model="searchValue"
         @input="onInput"
-        :placeholder="i18n.global.t('search.title')"
+        :placeholder="i18n.global.t('SEARCH_SECTION.TITLE')"
         class="w-full px-4 py-2 pr-10 text-gray-800 placeholder-gray-400 bg-white border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-all duration-200"
       />
       <CloseOutlined

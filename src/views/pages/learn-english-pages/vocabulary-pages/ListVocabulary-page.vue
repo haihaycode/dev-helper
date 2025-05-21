@@ -1,5 +1,7 @@
 <template>
-  <LearnEnglishPagePatternLayout :title="i18n.global.t('vocabulary.list')">
+  <LearnEnglishPagePatternLayout
+    :title="i18n.global.t('VOCABULARY_SECTION.LIST_LABEL')"
+  >
     <template #content>
       <div id="LIST-VOCA">
         <div id="ACTION">
@@ -13,14 +15,20 @@
                 @click="showModalVoabularyAdd = true"
               >
                 <PlusOutlined class="text-base flex items-center" />
-                <span>{{ i18n.global.t("vocabulary.add_new") }}</span>
+                <span>{{
+                  i18n.global.t("VOCABULARY_SECTION.ADD_BUTTON")
+                }}</span>
               </button>
               <button
                 class="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-gray-100 text-black hover:bg-gray-300 shadow transition-all duration-200"
                 @click="isSelectPractice = !isSelectPractice"
               >
                 <span>
-                  {{ !isSelectPractice ? "Chọn luyện tập" : "Hủy chọn" }}
+                  {{
+                    !isSelectPractice
+                      ? i18n.global.t("VOCABULARY_SECTION.SELECT_PRACTICE")
+                      : i18n.global.t("VOCABULARY_SECTION.UNSELECT_PRACTICE")
+                  }}
                 </span>
               </button>
             </div>
@@ -68,7 +76,7 @@
               stroke-linejoin="round"
             />
           </svg>
-          Bắt đầu luyện tập
+          {{ i18n.global.t("VOCABULARY_SECTION.START_PRACTICE") }}
         </button>
       </div>
 

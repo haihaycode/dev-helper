@@ -10,35 +10,32 @@
     <div
       class="container mx-auto flex justify-between items-center px-4 font-bold"
     >
-      <!-- Logo -->
       <router-link
         to="/"
         class="logo text-xl font-bold hover:text-gray-400 py-4 tracking-in-expand"
-        v-t="'project.name'"
-      ></router-link>
-      <!-- Desktop Menu -->
+      >
+        {{ i18n.global.t("PROJECT.NAME") }}
+      </router-link>
       <nav class="hidden md:flex space-x-4">
         <router-link
           to="/"
           class="hover:text-gray-400 py-4"
           exact-active-class="border-b-2 border-white font-bold"
-          v-t="'nav.home'"
-        ></router-link>
+        >
+          {{ i18n.global.t("NAVIGATION_MENU.HOME_LINK") }}
+        </router-link>
         <router-link
           to="/l/english"
           class="hover:text-gray-400 py-4"
           active-class="border-b-2 border-white"
           exact-active-class="border-b-2 border-white"
-          v-t="'nav.l.english.description'"
-        ></router-link>
-        <router-link
-          to="/t/tools"
-          class="hover:text-gray-400 py-4"
-          active-class="text-blue-500 font-bold"
-          exact-active-class="border-b-2 border-white"
-          v-t="'nav.solution'"
-        ></router-link>
-        <!-- User Info Menu -->
+        >
+          {{
+            i18n.global.t(
+              "NAVIGATION_MENU.LANGUAGE_LEARNING_SECTION.ENGLISH_SUBMENU.DESCRIPTION"
+            )
+          }}
+        </router-link>
         <a-dropdown v-if="user" :trigger="['click']">
           <p
             :class="
@@ -60,7 +57,11 @@
                 <a-anchor-link :title="user?.email" @click.prevent>
                   <div class="flex items-center">
                     <UserOutlined /> &nbsp;
-                    {{ $t("nav.account.description") }}
+                    {{
+                      i18n.global.t(
+                        "NAVIGATION_MENU.ACCOUNT_DROPDOWN.INFORMATION_PROFILE"
+                      )
+                    }}
                   </div>
                 </a-anchor-link>
               </a-menu-item>
@@ -69,7 +70,9 @@
                 <a-anchor-link>
                   <div class="flex items-center">
                     <SettingOutlined /> &nbsp;
-                    {{ $t("nav.setting.description") }}
+                    {{
+                      i18n.global.t("NAVIGATION_MENU.SETTING_PAGE.DESCRIPTION")
+                    }}
                   </div>
                 </a-anchor-link>
               </a-menu-item>
@@ -81,7 +84,7 @@
                 <a-anchor-link>
                   <div class="flex items-center">
                     <LogoutOutlined /> &nbsp;
-                    {{ $t("nav.logout") }}
+                    {{ i18n.global.t("NAVIGATION_MENU.LOGOUT_LINK") }}
                   </div>
                 </a-anchor-link>
               </a-menu-item>
@@ -95,16 +98,15 @@
           active-class="text-white"
           exact-active-class="border-b-2 border-white"
         >
-          {{ $t("nav.login") + " / " + $t("nav.register") }}
+          {{ i18n.global.t("NAVIGATION_MENU.LOGIN_LINK") }} /
+          {{ i18n.global.t("NAVIGATION_MENU.REGISTER_LINK") }}
         </router-link>
       </nav>
-      <!-- Mobile Menu Toggle Button -->
       <MenuOutlined
         class="text-white text-2xl md:hidden flex items-center"
         @click="showDrawer = true"
       />
     </div>
-    <!-- Mobile Menu Drawer -->
     <a-drawer
       placement="right"
       closable
@@ -130,7 +132,11 @@
                 <a-anchor-link class="hover:text-gray-400" :title="user?.email">
                   <div class="flex items-center">
                     <UserOutlined /> &nbsp;
-                    {{ $t("nav.account.description") }}
+                    {{
+                      i18n.global.t(
+                        "NAVIGATION_MENU.ACCOUNT_DROPDOWN.INFORMATION_PROFILE"
+                      )
+                    }}
                   </div>
                 </a-anchor-link>
               </a-menu-item>
@@ -139,7 +145,9 @@
                 <a-anchor-link>
                   <div class="flex items-center">
                     <SettingOutlined /> &nbsp;
-                    {{ $t("nav.setting.description") }}
+                    {{
+                      i18n.global.t("NAVIGATION_MENU.SETTING_PAGE.DESCRIPTION")
+                    }}
                   </div>
                 </a-anchor-link>
               </a-menu-item>
@@ -151,7 +159,7 @@
                 <a-anchor-link>
                   <div class="flex items-center">
                     <LogoutOutlined /> &nbsp;
-                    {{ $t("nav.logout") }}
+                    {{ i18n.global.t("NAVIGATION_MENU.LOGOUT_LINK") }}
                   </div>
                 </a-anchor-link>
               </a-menu-item>
@@ -163,35 +171,31 @@
           v-if="!user"
           to="/c/login"
           class="hover:text-gray-400 py-4"
-          active-class="text-yellow-500"
+          active-class="text-blue-500"
           exact-active-class="border-b-2 border-white-700"
         >
-          {{ $t("nav.login") + " / " + $t("nav.register") }}
+          {{ i18n.global.t("NAVIGATION_MENU.LOGIN_LINK") }} /
+          {{ i18n.global.t("NAVIGATION_MENU.REGISTER_LINK") }}
         </router-link>
-        <router-link
-          to="/"
-          @click.native="showDrawer = false"
-          v-t="'nav.home'"
-        ></router-link>
+        <router-link to="/" @click.native="showDrawer = false">
+          {{ i18n.global.t("NAVIGATION_MENU.HOME_LINK") }}
+        </router-link>
         <router-link
           to="/l/english/tab=mobile"
           @click.native="showDrawer = false"
           active-class="border-l-4 pl-2 border-blue-500"
           exact-active-class="border-l-4 pl-2  border-white-700"
-          v-t="'nav.l.english.description'"
-        ></router-link>
-        <router-link
-          to="/t/tools"
-          @click.native="showDrawer = false"
-          active-class="border-l-4 pl-2 border-blue-500"
-          exact-active-class="border-l-4 pl-2  border-white-700"
-          v-t="'nav.solution'"
-        ></router-link>
+        >
+          {{
+            i18n.global.t(
+              "NAVIGATION_MENU.LANGUAGE_LEARNING_SECTION.ENGLISH_SUBMENU.DESCRIPTION"
+            )
+          }}
+        </router-link>
       </nav>
     </a-drawer>
   </header>
 </template>
-
 <script lang="ts">
 import { defineComponent, ref, computed } from "vue";
 import {
@@ -204,6 +208,7 @@ import { useStore } from "vuex";
 import { User } from "@/models/user";
 import { effect } from "vue";
 import { useRoute } from "vue-router";
+import i18n from "@/services/i18n";
 
 export default defineComponent({
   name: "HeaderComponent",
@@ -237,6 +242,7 @@ export default defineComponent({
       showDrawer,
       user,
       logout,
+      i18n,
       showDropdown,
       isDirecRoute,
     };

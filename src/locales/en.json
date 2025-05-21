@@ -1,408 +1,392 @@
 {
-    "project": {
-        "name": "DevHelper"
+    "PROJECT": {
+      "NAME": "DevHelper"
     },
-    "role": {
-        "admin": "Administrator",
-        "user": "User"
+    "ROLE": {
+      "ADMIN": "Administrator",
+      "USER": "User"
     },
-    "about": {
-        "title": "About DevHelper",
-        "description": "DevHelper is a platform that provides comprehensive application development support.",
-        "learnMore": "Learn More",
-        "features": {
-            "title": "Features"
-        },
-        "team": {
-            "title": "Team"
-        },
-        "contact": {
-            "title": "Contact Us",
-            "namePlaceholder": "Name",
-            "emailPlaceholder": "Email",
-            "messagePlaceholder": "Message",
-            "submit": "Submit"
-        },
-        "cta": {
-            "title": "Start your journey today",
-            "description": "Join thousands of developers using DevHelper",
-            "primaryButton": "Sign up now",
-            "secondaryButton": "Sign in now"
+    "ABOUT_SECTION": {
+      "TITLE": "About DevHelper",
+      "DESCRIPTION": "DevHelper is a platform that provides comprehensive application development support.",
+      "LEARN_MORE_BUTTON": "Learn More",
+      "FEATURES_SECTION": {
+        "TITLE": "Features"
+      },
+      "TEAM_SECTION": {
+        "TITLE": "Team"
+      },
+      "CONTACT_SECTION": {
+        "TITLE": "Contact Us",
+        "NAME_INPUT_PLACEHOLDER": "Name",
+        "EMAIL_INPUT_PLACEHOLDER": "Email",
+        "MESSAGE_INPUT_PLACEHOLDER": "Message",
+        "SUBMIT_BUTTON": "Submit"
+      },
+      "CALL_TO_ACTION": {
+        "TITLE": "Start your journey today",
+        "DESCRIPTION": "Join thousands of developers using DevHelper",
+        "PRIMARY_BUTTON": "Sign up now",
+        "SECONDARY_BUTTON": "Sign in now"
+      }
+    },
+    "TRANSLATION_SECTION": {
+      "TITLE": "Select language",
+      "SELECT_LANGUAGE_LABEL": "Select language",
+      "DESCRIPTION": "This is a translation example.",
+      "VIETNAMESE": "Vietnamese",
+      "ENGLISH": "English"
+    },
+    "META_TAGS": {
+      "HOME_PAGE": {
+        "TITLE": "Home - DevHelper",
+        "DESCRIPTION": "The home page of DevHelper."
+      },
+      "LOGIN_PAGE": {
+        "TITLE": "Login - DevHelper",
+        "DESCRIPTION": "Login to DevHelper."
+      },
+      "REGISTER_PAGE": {
+        "TITLE": "Register - DevHelper",
+        "DESCRIPTION": "Register for DevHelper."
+      },
+      "ABOUT_PAGE": {
+        "TITLE": "About Us - DevHelper",
+        "DESCRIPTION": "Learn more about DevHelper and our development team."
+      }
+    },
+    "GENERIC_MESSAGE": {
+      "HELLO": "Hello World!",
+      "SUCCESS": "Success",
+      "ERROR": "Error !",
+      "WARNING": "Warning",
+      "INFO": "Info",
+      "DELETE": "Delete",
+      "DEFAULT": "Something went wrong",
+      "LOADING": "Loading",
+      "NOT_FOUND": "Not Found",
+      "UNAUTHORIZED": "Unauthorized",
+      "FORBIDDEN": "Forbidden",
+      "BAD_REQUEST": "Bad Request",
+      "INTERNAL_SERVER_ERROR": "Internal Server Error"
+    },
+    "CONFIRMATION_MESSAGE": {
+      "ARE_YOU_SURE": {
+        "YES": "yes",
+        "NO": "no",
+        "DELETE": "Are you sure you want to delete ?",
+        "UPDATE": "Are you sure you want to update ?",
+        "CREATE": "Are you sure you want to create ?"
+      }
+    },
+    "NAVIGATION_MENU": {
+      "ACCOUNT_DROPDOWN": {
+        "TITLE": "Account",
+        "DESCRIPTION": "Your account",
+        "OVERVIEW": "Overview",
+        "PERSONAL_INFORMATION": "Personal information",
+        "CHANGE_PASSWORD": "Change password",
+        "SECURITY_AND_PRIVACY": "Security and Privacy",
+        "INFORMATION_PROFILE": "Information Profile",
+        "HISTORY_ACTIVITY": "History Activity",
+        "CALENDAR_WORK": "Calendar Work",
+        "PROFILE_SUBMENU": {
+          "TITLE": "Profile",
+          "DESCRIPTION": "Your profile",
+          "FULL_NAME_LABEL": "Fullname",
+          "USERNAME_LABEL": "Username",
+          "ADDRESS_LABEL": "Address",
+          "PHONE_LABEL": "Phone",
+          "DATE_OF_BIRTH_LABEL": "Date of birth",
+          "NICKNAME_LABEL": "Nickname",
+          "HOBBIES_LABEL": "Hobbies",
+          "CREATED_TIME_LABEL": "Created time",
+          "UPDATED_TIME_LABEL": "Updated time",
+          "EMAIL_LABEL": "Email",
+          "PASSWORD_LABEL": "Password",
+          "CONFIRM_PASSWORD_LABEL": "Confirm password",
+          "UPDATE_INFORMATION_BUTTON": "Update information",
+          "CANCEL_BUTTON": "Cancel",
+          "UPDATE_BUTTON": "Update",
+          "VALIDATION_MESSAGE": {
+            "FULL_NAME_REQUIRED": "Fullname is required",
+            "USERNAME_REQUIRED": "Username is required"
+          }
         }
-    },
-    "translation": {
-        "title": "Select language",
-        "selectLanguage": "Select language",
-        "description": "This is a translation example.",
-        "vi": "Vietnamese",
-        "en": "English"
-    },
-    "meta": {
-        "home": {
-            "title": "Home - DevHelper",
-            "description": "The home page of DevHelper."
+      },
+      "LANGUAGE_LEARNING_SECTION": {
+        "ENGLISH_SUBMENU": {
+          "TITLE": "English",
+          "DESCRIPTION": "Learn Language",
+          "OVERVIEW": "Overview",
+          "VOCABULARY": "Vocabulary",
+          "LIST_VOCABULARY": "List Vocabulary",
+          "LIST_GRAMMAR": "List Grammar",
+          "ACTION_BUTTON": {
+            "ADD_VOCABULARY": "Add Vocabulary",
+            "ADD_GRAMMAR": "Add Grammar"
+          }
         },
-        "login": {
-            "title": "Login - DevHelper",
-            "description": "Login to DevHelper."
-        },
-        "register": {
-            "title": "Register - DevHelper",
-            "description": "Register for DevHelper."
-        },
-        "about": {
-            "title": "About Us - DevHelper",
-            "description": "Learn more about DevHelper and our development team."
-        }
+        "JAPANESE_SUBMENU": "Learn Japanese"
+      },
+      "SETTING_PAGE": {
+        "TITLE": "Setting",
+        "DESCRIPTION": "Setting "
+      },
+      "HOME_LINK": "Home",
+      "ABOUT_US_LINK": "About Us",
+      "TOOL_DEV_LINK": "Tool dev",
+      "SOLUTION_LINK": "Solution",
+      "CONTACT_LINK": "Contact",
+      "TRANSLATE_LINK": "Language",
+      "LOGIN_LINK": "Login",
+      "REGISTER_LINK": "Register",
+      "LOGOUT_LINK": "Logout"
     },
-    "message": {
-        "hello": "Hello World!",
-        "success": "Success",
-        "error": "Error !",
-        "warning": "Warning",
-        "info": "Info",
-        "delete": "Delete",
-        "default": "Something went wrong",
-        "loading": "Loading",
-        "notFound": "Not Found",
-        "unauthorized": "Unauthorized",
-        "forbidden": "Forbidden",
-        "badRequest": "Bad Request",
-        "internalServerError": "Internal Server Error",
-        "are_you_sure": {
-            "yes": "yes",
-            "no": "no",
-            "delete": "Are you sure you want to delete ?",
-            "update": "Are you sure you want to update ?",
-            "create": "Are you sure you want to create ?"
-        }
+    "BUTTON_LABEL": {
+      "EMPTY_DATA": "No data",
+      "NOT_FOUND_DATA": "Not found data",
+      "SAVE": "Save",
+      "CANCEL": "Cancel",
+      "SUBMIT": "Submit",
+      "EDIT": "Edit",
+      "DELETE": "Delete",
+      "ADD": "Add",
+      "UPDATE": "Update",
+      "CLOSE": "Close",
+      "RESET": "Reset",
+      "DOWNLOAD": "Download",
+      "UPLOAD": "Upload",
+      "CONFIRM": "Confirm",
+      "SEARCH": "Search",
+      "BACK": "Back",
+      "NEXT": "Next",
+      "FINISH": "Finish",
+      "START": "Start",
+      "SAVE_CHANGES": "Save Changes",
+      "CLEAR": "Clear",
+      "VIEW": "View",
+      "PREVIEW": "Preview",
+      "CONTINUE": "Continue",
+      "SELECT": "Select",
+      "SELECT_ALL": "Select All",
+      "DESELECT_ALL": "Deselect All",
+      "ACCEPT": "Accept",
+      "REJECT": "Reject",
+      "OK": "OK",
+      "APPLY": "Apply",
+      "REFRESH": "Refresh",
+      "SEND": "Send",
+      "CANCEL_REQUEST": "Cancel Request",
+      "MARK_AS_READ": "Mark as Read",
+      "MARK_AS_UNREAD": "Mark as Unread",
+      "ARCHIVE": "Archive",
+      "RESTORE": "Restore",
+      "LOAD_MORE": "Load More",
+      "VIEW_DETAILS": "View Details",
+      "CONTACT_SUPPORT": "Contact Support",
+      "LOGOUT": "Logout"
     },
-    "nav": {
-        "account": {
-            "information": "Account",
-            "personalInformation": "Personal information",
-            "changePassword": "Change password",
-            "securityAndPrivacy": "Security and Privacy",
-            "overview": "Overview",
-            "title": "Account",
-            "description": "Your account",
-            "informationProfile": "Information Profile",
-            "historyActivity": "History Activity",
-            "calendarWork": "Calendar Work",
-            "profile": {
-                "title": "Profile",
-                "description": "Your profile",
-                "name": "Fullname",
-                "username": "Username",
-                "address": "Address",
-                "phone": "Phone",
-                "dob": "Date of birth",
-                "nickname": "Nickname",
-                "hobbies": "Hobbies",
-                "createdTime": "Created time",
-                "updatedTime": "Updated time",
-                "email": "Email",
-                "password": "Password",
-                "confirmPassword": "Confirm password",
-                "updateInformation": "Update information",
-                "cancel": "Cancel",
-                "update": "Update",
-                "validate": {
-                    "fullName": "Fullname is required",
-                    "username": "Username is required"
-                }
-            }
-        },
-        "l": {
-            "english": {
-                "title": "English",
-                "description": "Learn Language",
-                "overview": "Overview",
-                "vocabulary": "Vocabulary",
-                "listVocabulary": "List Vocabulary",
-                "listGrammar": "List Grammar",
-                "btn": {
-                    "addVocabulary": "Add Vocabulary",
-                    "addGrammar": "Add Grammar"
-                }
-            },
-            "japanese": "Learn Japanese"
-        },
-        "setting": {
-            "title": "Setting",
-            "description": "Setting "
-        },
-        "home": "Home",
-        "about": "About Us",
-        "tool": "Tool dev",
-        "solution": "Solution",
-        "contact": "Contact",
-        "translate": "Language",
-        "login": "Login",
-        "register": "Register",
-        "logout": "Logout"
+    "BACK_NAVIGATION": {
+      "TITLE": "Back to page ",
+      "BACK_TO_HOME": "Back to home page",
+      "DESCRIPTION": "Back to page"
     },
-    "btn": {
-        "empty": "No data",
-        "not_found": "Not found data",
-        "save": "Save",
-        "cancel": "Cancel",
-        "submit": "Submit",
-        "edit": "Edit",
-        "delete": "Delete",
-        "add": "Add",
-        "update": "Update",
-        "close": "Close",
-        "reset": "Reset",
-        "download": "Download",
-        "upload": "Upload",
-        "confirm": "Confirm",
-        "search": "Search",
-        "back": "Back",
-        "next": "Next",
-        "finish": "Finish",
-        "start": "Start",
-        "save_changes": "Save Changes",
-        "clear": "Clear",
-        "view": "View",
-        "preview": "Preview",
-        "continue": "Continue",
-        "select": "Select",
-        "select_all": "Select All",
-        "deselect_all": "Deselect All",
-        "accept": "Accept",
-        "reject": "Reject",
-        "ok": "OK",
-        "apply": "Apply",
-        "refresh": "Refresh",
-        "send": "Send",
-        "cancel_request": "Cancel Request",
-        "mark_as_read": "Mark as Read",
-        "mark_as_unread": "Mark as Unread",
-        "archive": "Archive",
-        "restore": "Restore",
-        "load_more": "Load More",
-        "view_details": "View Details",
-        "contact_support": "Contact Support",
-        "logout": "Logout"
+    "LOADING_TEXT": {
+      "DEFAULT": "Loading..."
     },
-    "back": {
-        "title": "Back to page ",
-        "backtohome": "Back to home page",
-        "description": "Back to page"
+    "TIME_AGO_LABEL": {
+      "JUST_NOW": "just now",
+      "MINUTES_AGO": " minutes ago",
+      "HOURS_AGO": " hours ago",
+      "DAYS_AGO": " days ago",
+      "MONTHS_AGO": " months ago",
+      "YEARS_AGO": " years ago"
     },
-    "loading": {
-        "default": "Loading..."
+    "OTP_SECTION": {
+      "TITLE": "Please enter the OTP code sent to your email",
+      "DESCRIPTION": "Please enter the OTP code sent to your email",
+      "SUBMIT_BUTTON": "Verify OTP",
+      "RESEND_OTP_BUTTON": "Resend OTP",
+      "OTP_SENT_SUCCESS_MESSAGE": "OTP code has been sent to your email",
+      "OTP_SENT_DESCRIPTION": "Please check your email to receive the OTP code",
+      "OTP_MISMATCH_ERROR": "OTP code is incorrect",
+      "OTP_MISMATCH_DESCRIPTION": "Please enter the correct OTP code",
+      "EMAIL_MISMATCH_ERROR": "Email is incorrect",
+      "EMAIL_MISMATCH_DESCRIPTION": "Please enter the correct email",
+      "OTP_6_DIGITS_MESSAGE": "Please enter 6 digits OTP code",
+      "OTP_COUNT_DOWN_LABEL": "Resend OTP in"
     },
-    "time": {
-        "justNow": "just now",
-        "minutesAgo": " minutes ago",
-        "hoursAgo": " hours ago",
-        "daysAgo": " days ago",
-        "monthsAgo": " months ago",
-        "yearsAgo": " years ago"
+    "LOGIN_SECTION": {
+      "TITLE": "Welcome Back DevHelper ! Please Log In",
+      "USERNAME_INPUT_PLACEHOLDER": "Username",
+      "PASSWORD_INPUT_PLACEHOLDER": "Password",
+      "SUBMIT_BUTTON": "Login",
+      "SUCCESS_TITLE": "Login successful welcome to DevHelper !",
+      "SUCCESS_MESSAGE": "Login successful !",
+      "ERROR_MESSAGE": "Please enter username and password!",
+      "REGISTER_LINK": "Don't have an account? Register here",
+      "OR_LOGIN_WITH_TEXT": " or login with ",
+      "WELCOME_MESSAGE": "Welcome to DevHelper",
+      "DESCRIPTION": "Comprehensive application development support platform",
+      "OR_CONTINUE_WITH_TEXT": "Or continue with",
+      "CAPTCHA_ERROR_MESSAGE": "Please enter the captcha code!",
+      "CAPTCHA_MISMATCH_ERROR": "The captcha code is incorrect!",
+      "CAPTCHA_INPUT_PLACEHOLDER": "Enter the captcha code"
     },
-    "otp": {
-        "title": "Please enter the OTP code sent to your email",
-        "description": "Please enter the OTP code sent to your email",
-        "submitButton": "Verify OTP",
-        "optResend": "Resend OTP",
-        "otpSentSuccess": "OTP code has been sent to your email",
-        "otpSentDescription": "Please check your email to receive the OTP code",
-        "otpMismatch": "OTP code is incorrect",
-        "otpMismatchDescription": "Please enter the correct OTP code",
-        "emailMismatch": "Email is incorrect",
-        "emailMismatchDescription": "Please enter the correct email",
-        "otp6Digits": "Please enter 6 digits OTP code",
-        "otpCountDown": "Resend OTP in"
+    "REGISTER_SECTION": {
+      "TITLE": "Join Us: Create Your Account",
+      "DESCRIPTION": "Join us to become a part of the DevHelper community and start your journey to success.",
+      "USERNAME_INPUT_PLACEHOLDER": "Username",
+      "EMAIL_INPUT_PLACEHOLDER": "Email",
+      "PASSWORD_INPUT_PLACEHOLDER": "Password",
+      "SUCCESS_TITLE": "Registration successful welcome to DevHelper !",
+      "SUBMIT_BUTTON": "Register",
+      "SUCCESS_MESSAGE": "Registration successful !",
+      "ERROR_MESSAGE": "Please fill out all fields !",
+      "INVALID_EMAIL_ERROR": "Please enter a valid email address!",
+      "LOGIN_LINK": "Already have an account? Login here",
+      "OR_REGISTER_WITH_TEXT": " or create an account with ",
+      "OTP_TITLE": "Enter OTP code",
+      "OTP_DESCRIPTION": "Please enter the OTP code sent to your email",
+      "OTP_SUBMIT_BUTTON": "Verify OTP",
+      "RESEND_OTP_BUTTON": "Resend OTP",
+      "OTP_SENT_SUCCESS_MESSAGE": "OTP code has been sent to your email",
+      "OTP_SENT_DESCRIPTION": "Please check your email to receive the OTP code",
+      "OTP_MISMATCH_ERROR": "OTP code is incorrect",
+      "OTP_MISMATCH_DESCRIPTION": "Please enter the correct OTP code",
+      "EMAIL_MISMATCH_ERROR": "Email is incorrect",
+      "EMAIL_MISMATCH_DESCRIPTION": "Please enter the correct email"
     },
-    "login": {
-        "title": "Welcome Back DevHelper ! Please Log In",
-        "usernamePlaceholder": "Username",
-        "passwordPlaceholder": "Password",
-        "submitButton": "Login",
-        "successTitle": "Login successful welcome to DevHelper !",
-        "successMessage": "Login successful !",
-        "errorMessage": "Please enter username and password!",
-        "registerLink": "Don't have an account? Register here",
-        "orLoginWith": " or login with ",
-        "welcomeMessage": "Welcome to DevHelper",
-        "description": "Comprehensive application development support platform",
-        "orContinueWith": "Or continue with",
-        "captchaError": "Please enter the captcha code!",
-        "captchaMismatch": "The captcha code is incorrect!",
-        "captchaPlaceholder": "Enter the captcha code"
+    "IMAGE_UPLOAD_SECTION": {
+      "IMAGE_LABEL": "Image",
+      "OPTIONAL_LABEL": "(optional)",
+      "UPLOAD_BUTTON": "Upload Image",
+      "PREVIEW_LABEL": "Preview Image",
+      "REMOVE_BUTTON": "Remove Image",
+      "CHOOSE_BUTTON": "Choose Image",
+      "DRAG_AND_DROP_LABEL": "Drag and Drop Image",
+      "SELECT_BUTTON": "Select Image",
+      "EDIT_BUTTON": "Edit Image",
+      "RESIZE_BUTTON": "Resize Image",
+      "ROTATE_BUTTON": "Rotate Image",
+      "CANCEL_UPLOAD_BUTTON": "Cancel Upload"
     },
-    "register": {
-        "title": "Join Us: Create Your Account",
-        "description": "Join us to become a part of the DevHelper community and start your journey to success.",
-        "usernamePlaceholder": "Username",
-        "emailPlaceholder": "Email",
-        "passwordPlaceholder": "Password",
-        "successTitle": "Registration successful welcome to DevHelper !",
-        "submitButton": "Register",
-        "successMessage": "Registration successful !",
-        "errorMessage": "Please fill out all fields !",
-        "invalidEmail": "Please enter a valid email address!",
-        "loginLink": "Already have an account? Login here",
-        "orRegisterWith": " or create an account with ",
-        "otpTitle": "Enter OTP code",
-        "otpDescription": "Please enter the OTP code sent to your email",
-        "otpSubmitButton": "Verify OTP",
-        "optResend": "Resend OTP",
-        "otpSentSuccess": "OTP code has been sent to your email",
-        "otpSentDescription": "Please check your email to receive the OTP code",
-        "otpMismatch": "OTP code is incorrect",
-        "otpMismatchDescription": "Please enter the correct OTP code",
-        "emailMismatch": "Email is incorrect",
-        "emailMismatchDescription": "Please enter the correct email"
+    "VOCABULARY_SECTION": {
+      "ADD_BUTTON": "Add Voca",
+      "DELETE_BUTTON": "Delete Voca",
+      "EDIT_BUTTON": "Edit Voca",
+      "SAVE_BUTTON": "Save Voca",
+      "UPDATE_BUTTON": "Update Voca",
+      "SEARCH_BUTTON": "Search Voca",
+      "CLEAR_BUTTON": "Clear Voca",
+      "SELECT_BUTTON": "Select Voca",
+      "VIEW_BUTTON": "View Voca",
+      "MARK_BUTTON": "Mark Voca",
+      "NEXT_BUTTON": "Next Voca",
+      "PREVIOUS_BUTTON": "Previous Voca",
+      "FINISH_BUTTON": "Finish Voca",
+      "CONFIRM_BUTTON": "Confirm Voca",
+      "REJECT_BUTTON": "Reject Voca",
+      "RESET_BUTTON": "Reset Voca",
+      "ADD_NEW_BUTTON": "New Vocabulary",
+      "APPLY_BUTTON": "Apply Voca",
+      "LOAD_MORE_BUTTON": "Load More Voca",
+      "PREVIEW_BUTTON": "Preview Voca",
+      "DOWNLOAD_BUTTON": "Download Voca",
+      "UPLOAD_BUTTON": "Upload Voca",
+      "REVIEW_BUTTON": "Review Voca",
+      "EXPORT_BUTTON": "Export Voca",
+      "IMPORT_BUTTON": "Import Voca",
+      "LIST_LABEL": "List Vocabulary",
+      "WORD_TO_TRANSLATE_LABEL": "Word (to translate)",
+      "TRANSLATE_TO_LABEL": "Translate (to)",
+      "WORD_INPUT_PLACEHOLDER": "Enter the Word",
+      "TRANSLATE_INPUT_PLACEHOLDER": "Enter the Translate",
+      "DETAIL_LABEL": "Voca detail",
+      "NOTES_LABEL": "Notes",
+      "NOTES_INPUT_PLACEHOLDER": "Enter the notes",
+      "EXAMPLE_SENTENCE_LABEL": "Example Sentence",
+      "EXAMPLE_SENTENCE_INPUT_PLACEHOLDER": "Enter the Example Sentence",
+      "SELECT_PRACTICE": "Select Practice",
+      "UNSELECT_PRACTICE": "Unselect Practice",
+      "START_PRACTICE": "Start Practice",
+      "BREAK_TIME_TITLE": "Break Time",
+      "BREAK_TIME_DESCRIPTION": "Break Time",
+      "END_PRACTICE": "End Practice",
+      "CONTINUE_PRACTICE": "Continue Practice",
+      "NO_DATA": "No data",
+      "FINISH_PRACTICE": "Finish Practice"
     },
-    "image": {
-        "image": "Image",
-        "optional": "(optional)",
-        "upload": "Upload Image",
-        "preview": "Preview Image",
-        "remove": "Remove Image",
-        "choose": "Choose Image",
-        "drag_drop": "Drag and Drop Image",
-        "select": "Select Image",
-        "edit": "Edit Image",
-        "resize": "Resize Image",
-        "rotate": "Rotate Image",
-        "cancel": "Cancel Upload"
+    "DICTIONARY_SECTION": {
+      "WORD_LABEL": "Word",
+      "PHONETICS_LABEL": "Phonetics",
+      "TEXT_LABEL": "Phonetic Text",
+      "AUDIO_LABEL": "Audio",
+      "SOURCE_URL_LABEL": "Source URL",
+      "LICENSE_LABEL": "License",
+      "NAME_LABEL": "Name",
+      "URL_LABEL": "URL",
+      "MEANINGS_LABEL": "Meanings",
+      "PART_OF_SPEECH_LABEL": "Part of Speech",
+      "DEFINITIONS_LABEL": "Definitions",
+      "DEFINITION_LABEL": "Definition",
+      "EXAMPLE_LABEL": "Example",
+      "SYNONYMS_LABEL": "Synonyms",
+      "ANTONYMS_LABEL": "Antonyms",
+      "SOURCE_URLS_LABEL": "Source URLs"
     },
-    "vocabulary": {
-        "add": "Add Voca",
-        "delete": "Delete Voca",
-        "edit": "Edit Voca",
-        "save": "Save Voca",
-        "update": "Update Voca",
-        "search": "Search Voca",
-        "clear": "Clear Voca",
-        "select": "Select Voca",
-        "view": "View Voca",
-        "mark": "Mark Voca",
-        "next": "Next Voca",
-        "previous": "Previous Voca",
-        "finish": "Finish Voca",
-        "confirm": "Confirm Voca",
-        "reject": "Reject Voca",
-        "reset": "Reset Voca",
-        "add_new": "New Vocabulary",
-        "apply": "Apply Voca",
-        "load_more": "Load More Voca",
-        "preview": "Preview Voca",
-        "download": "Download Voca",
-        "upload": "Upload Voca",
-        "review": "Review Voca",
-        "export": "Export Voca",
-        "import": "Import Voca",
-        "list": "List Vocabulary",
-        "word": "Word (to translate)",
-        "translate": "Translate (to)",
-        "word_placeholder": "Enter the Word",
-        "translate_placeholder": "Enter the Translate",
-        "detail": "Voca detail",
-        "notes": "Notes",
-        "notes_enter": "Enter the notes",
-        "example_sentence": "Example Sentence",
-        "example_sentence_enter": "Enter the Example Sentence"
+    "NOTE_SECTION": {
+      "TITLE": "My Notes"
     },
-    "dictionary":{
-        "word": "Word",
-        "phonetics": "Phonetics",
-        "text": "Phonetic Text",
-        "audio": "Audio",
-        "sourceUrl": "Source URL",
-        "license": "License",
-        "name": "Name",
-        "url": "URL",
-        "meanings": "Meanings",
-        "partOfSpeech": "Part of Speech",
-        "definitions": "Definitions",
-        "definition": "Definition",
-        "example": "Example",
-        "synonyms": "Synonyms",
-        "antonyms": "Antonyms",
-        "sourceUrls": "Source URLs"
+    "FIREBASE_AUTH_ERROR": {
+      "USER_NOT_FOUND": "User  not found.",
+      "WRONG_PASSWORD": "Incorrect password.",
+      "EMAIL_ALREADY_IN_USE": "Email is already in use.",
+      "WEAK_PASSWORD": "Password is too weak.",
+      "OPERATION_NOT_ALLOWED": "Operation not allowed.",
+      "DEFAULT_ERROR": "An unknown error occurred."
     },
-    "note": {
-        "title": "My Notes"
+    "API_ERROR": {
+      "NETWORK_ERROR": "Unable to connect to the network. Please check your internet connection.",
+      "TIMEOUT_ERROR": "The request has timed out. Please try again.",
+      "SESSION_EXPIRED": "Session has expired, please log in again.",
+      "DATA_NOT_FOUND": "Data not found.",
+      "UNKNOWN_ERROR": "An unknown error occurred."
     },
-    "firebase": {
-        "auth": {
-            "userNotFound": "User  not found.",
-            "wrongPassword": "Incorrect password.",
-            "emailAlreadyInUse": "Email is already in use.",
-            "weakPassword": "Password is too weak.",
-            "operationNotAllowed": "Operation not allowed.",
-            "defaultError": "An unknown error occurred."
-        }
+    "ERROR_PAGE": {
+      "NOT_FOUND": {
+        "TITLE": "Page Not Found",
+        "MESSAGE": "Sorry, the page you visited does not exist.",
+        "GO_BACK_BUTTON": "Go back"
+      },
+      "INTERNAL_SERVER_ERROR": {
+        "TITLE": "Internal Server Error",
+        "MESSAGE": "Sorry, something went wrong.",
+        "GO_BACK_BUTTON": "Go back"
+      }
     },
-    "error": {
-        "api": {
-            "networkError": "Unable to connect to the network. Please check your internet connection.",
-            "timeoutError": "The request has timed out. Please try again.",
-            "sessionExpired": "Session has expired, please log in again.",
-            "dataNotFound": "Data not found.",
-            "unknownError": "An unknown error occurred."
-        },
-        "404": {
-            "title": "Page Not Found",
-            "message": "Sorry, the page you visited does not exist.",
-            "button": "Go back"
-        },
-        "500": {
-            "title": "Internal Server Error",
-            "message": "Sorry, something went wrong.",
-            "button": "Go back"
-        }
+    "SEARCH_SECTION": {
+      "TITLE": "Search ..."
     },
-    "search": {
-        "title": "Search ..."
+    "EMPTY_STATE": {
+      "DESCRIPTION": "No data",
+      "PLACEHOLDER": "...",
+      "REQUIRED_FIELD_MARKER": "*"
     },
-    "empty": {
-        "description": "No data",
-        "placeholder": "...",
-        "required": "*"
-    },
-    "tools": {
-        "type": {
-            "name": {
-                "Crypto": "Encryption Tools",
-                "Facebook": "Facebook Tools",
-                "TikTok": "TikTok Tools"
-            },
-            "description": {
-                "Crypto": "Secret Key Encryption Tools refer to software or hardware tools that utilize encryption algorithms to secure data by using a secret key. These tools are designed to protect sensitive information by transforming it into an unreadable format, which can only be reverted back to its original form using the correct secret key. The key used in this encryption process is kept confidential and is essential for both the encryption and decryption operations, ensuring that only authorized users with the secret key can access the original data.",
-                "Facebook": "Facebook Tools refer to various utilities and applications designed to enhance the user experience on Facebook. These tools can include features for managing posts, analyzing engagement, automating tasks, and improving security.",
-                "TikTok": "TikTok Tools are applications and utilities designed to help users create, manage, and analyze content on TikTok. These tools can assist with video editing, follower analytics, trend tracking, and more."
-            }
-        },
-        "name": {
-            "Crypto": "Secret Key Encryption Tools",
-            "GetUserInfo": "Get User Info Tools",
-            "DownloadWithoutWatermark": "Download Without Watermark Tools"
-        },
-        "description": {
-            "Crypto": "Secret Key Encryption Tools refer to software or hardware tools that utilize encryption algorithms to secure data by using a secret key. These tools are designed to protect sensitive information by transforming it into an unreadable format, which can only be reverted back to its original form using the correct secret key. The key used in this encryption process is kept confidential and is essential for both the encryption and decryption operations, ensuring that only authorized users with the secret key can access the original data.",
-            "GetUserInfo": "Get User Info Tools are designed to retrieve user information from various platforms. These tools can help in gathering data such as user profiles, activity logs, and other relevant information.",
-            "DownloadWithoutWatermark": "Download Without Watermark Tools allow users to download content from various platforms without any watermarks. These tools are useful for obtaining clean and unbranded media files."
-        }
-    },
-    "date": {
-        "startDate": "Start date",
-        "endDate": "End date",
-        "today": "Today",
-        "yesterday": "Yesterday",
-        "lastWeek": "Last week",
-        "lastMonth": "Last month",
-        "lastYear": "Last year",
-        "thisWeek": "This week",
-        "thisMonth": "This month",
-        "thisYear": "This year",
-        "nextWeek": "Next week",
-        "nextMonth": "Next month",
-        "nextYear": "Next year"
+    "DATE_PICKER_LABEL": {
+      "START_DATE": "Start date",
+      "END_DATE": "End date",
+      "TODAY": "Today",
+      "YESTERDAY": "Yesterday",
+      "LAST_WEEK": "Last week",
+      "LAST_MONTH": "Last month",
+      "LAST_YEAR": "Last year",
+      "THIS_WEEK": "This week",
+      "THIS_MONTH": "This month",
+      "THIS_YEAR": "This year",
+      "NEXT_WEEK": "Next week",
+      "NEXT_MONTH": "Next month",
+      "NEXT_YEAR": "Next year"
     }
-}
+  }

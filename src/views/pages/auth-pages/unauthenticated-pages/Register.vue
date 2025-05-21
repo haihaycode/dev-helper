@@ -6,7 +6,6 @@
       class="max-w-5xl w-full rounded-2xl shadow-2xl overflow-hidden zoomInRight"
     >
       <a-row class="min-h-[600px]">
-        <!-- Left side - Logo & Branding -->
         <a-col
           :xs="24"
           :sm="24"
@@ -21,21 +20,20 @@
               :preview="false"
             />
             <h2 class="text-white text-2xl font-bold mb-4">
-              {{ $t("register.title") }}
+              {{ $t("REGISTER_SECTION.TITLE") }}
             </h2>
             <p class="text-white font-mono text-sm">
-              {{ $t("register.description") }}
+              {{ $t("REGISTER_SECTION.DESCRIPTION") }}
             </p>
           </div>
         </a-col>
 
-        <!-- Right side - Register Form -->
         <a-col :xs="24" :sm="24" :md="12" class="p-8 bg-white">
           <div v-if="step === 1" class="max-w-md mx-auto">
             <h1
               class="text-3xl font-bold font-mono text-blue-900 mb-8 text-center"
             >
-              {{ $t("register.title") }}
+              {{ $t("REGISTER_SECTION.TITLE") }}
             </h1>
 
             <a-form
@@ -54,7 +52,9 @@
                   class="hover:border-blue-900 focus:border-blue-900 focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-900 border-blue-900 font-mono"
                   :class="['', { 'border-red-900 shake': errors.username }]"
                   v-model:value="formModel.username"
-                  :placeholder="$t('register.usernamePlaceholder')"
+                  :placeholder="
+                    $t('REGISTER_SECTION.USERNAME_INPUT_PLACEHOLDER')
+                  "
                   size="large"
                 >
                   <template #prefix>
@@ -73,7 +73,7 @@
                   class="hover:border-blue-900 focus:border-blue-900 focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-900 border-blue-900 font-mono"
                   :class="['', { 'border-red-900 shake': errors.email }]"
                   v-model:value="formModel.email"
-                  :placeholder="$t('register.emailPlaceholder')"
+                  :placeholder="$t('REGISTER_SECTION.EMAIL_INPUT_PLACEHOLDER')"
                   size="large"
                 >
                   <template #prefix>
@@ -91,7 +91,9 @@
                   class="hover:border-blue-900 focus:border-blue-900 focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-900 border-blue-900 font-mono"
                   :class="['', { 'border-red-900 shake': errors.password }]"
                   v-model:value="formModel.password"
-                  :placeholder="$t('register.passwordPlaceholder')"
+                  :placeholder="
+                    $t('REGISTER_SECTION.PASSWORD_INPUT_PLACEHOLDER')
+                  "
                   size="large"
                 >
                   <template #prefix>
@@ -110,7 +112,7 @@
                   class="hover:border-blue-900 focus:border-blue-900 focus:outline-none focus:ring-0 focus:shadow-none focus:bg-amber-900 border-blue-900 font-mono flex-row"
                   :class="['', { 'border-red-900 shake': errors.captcha }]"
                   v-model:value="formModel.captcha"
-                  :placeholder="$t('login.captchaPlaceholder')"
+                  :placeholder="$t('LOGIN_SECTION.CAPTCHA_INPUT_PLACEHOLDER')"
                   size="large"
                 >
                   <template #suffix>
@@ -130,7 +132,7 @@
                 class="w-full h-12 rounded-sm bg-blue-900 hover:bg-gray-200 border-none focus:border-none focus:outline-none focus:ring-0 focus:shadow-none focus:bg-blue-900"
                 :loading="isLoadingPost"
               >
-                {{ $t("register.submitButton") }}
+                {{ $t("REGISTER_SECTION.SUBMIT_BUTTON") }}
               </a-button>
 
               <div class="relative my-8">
@@ -139,7 +141,7 @@
                 </div>
                 <div class="relative flex justify-center text-sm">
                   <span class="px-2 bg-white text-gray-400">
-                    {{ $t("register.orRegisterWith") }}
+                    {{ $t("REGISTER_SECTION.OR_REGISTER_WITH_TEXT") }}
                   </span>
                 </div>
               </div>
@@ -162,21 +164,21 @@
                   :to="{ name: 'LoginPage' }"
                   class="text-blue-900 hover:text-blue-700 transition-colors"
                 >
-                  {{ $t("register.loginLink") }}
+                  {{ $t("REGISTER_SECTION.LOGIN_LINK") }}
                 </router-link>
               </div>
             </a-form>
           </div>
           <div v-if="step === 2">
-            <a-spin :spinning="isLoadingPost" :tip="$t('loading.default')">
+            <a-spin :spinning="isLoadingPost" :tip="$t('LOADING.DEFAULT')">
               <div
                 class="text-center mt-8 bg-white p-8 rounded-sm bg-opacity-80"
               >
                 <h1 class="text-3xl font-bold text-blue-900 mb-4">
-                  {{ $t("register.otpTitle") }}
+                  {{ $t("REGISTER_SECTION.OTP_TITLE") }}
                 </h1>
                 <p class="text-gray-700 text-lg mb-6">
-                  {{ $t("register.otpDescription") }}
+                  {{ $t("REGISTER_SECTION.OTP_DESCRIPTION") }}
                 </p>
                 <AntOtp @otpEntered="handleCheckOtpAndRegister" />
                 <div class="flex justify-center gap-4 px-8 mt-8">
@@ -191,8 +193,11 @@
                   >
                     {{
                       countDown <= 0
-                        ? $t("register.optResend")
-                        : $t("otp.otpCountDown") + " " + countDown + "s"
+                        ? $t("REGISTER_SECTION.OTP_RESEND")
+                        : $t("OTP_SECTION.OTP_COUNT_DOWN") +
+                          " " +
+                          countDown +
+                          "s"
                     }}
                   </span>
                 </div>
@@ -204,7 +209,7 @@
                   "
                   class="text-blue-900 text-sm mb-6 mt-2 cursor-pointer underline"
                 >
-                  {{ $t("back.title") }}
+                  {{ $t("BACK.TITLE") }}
                 </p>
               </div>
             </a-spin>
@@ -224,8 +229,6 @@ export default {
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import { useI18n } from "vue-i18n";
-// import { useRouter } from "vue-router";
-import * as yup from "yup";
 import {
   UserOutlined,
   MailOutlined,
@@ -239,9 +242,9 @@ import { sendOtp, registerUser } from "@/api/userApi";
 import { DEV } from "@/api/config";
 import { Otp, UserResponse } from "@/models/user";
 import { encryptWithSecretKey } from "@/utils/uniqueIdUtils";
+import * as yup from "yup";
 
 const { t } = useI18n();
-// const router = useRouter();
 const captchaCode = ref("");
 const formModel = ref({
   username: "",
@@ -255,13 +258,13 @@ const countDown = ref(0);
 const store = useStore();
 const isLoadingPost = computed(() => store.getters["loading/isLoadingPost"]);
 const schema = yup.object().shape({
-  username: yup.string().required(t("register.errorMessage")),
+  username: yup.string().required(t("REGISTER_SECTION.ERROR_MESSAGE")),
   email: yup
     .string()
-    .email(t("register.invalidEmail"))
-    .required(t("register.errorMessage")),
-  password: yup.string().required(t("register.errorMessage")),
-  captcha: yup.string().required(t("login.captchaError")),
+    .email(t("REGISTER_SECTION.INVALID_EMAIL"))
+    .required(t("REGISTER_SECTION.ERROR_MESSAGE")),
+  password: yup.string().required(t("REGISTER_SECTION.ERROR_MESSAGE")),
+  captcha: yup.string().required(t("LOGIN_SECTION.CAPTCHA_ERROR_MESSAGE")),
 });
 const DataResponse = ref<Otp | null>(null);
 const handleCaptchaChange = (code: string) => {
@@ -287,7 +290,7 @@ const handleResendOtp = async () => {
 
   notification.success({
     message: res.message || "",
-    description: t("register.otpSentDescription"),
+    description: t("REGISTER_SECTION.OTP_SENT_DESCRIPTION"),
     placement: "bottomRight",
   });
   handleCountDown();
@@ -298,7 +301,7 @@ const handleCheckAndSendOtp = async () => {
   try {
     await schema.validate(formModel.value, { abortEarly: false });
     if (formModel.value.captcha !== captchaCode.value) {
-      errors.value.captcha = t("login.captchaMismatch");
+      errors.value.captcha = t("LOGIN_SECTION.CAPTCHA_MISMATCH_ERROR");
       return;
     }
     if (countDown.value <= 0) {
@@ -311,7 +314,7 @@ const handleCheckAndSendOtp = async () => {
 
       notification.success({
         message: res.message || "",
-        description: t("register.otpSentDescription"),
+        description: t("REGISTER_SECTION.OTP_SENT_DESCRIPTION"),
         placement: "bottomRight",
       });
       handleCountDown();
@@ -337,10 +340,10 @@ const handleCheckOtpAndRegister = async (otp: string) => {
   console.log(DataResponse.value?.otp);
   let message = null;
   if (DataResponse.value?.email !== formModel.value.email) {
-    message = t("register.emailMismatch");
+    message = t("REGISTER_SECTION.EMAIL_MISMATCH");
     notification.error({
       message: message,
-      description: t("register.emailMismatchDescription"),
+      description: t("REGISTER_SECTION.EMAIL_MISMATCH_DESCRIPTION"),
       placement: "bottomRight",
     });
     step.value = 1;
@@ -348,10 +351,10 @@ const handleCheckOtpAndRegister = async (otp: string) => {
     return;
   }
   if (encryptWithSecretKey(otp, "secretKey") !== DataResponse.value?.otp) {
-    message = t("register.otpMismatch");
+    message = t("REGISTER_SECTION.OTP_MISMATCH");
     notification.error({
       message: message,
-      description: t("register.otpMismatchDescription"),
+      description: t("REGISTER_SECTION.OTP_MISMATCH_DESCRIPTION"),
       placement: "bottomRight",
     });
     return;
@@ -365,7 +368,7 @@ const handleCheckOtpAndRegister = async (otp: string) => {
     );
     notification.success({
       message: res.message || "",
-      description: t("register.successMessage"),
+      description: t("REGISTER_SECTION.SUCCESS_MESSAGE"),
       placement: "bottomRight",
     });
   } catch (error) {

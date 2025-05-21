@@ -1,5 +1,5 @@
 <template>
-  <LearnEnglishPagePatternLayout :title="i18n.global.t('note.title')">
+  <LearnEnglishPagePatternLayout :title="i18n.global.t('NOTE_SECTION.TITLE')">
     <template #content>
       <div id="NOTEPAGE">
         <div id="ACTION" class="flex justify-between navigation mb-2"></div>

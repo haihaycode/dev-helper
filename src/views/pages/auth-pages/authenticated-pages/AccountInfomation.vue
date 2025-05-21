@@ -9,7 +9,12 @@
           <p
             class="text-blue-900 font-bold text-left border-l-4 border-blue-900"
           >
-            &nbsp; {{ $t("nav.account.personalInformation") }}
+            &nbsp;
+            {{
+              i18n.global.t(
+                "NAVIGATION_SECTION.ACCOUNT_SECTION.PERSONAL_INFORMATION"
+              )
+            }}
           </p>
           <p class="">
             <span class="text-blue-900 pr-2 font-mono">{{ user?.email }} </span>
@@ -226,6 +231,7 @@ import {
   TwitterOutlined,
   EditOutlined,
 } from "@ant-design/icons-vue";
+import i18n from "@/services/i18n";
 
 const user = ref<User | null>(null);
 const bio = ref<string>("");
